@@ -4,7 +4,7 @@ var webpack = require("webpack");
 module.exports = {
   name: "web",
   entry: {
-    bundle: ["babel-polyfill", "./web/index.js"]
+    bundle: ["babel-polyfill", "./controllers/index.js"]
   },
   resolve: {
     extensions: ["", ".js"]
