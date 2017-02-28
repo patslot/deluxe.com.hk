@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+var Server = require('../server');
+
+var server = Server();
+
+server.set('port', process.env.PORT || 3000);
+
+var runningServer = server.listen(server.get('port'), function() {
+  console.log('listening on port ' + runningServer.address().port);
+});
