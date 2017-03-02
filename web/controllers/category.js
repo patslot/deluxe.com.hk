@@ -1,10 +1,10 @@
-export default function($scope, $attrs, $http) {
+export default function($scope, $attrs, gqModel) {
   $scope.categ = $attrs.category;
   $scope.data = {};
 
-  $http.post('/category', {category: $scope.categ}).then(function(res) {
-    $scope.data = res.data;
-  }, function(res) {
-    console.log('Error code:', res.status);
+  gqModel.queryHome().then(function(res) {
+    $scope.$apply(function() {
+      $scope.categories = res.listMenu;
+    });
   });
 };

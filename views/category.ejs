@@ -8,10 +8,7 @@
     <h1><%= category %></h1>
     <div ng-app="addv2" ng-controller="CategController"
       category="<%= category %>">
-      {{data.categ}}
-      <h3 ng-repeat="article in data.articles">
-        {{article}}
-      </h3>
+      <top-menu ng-categories="categories"></top-menu>
     </div>
     <script src="bundle.js"></script>
   </body>

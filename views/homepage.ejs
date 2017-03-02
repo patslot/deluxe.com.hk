@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ADD homepage</title>
+    <%- include('partials/googleAdTag.ejs', {categoryName: 'Index'}) %>
+  </head>
+  <body>
+    <div ng-app="addv2" ng-controller="HomepageController">
+      <top-menu ng-categories="categories"></top-menu>
+      <%- include('partials/mpms.ejs', {mpms: mpms}) %>
+      <latest-articles add-articles="latestArticles"></latest-articles>
+      <highlights-block add-highlights="highlights"></highlights-block>
+      <latest-articles add-articles="secLatestArticles"></latest-articles>
+      <editor-picks add-picks="editorPicks"></editor-picks>
+      <instagram-medias ig-medias="igMedias"></instagram-medias>
+    </div>
+    <h3>Example DFP advertisement</h3>
+ 	  <div>
+ 	    <script>
+ 	      googletag.cmd.push(function() {
+ 	         googletag.display("adHeaderTop");
+ 	      });
+ 	    </script>
+ 	  </div>
+    <script src="bundle.js"></script>
+  </body>
+</html>

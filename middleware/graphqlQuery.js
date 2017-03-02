@@ -16,7 +16,7 @@ const photo = _client.createFragment(`
 	}
 `);
 
-const articleQuery = `
+const articleQ = `
 	query sampleArtilce($id: String) {
 		getArticleDetail(id: $id) {
       brandId
@@ -72,8 +72,30 @@ const articleQuery = `
   }
 `
 
+const homeQ = `{
+	listMPM {
+    homeGalleryID
+    apID
+    catName
+    imgName
+    caption
+    content
+    linkURL
+    sort
+    startDateTime
+    endDateTime
+    confirm
+    hasVideo
+    adCode
+    apCatID
+  }
+}`
+
 module.exports = {
   articleQuery: function(articleID) {
-    return _client.query(articleQuery, {id: articleID});
+    return _client.query(articleQ, {id: articleID});
+  },
+  homeQuery: function() {
+    return _client.query(homeQ);
   }
 };

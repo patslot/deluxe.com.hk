@@ -3,36 +3,7 @@
   <head>
     <meta charset="utf-8">
     <script src="http://hk.adx.nextmedia.com/uvp2/js/anvp.common.lib-v1.0.2.js"></script>
-    <script src="https://www.googletagservices.com/tag/js/gpt.js">
-    </script>
-    <script>
-      googletag.cmd.push(function() {
-        var slotPrefix = '/7350/ADD/<%= categoryName %>';
-        // For testing, use slotPrefix = '/7350/AppleDailyDeluxe/Index/'
-        var slots = [
-          ['HeadBanner',
-            [[970, 90], [970, 160], [970, 250]], 'headBanner'],
-          ['LREC1',
-            [[300, 250], [300, 430], [300, 600]], 'lrec1'],
-          ['LREC2',
-            [[300, 250], [300, 430], [300, 600]], 'lrec2'],
-          ['Skycraper1',
-            [[120, 600], [160, 600]], 'skycrapper1'],
-          ['Skycraper2',
-            [[120, 600], [160, 600]], 'skycrapper2'],
-          ['Midbanner',
-            [[970, 90], [970, 160], [970, 250]], 'midbanner']
-        ];
-        slots.forEach(function(slot) {
-          googletag.defineSlot(slotPrefix + slot[0], slot[1], slot[2]).
-            addService(googletag.pubads());
-        });
-        googletag.pubads().collapseEmptyDivs();
-        googletag.pubads().enableSyncRendering();
-        googletag.pubads().enableSingleRequest();
-        googletag.enableServices();
-      });
-    </script>
+    <%- include('partials/googleAdTag.ejs', {categoryName: categoryName}) %>
     <title><%- title %></title>
   </head>
   <body>
@@ -59,11 +30,13 @@
        var anvp1 = new AnvatoPlayer('anvp1'); // Unique player id
        var videoUrl = '<%= video.url %>';
        anvp1.setVideoUrl(videoUrl);
-       anvp1.setPlayerSize('100%', '100%');
+       anvp1.setPlayerSize(640, 360);
        anvp1.setTitle('How are you?');
        anvp1.setDescription('This is description.');
        anvp1.setVolume(0.5); // Value between 0 - 1
        anvp1.setShareEnable(false);
+       var videopAdTagURL = anvp1.generateDFPvideoTag("dev.action_fun_marticle_preroll", "640x360");
+       anvp1.setVideoAdTagURL(videopAdTagURL);
        anvp1.createInstance('video_player'); // Div Id match
 
        function liveStateChanged(stateMessage, anvatoData) {
