@@ -3,7 +3,7 @@ var path = require("path");
 module.exports = {
   name: "web",
   entry: {
-    bundle: ["babel-polyfill", "./controllers/index.js"]
+    bundle: ["babel-polyfill", "./web/index.js"]
   },
   resolve: {
     extensions: ["", ".js"]

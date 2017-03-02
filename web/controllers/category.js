@@ -1,4 +1,4 @@
-exports.controller = function($scope, $attrs, $http) {
+export default function($scope, $attrs, $http) {
   $scope.categ = $attrs.category;
   $scope.data = {};
 
