@@ -3,13 +3,32 @@
   <head>
     <meta charset="utf-8">
     <title>Example</title>
+ 	  <script src="https://www.googletagservices.com/tag/js/gpt.js">
+ 	  </script>
+   	<script>
+      googletag.cmd.push(function() {
+        googletag.defineSlot('/7350/AppleDailyDeluxe/Index/HeadBanner', [[970, 90], [970, 160], [970, 250]], 'adHeaderTop').addService(googletag.pubads());
+        googletag.pubads().collapseEmptyDivs();
+        googletag.pubads().enableSyncRendering();
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+      });
+   	</script>
   </head>
   <body>
     <div ng-app="addv2" ng-controller="HelloController">
       <h1>Example</h1>
       <p>{{hello}}</p>
-      <img src="/img/icon.png"/>
+      <img height="50" width="50" src="/img/icon.png"/>
     </div>
+    <h3>Example DFP advertisement</h3>
+ 	  <div>
+ 	    <script>
+ 	      googletag.cmd.push(function() {
+ 	         googletag.display("adHeaderTop");
+ 	      });
+ 	    </script>
+ 	  </div>
     <script src="bundle.js"></script>
   </body>
 </html>
