@@ -1,12 +1,13 @@
 export default function($scope, $attrs, gqModel) {
   var categEname = $attrs.categEname;
 
-  gqModel.queryCateg(categEname, 1, 8).then(function(res) {
+  gqModel.queryArticle(categEname, 1, 13).then(function(res) {
     $scope.$apply(function() {
       $scope.categs = res.listMenu || [];
       var articles = res.listArticle || [];
-      $scope.latestArticles = articles.slice(0, 4);
-      $scope.secLatestArticles = articles.slice(4, 8);
+      // TODO(wkchan): Dedup latest articles with current article
+      $scope.latestArticles = articles;
+      $scope.igMedias = res.listInstagram || [];
     });
   });
 };

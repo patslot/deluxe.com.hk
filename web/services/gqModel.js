@@ -43,7 +43,7 @@ export default function(c) {
   /*photos {
     ...${photo}
   }*/
-  const listArticle = `listArticle {
+  const listArticle = `listArticle(tagName: $tagName, offset: $offset, count: $count) {
     order
     highlight
     brandId
@@ -99,10 +99,27 @@ export default function(c) {
     }
   }`;
 
+  var queryWithTagName = function(queries) {
+    return 'query ($tagName: String, $offset: Int, $count: Int) { ' +
+      queries.join(' ') + ' }';
+  };
+
+  const homeQ = queryWithTagName([listMenu, listInstagram, listArticle]);
+  const categQ = queryWithTagName([listMenu, listArticle]);
+  const articleQ = queryWithTagName([listMenu, listInstagram, listArticle]);
+
   return {
     // TODO(wkchan): Menu sorting and display
-    queryHome: function() {
-      return client.query('{' + listMenu + listInstagram + listArticle + '}');
+    queryHome: function(offset, count) {
+      return client.query(homeQ, {offset: offset, count: count});
+    },
+    queryCateg: function(tagName, offset, count) {
+      return client.query(categQ,
+        {tagName: tagName, offset: offset, count: count});
+    },
+    queryArticle: function(tagName, offset, count) {
+      return client.query(articleQ,
+        {tagName: tagName, offset: offset, count: count});
     }
   };
 };

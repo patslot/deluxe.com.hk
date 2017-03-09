@@ -3,5 +3,6 @@
  * 
  * You should register you controllers in this index
  */
-export { default as homepageController } from './homepage';
-export { default as categoryController } from './category';
+export { default as homepage } from './homepage';
+export { default as category } from './category';
+export { default as article } from './article';

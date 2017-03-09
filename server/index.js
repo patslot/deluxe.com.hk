@@ -1,8 +1,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var article = require('../routes/article.js');
-var home = require('../routes/home.js');
+var article = require('./routes/article.js');
+var home = require('./routes/home.js');
 
+var categMapping = require('./middleware/categoryMapping.js');
 var app = express();
 
 module.exports = function() {
@@ -12,13 +13,14 @@ module.exports = function() {
   app.set('view engine', 'ejs');
 
   app.get('/', home.render);
-  app.get('/:articleID([0-9]_[0-9]+)', article.renderArticle);
-  app.get('/:category', function(req, res) {
-    res.render('category', req.params);
+  app.get('/favicon.ico', function(req, res) {
+    res.sendStatus(204);
   });
-  app.post('/category', function(req, res) {
-    var category = req.body.category;
-    res.json({category: category, articles: [category + '1', category + '2']});
+  app.get('/:categ/:articleID/:title', article.renderArticle);
+  app.get('/:categ', function(req, res) {
+    var categ = req.params.categ;
+    res.render('categ', {ename: categMapping.nameToEname[categ],
+      adTag: categMapping.nameToAdTag[categ].list});
   });
 
   return app;

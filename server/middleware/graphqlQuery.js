@@ -1,4 +1,4 @@
-var config = require('../config.json');
+var config = require('../config.js');
 var Lokka = require('lokka').Lokka;
 var Transport = require('lokka-transport-http').Transport;
 

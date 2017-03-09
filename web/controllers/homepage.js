@@ -2,7 +2,7 @@
  * HomepageController for homepage
  */
 export default function($scope, gqModel) {
-  gqModel.queryHome().then(function(res) {
+  gqModel.queryHome(1, 8).then(function(res) {
     $scope.$apply(function() {
       // TODO(wkchan): Move this parts as a function for unit test
       $scope.categories = res.listMenu || [];

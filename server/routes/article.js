@@ -1,8 +1,7 @@
 var gQuery = require('../middleware/graphqlQuery.js');
+var categMapping = require('../middleware/categoryMapping.js');
 
 var renderArticle = function(req, res) {
-  // Can use sample json for testing, e.g:
-  //   var article = require('./sampleData/articleFull.json');
   gQuery.articleQuery(req.params.articleID).then(function(result) {
 		var article = result.getArticleDetail || {};
     article.video = null;
@@ -11,9 +10,13 @@ var renderArticle = function(req, res) {
         article.video = article.mediaGroup[idx];
       }
     });
-    // TODO(wkchan): category ID to name mapping
-    article.categoryName = 'Fashion_list';
+    var categ = req.params.categ;
+    article.ename = categMapping.nameToEname[categ];
+    article.adTag = categMapping.nameToAdTag[categ].detail;
     res.render('articleDetail', article); 
+  }, function(err) {
+    console.error(err);
+    res.sendStatus(500, err);
   });
 };
 

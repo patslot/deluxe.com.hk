@@ -1,21 +1,19 @@
 import angular from 'angular';
 import 'angular-sanitize';
 
-import {
-  homepageController,
-  categoryController
-} from './controllers';
+var controllers = require('./controllers');
+var services = require('./services');
+var dirs = require('./directives');
 
-import dirs from "./directives";
-
-import {
-  gqModel,
-  constant
-} from './services';
+var constant = function() {
+  return {
+    GRAPHQL_ENDPOINT: 'http://localhost:4000/graphql'
+  };
+};
 
 angular.module('appServices', [])
   .factory('const', [constant])
-  .factory('gqModel', ['const', gqModel]);
+  .factory('gqModel', ['const', services.gqModel]);
 
 angular.module('appDirectives', [])
   .directive('topMenu', [dirs.menu])
@@ -26,5 +24,6 @@ angular.module('appDirectives', [])
 
 angular
   .module('addv2', ['ngSanitize', 'appServices', 'appDirectives'])
-  .controller('HomepageController', ['$scope', 'gqModel', homepageController])
-  .controller('CategController', ['$scope', '$attrs', 'gqModel', categoryController]);
+  .controller('HomepageController', ['$scope', 'gqModel', controllers.homepage])
+  .controller('CategController', ['$scope', '$attrs', 'gqModel', controllers.category])
+  .controller('ArticleController', ['$scope', '$attrs', 'gqModel', controllers.article]);

@@ -3,10 +3,12 @@
   <head>
     <meta charset="utf-8">
     <script src="http://hk.adx.nextmedia.com/uvp2/js/anvp.common.lib-v1.0.2.js"></script>
-    <%- include('partials/googleAdTag.ejs', {categoryName: categoryName}) %>
+    <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
     <title><%- title %></title>
   </head>
-  <body>
+  <body ng-app="addv2" ng-controller="ArticleController"
+      categ-ename="<%= ename %>">
+    <top-menu ng-categories="categs"></top-menu>
     <%= label %>
     <h1><%- title %></h1>
     Share bar<br />
@@ -83,12 +85,15 @@
     <% } %>
 
     <% for (var i = 1; i < contentBlocks.length; i++) { %>
-    <br /><%- contentBlocks[i].content %>
+    <br /><%- contentBlocks[i].content %><br />
       <% contentBlocks[i].photos.forEach(function(photo) { %>
-    <br /><img src="<%= photo.imagePath %>" />
+    <img src="<%= photo.imagePath %>" />
       <% }) %>
-    <br />
     <% } %>
+
+    <instagram-medias ig-medias="igMedias"></instagram-medias>
+    <latest-articles add-articles="latestArticles"></latest-articles>
+
     <!-- DFP advertisements -->
     <div>
       <script>
@@ -132,5 +137,6 @@
         });
       </script>
     </div>
+    <script src="/bundle.js"></script>
   </body>
 </html>

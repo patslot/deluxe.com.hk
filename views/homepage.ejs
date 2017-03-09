@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>ADD homepage</title>
-    <%- include('partials/googleAdTag.ejs', {categoryName: 'Index'}) %>
+    <%- include('partials/googleAdTag.ejs', {adTag: 'Index'}) %>
   </head>
   <body>
     <div ng-app="addv2" ng-controller="HomepageController">
@@ -23,6 +23,6 @@
  	      });
  	    </script>
  	  </div>
-    <script src="bundle.js"></script>
+    <script src="/bundle.js"></script>
   </body>
 </html>

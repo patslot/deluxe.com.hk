@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Category</title>
+    <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
+  </head>
+  <body>
+    <h1>Category</h1>
+    <div ng-app="addv2" ng-controller="CategController"
+      categ-ename="<%= ename %>">
+      <top-menu ng-categories="categs"></top-menu>
+      <latest-articles add-articles="latestArticles"></latest-articles>
+      <latest-articles add-articles="secLatestArticles"></latest-articles>
+    </div>
+    <script src="/bundle.js"></script>
+  </body>
+</html>
