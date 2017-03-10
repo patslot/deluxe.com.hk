@@ -10,7 +10,7 @@ export default function(c) {
     categoryID
     campaignID
     name
-    englishName
+    eName
     showNew
     genCatJSON
     subCategory

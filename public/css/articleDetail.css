@@ -1,0 +1,59 @@
+.artd_container {
+  padding: 10px 15px;
+}
+
+.artd_article_label {
+  font-style: italic;
+  color: #8B0000;
+  font-size: 18px;
+}
+
+.artd_article_title {
+  font-family: Arial, 新細明體, sans-serif;
+  font-size: 25px;
+  line-height: 30px;
+  background: rgb(255, 255, 255);
+  margin: 0px auto;
+}
+
+.artd_article_Photo img {
+  width: 100%;
+  height: auto;
+}
+
+.artd_article_Text {
+  margin-top: 30px;
+}
+
+.artd_facebook_block {
+  margin-top: 30px;
+  width: 300px;
+  height: 400px;
+  position: relative;
+}
+
+.artd_instagram_block {
+  margin-top: 30px;
+  width: 300px;
+  height: 200px;
+  position: relative;
+}
+
+.artd_instagram_header {
+  font-weight: bold;
+  text-align: center;
+}
+
+.artd_instagram_small_image {
+  float: left;
+  width: 33%;
+  height: 80px;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.artd_instagram_small_image img {
+  height: 100%;
+  width: auto;
+}

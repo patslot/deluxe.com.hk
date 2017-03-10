@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <%- include('partials/extHeader.ejs') %>
     <script src="http://hk.adx.nextmedia.com/uvp2/js/anvp.common.lib-v1.0.2.js"></script>
     <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
     <title><%- title %></title>
+    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="stylesheet" href="/css/articleDetail.css" />
   </head>
   <body ng-app="addv2" ng-controller="ArticleController"
       categ-ename="<%= ename %>">
@@ -138,5 +140,140 @@
       </script>
     </div>
     <script src="/bundle.js"></script>
+
+  <div id="fb-root"></div>
+  <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1048461655187186";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <div class="nm_v_menu visible-xs" vmenu="content">
+    <div inc='inc/mobile_menu.html'></div>
+  </div>
+  <div class="container nm_home">
+    <div inc='inc/header.html'></div>
+    <div class="row nm_row">
+      <!--<div class="skinner_ad" skinner_ad_left></div>-->
+      <div class="main_content">
+        <div class="nm_section">
+          <div class="head_banner_wrapper">
+            <div class="superhead_banner"></div>
+            <div class="head_banner"></div>
+          </div>
+          <div class="row nm_row">
+            <div class="pull-right lrec_ad_wrapper hidden-xs">
+              <div class="lrec_ad_large"></div>
+              <div class="lrec_ad_small"></div>
+              <div class="artd_facebook_block">
+                <div class="fb-page" data-href="https://www.facebook.com/appledailydeluxe/" data-tabs="timeline" data-width="300" data-height="400" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                  <blockquote cite="https://www.facebook.com/appledailydeluxe/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/appledailydeluxe/">Apple Daily Deluxe</a></blockquote>
+                </div>
+              </div>
+              <div class="artd_instagram_block">
+                <h4 class="artd_instagram_header">-Instagram-</h4>
+                <div class="artd_instagram_small_image">
+                  <img src="/img/ig_1.jpg">
+                </div>
+                <div class="artd_instagram_small_image">
+                  <img src="/img/ig_2.jpg">
+                </div>
+                <div class="artd_instagram_small_image">
+                  <img src="/img/ig_3.jpg">
+                </div>
+                <div class="artd_instagram_small_image">
+                  <img src="/img/ig_4.jpg">
+                </div>
+                <div class="artd_instagram_small_image">
+                  <img src="/img/ig_5.jpg">
+                </div>
+                <div class="artd_instagram_small_image">
+                  <img src="/img/ig_6.jpg">
+                </div>
+              </div>
+            </div>
+            <div class="pull-right nm_mpm col-xs-12">
+              <div class="mpm_content artd_container">
+                <div class="artd_article_label">Feature</div>
+                <div class="artd_article_title">鄭秀文心口掛大眼睛 自嘲好奇寶寶八卦mi</div>
+                <div class="artd_article_publish_date"></div>
+                <div class="artd_article_share_bar"></div>
+                <div class="artd_article_video"></div>
+                <div class="artd_article_Photo"><img src="img/S_01.jpg"></div>
+                <div class="artd_article_Text">日前被瘋傳在日本表參道遊逛時，與老公許志安齊齊攝了入Oreo新廣告的鄭秀文(Sammi)，在ig po完相話自己好瘀皮之後，今日又再po新相，除了晒靚衫之餘，亦不忘繼續自嘲，hashtag自己綽號叫好奇寶寶、八卦mi、厚多士。 相中的Sammi穿了一件來自內地設計師卜柯文的時裝品牌，Chris by Christopher Bu的白色針織上衣，衫上織有一隻正在流淚的粉紅色卡通眼睛，設計搶眼又富玩味，而這個品牌亦是范冰冰的愛牌，無論出席大小活動都經常穿此品牌亮相。</div>
+                <div class="artd_article_Photo"><img src="img/S_01.jpg"></div>
+                <div class="artd_article_Text">日前被瘋傳在日本表參道遊逛時，與老公許志安齊齊攝了入Oreo新廣告的鄭秀文(Sammi)，在ig po完相話自己好瘀皮之後，今日又再po新相，除了晒靚衫之餘，亦不忘繼續自嘲，hashtag自己綽號叫好奇寶寶、八卦mi、厚多士。 相中的Sammi穿了一件來自內地設計師卜柯文的時裝品牌，Chris by Christopher Bu的白色針織上衣，衫上織有一隻正在流淚的粉紅色卡通眼睛，設計搶眼又富玩味，而這個品牌亦是范冰冰的愛牌，無論出席大小活動都經常穿此品牌亮相。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div inc='inc/article_recommended.html'></div>
+      </div>
+      <!--<div class="skinner_ad" skinner_ad_right></div>-->
+    </div>
+
+    <div inc='inc/footer.html'></div>
+    <div inc="inc/newsletter.html"></div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $('[inc]').each(function() {
+        var $this = $(this);
+        var url = $this.attr('inc');
+        if ($this.attr('loading') != "content")
+          $this.load(url);
+      });
+
+
+      // lazy load
+      var $loadingTrigger = $('[loading="trigger"]').first();
+      var isLoading = false;
+      var loadingIndex = 0;
+      if ($loadingTrigger.length > 0) {
+        $loadingContents = $('[loading="content"]');
+        $loadingContents.addClass('hidden');
+        $(document).on('scroll', function() {
+          if ($(window).height() + $(document).scrollTop() > $loadingTrigger.position().top &&
+            $loadingContents.length > loadingIndex &&
+            !isLoading) {
+            isLoading = true;
+            // console.log('start');
+            var $content = $($loadingContents.get(loadingIndex));
+            var url = $content.attr('inc');
+            $content.attr('loading', 'loaded');
+            $content.removeClass('hidden');
+            if (url) {
+              $content.load(url, function() {
+                isLoading = false;
+                // console.log('complete');
+              });
+            } else {
+              isLoading = false;
+            }
+            loadingIndex++;
+          } else if ($loadingContents.length <= loadingIndex) {
+            $loadingTrigger.addClass('hidden');
+          }
+        });
+      }
+    });
+
+    $(document).ready(function() {
+      $('.newsletter_small').hide();
+      $('.newsletter_close').click(function() {
+        $('.newsletter').hide();
+        $('.newsletter_small').show();
+      });
+      $('.newsletter_small').click(function() {
+        $('.newsletter').show();
+      });
+    });
+  </script>
   </body>
 </html>
