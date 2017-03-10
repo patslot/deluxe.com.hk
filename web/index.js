@@ -6,12 +6,12 @@ import {
   categoryController
 } from './controllers';
 
+import dirs from "./directives";
+
 import {
   gqModel,
   constant
 } from './services';
-
-var dirs = require('./directives');
 
 angular.module('appServices', [])
   .factory('const', [constant])

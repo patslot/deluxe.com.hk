@@ -1,7 +1,5 @@
-module.exports = {
-  menu: require('./menu').default,
-  instagram: require('./instagram').default,
-  latestArticles: require('./latestArticles').default,
-  highlights: require('./highlights').default,
-  editorPicks: require('./editorPicks').default
-};
+export { default as menu } from "./menu";
+export { default as instagram } from "./instagram";
+export { default as latestArticles } from "./latestArticles";
+export { default as highlights } from "./highlights";
+export { default as editorPicks } from "./editorPicks";
