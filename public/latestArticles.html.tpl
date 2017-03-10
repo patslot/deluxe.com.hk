@@ -7,5 +7,5 @@
   <!-- TODO(wkchan): Replace 'Fashion' with a category -->
   <a href="/Fashion/{{a.mlArticleId}}/{{a.title}}">{{a.title}}</a>
   <br />[a.label]<br />
-  <div ng-bind-html="a.firstContentBlock.content"></div>
+  <div ng-bind-html="a.firstContentBlock.content | trust"></div>
 </div>

@@ -1,5 +1,4 @@
 import angular from 'angular';
-import 'angular-sanitize';
 
 var controllers = require('./controllers');
 var services = require('./services');
@@ -23,7 +22,12 @@ angular.module('appDirectives', [])
   .directive('instagramMedias', [dirs.instagram]);
 
 angular
-  .module('addv2', ['ngSanitize', 'appServices', 'appDirectives'])
+  .module('addv2', ['appServices', 'appDirectives'])
+  .filter("trust", ['$sce', function($sce) {
+    return function(htmlCode){
+      return $sce.trustAsHtml(htmlCode);
+    }
+  }])
   .controller('HomepageController', ['$scope', 'gqModel', controllers.homepage])
   .controller('CategController', ['$scope', '$attrs', 'gqModel', controllers.category])
   .controller('ArticleController', ['$scope', '$attrs', 'gqModel', controllers.article]);

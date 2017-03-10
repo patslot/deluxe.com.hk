@@ -28,7 +28,6 @@
   },
   "devDependencies": {
     "angular": "^1.6.2",
-    "angular-sanitize": "^1.6.2",
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
     "babel-polyfill": "^6.23.0",
