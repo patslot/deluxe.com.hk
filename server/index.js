@@ -1,12 +1,16 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var article = require('./routes/article.js');
-var home = require('./routes/home.js');
 
 var categMapping = require('./middleware/categoryMapping.js');
 var app = express();
 
-module.exports = function() {
+module.exports = function(options) {
+
+  var gQuery = require('./middleware/graphqlQuery.js')(options.graphqlEndpoint);
+  var home = require('./routes/home.js')(gQuery);
+  var article = require('./routes/article.js')(gQuery, categMapping);
+
+  app.locals.GRAPHQL_ENDPOINT = options.graphqlEndpoint;
   app.use(express.static('public'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended: true}));

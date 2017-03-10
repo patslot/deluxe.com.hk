@@ -2,7 +2,9 @@
 
 var Server = require('../server');
 
-var server = Server();
+var server = Server({
+  graphqlEndpoint: process.env.GRAPHQL_ENDPOINT || "http://localhost:4000/graphql"
+});
 
 server.set('port', process.env.PORT || 3000);
 
