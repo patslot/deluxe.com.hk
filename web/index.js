@@ -1,4 +1,5 @@
 import angular from 'angular';
+import './lib/lazy-scroll.min.js'
 
 var controllers = require('./controllers');
 var services = require('./services');
@@ -10,7 +11,7 @@ module.exports = function(options) {
       GRAPHQL_ENDPOINT: options.GRAPHQL_ENDPOINT || 'http://localhost:4000/graphql'
     };
   };
-  
+
   angular.module('appServices', [])
     .factory('const', [constant])
     .factory('gqModel', ['const', services.gqModel]);
@@ -23,14 +24,13 @@ module.exports = function(options) {
     .directive('instagramMedias', [dirs.instagram]);
 
   angular
-    .module('addv2', ['appServices', 'appDirectives'])
+    .module('addv2', ['lazy-scroll', 'appServices', 'appDirectives'])
     .filter("trust", ['$sce', function($sce) {
-      return function(htmlCode){
+      return function(htmlCode) {
         return $sce.trustAsHtml(htmlCode);
       }
     }])
-    .controller('HomepageController', ['$scope', 'gqModel', controllers.homepage])
-    .controller('CategController', ['$scope', '$attrs', 'gqModel', controllers.category])
-    .controller('ArticleController', ['$scope', '$attrs', 'gqModel', controllers.article]);
+    .controller('HomepageController', ['$timeout', '$scope', 'gqModel', controllers.homepage])
+    .controller('CategController', ['$timeout', '$scope', '$attrs', 'gqModel', controllers.category])
+    .controller('ArticleController', ['$timeout', '$scope', '$attrs', 'gqModel', controllers.article]);
 }
-

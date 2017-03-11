@@ -1,8 +1,8 @@
-export default function($scope, $attrs, gqModel) {
+export default function($timeout, $scope, $attrs, gqModel) {
   var categEname = $attrs.categEname;
 
   gqModel.queryCateg(categEname, 1, 8).then(function(res) {
-    $scope.$apply(function() {
+    $timeout(function() {
       $scope.categs = res.listMenu || [];
       var articles = res.listArticle || [];
       $scope.latestArticles = articles.slice(0, 4);

@@ -1,6 +1,86 @@
-<h3>MPM</h3>
-<% mpms.forEach(function(mpm) { %>
-<img src="<%= mpm.imgName %>" />
-<%- mpm.caption %>
-<%- mpm.content %>
+<div id="home-slideshow-block" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+<% mpms.forEach(function(mpm, idx) { %>
+  <% var active = ""; if (idx === 0) { active = "active" } %>
+    <li data-target="#myCarousel" data-slide-to="<%= idx %>" class="<%= active %>"></li>
+  </ol>
 <% }) %>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+  <!-- TODO(wkchan): Add media provides at least 2 items for mpms -->
+<% mpms.forEach(function(mpm, idx) { %>
+  <% var active = ""; if (idx === 0) { active = "active" } %>
+    <div class="item <%= active %>">
+      <!-- img src="<%= mpm.imgName %>" alt="" -->
+      <img src="http://hk.add.nextmedia.com/wp-content/uploads/2017/03/20170309_add_slider.jpg" alt="">
+      <div class="text-left">
+        <div class="nm_section_block_title_cat">[TODO: beauty]</div>
+        <div class="nm_section_block_title"><%- mpm.content %></div>
+      </div>
+    </div>
+<% }) %>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#home-slideshow-block" role="button" data-slide="prev">
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#home-slideshow-block" role="button" data-slide="next">
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<style>
+  #home-slideshow-block .carousel-inner>.item>img,
+  #home-slideshow-block .carousel-inner>.item>a>img {
+    width: 100%;
+    margin: auto;
+  }
+
+  #home-slideshow-block {
+    padding-bottom: 30px;
+  }
+
+  #home-slideshow-block .carousel-control {
+    width: 8%;
+  }
+
+  #home-slideshow-block .item img {
+    width: 640px;
+    height: 360px;
+  }
+
+  @media screen and (min-width: 768px) {
+    #home-slideshow-block .carousel-indicators {
+      bottom: 0px;
+    }
+  }
+
+  #home-slideshow-block .nm_section_block_title_cat {
+    font-style: italic;
+    color: #8B0000;
+    font-size: 18px;
+  }
+
+  #home-slideshow-block .nm_section_block_title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  #home-slideshow-block .carousel-control.left {
+    background-image: url("/img/icon11BIG.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 30px;
+  }
+
+  #home-slideshow-block .carousel-control.right {
+    background-image: url("/img/icon11BIG.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 30px;
+    transform: rotate(180deg);
+  }
+</style>

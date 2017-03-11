@@ -99,27 +99,43 @@ export default function(c) {
     }
   }`;
 
-  var queryWithTagName = function(queries) {
+  const listEditorPick = `listEditorPick {
+    id
+    categoryID
+    publish
+    lastUpdate
+    title
+    articleThumbnail
+    videoThumbnail
+    videoFile
+    anvato
+    youtube
+    intro
+  }`;
+
+  var createTagNameQuery = function(queries) {
     return 'query ($tagName: String, $offset: Int, $count: Int) { ' +
       queries.join(' ') + ' }';
   };
 
-  const homeQ = queryWithTagName([listMenu, listInstagram, listArticle]);
-  const categQ = queryWithTagName([listMenu, listArticle]);
-  const articleQ = queryWithTagName([listMenu, listInstagram, listArticle]);
+  const homeQ = createTagNameQuery([listMenu, listInstagram, listArticle, listEditorPick]);
+  const categQ = createTagNameQuery([listMenu, listArticle]);
+  const articleQ = createTagNameQuery([listMenu, listInstagram, listArticle]);
+  const listCategArticleQ = createTagNameQuery([listArticle]);
 
   return {
+    queryCategArticles: function(tagName, offset, count) {
+      return client.query(listCategArticleQ, { tagName: tagName, offset: offset, count: count });
+    },
     // TODO(wkchan): Menu sorting and display
     queryHome: function(offset, count) {
-      return client.query(homeQ, {offset: offset, count: count});
+      return client.query(homeQ, { offset: offset, count: count });
     },
     queryCateg: function(tagName, offset, count) {
-      return client.query(categQ,
-        {tagName: tagName, offset: offset, count: count});
+      return client.query(categQ, { tagName: tagName, offset: offset, count: count });
     },
     queryArticle: function(tagName, offset, count) {
-      return client.query(articleQ,
-        {tagName: tagName, offset: offset, count: count});
+      return client.query(articleQ, { tagName: tagName, offset: offset, count: count });
     }
   };
 };

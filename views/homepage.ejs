@@ -1,172 +1,165 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <%- include('partials/extHeader.ejs') %>
-		<title>Apple Daily Deluxe</title>
+
+<head>
+  <%- include('partials/extHeader.ejs') %>
+    <title>Apple Daily Deluxe</title>
     <%- include('partials/googleAdTag.ejs', {adTag: 'Index'}) %>
-    <link rel="stylesheet" href="/css/common.css" />
-  </head>
-  <body>
-    <div ng-app="addv2" ng-controller="HomepageController">
-      <top-menu ng-categories="categories"></top-menu>
-      <%- include('partials/mpms.ejs', {mpms: mpms}) %>
-      <latest-articles add-articles="latestArticles"></latest-articles>
-      <highlights-block add-highlights="highlights"></highlights-block>
+      <link rel="stylesheet" href="/css/common.css" />
+</head>
+
+<body ng-app="addv2" ng-controller="HomepageController">
+  <!-- latest-articles add-articles="latestArticles"></latest-articles>
       <latest-articles add-articles="secLatestArticles"></latest-articles>
-      <editor-picks add-picks="editorPicks"></editor-picks>
-      <instagram-medias ig-medias="igMedias"></instagram-medias>
-    </div>
-    <h3>Example DFP advertisement</h3>
- 	  <div>
- 	    <script>
- 	      googletag.cmd.push(function() {
- 	         googletag.display("adHeaderTop");
- 	      });
- 	    </script>
- 	  </div>
-    <script src="/bundle.js"></script>
-    <script>
-      AddApp({
-        GRAPHQL_ENDPOINT: "<%= GRAPHQL_ENDPOINT %>"
-      });
-    </script>
+      <instagram-medias ig-medias="igMedias"></instagram-medias -->
+  <script src="/bundle.js"></script>
+  <script>
+    AddApp({
+      GRAPHQL_ENDPOINT: "<%= GRAPHQL_ENDPOINT %>"
+    });
+  </script>
 
   <div class="nm_v_menu visible-xs" vmenu="content">
     <div inc='inc/mobile_menu.html'></div>
   </div>
   <div class="container nm_home">
-    <div inc='inc/header.html'></div>
+    <top-menu ng-categories="categs"></top-menu>
     <div class="row nm_row">
       <!--<div class="skinner_ad" skinner_ad_left></div>-->
       <div class="main_content">
         <div class="nm_section">
           <div class="head_banner_wrapper">
-            <div class="superhead_banner"></div>
-            <div class="head_banner"></div>
+            <div class="superhead_banner">
+              <div id="headBanner">
+                <script>
+                  googletag.cmd.push(function() {
+                    googletag.display("headBanner");
+                  });
+                </script>
+              </div>
+            </div>
           </div>
           <div class="row nm_row">
             <div class="pull-right lrec_ad_wrapper hidden-xs">
-              <div class="lrec_ad_large"></div>
-              <div class="lrec_ad_small"></div>
+              <div class="lrec_ad_large">
+                <div id="lrec1">
+                  <script>
+                    googletag.cmd.push(function() {
+                      googletag.display("lrec1");
+                    });
+                  </script>
+                </div>
+              </div>
+              <div class="lrec_ad_large">
+                <div id="lrec1">
+                  <script>
+                    googletag.cmd.push(function() {
+                      googletag.display("lrec1");
+                    });
+                  </script>
+                </div>
+              </div>
             </div>
             <div class="pull-right nm_mpm col-xs-12">
-              <div class="mpm_content" inc='inc/home_slideshow.html'>
+              <div class="mpm_content">
+                <%- include('partials/mpms.ejs', {mpms: mpms}) %>
               </div>
             </div>
           </div>
         </div>
 
-        <div inc='inc/home_contributors.html'></div>
-        <div inc='inc/home_facebook.html'></div>
-        <div inc='inc/home_highlight.html' loading="content"></div>
+        <div ng-include="'/partials/homeArticles.html'"></div>
+        <div ng-include="'/partials/homeArticlesFacebook.html'"></div>
+        <!--div inc='inc/home_highlight.html'></div-->
+        <highlights-block add-highlights="highlights"></highlights-block>
         <div class="nm_section" loading="content">
           <div class="head_banner_wrapper">
-            <div class="superhead_banner"></div>
-            <div class="head_banner"></div>
+            <div class="superhead_banner">
+              <div id="midbanner">
+                <script>
+                  googletag.cmd.push(function() {
+                    googletag.display("midbanner");
+                  });
+                </script>
+              </div>
+            </div>
           </div>
         </div>
-        <div inc='inc/home_instagram.html' loading="content"></div>
-        <div inc='inc/home_events.html' loading="content"></div>
-        <div inc='inc/home_editors_picks.html' loading="content"></div>
-        <div class="nm_section" loading="content">
+        <div ng-include="'/partials/homeArticlesInstagram.html'"></div>
+        <div ng-include="'/partials/homeArticlesEvent.html'"></div>
+        <editor-picks add-picks="editorPicks"></editor-picks>
+        <div class="nm_section">
           <div class="head_banner_wrapper">
-            <div class="superhead_banner"></div>
-            <div class="head_banner"></div>
+            <div class="superhead_banner">
+              <!-- div id="midbanner">
+                <script>
+                  googletag.cmd.push(function() {
+                    googletag.display("midbanner");
+                  });
+                </script>
+              </div -->
+            </div>
           </div>
         </div>
-        <div class="nm_section" loading="trigger">
-          <div class="text-center">Loading...</div>
+        <div class="nm_section" lazy-scroll="loadCategArticles()" lazy-no-scroll="false">
+          <div class="row" ng-repeat="articles in categArticles">
+            <div class="col-sm-4 nm_section_block" ng-repeat="a in articles">
+              <div class="nm_img_wrapper" style="{{a.style}}">
+              </div>
+              <div class="text-left">
+                <div class="nm_section_block_title_cat">[TODO: beauty]</div>
+                <div class="nm_section_block_title">{{a.title}}</div>
+              </div>
+            </div>
+          </div>
         </div>
+        <!--<div class="skinner_ad" skinner_ad_right></div>-->
       </div>
-      <!--<div class="skinner_ad" skinner_ad_right></div>-->
+
+      <div inc='inc/footer.html'></div>
+      <!-- div inc="inc/newsletter.html"></div -->
     </div>
 
-    <div inc='inc/footer.html'></div>
-    <div inc="inc/newsletter.html"></div>
-  </div>
+    <script>
+      // $(document).ready(function(){
+      // 	var $skinnerAdRight = $('[skinner_ad_right]');
+      // 	var $skinnerAdLeft = $('[skinner_ad_left]');
+      // 	var $skinnerAdRightContainer = $skinnerAdRight.parent();
+      // 	var updateSkinnerAd = function(){
 
-  <script>
-    $(document).ready(function() {
-      $('[inc]').each(function() {
-        var $this = $(this);
-        var url = $this.attr('inc');
-        if ($this.attr('loading') != "content")
-          $this.load(url);
-      });
+      // 		if ($(document).scrollTop() >= 170){
+      // 			$('.skinner_ad').addClass('fixed');
+      // 			var offset = $(document).width() - $('body').width();
+      // 			// console.log(offset);
+      // 			$skinnerAdRight.css('right', ($(document).width() - ($skinnerAdRightContainer.position().left + $skinnerAdRightContainer.width())) - (offset > 0 ? offset - $(document).scrollLeft() : 0 ));
+      // 			if (offset > 0){
+      // 				$skinnerAdLeft.css('left', - $(document).scrollLeft());
+      // 			}
+      // 			else{
+      // 				$skinnerAdLeft.attr('style', 'left:auto');
+      // 			}
+      // 		}
+      // 		else{
+      // 			$('.skinner_ad').removeClass('fixed');
+      // 			$skinnerAdRight.css('right', '0px');
+      // 			$skinnerAdLeft.css('left', '0px');
+      // 		}
+      // 	}
+      // 	updateSkinnerAd();
+      // 	$(document).on('scroll', updateSkinnerAd);
+      // });
 
-
-      // lazy load
-      var $loadingTrigger = $('[loading="trigger"]').first();
-      var isLoading = false;
-      var loadingIndex = 0;
-      if ($loadingTrigger.length > 0) {
-        $loadingContents = $('[loading="content"]');
-        $loadingContents.addClass('hidden');
-        $(document).on('scroll', function() {
-          if ($(window).height() + $(document).scrollTop() > $loadingTrigger.position().top &&
-            $loadingContents.length > loadingIndex &&
-            !isLoading) {
-            isLoading = true;
-            // console.log('start');
-            var $content = $($loadingContents.get(loadingIndex));
-            var url = $content.attr('inc');
-            $content.attr('loading', 'loaded');
-            $content.removeClass('hidden');
-            if (url) {
-              $content.load(url, function() {
-                isLoading = false;
-                // console.log('complete');
-              });
-            } else {
-              isLoading = false;
-            }
-            loadingIndex++;
-          } else if ($loadingContents.length <= loadingIndex) {
-            $loadingTrigger.addClass('hidden');
-          }
-        });
-      }
-    });
-
-
-    // $(document).ready(function(){
-    // 	var $skinnerAdRight = $('[skinner_ad_right]');
-    // 	var $skinnerAdLeft = $('[skinner_ad_left]');
-    // 	var $skinnerAdRightContainer = $skinnerAdRight.parent();
-    // 	var updateSkinnerAd = function(){
-
-    // 		if ($(document).scrollTop() >= 170){
-    // 			$('.skinner_ad').addClass('fixed');
-    // 			var offset = $(document).width() - $('body').width();
-    // 			// console.log(offset);
-    // 			$skinnerAdRight.css('right', ($(document).width() - ($skinnerAdRightContainer.position().left + $skinnerAdRightContainer.width())) - (offset > 0 ? offset - $(document).scrollLeft() : 0 ));
-    // 			if (offset > 0){
-    // 				$skinnerAdLeft.css('left', - $(document).scrollLeft());
-    // 			}
-    // 			else{
-    // 				$skinnerAdLeft.attr('style', 'left:auto');
-    // 			}
-    // 		}
-    // 		else{
-    // 			$('.skinner_ad').removeClass('fixed');
-    // 			$skinnerAdRight.css('right', '0px');
-    // 			$skinnerAdLeft.css('left', '0px');
-    // 		}
-    // 	}
-    // 	updateSkinnerAd();
-    // 	$(document).on('scroll', updateSkinnerAd);
-    // });
-
-    $(document).ready(function() {
-      $('.newsletter_small').hide();
-      $('.newsletter_close').click(function() {
-        $('.newsletter').hide();
+      $(document).ready(function() {
         $('.newsletter_small').show();
+        $('.newsletter_close').click(function() {
+          $('.newsletter').hide();
+          $('.newsletter_small').show();
+        });
+        $('.newsletter_small').click(function() {
+          $('.newsletter').show();
+        });
       });
-      $('.newsletter_small').click(function() {
-        $('.newsletter').show();
-      });
-    });
-  </script>
-  </body>
+    </script>
+</body>
+
 </html>

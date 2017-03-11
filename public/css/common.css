@@ -151,17 +151,8 @@ background: #ccc;
   }
   .nm_home .head_banner_wrapper .superhead_banner {
     width: 970px;
-    height: 160px;
     position: relative;
     top: 0;
-    background: #fcc;
-  }
-  .nm_home .head_banner_wrapper .head_banner {
-    width: 970px;
-    height: 90px;
-    position: relative;
-    top: 0;
-    background: #cfc;
   }
 }
 
@@ -172,19 +163,9 @@ background: #ccc;
 }
 
 .nm_home .head_banner_wrapper .superhead_banner {
-  height: 160px;
   position: relative;
   top: 0;
-  background: #fcc;
 }
-
-.nm_home .head_banner_wrapper .head_banner {
-  height: 90px;
-  position: relative;
-  top: 0;
-  background: #cfc;
-}
-
 
 /* lrec banner */
 
@@ -194,18 +175,8 @@ background: #ccc;
 
 .nm_home .lrec_ad_wrapper .lrec_ad_large {
   width: 300px;
-  height: 250px;
   position: relative;
-  background: #fcc;
 }
-
-.nm_home .lrec_ad_wrapper .lrec_ad_small {
-  width: 300px;
-  height: 180px;
-  position: relative;
-  background: #cfc;
-}
-
 
 /* mpm */
 
