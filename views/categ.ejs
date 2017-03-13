@@ -15,12 +15,7 @@
       <latest-articles add-articles="latestArticles"></latest-articles>
       <latest-articles add-articles="secLatestArticles"></latest-articles>
     </div>
-    <script src="/bundle.js"></script>
-    <script>
-      AddApp({
-        GRAPHQL_ENDPOINT: "<%= GRAPHQL_ENDPOINT %>"
-      });
-    </script>
+    <%- include('partials/app.ejs') %>
 
   <div class="nm_v_menu visible-xs" vmenu="content">
     <div inc='inc/mobile_menu.html'></div>

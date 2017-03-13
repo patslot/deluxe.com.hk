@@ -3,21 +3,16 @@
 
 <head>
   <%- include('partials/extHeader.ejs') %>
-    <title>Apple Daily Deluxe</title>
-    <%- include('partials/googleAdTag.ejs', {adTag: 'Index'}) %>
-      <link rel="stylesheet" href="/css/common.css" />
+  <title>Apple Daily Deluxe</title>
+  <%- include('partials/googleAdTag.ejs', {adTag: 'Index'}) %>
+  <link rel="stylesheet" href="/css/common.css" />
 </head>
 
 <body ng-app="addv2" ng-controller="HomepageController">
   <!-- latest-articles add-articles="latestArticles"></latest-articles>
       <latest-articles add-articles="secLatestArticles"></latest-articles>
       <instagram-medias ig-medias="igMedias"></instagram-medias -->
-  <script src="/bundle.js"></script>
-  <script>
-    AddApp({
-      GRAPHQL_ENDPOINT: "<%= GRAPHQL_ENDPOINT %>"
-    });
-  </script>
+  <%- include('partials/app.ejs') %>
 
   <div class="nm_v_menu visible-xs" vmenu="content">
     <div inc='inc/mobile_menu.html'></div>
