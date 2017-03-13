@@ -7,29 +7,27 @@
     <link rel="stylesheet" href="/css/common.css" />
     <link rel="stylesheet" href="/css/articleList.css" />
   </head>
-  <body>
-    <h1>Category</h1>
-    <div ng-app="addv2" ng-controller="CategController"
-      categ-ename="<%= ename %>">
-      <top-menu ng-categories="categs"></top-menu>
+  <body ng-app="addv2" ng-controller="CategController"
+    categ-ename="<%= ename %>" categ-name="<%= categ %>">
+    <!--h1>Category</h1>
       <latest-articles add-articles="latestArticles"></latest-articles>
       <latest-articles add-articles="secLatestArticles"></latest-articles>
-    </div>
+    </div-->
     <%- include('partials/app.ejs') %>
 
   <div class="nm_v_menu visible-xs" vmenu="content">
     <div inc='inc/mobile_menu.html'></div>
   </div>
   <div class="container nm_home">
-    <div inc='inc/header.html'></div>
+    <top-menu ng-categories="categs"></top-menu>
     <div class="ls_banner">
-      <img src="/img/nav_bg.jpg">
+      <img ng-src="{{::currentCateg.img}}" />
     </div>
     <div class="row nm_row">
       <!--<div class="skinner_ad" skinner_ad_left></div>-->
       <div class="main_content">
         <div class="nm_section">
-          <div inc='inc/sub_menu.html'></div>
+          <!-- div inc='inc/sub_menu.html'></div -->
           <div class="head_banner_wrapper">
             <div class="superhead_banner"></div>
             <div class="head_banner"></div>
@@ -40,45 +38,59 @@
               <div class="lrec_ad_small"></div>
             </div>
             <div class="pull-right nm_mpm col-xs-12">
-              <div class="mpm_content" inc='inc/home_slideshow.html'>
-              </div>
+              <div class="mpm_content">
+                <img ng-src="{{::latestArticle.image}}" />
+                <div class="al_two_content_label">
+                  [{{::latestArticle.label}}]
+                </div>
+                <div class="al_two_content_title">
+                  <!-- TODO(wkchan): Replace 'Fashion' with a category -->
+                  <a ng-href="{{::latestArticle.detailLink}}">
+                    {{::latestArticle.title}}
+                  </a>
+                </div>
+                </div>
             </div>
           </div>
 
-          <div class="al_two_col_container">
-            <div class="al_two_content col-md-6 col-xs-12">
-              <div class="al_two_content_title">鄭秀文心口掛大眼睛 自嘲好奇寶寶八卦mi</div>
-              <div class="al_two_content_label">[Feature]</div>
-              <div class="al_two_content_content">2017年度顏色：草木綠 (Greenery)草木緣表生機...</div>
-              <button type="Share" class="btn btn-secondary submit-btn">Share</button>
+          <div class="al_two_col_container" ng-repeat="a in latestArticles">
+            <div ng-if="$odd">
+              <div class="al_two_content col-md-6 col-xs-12">
+                <div class="al_two_content_title">
+                  <a ng-href="{{::a.detailLink}}">
+                    {{::a.title}}
+                  </a>
+                </div>
+                <div class="al_two_content_label">[{{::a.label}}]</div>
+                <div class="al_two_content_content"
+                  ng-bind-html="a.firstContentBlock.content | limitTo: 50 | trust">
+                </div>
+                <button type="Share" class="btn btn-secondary submit-btn">Share</button>
+              </div>
+              <div class="al_two_image col-md-6 col-xs-12">
+                <img ng-src="{{::a.image}}" />
+              </div>
             </div>
-            <div class="al_two_image col-md-6 col-xs-12">
-              <img src="/img/C_013.jpg">
-            </div>
-            <div class="al_two_image col-md-6 col-xs-12">
-              <img src="/img/key11-313x176.jpg">
-            </div>
-            <div class="al_two_content col-md-6 col-xs-12">
-              <div class="al_two_content_title">鄭秀文心口掛大眼睛 自嘲好奇寶寶八卦mi</div>
-              <div class="al_two_content_label">[Feature]</div>
-              <div class="al_two_content_content">張栢芝日前被發現現身中環，不單駕紅色法拉利辣跑，而且還穿上全套藍色Gucci運動look，非常招搖！…</div>
-              <button type="Share" class="btn btn-secondary submit-btn">Share</button>
-            </div>
-            <div class="al_two_content col-md-6 col-xs-12">
-              <div class="al_two_content_title">鄭秀文心口掛大眼睛 自嘲好奇寶寶八卦mi</div>
-              <div class="al_two_content_label">[Feature]</div>
-              <div class="al_two_content_content">2017年度顏色：草木綠 (Greenery)草木緣表生機...</div>
-              <button type="Share" class="btn btn-secondary submit-btn">Share</button>
-            </div>
-            <div class="al_two_image col-md-6 col-xs-12">
-              <img src="/img/C_013.jpg">
+            <div ng-if="$even">
+              <div class="al_two_image col-md-6 col-xs-12">
+                <img ng-src="{{::a.image}}" />
+              </div>
+              <div class="al_two_content col-md-6 col-xs-12">
+                <div class="al_two_content_title">
+                  <a ng-href="{{::a.detailLink}}">
+                    {{::a.title}}
+                  </a>
+                </div>
+                <div class="al_two_content_label">[{{::a.label}}]</div>
+                <div class="al_two_content_content"
+                  ng-bind-html="a.firstContentBlock.content | limitTo: 50 | trust">
+                </div>
+                <button type="Share" class="btn btn-secondary submit-btn">Share</button>
+              </div>
             </div>
           </div>
           <div style="clear:both"></div>
         </div>
-
-
-        <div inc='inc/article_recommended.html'></div>
       </div>
       <!--<div class="skinner_ad" skinner_ad_right></div>-->
     </div>

@@ -5,7 +5,7 @@
   <img ng-if="a.mediaGroup.length > 0" ng-src="{{a.mediaGroup[0].smallPath}}" />
   <br />
   <!-- TODO(wkchan): Replace 'Fashion' with a category -->
-  <a href="/Fashion/{{a.mlArticleId}}/{{a.title}}">{{a.title}}</a>
+  <a ng-href="/Fashion/{{a.mlArticleId}}/{{a.title}}">{{a.title}}</a>
   <br />[a.label]<br />
   <div ng-bind-html="a.firstContentBlock.content | trust"></div>
 </div>

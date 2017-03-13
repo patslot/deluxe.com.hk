@@ -1,5 +1,5 @@
 import angular from 'angular';
-import './lib/lazy-scroll.min.js'
+import './lib/lazy-scroll.min.js';
 
 var controllers = require('./controllers');
 var services = require('./services');

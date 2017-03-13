@@ -11,7 +11,7 @@
         <div class="nav--menu">
           <ul class="text">
             <li ng-repeat="c in categories">
-              <a href="/{{::c.name}}" target="_self">{{::c.name}}</a>
+              <a ng-href="/{{::c.name}}" target="_self">{{::c.name}}</a>
             </li>
           </ul>
           <div class="search">
