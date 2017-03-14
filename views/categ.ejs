@@ -16,7 +16,7 @@
     <%- include('partials/app.ejs') %>
 
   <div class="nm_v_menu visible-xs" vmenu="content">
-    <div inc='inc/mobile_menu.html'></div>
+    <div ng-include="'/partials/mobileMenu.html'"></div>
   </div>
   <div class="container nm_home">
     <top-menu ng-categories="categs"></top-menu>
@@ -50,6 +50,7 @@
                   </a>
                 </div>
                 </div>
+              </div>
             </div>
           </div>
 
@@ -65,7 +66,6 @@
                 <div class="al_two_content_content"
                   ng-bind-html="a.firstContentBlock.content | limitTo: 50 | trust">
                 </div>
-                <button type="Share" class="btn btn-secondary submit-btn">Share</button>
               </div>
               <div class="al_two_image col-md-6 col-xs-12">
                 <img ng-src="{{::a.image}}" />
@@ -85,7 +85,6 @@
                 <div class="al_two_content_content"
                   ng-bind-html="a.firstContentBlock.content | limitTo: 50 | trust">
                 </div>
-                <button type="Share" class="btn btn-secondary submit-btn">Share</button>
               </div>
             </div>
           </div>

@@ -4,6 +4,6 @@ export default function() {
     scope: {
       igMedias: '='
     },
-    templateUrl: '/instagram.html.tpl'
+    templateUrl: '/instagram.html'
   };
 };

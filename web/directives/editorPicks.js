@@ -4,6 +4,6 @@ export default function() {
     scope: {
       picks: '=addPicks',
     },
-    templateUrl: '/editorPicks.html.tpl'
+    templateUrl: '/editorPicks.html'
   };
 };

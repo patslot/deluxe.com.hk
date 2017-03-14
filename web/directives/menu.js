@@ -4,6 +4,6 @@ export default function() {
     scope: {
       categories: '=ngCategories'
     },
-    templateUrl: '/menu.html.tpl'
+    templateUrl: '/menu.html'
   };
 };

@@ -4,6 +4,6 @@ export default function() {
     scope: {
       articles: '=addArticles'
     },
-    templateUrl: '/latestArticles.html.tpl'
+    templateUrl: '/latestArticles.html'
   };
 };

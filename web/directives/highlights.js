@@ -4,6 +4,6 @@ export default function() {
     scope: {
       highlights: '=addHighlights'
     },
-    templateUrl: '/highlights.html.tpl'
+    templateUrl: '/highlights.html'
   };
 };
