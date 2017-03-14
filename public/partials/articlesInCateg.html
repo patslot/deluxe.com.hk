@@ -1,0 +1,35 @@
+<div class="al_two_col_container" ng-repeat="a in articles">
+  <div ng-if="$odd">
+    <div class="al_two_content col-md-6 col-xs-12">
+      <div class="al_two_content_title">
+        <a ng-href="{{::a.detailLink}}">
+          {{::a.title}}
+        </a>
+      </div>
+      <div class="al_two_content_label">[{{::a.label}}]</div>
+      <div class="al_two_content_content"
+        ng-bind-html="a.firstContentBlock.content | limitTo: 50 | trust">
+      </div>
+    </div>
+    <div class="al_two_image col-md-6 col-xs-12">
+      <img ng-src="{{::a.image}}" />
+    </div>
+  </div>
+  <div ng-if="$even">
+    <div class="al_two_image col-md-6 col-xs-12">
+      <img ng-src="{{::a.image}}" />
+    </div>
+    <div class="al_two_content col-md-6 col-xs-12">
+      <div class="al_two_content_title">
+        <a ng-href="{{::a.detailLink}}">
+          {{::a.title}}
+        </a>
+      </div>
+      <div class="al_two_content_label">[{{::a.label}}]</div>
+      <div class="al_two_content_content"
+        ng-bind-html="a.firstContentBlock.content | limitTo: 50 | trust">
+      </div>
+    </div>
+  </div>
+</div>
+<div style="clear:both"></div>

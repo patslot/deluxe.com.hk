@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <%- include('partials/extHeader.ejs') %>
-    <title>Category</title>
-    <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
-    <link rel="stylesheet" href="/css/common.css" />
-    <link rel="stylesheet" href="/css/articleList.css" />
-  </head>
-  <body ng-app="addv2" ng-controller="CategController"
-    categ-ename="<%= ename %>" categ-name="<%= categ %>">
-    <!--h1>Category</h1>
-      <latest-articles add-articles="latestArticles"></latest-articles>
-      <latest-articles add-articles="secLatestArticles"></latest-articles>
-    </div-->
-    <%- include('partials/app.ejs') %>
+
+<head>
+  <%- include('partials/extHeader.ejs') %>
+  <title>Category</title>
+  <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
+  <link rel="stylesheet" href="/css/common.css" />
+  <link rel="stylesheet" href="/css/articleList.css" />
+</head>
+
+<body ng-app="addv2" ng-controller="CategController" categ-ename="<%= ename %>"
+  categ-name="<%= categ %>">
+  <%- include('partials/app.ejs') %>
 
   <div class="nm_v_menu visible-xs" vmenu="content">
     <div ng-include="'/partials/mobileMenu.html'"></div>
@@ -46,102 +44,33 @@
                 <div class="al_two_content_title">
                   <!-- TODO(wkchan): Replace 'Fashion' with a category -->
                   <a ng-href="{{::latestArticle.detailLink}}">
-                    {{::latestArticle.title}}
-                  </a>
-                </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="al_two_col_container" ng-repeat="a in latestArticles">
-            <div ng-if="$odd">
-              <div class="al_two_content col-md-6 col-xs-12">
-                <div class="al_two_content_title">
-                  <a ng-href="{{::a.detailLink}}">
-                    {{::a.title}}
-                  </a>
-                </div>
-                <div class="al_two_content_label">[{{::a.label}}]</div>
-                <div class="al_two_content_content"
-                  ng-bind-html="a.firstContentBlock.content | limitTo: 50 | trust">
-                </div>
-              </div>
-              <div class="al_two_image col-md-6 col-xs-12">
-                <img ng-src="{{::a.image}}" />
-              </div>
-            </div>
-            <div ng-if="$even">
-              <div class="al_two_image col-md-6 col-xs-12">
-                <img ng-src="{{::a.image}}" />
-              </div>
-              <div class="al_two_content col-md-6 col-xs-12">
-                <div class="al_two_content_title">
-                  <a ng-href="{{::a.detailLink}}">
-                    {{::a.title}}
-                  </a>
-                </div>
-                <div class="al_two_content_label">[{{::a.label}}]</div>
-                <div class="al_two_content_content"
-                  ng-bind-html="a.firstContentBlock.content | limitTo: 50 | trust">
+                  {{::latestArticle.title}}
+                </a>
                 </div>
               </div>
             </div>
           </div>
-          <div style="clear:both"></div>
         </div>
-      </div>
-      <!--<div class="skinner_ad" skinner_ad_right></div>-->
-    </div>
 
-    <div inc='inc/footer.html'></div>
-    <div inc="inc/newsletter.html"></div>
+        <articles-in-categ add-articles="latestArticles"></articles-in-categ>
+      </div>
+    </div>
+    <div class="main_content" lazy-scroll="loadCategArticles()" lazy-no-scroll="false">
+      <div align="center" ng-show="loadingArticles" style="margin-top: 20px">
+        <img src="/img/loading.gif" />
+      </div>
+      <div class="nm_section" ng-repeat="articles in moreArticleGroups">
+        <!-- TODO(wkchan): Lazy load google ad tag -->
+        <articles-in-categ add-articles="articles"></articles-in-categ>
+      </div>
+    </div>
+    <!--<div class="skinner_ad" skinner_ad_right></div>-->
   </div>
 
+  <div inc='inc/footer.html'></div>
+  <div inc="inc/newsletter.html"></div>
+
   <script>
-    $(document).ready(function() {
-      $('[inc]').each(function() {
-        var $this = $(this);
-        var url = $this.attr('inc');
-        if ($this.attr('loading') != "content")
-          $this.load(url);
-      });
-
-
-      // lazy load
-      var $loadingTrigger = $('[loading="trigger"]').first();
-      var isLoading = false;
-      var loadingIndex = 0;
-      if ($loadingTrigger.length > 0) {
-        $loadingContents = $('[loading="content"]');
-        $loadingContents.addClass('hidden');
-        $(document).on('scroll', function() {
-          if ($(window).height() + $(document).scrollTop() > $loadingTrigger.position().top &&
-            $loadingContents.length > loadingIndex &&
-            !isLoading) {
-            isLoading = true;
-            // console.log('start');
-            var $content = $($loadingContents.get(loadingIndex));
-            var url = $content.attr('inc');
-            $content.attr('loading', 'loaded');
-            $content.removeClass('hidden');
-            if (url) {
-              $content.load(url, function() {
-                isLoading = false;
-                // console.log('complete');
-              });
-            } else {
-              isLoading = false;
-            }
-            loadingIndex++;
-          } else if ($loadingContents.length <= loadingIndex) {
-            $loadingTrigger.addClass('hidden');
-          }
-        });
-      }
-    });
-
-
     // $(document).ready(function(){
     // 	var $skinnerAdRight = $('[skinner_ad_right]');
     // 	var $skinnerAdLeft = $('[skinner_ad_left]');
@@ -181,5 +110,6 @@
       });
     });
   </script>
-  </body>
+</body>
+
 </html>

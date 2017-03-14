@@ -58,7 +58,7 @@ export default function($timeout, $scope, gqModel) {
     if (categIdx < 5 && categIdx < categs.length) {
       loading = true;
       gqModel.queryCategArticles('add' + categs[categIdx].eName, 1, 3).then(function(res) {
-        $scope.$apply(function() {
+        $timeout(function() {
           $scope.categArticles.push(parseArticles(res.listArticle ));
           updateCategIdx();
         });

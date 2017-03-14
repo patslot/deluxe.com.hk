@@ -8,6 +8,7 @@ var dirs = require('./directives');
 module.exports = function(options) {
   var constant = function() {
     return {
+      LOAD_CATEG_ARTICLES_COUNT: 4,
       GRAPHQL_ENDPOINT: options.GRAPHQL_ENDPOINT || 'http://localhost:4000/graphql'
     };
   };
@@ -18,7 +19,9 @@ module.exports = function(options) {
 
   angular.module('appDirectives', [])
     .directive('topMenu', [dirs.menu])
+    // TODO: Check if latestArticles is used and remove it later if not used
     .directive('latestArticles', [dirs.latestArticles])
+    .directive('articlesInCateg', [dirs.articlesInCateg])
     .directive('highlightsBlock', [dirs.highlights])
     .directive('editorPicks', [dirs.editorPicks])
     .directive('facebookBlock', [dirs.facebook])
@@ -31,7 +34,10 @@ module.exports = function(options) {
         return $sce.trustAsHtml(htmlCode);
       }
     }])
-    .controller('HomepageController', ['$timeout', '$scope', 'gqModel', controllers.homepage])
-    .controller('CategController', ['$timeout', '$scope', '$attrs', 'gqModel', controllers.category])
-    .controller('ArticleController', ['$timeout', '$scope', '$attrs', 'gqModel', controllers.article]);
+    .controller('HomepageController', ['$timeout', '$scope', 'gqModel',
+      controllers.homepage])
+    .controller('CategController', ['$timeout', '$scope', '$attrs', 'gqModel',
+      'const', controllers.category])
+    .controller('ArticleController', ['$timeout', '$scope', '$attrs', 'gqModel',
+      controllers.article]);
 }
