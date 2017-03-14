@@ -21,6 +21,7 @@ module.exports = function(options) {
     .directive('latestArticles', [dirs.latestArticles])
     .directive('highlightsBlock', [dirs.highlights])
     .directive('editorPicks', [dirs.editorPicks])
+    .directive('facebookBlock', [dirs.facebook])
     .directive('instagramMedias', [dirs.instagram]);
 
   angular
