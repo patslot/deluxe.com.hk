@@ -88,13 +88,16 @@
         <div class="nm_section" lazy-scroll="loadCategArticles()" lazy-no-scroll="false">
           <div class="row" ng-repeat="articles in categArticles">
             <div class="col-sm-4 nm_section_block" ng-repeat="a in articles">
-              <div class="nm_img_wrapper" style="{{a.style}}">
+              <div class="nm_img_wrapper" style="{{::a.style}}">
               </div>
               <div class="text-left">
-                <div class="nm_section_block_title_cat">[TODO: beauty]</div>
-                <div class="nm_section_block_title">{{a.title}}</div>
+                <div class="nm_section_block_title_cat">[{{::a.catName}}]</div>
+                <div class="nm_section_block_title">{{::a.title}}</div>
               </div>
             </div>
+          </div>
+          <div align="center" ng-show="loading" style="margin-top: 20px">
+            <img src="/img/loading.gif" />
           </div>
         </div>
         <!--<div class="skinner_ad" skinner_ad_right></div>-->

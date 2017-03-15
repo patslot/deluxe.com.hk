@@ -2,10 +2,20 @@
  * HomepageController for homepage
  */
 export default function($timeout, $scope, gqModel) {
-  $scope.categArticles = [];
   var isReady = false;
-  var loading = false;
   var categIdx = 0;
+  var loadCategs = createLoadCateg();
+
+  $scope.loading = false;
+  $scope.categArticles = [];
+
+  function createLoadCateg() {
+    var listArticles = gqModel.consts.listHomeArticles;
+    return [
+      [listArticles.fashion, listArticles.beauty, listArticles.luxe],
+      [listArticles.wedding, listArticles.lifeStyle]
+    ];
+  }
 
   function parseArticles(origArticles) {
     var articles = origArticles || [];
@@ -49,22 +59,23 @@ export default function($timeout, $scope, gqModel) {
   $scope.loadCategArticles = function() {
     function updateCategIdx() {
       categIdx++;
-      loading = false;
+      $scope.loading = false;
     }
 
     if (!isReady) {
       return false;
     }
-    var categs = $scope.categs;
-    // TODO(wkchan): Exclude category without eName?
-    if (loading) {
+    if ($scope.loading) {
       return false;
     }
-    if (categIdx < 5 && categIdx < categs.length) {
-      loading = true;
-      gqModel.queryCategArticles('add' + categs[categIdx].eName, 1, 3).then(function(res) {
+    if (categIdx < loadCategs.length) {
+      $scope.loading = true;
+      var categs = loadCategs[categIdx];
+      gqModel.queryHomeArticles(categs).then(function(res) {
         $timeout(function() {
-          $scope.categArticles.push(parseArticles(res.listArticle ));
+          categs.forEach(function(categ) {
+           $scope.categArticles.push(parseArticles(res[categ]));
+          });
           updateCategIdx();
         });
       }, function(err) {

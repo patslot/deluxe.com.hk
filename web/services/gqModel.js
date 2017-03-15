@@ -158,12 +158,12 @@ export default function(c) {
     apCatID
   }`;
 
-  var createCmsCompoeFeedQuery = function(queryName) {
+  var createCmsComponeFeedQuery = function(queryName) {
     return queryName + ' ' + CmsComponeFeedItem;
   };
 
-  const listHomeHighlight = createCmsCompoeFeedQuery('listHomeHighlight');
-  const listHomeLatestArticle = createCmsCompoeFeedQuery('listHomeLatestArticle');
+  const listHomeHighlight = createCmsComponeFeedQuery('listHomeHighlight');
+  const listHomeLatestArticle = createCmsComponeFeedQuery('listHomeLatestArticle');
 
   var createTagNameQuery = function(queries) {
     return 'query ($tagName: String, $offset: Int, $count: Int) { ' +
@@ -179,6 +179,21 @@ export default function(c) {
   const listCategArticleQ = createTagNameQuery([listArticle]);
 
   return {
+    consts: {
+      listHomeArticles: {
+        fashion: 'listHomeFashionArticle',
+        beauty: 'listHomeBeautyArticle',
+        luxe: 'listHomeLuxeArticle',
+        wedding: 'listHomeWeddingArticle',
+        lifeStyle: 'listHomeLifeStyleArticle'
+      }
+    },
+    queryHomeArticles: function(homeQueryNames) {
+      var queries = homeQueryNames.map(function(name) {
+        return createCmsComponeFeedQuery(name);
+      });
+      return client.query(createQuery(queries));
+    },
     queryCategArticles: function(tagName, offset, count) {
       return client.query(listCategArticleQ, { tagName: tagName, offset: offset, count: count });
     },
