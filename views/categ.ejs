@@ -27,13 +27,36 @@
         <div class="nm_section">
           <!-- div inc='inc/sub_menu.html'></div -->
           <div class="head_banner_wrapper">
-            <div class="superhead_banner"></div>
-            <div class="head_banner"></div>
+            <div class="superhead_banner">
+              <div id="headBanner">
+                <script>
+                  googletag.cmd.push(function() {
+                    googletag.display("headBanner");
+                  });
+                </script>
+              </div>
+            </div>
           </div>
           <div class="row nm_row">
             <div class="pull-right lrec_ad_wrapper hidden-xs">
-              <div class="lrec_ad_large"></div>
-              <div class="lrec_ad_small"></div>
+              <div class="lrec_ad_large">
+                <div id="lrec1">
+                  <script>
+                    googletag.cmd.push(function() {
+                      googletag.display("lrec1");
+                    });
+                  </script>
+                </div>
+              </div>
+              <div class="lrec_ad_large">
+                <div id="lrec2">
+                  <script>
+                    googletag.cmd.push(function() {
+                      googletag.display("lrec2");
+                    });
+                  </script>
+                </div>
+              </div>
             </div>
             <div class="pull-right nm_mpm col-xs-12">
               <div class="mpm_content">
@@ -67,8 +90,8 @@
     <!--<div class="skinner_ad" skinner_ad_right></div>-->
   </div>
 
-  <div inc='inc/footer.html'></div>
-  <div inc="inc/newsletter.html"></div>
+  <div ng-include="'/partials/footer.html'"></div>
+  <div ng-include="'/partials/newsletter.html'"></div>
 
   <script>
     // $(document).ready(function(){
@@ -98,17 +121,6 @@
     // 	updateSkinnerAd();
     // 	$(document).on('scroll', updateSkinnerAd);
     // });
-
-    $(document).ready(function() {
-      $('.newsletter_small').hide();
-      $('.newsletter_close').click(function() {
-        $('.newsletter').hide();
-        $('.newsletter_small').show();
-      });
-      $('.newsletter_small').click(function() {
-        $('.newsletter').show();
-      });
-    });
   </script>
 </body>
 

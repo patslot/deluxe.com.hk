@@ -43,10 +43,10 @@
                 </div>
               </div>
               <div class="lrec_ad_large">
-                <div id="lrec1">
+                <div id="lrec2">
                   <script>
                     googletag.cmd.push(function() {
-                      googletag.display("lrec1");
+                      googletag.display("lrec2");
                     });
                   </script>
                 </div>
@@ -108,8 +108,8 @@
         <!--<div class="skinner_ad" skinner_ad_right></div>-->
       </div>
 
-      <div inc='inc/footer.html'></div>
-      <!-- div inc="inc/newsletter.html"></div -->
+      <div ng-include="'/partials/footer.html'"></div>
+      <div ng-include="'/partials/newsletter.html'"></div>
     </div>
 
     <script>
@@ -140,17 +140,6 @@
       // 	updateSkinnerAd();
       // 	$(document).on('scroll', updateSkinnerAd);
       // });
-
-      $(document).ready(function() {
-        $('.newsletter_small').show();
-        $('.newsletter_close').click(function() {
-          $('.newsletter').hide();
-          $('.newsletter_small').show();
-        });
-        $('.newsletter_small').click(function() {
-          $('.newsletter').show();
-        });
-      });
     </script>
 </body>
 
