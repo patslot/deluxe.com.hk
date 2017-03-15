@@ -11,6 +11,9 @@ module.exports = function(options) {
   var article = require('./routes/article.js')(gQuery, categMapping);
 
   app.locals.GRAPHQL_ENDPOINT = options.graphqlEndpoint;
+  app.locals.AD_PREFIX_TAG = options.adPrefixTag;
+  app.locals.AD_WEB_BASE_TAG = options.adWebBaseTag;
+  app.locals.AD_MOBILE_BASE_TAG = options.adMobileBaseTag;
   app.use(express.static('public'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended: true}));
