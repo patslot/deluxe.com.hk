@@ -1,4 +1,6 @@
 import angular from 'angular';
+import moment from 'moment/moment.js';
+import 'angular-moment/angular-moment.js';
 import './lib/lazy-scroll.min.js';
 
 var controllers = require('./controllers');
@@ -28,7 +30,11 @@ module.exports = function(options) {
     .directive('instagramMedias', [dirs.instagram]);
 
   angular
-    .module('addv2', ['lazy-scroll', 'appServices', 'appDirectives'])
+    .module('addv2', ['lazy-scroll', 'appServices', 'appDirectives',
+      'angularMoment'])
+    .run(function(amMoment) {
+      amMoment.changeLocale('zh-hk');
+    })
     .filter("trust", ['$sce', function($sce) {
       return function(htmlCode) {
         return $sce.trustAsHtml(htmlCode);

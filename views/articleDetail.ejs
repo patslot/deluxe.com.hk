@@ -10,98 +10,63 @@
   </head>
   <body ng-app="addv2" ng-controller="ArticleController"
       categ-ename="<%= ename %>">
+    <%- include('partials/app.ejs') %>
     <top-menu ng-categories="categs"></top-menu>
-    <%= label %>
-    <h1><%- title %></h1>
-    Share bar<br />
-    <!-- Case 1: no video -->
-    <% if (!video) { %>
-      <% if (intro) { %>
-    <br /><%- intro %>
-      <% } %>
-      <% if (introPhotos.length > 0) { %>
-    <br /><img src="<%= introPhotos[0].imagePath %>" />
-      <% } %>
-      <% if (contentBlocks.length > 0) { %>
-    <br /><%- contentBlocks[0].content %>
-      <% } %>
-    <% } %>
-
-    <!-- Case 2: has video -->
-    <% if (video) { %>
-    <div id="video_player"></div>
-    <script type="text/javascript">
-       var anvp1 = new AnvatoPlayer('anvp1'); // Unique player id
-       var videoUrl = '<%= video.url %>';
-       anvp1.setVideoUrl(videoUrl);
-       anvp1.setPlayerSize(640, 360);
-       anvp1.setTitle('How are you?');
-       anvp1.setDescription('This is description.');
-       anvp1.setVolume(0.5); // Value between 0 - 1
-       anvp1.setShareEnable(false);
-       var videopAdTagURL = anvp1.generateDFPvideoTag("dev.action_fun_marticle_preroll", "640x360");
-       anvp1.setVideoAdTagURL(videopAdTagURL);
-       anvp1.createInstance('video_player'); // Div Id match
-
-       function liveStateChanged(stateMessage, anvatoData) {
-         switch(stateMessage) {
-           case 'USER_RESUME':
-           break;
-           case 'USER_PAUSE':
-           break;
-           case 'VIDEO_STARTED':
-           //anvatoData including video duration(anvatoData.duration) and time(anvatoData.currentTime)
-           //Logging function
-           break;
-           case 'VIDEO_FIRST_QUARTILE':
-           break;
-           case 'VIDEO_MID_POINT':
-           break;
-           case 'VIDEO_THIRD_QUARTILE':
-           break;
-           case 'VIDEO_COMPLETED':
-           break;
-         }
-       }
-     </script>
-      <% if (intro) { %>
-    <br /><%- intro %>
-      <% } else if (contentBlocks.length > 0) { %>
-    <br /><%- contentBlocks[0].content %>
-      <% } %>
-    <br />
-
-      <% if (introPhotos.length > 0) { %>
-    <br /><img src="<%= introPhotos[0].imagePath %>" />
-      <% } %>
-      <% if (intro && contentBlocks.length > 0 ) { %>
-    <br /><%- contentBlocks[0].content %>
-      <% } %>
-    <% } %>
 
     <!-- Common sequences -->
-    <% if (contentBlocks.length > 0) { %>
-      <% contentBlocks[0].photos.forEach(function(photo) { %>
-    <br /><img src="<%= photo.imagePath %>" />
-      <% }) %>
-    <% } %>
-
-    <% for (var i = 1; i < contentBlocks.length; i++) { %>
-    <br /><%- contentBlocks[i].content %><br />
-      <% contentBlocks[i].photos.forEach(function(photo) { %>
-    <img src="<%= photo.imagePath %>" />
-      <% }) %>
-    <% } %>
 
     <!-- latest-articles add-articles="latestArticles"></latest-articles -->
 
-    <%- include('partials/app.ejs') %>
+    <!-- DFP advertisements -->
+    <!--
+    <div>
+      <script>
+        googletag.cmd.push(function() {
+          googletag.display("headBanner");
+        });
+      </script>
+    </div>
+    <div>
+      <script>
+        googletag.cmd.push(function() {
+          googletag.display("lrec1");
+        });
+      </script>
+    </div>
+    <div>
+      <script>
+        googletag.cmd.push(function() {
+          googletag.display("lrec2");
+        });
+      </script>
+    </div>
+    <div>
+      <script>
+        googletag.cmd.push(function() {
+          googletag.display("skycrapper1");
+        });
+      </script>
+    </div>
+    <div>
+      <script>
+        googletag.cmd.push(function() {
+          googletag.display("skycrapper2");
+        });
+      </script>
+    </div>
+    <div>
+      <script>
+        googletag.cmd.push(function() {
+          googletag.display("midbanner");
+        });
+      </script>
+    </div>
+    -->
 
   <div class="nm_v_menu visible-xs" vmenu="content">
     <div ng-include="'/partials/mobileMenu.html'"></div>
   </div>
   <div class="container nm_home">
-    <div inc='inc/header.html'></div>
     <div class="row nm_row">
       <!--<div class="skinner_ad" skinner_ad_left></div>-->
       <div class="main_content">
@@ -136,21 +101,54 @@
             </div>
             <div class="pull-right nm_mpm col-xs-12">
               <div class="mpm_content artd_container">
-                <div class="artd_article_label">Feature</div>
-                <div class="artd_article_title">鄭秀文心口掛大眼睛 自嘲好奇寶寶八卦mi</div>
-                <div class="artd_article_publish_date"></div>
+                  <div class="artd_article_label"><%- label %></div>
+                <div class="artd_article_title"><%- title %></div>
+                <div class="artd_article_publish_date">
+                    {{"<%= pubDate %>" | amUtc | amDateFormat:'LLL'}}
+                </div>
                 <div class="artd_article_share_bar"></div>
-                <div class="artd_article_video"></div>
-                <div class="artd_article_Photo"><img src="img/S_01.jpg"></div>
-                <div class="artd_article_Text">日前被瘋傳在日本表參道遊逛時，與老公許志安齊齊攝了入Oreo新廣告的鄭秀文(Sammi)，在ig po完相話自己好瘀皮之後，今日又再po新相，除了晒靚衫之餘，亦不忘繼續自嘲，hashtag自己綽號叫好奇寶寶、八卦mi、厚多士。 相中的Sammi穿了一件來自內地設計師卜柯文的時裝品牌，Chris by Christopher Bu的白色針織上衣，衫上織有一隻正在流淚的粉紅色卡通眼睛，設計搶眼又富玩味，而這個品牌亦是范冰冰的愛牌，無論出席大小活動都經常穿此品牌亮相。</div>
-                <div class="artd_article_Photo"><img src="img/S_01.jpg"></div>
-                <div class="artd_article_Text">日前被瘋傳在日本表參道遊逛時，與老公許志安齊齊攝了入Oreo新廣告的鄭秀文(Sammi)，在ig po完相話自己好瘀皮之後，今日又再po新相，除了晒靚衫之餘，亦不忘繼續自嘲，hashtag自己綽號叫好奇寶寶、八卦mi、厚多士。 相中的Sammi穿了一件來自內地設計師卜柯文的時裝品牌，Chris by Christopher Bu的白色針織上衣，衫上織有一隻正在流淚的粉紅色卡通眼睛，設計搶眼又富玩味，而這個品牌亦是范冰冰的愛牌，無論出席大小活動都經常穿此品牌亮相。</div>
+                  <div class="artd_article_video"></div>
+                    <div id="video_player"></div>
+                  <div class="artd_article_intro">
+                  <%- intro %>
+                </div>
+                <% if (introPhotos && introPhotos.length > 0) { %>
+                  <% introPhotos.forEach(function (photo) { %>
+                    <div class="artd_intro_photo">
+                      <div class="artd_article_Photo">
+                        <img src="<%= photo.imagePathZoom %>">
+                      </div>
+                      <div class="artd_article_caption">
+                        <%= photo.caption %>
+                      </div>
+                    </div>
+                  <% }) %>
+                <% } %>
+                <% if (contentBlocks && contentBlocks.length > 0) { %>
+                  <% contentBlocks.forEach(function (content) { %>
+                    <div class="artd_article_Text">
+                        <%= content.content %>
+                    </div>
+                    <% if (content.photos && content.photos.length > 0) { %>
+                      <% content.photos.forEach(function (photo) { %>
+                        <div class="artd_intro_photo">
+                          <div class="artd_article_Photo">
+                            <img src="<%= photo.imagePath %>">
+                          </div>
+                          <div class="artd_article_caption">
+                            <%= photo.caption %>
+                          </div>
+                        </div>
+                      <% }) %>
+                    <% } %>
+                  <% }) %>
+                <% } %>
               </div>
             </div>
           </div>
         </div>
 
-        <div inc='inc/article_recommended.html'></div>
+        <!--<div inc='inc/article_recommended.html'></div>-->
       </div>
       <!--<div class="skinner_ad" skinner_ad_right></div>-->
     </div>
@@ -160,6 +158,7 @@
   </div>
 
   <script>
+    // TODO(camie): remove dummy js code.
     $(document).ready(function() {
       $('[inc]').each(function() {
         var $this = $(this);
@@ -167,7 +166,6 @@
         if ($this.attr('loading') != "content")
           $this.load(url);
       });
-
 
       // lazy load
       var $loadingTrigger = $('[loading="trigger"]').first();
@@ -200,6 +198,25 @@
           }
         });
       }
+    });
+  </script>
+
+  <script type="text/javascript">
+    var displayViedo = function (mediaGroup) {
+      var numReg = /\d+/;
+      var videos = mediaGroup.filter(function (item) {
+        return item.type === 'videos';
+      });
+      videos.sort(function (v1, v2) {
+        return v1.quality.match(numReg) < v2.quality.match(numReg);
+      });
+      if (videos && videos.length > 0) {
+        renderVideo(videos[0]);
+      }
+    };
+
+    $(document).ready(function() {
+      displayViedo(JSON.parse('<%- JSON.stringify(mediaGroup) %>'));
     });
   </script>
   </body>
