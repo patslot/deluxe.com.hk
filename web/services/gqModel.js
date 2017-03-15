@@ -99,26 +99,54 @@ export default function(c) {
     }
   }`;
 
-  const listEditorPick = `listEditorPick {
-    id
-    categoryID
-    publish
+  const listHomeEditorPick = `listHomeEditorPick {
+    expire
     lastUpdate
     title
-    articleThumbnail
-    videoThumbnail
     videoFile
-    anvato
+    videoThumbnail
     youtube
+    imgFile
+    oldCatName
+    oldSecName
     intro
   }`;
+
+  const CmsComponeFeedItem = `{
+    homeGalleryID
+    apID
+    catName
+    imgName
+    caption
+    content
+    linkURL
+    sort
+    startDateTime
+    endDateTime
+    confirm
+    hasVideo
+    adCode
+    apCatID
+  }`;
+
+  var createCmsCompoeFeedQuery = function(queryName) {
+    return queryName + ' ' + CmsComponeFeedItem;
+  };
+
+  const listHomeHighlight = createCmsCompoeFeedQuery('listHomeHighlight');
+  const listHomeLatestArticle = createCmsCompoeFeedQuery('listHomeLatestArticle');
 
   var createTagNameQuery = function(queries) {
     return 'query ($tagName: String, $offset: Int, $count: Int) { ' +
       queries.join(' ') + ' }';
   };
 
-  const homeQ = createTagNameQuery([listMenu, listInstagram, listArticle, listEditorPick]);
+  var createQuery = function(queries) {
+    return 'query { ' + queries.join(' ') + ' }';
+  };
+
+  const homeQ = createQuery([listMenu, listInstagram, listHomeLatestArticle,
+    listHomeEditorPick, listHomeHighlight]);
   const categQ = createTagNameQuery([listMenu, listArticle]);
   const articleQ = createTagNameQuery([listMenu, listInstagram, listArticle]);
   const listCategArticleQ = createTagNameQuery([listArticle]);
@@ -128,8 +156,8 @@ export default function(c) {
       return client.query(listCategArticleQ, { tagName: tagName, offset: offset, count: count });
     },
     // TODO(wkchan): Menu sorting and display
-    queryHome: function(offset, count) {
-      return client.query(homeQ, { offset: offset, count: count });
+    queryHome: function() {
+      return client.query(homeQ);
     },
     queryCateg: function(tagName, offset, count) {
       return client.query(categQ, { tagName: tagName, offset: offset, count: count });

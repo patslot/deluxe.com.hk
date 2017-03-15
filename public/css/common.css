@@ -167,6 +167,7 @@ background: #ccc;
   top: 0;
 }
 
+
 /* lrec banner */
 
 .nm_home .lrec_ad_wrapper {
@@ -177,6 +178,7 @@ background: #ccc;
   width: 300px;
   position: relative;
 }
+
 
 /* mpm */
 
@@ -238,4 +240,12 @@ background: #ccc;
 .artd_instagram_small_image img {
   height: 100%;
   width: auto;
+}
+
+.nm_highlight {
+  background-image: url(/img/icon07.png)!important;
+}
+
+.nm_editor_pick {
+  background-image: url(/img/icon10.png)!important;
 }

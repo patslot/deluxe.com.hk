@@ -2,6 +2,7 @@ import angular from 'angular';
 import moment from 'moment/moment.js';
 import 'angular-moment/angular-moment.js';
 import './lib/lazy-scroll.min.js';
+import 'ejs/ejs.js';
 
 var controllers = require('./controllers');
 var services = require('./services');
@@ -24,7 +25,7 @@ module.exports = function(options) {
     // TODO: Check if latestArticles is used and remove it later if not used
     .directive('latestArticles', [dirs.latestArticles])
     .directive('articlesInCateg', [dirs.articlesInCateg])
-    .directive('highlightsBlock', [dirs.highlights])
+    .directive('highlightsBlock', ['$timeout', dirs.highlights])
     .directive('editorPicks', [dirs.editorPicks])
     .directive('facebookBlock', [dirs.facebook])
     .directive('instagramMedias', [dirs.instagram]);

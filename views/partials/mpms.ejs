@@ -13,10 +13,9 @@
 <% mpms.forEach(function(mpm, idx) { %>
   <% var active = ""; if (idx === 0) { active = "active" } %>
     <div class="item <%= active %>">
-      <!-- img src="<%= mpm.imgName %>" alt="" -->
-      <img src="http://hk.add.nextmedia.com/wp-content/uploads/2017/03/20170309_add_slider.jpg" alt="">
+      <img src="<%= mpm.imgName %>" alt="">
       <div class="text-left">
-        <div class="nm_section_block_title_cat">[TODO: beauty]</div>
+        <div class="nm_section_block_title_cat">[<%= mpm.catName %>]</div>
         <div class="nm_section_block_title"><%- mpm.content %></div>
       </div>
     </div>

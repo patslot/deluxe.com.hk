@@ -7,36 +7,36 @@ export default function($timeout, $scope, gqModel) {
   var loading = false;
   var categIdx = 0;
 
-  function parseArticles(articles) {
-    var _articles = articles || [];
-    _articles.forEach(function (a) {
-      // TODO(wkchan): Check if mediaGroup.length > 0?
-      a.style = 'background: url(' + a.mediaGroup[0].largePath +
+  function parseArticles(origArticles) {
+    var articles = origArticles || [];
+    articles.forEach(function (a) {
+      a.style = 'background: url(' + a.imgName +
         ') center center no-repeat; background-size: cover;';
     });
-    return _articles;
+    return articles;
   }
 
-  gqModel.queryHome(1, 8).then(function(res) {
+  gqModel.queryHome(0, 7).then(function(res) {
     $timeout(function() {
       // TODO(wkchan): Move this parts as a function for unit test
       $scope.categs = res.listMenu || [];
       $scope.igMedias = res.listInstagram || [];
 
-      var editorPicks = res.listEditorPick || [];
+      var editorPicks = res.listHomeEditorPick || [];
       // TODO(wkchan): Handle video thumbnail?
       editorPicks.forEach(function (p) {
-        var thumbnail = p.articleThumbnail || p.videoThumbnail;
+        var thumbnail = p.videoThumbnail || p.imgFile;
         p.style = 'background: url(' + thumbnail +
           ') center center no-repeat; background-size: cover;';
       });
       $scope.editorPicks = editorPicks;
-      var articles = parseArticles(res.listArticle);
+      var articles = parseArticles(res.listHomeLatestArticle);
+      var aLength = articles.length;
       $scope.latestArticles = articles.slice(0, 2);
-      $scope.latestArticlesFacebook = articles.slice(2, 4);
-      $scope.latestArticlesInstagram = articles.slice(4, 6);
-      $scope.latestArticlesEvent = articles.slice(6, 8);
-      $scope.highlights = 'Sample highlights';
+      $scope.latestArticlesFacebook = aLength > 2 ? articles.slice(2, 4) : [];
+      $scope.latestArticlesInstagram = aLength > 4 ? articles.slice(4, 6) : [];
+      $scope.latestArticlesEvent = aLength > 6 ? articles.slice(6, 8) : [];
+      $scope.highlights = res.listHomeHighlight || [];
       isReady = true;
     });
   });
