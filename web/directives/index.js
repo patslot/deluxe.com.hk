@@ -5,3 +5,4 @@ export { default as latestArticles } from "./latestArticles";
 export { default as highlights } from "./highlights";
 export { default as editorPicks } from "./editorPicks";
 export { default as articlesInCateg } from "./articlesInCateg";
+export { default as skinner } from "./skinner";

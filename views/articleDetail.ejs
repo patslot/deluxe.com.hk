@@ -7,68 +7,21 @@
     <title><%- title %></title>
     <link rel="stylesheet" href="/css/common.css" />
     <link rel="stylesheet" href="/css/articleDetail.css" />
+    <link rel="stylesheet" href="/css/skinner.css" />
   </head>
   <body ng-app="addv2" ng-controller="ArticleController"
       categ-ename="<%= ename %>">
     <%- include('partials/app.ejs') %>
-    <top-menu ng-categories="categs"></top-menu>
-
-    <!-- Common sequences -->
+    <skinner-block></skinner-block>
 
     <!-- latest-articles add-articles="latestArticles"></latest-articles -->
-
-    <!-- DFP advertisements -->
-    <!--
-    <div>
-      <script>
-        googletag.cmd.push(function() {
-          googletag.display("headBanner");
-        });
-      </script>
-    </div>
-    <div>
-      <script>
-        googletag.cmd.push(function() {
-          googletag.display("lrec1");
-        });
-      </script>
-    </div>
-    <div>
-      <script>
-        googletag.cmd.push(function() {
-          googletag.display("lrec2");
-        });
-      </script>
-    </div>
-    <div>
-      <script>
-        googletag.cmd.push(function() {
-          googletag.display("skycrapper1");
-        });
-      </script>
-    </div>
-    <div>
-      <script>
-        googletag.cmd.push(function() {
-          googletag.display("skycrapper2");
-        });
-      </script>
-    </div>
-    <div>
-      <script>
-        googletag.cmd.push(function() {
-          googletag.display("midbanner");
-        });
-      </script>
-    </div>
-    -->
 
   <div class="nm_v_menu visible-xs" vmenu="content">
     <div ng-include="'/partials/mobileMenu.html'"></div>
   </div>
-  <div class="container nm_home">
+  <top-menu ng-categories="categs"></top-menu>
+  <div class="container nm_home" skinner_ad="align_top">
     <div class="row nm_row">
-      <!--<div class="skinner_ad" skinner_ad_left></div>-->
       <div class="main_content">
         <div class="nm_section">
           <div class="head_banner_wrapper">

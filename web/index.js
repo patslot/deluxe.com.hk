@@ -28,7 +28,8 @@ module.exports = function(options) {
     .directive('highlightsBlock', ['$timeout', dirs.highlights])
     .directive('editorPicks', [dirs.editorPicks])
     .directive('facebookBlock', [dirs.facebook])
-    .directive('instagramMedias', [dirs.instagram]);
+    .directive('instagramMedias', [dirs.instagram])
+    .directive('skinnerBlock', [dirs.skinner]);
 
   angular
     .module('addv2', ['lazy-scroll', 'appServices', 'appDirectives',
