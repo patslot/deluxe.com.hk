@@ -39,10 +39,39 @@ export default function(c) {
     }
   }`;
 
-  // TODO(wkchan): Need photos for firstContentBlock in listArticle?
-  /*photos {
-    ...${photo}
-  }*/
+  const articleModel = `{
+    __typename
+    id
+    title
+    lastUpdate
+    ... on NewsArticle {
+      mediaGroup {
+        type
+        smallPath
+        largePath
+        width
+        height
+        source
+        videoId
+        url
+        quality
+      }
+      firstContentBlock {
+        subHead
+        content
+      }
+    }
+    ... on CmsArticle {
+      categoryID
+      publish
+      articleThumbnail
+      videoThumbnail
+      anvato
+      youtube
+      intro
+    }
+  }`;
+
   const listArticle = `listArticle(tagName: $tagName, offset: $offset, count: $count) {
     order
     highlight
@@ -147,8 +176,6 @@ export default function(c) {
 
   const homeQ = createQuery([listMenu, listInstagram, listHomeLatestArticle,
     listHomeEditorPick, listHomeHighlight]);
-  const categQ = createTagNameQuery([listMenu, listArticle]);
-  const articleQ = createTagNameQuery([listMenu, listInstagram, listArticle]);
   const listCategArticleQ = createTagNameQuery([listArticle]);
 
   return {
@@ -159,11 +186,15 @@ export default function(c) {
     queryHome: function() {
       return client.query(homeQ);
     },
-    queryCateg: function(tagName, offset, count) {
-      return client.query(categQ, { tagName: tagName, offset: offset, count: count });
+    // Assume listCategArticle is not empty before calling queryCateg()
+    queryCateg: function(listCategArticle) {
+      // Query listMenu and list<Categ=Fashion|...>Article
+      return client.query(createQuery([listCategArticle+ ' ' + articleModel,
+        listMenu]));
     },
-    queryArticle: function(tagName, offset, count) {
-      return client.query(articleQ, { tagName: tagName, offset: offset, count: count });
+    queryArticle: function(listCategArticle) {
+      return client.query(createQuery([listCategArticle+ ' ' + articleModel,
+        listMenu, listInstagram]));
     }
   };
 };

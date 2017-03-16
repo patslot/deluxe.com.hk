@@ -1,13 +1,16 @@
-export default function($timeout, $scope, $attrs, gqModel) {
+export default function($timeout, $scope, $attrs, gqModel, c) {
   var categEname = $attrs.categEname;
 
-  gqModel.queryArticle(categEname, 1, 13).then(function(res) {
-    $timeout(function() {
-      $scope.categs = res.listMenu || [];
-      var articles = res.listArticle || [];
-      // TODO(wkchan): Dedup latest articles with current article
-      $scope.latestArticles = articles;
-      $scope.igMedias = res.listInstagram || [];
+  var listCategArticle = c.TAG_TO_LIST_ARTICLE_API[categEname];
+  if (listCategArticle) {
+    gqModel.queryArticle(listCategArticle).then(function(res) {
+      $timeout(function() {
+        $scope.categs = res.listMenu || [];
+        var articles = res[listCategArticle]|| [];
+        // TODO(wkchan): Dedup latest articles with current article
+        $scope.latestArticles = articles;
+        $scope.igMedias = res.listInstagram || [];
+      });
     });
-  });
+  }
 };

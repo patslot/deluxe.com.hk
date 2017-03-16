@@ -1,8 +1,8 @@
 module.exports = function(gQuery, categMapping) {
   return {
     renderArticle: function(req, res) {
-      gQuery.articleQuery(req.params.articleID).then(function(result) {
-        var article = result.getArticleDetail || {};
+      gQuery.newsArticleQuery(req.params.articleID).then(function(result) {
+        var article = result.getNewsArticleDetail || {};
         article.video = null;
         article.mediaGroup.forEach(function(media, idx) {
           if (media.type === "videos") {

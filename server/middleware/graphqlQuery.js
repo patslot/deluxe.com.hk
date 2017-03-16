@@ -16,9 +16,9 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     }
   `);
 
-  const articleQ = `
-    query sampleArtilce($id: String) {
-      getArticleDetail(id: $id) {
+  const newsArticleQ = `
+    query ($id: String) {
+      getNewsArticleDetail(articleID: $id) {
         brandId
         brandArticleId
         brandCategoryId
@@ -72,6 +72,43 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     }
   `
 
+  const cmsArticleQ = `query($id: String) {
+    getCMSArticleDetail(articleID: $id) {
+      categoryID
+      categoryName
+      publish
+      expire
+      lastUpdate
+      title
+      subTitle
+      videoFile
+      videoThumbnail
+      anvato
+      youtube
+      artBlock {
+        blockID
+        articleID
+        subTitle
+        content
+        imgFile
+        caption
+        sort
+        imgWidth
+        imgHeight
+      }
+      imgBlock {
+        imgFile
+        caption
+        imgWidth
+        imgHeight
+      }
+      oldCatName
+      oldSecName
+      tag
+      restricted
+    }
+  }`;
+
   const homeQ = `{
     listMPM {
       homeGalleryID
@@ -89,11 +126,14 @@ module.exports = function(GRAPHQL_ENDPOINT) {
       adCode
       apCatID
     }
-  }`
+  }`;
 
   return {
-    articleQuery: function(articleID) {
-      return _client.query(articleQ, {id: articleID});
+    newsArticleQuery: function(articleID) {
+      return _client.query(newsArticleQ, {id: articleID});
+    },
+    cmsArticleQuery: function(articleID) {
+      return _client.query(cmsArticleQ, {id: articleID});
     },
     homeQuery: function() {
       return _client.query(homeQ);

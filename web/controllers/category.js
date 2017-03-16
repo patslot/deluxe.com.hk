@@ -11,7 +11,6 @@ export default function($timeout, $scope, $attrs, gqModel, c) {
 
   function currentCateg(categs, categEname) {
     for (var i = 0; i < categs.length; i++) {
-      console.log(categs[i], categEname);
       if (('add' + categs[i].eName) === categEname) {
         return categs[i];
       }
@@ -21,28 +20,36 @@ export default function($timeout, $scope, $attrs, gqModel, c) {
 
   function parseArticles(origArticles) {
     var articles = origArticles || [];
-    // TODO(wkchan): Check mediaGroup.length and is image or video?
-    articles.forEach(function(a) {
-      a.image = a.mediaGroup[0].largePath;
-      a.detailLink = categName + '/' + a.mlArticleId + '/' + a.title;
+    // TODO(wkchan): Check if is news article or CMS article
+    articles.forEach(function(a, idx) {
+      if (a.__typename === 'NewsArticle') {
+        a.image = a.mediaGroup[0].largePath;
+      } else if (a.__typename === 'CmsArticle') {
+        a.label = categName;
+        a.image = a.videoThumbnail || a.articleThumbnail;
+      }
+      a.detailLink = categName + '/' + a.id + '/' + a.title;
     });
     return articles;
   }
 
-  gqModel.queryCateg(categEname, 0, 5).then(function(res) {
-    $timeout(function() {
-      var categs = res.listMenu || [];
-      $scope.currentCateg = currentCateg(categs, categEname);
-      $scope.categs = categs;
-      var articles = parseArticles(res.listArticle);
-      if (articles.length === 0) {
-        return;
-      }
-      $scope.latestArticle = articles[0];
-      $scope.latestArticles = articles.slice(1, 5);
-      isReady = true;
+  var listCategArticle = c.TAG_TO_LIST_ARTICLE_API[categEname];
+  if (listCategArticle) {
+    gqModel.queryCateg(listCategArticle).then(function(res) {
+      $timeout(function() {
+        var categs = res.listMenu || [];
+        $scope.currentCateg = currentCateg(categs, categEname);
+        $scope.categs = categs;
+        var articles = parseArticles(res[listCategArticle]);
+        if (articles.length === 0) {
+          return;
+        }
+        $scope.latestArticle = articles[0];
+        $scope.latestArticles = articles.slice(1, 5);
+        isReady = true;
+      });
     });
-  });
+  }
 
   function updateCategIdx() {
     categIdx += articleCount;
@@ -50,8 +57,6 @@ export default function($timeout, $scope, $attrs, gqModel, c) {
   };
 
   $scope.loadCategArticles = function() {
-    console.log(isReady, $scope.loadingArticles, categIdx);
-
     if (!isReady || noMoreArticles) {
       return false;
     }

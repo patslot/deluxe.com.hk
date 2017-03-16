@@ -11,6 +11,13 @@ var dirs = require('./directives');
 module.exports = function(options) {
   var constant = function() {
     return {
+      TAG_TO_LIST_ARTICLE_API: {
+        'add_fash': 'listFashionArticle',
+        'add_beau': 'listBeautyArticle',
+        'add_luxe': 'listLuxeArticle',
+        'add_wedd': 'listWeddingArticle',
+        'add_life': 'listLifeStyleArticle'
+      },
       LOAD_CATEG_ARTICLES_COUNT: 4,
       GRAPHQL_ENDPOINT: options.GRAPHQL_ENDPOINT || 'http://localhost:4000/graphql'
     };
@@ -47,5 +54,5 @@ module.exports = function(options) {
     .controller('CategController', ['$timeout', '$scope', '$attrs', 'gqModel',
       'const', controllers.category])
     .controller('ArticleController', ['$timeout', '$scope', '$attrs', 'gqModel',
-      controllers.article]);
+      'const', controllers.article]);
 }
