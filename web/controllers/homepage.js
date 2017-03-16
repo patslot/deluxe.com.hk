@@ -24,10 +24,9 @@ export default function($timeout, $scope, gqModel) {
 
       var editorPicks = res.listHomeEditorPick || [];
       // TODO(wkchan): Handle video thumbnail?
-      editorPicks.forEach(function (p) {
-        var thumbnail = p.videoThumbnail || p.imgFile;
-        p.style = 'background: url(' + thumbnail +
-          ') center center no-repeat; background-size: cover;';
+      editorPicks.forEach(function(p) {
+        p.image = p.videoThumbnail || p.imgFile;
+        p.title = p.title;
       });
       $scope.editorPicks = editorPicks;
       var articles = parseArticles(res.listHomeLatestArticle);
@@ -36,7 +35,13 @@ export default function($timeout, $scope, gqModel) {
       $scope.latestArticlesFacebook = aLength > 2 ? articles.slice(2, 4) : [];
       $scope.latestArticlesInstagram = aLength > 4 ? articles.slice(4, 6) : [];
       $scope.latestArticlesEvent = aLength > 6 ? articles.slice(6, 8) : [];
-      $scope.highlights = res.listHomeHighlight || [];
+      var highlights = res.listHomeHighlight || [];
+      highlights.forEach(function(h) {
+        h.image = h.imgName;
+        h.label = h.catName;
+        h.title = h.content;
+      });
+      $scope.highlights = highlights;
       isReady = true;
     });
   });

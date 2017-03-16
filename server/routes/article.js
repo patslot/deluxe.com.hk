@@ -10,6 +10,7 @@ module.exports = function(gQuery, categMapping) {
           }
         });
         var categ = req.params.categ;
+        article.categ = categ;
         article.ename = categMapping.nameToEname[categ];
         article.adTag = categMapping.nameToAdTag[categ].detail;
         res.render('articleDetail', article);

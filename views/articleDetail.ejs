@@ -10,11 +10,9 @@
     <link rel="stylesheet" href="/css/skinner.css" />
   </head>
   <body ng-app="addv2" ng-controller="ArticleController"
-      categ-ename="<%= ename %>">
+    categ-ename="<%= ename %>" categ-name="<%= categ %>">
     <%- include('partials/app.ejs') %>
     <skinner-block></skinner-block>
-
-    <!-- latest-articles add-articles="latestArticles"></latest-articles -->
 
   <div class="nm_v_menu visible-xs" vmenu="content">
     <div ng-include="'/partials/mobileMenu.html'"></div>
@@ -101,7 +99,8 @@
           </div>
         </div>
 
-        <!--<div inc='inc/article_recommended.html'></div>-->
+        <add-carousel title-class="'nm_recommend'" carousel-items="latestArticles"
+          carousel-div="'recommend-carousel'"></add-carousel>
       </div>
       <!--<div class="skinner_ad" skinner_ad_right></div>-->
     </div>

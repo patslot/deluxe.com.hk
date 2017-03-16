@@ -57,7 +57,8 @@
 
         <div ng-include="'/partials/homeArticles.html'"></div>
         <div ng-include="'/partials/homeArticlesFacebook.html'"></div>
-        <highlights-block add-highlights="highlights"></highlights-block>
+        <add-carousel title-class="'nm_highlight'" carousel-items="highlights"
+          carousel-div="'highlight-carousel'"></add-carousel>
         <div class="nm_section" loading="content">
           <div class="head_banner_wrapper">
             <div class="superhead_banner">
@@ -71,7 +72,8 @@
         </div>
         <div ng-include="'/partials/homeArticlesInstagram.html'"></div>
         <div ng-include="'/partials/homeArticlesEvent.html'"></div>
-        <editor-picks add-picks="editorPicks"></editor-picks>
+        <add-carousel title-class="'nm_editor_pick'" carousel-items="editorPicks"
+          carousel-div="'editor-picks-carousel'"></add-carousel>
         <div class="nm_section">
           <div class="head_banner_wrapper">
             <div class="superhead_banner">

@@ -25,6 +25,7 @@ module.exports = function(options) {
 
   angular.module('appServices', [])
     .factory('const', [constant])
+    .factory('articleHandler', [services.articleHandler])
     .factory('gqModel', ['const', services.gqModel]);
 
   angular.module('appDirectives', [])
@@ -32,8 +33,7 @@ module.exports = function(options) {
     // TODO: Check if latestArticles is used and remove it later if not used
     .directive('latestArticles', [dirs.latestArticles])
     .directive('articlesInCateg', [dirs.articlesInCateg])
-    .directive('highlightsBlock', ['$timeout', dirs.highlights])
-    .directive('editorPicks', [dirs.editorPicks])
+    .directive('addCarousel', ['$timeout', dirs.addCarousel])
     .directive('facebookBlock', [dirs.facebook])
     .directive('instagramMedias', [dirs.instagram])
     .directive('skinnerBlock', [dirs.skinner]);
@@ -52,7 +52,7 @@ module.exports = function(options) {
     .controller('HomepageController', ['$timeout', '$scope', 'gqModel',
       controllers.homepage])
     .controller('CategController', ['$timeout', '$scope', '$attrs', 'gqModel',
-      'const', controllers.category])
+      'const', 'articleHandler', controllers.category])
     .controller('ArticleController', ['$timeout', '$scope', '$attrs', 'gqModel',
-      'const', controllers.article]);
+      'const', 'articleHandler', controllers.article]);
 }

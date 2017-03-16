@@ -26,6 +26,7 @@ module.exports = function(options) {
   app.get('/:categ/:articleID/:title', article.renderArticle);
   app.get('/:categ', function(req, res) {
     var categ = req.params.categ;
+    // TODO(wkchan): This code block also repeats in routes/article.js
     var ename = categMapping.nameToEname[categ];
     var adTagMapping = categMapping.nameToAdTag[categ];
     if (!ename || !adTagMapping) {
