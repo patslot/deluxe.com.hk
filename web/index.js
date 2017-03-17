@@ -41,9 +41,6 @@ module.exports = function(options) {
   angular
     .module('addv2', ['lazy-scroll', 'appServices', 'appDirectives',
       'angularMoment'])
-    .run(function(amMoment) {
-      amMoment.changeLocale('zh-hk');
-    })
     .filter("trust", ['$sce', function($sce) {
       return function(htmlCode) {
         return $sce.trustAsHtml(htmlCode);

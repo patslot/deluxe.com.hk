@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var util = require('util');
 
 var categMapping = require('./middleware/categoryMapping.js');
 var app = express();
@@ -8,7 +9,7 @@ module.exports = function(options) {
 
   var gQuery = require('./middleware/graphqlQuery.js')(options.graphqlEndpoint);
   var home = require('./routes/home.js')(gQuery);
-  var article = require('./routes/article.js')(gQuery, categMapping);
+  var article = require('./routes/article.js')(gQuery, categMapping, util);
 
   app.locals.GRAPHQL_ENDPOINT = options.graphqlEndpoint;
   app.locals.AD_PREFIX_TAG = options.adPrefixTag;

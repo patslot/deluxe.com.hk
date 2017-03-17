@@ -1,44 +1,46 @@
 <script src="http://hk.adx.nextmedia.com/uvp2/js/anvp.common.lib-v1.0.2.js"></script>
 <script>
 function renderVideo(video, elemId) {
-  var adPrefixTag = '<%= AD_PREFIX_TAG %>';
-  var webTags = [];
-  if (adPrefixTag !== "") {
-    webTags.push(adPrefixTag);
-  }
-  webTags.push('<%= AD_WEB_BASE_TAG %>');
-  webTags.push('<%= adTag %>');
-  var webPrefix = "/" + webTags.join("/") + "/";
+  if (video && video.url) {
+    var adPrefixTag = '<%= AD_PREFIX_TAG %>';
+    var webTags = [];
+    if (adPrefixTag !== "") {
+      webTags.push(adPrefixTag);
+    }
+    webTags.push('<%= AD_WEB_BASE_TAG %>');
+    webTags.push('<%= adTag %>');
+    var webPrefix = "/" + webTags.join("/") + "/";
 
-  var anvp1 = new AnvatoPlayer('anvp1'); // Unique player id
-  anvp1.setVideoUrl(video.url);
-  anvp1.setPlayerSize("100%", "100%");
-  anvp1.setTitle(video.title);
-  anvp1.setDescription("");
-  anvp1.setVolume(0.5); // Value between 0 - 1
-  anvp1.setShareEnable(false);
-  var videopAdTagURL = anvp1.generateDFPvideoTag(webPrefix + "preroll", "640x360");
-  anvp1.setVideoAdTagURL(videopAdTagURL);
-  anvp1.createInstance(elemId || 'video_player'); // Div Id match
+    var anvp1 = new AnvatoPlayer('anvp1'); // Unique player id
+    anvp1.setVideoUrl(video.url);
+    anvp1.setPlayerSize("100%", "100%");
+    anvp1.setTitle(video.title);
+    anvp1.setDescription("");
+    anvp1.setVolume(0.5); // Value between 0 - 1
+    anvp1.setShareEnable(false);
+    var videopAdTagURL = anvp1.generateDFPvideoTag(webPrefix + "preroll", "640x360");
+    anvp1.setVideoAdTagURL(videopAdTagURL);
+    anvp1.createInstance(elemId || 'video_player'); // Div Id match
 
-  function liveStateChanged(stateMessage, anvatoData) {
-    switch(stateMessage) {
-      case 'USER_RESUME':
-      break;
-      case 'USER_PAUSE':
-      break;
-      case 'VIDEO_STARTED':
-      //anvatoData including video duration(anvatoData.duration) and time(anvatoData.currentTime)
-      //Logging function
-      break;
-      case 'VIDEO_FIRST_QUARTILE':
-      break;
-      case 'VIDEO_MID_POINT':
-      break;
-      case 'VIDEO_THIRD_QUARTILE':
-      break;
-      case 'VIDEO_COMPLETED':
-      break;
+    function liveStateChanged(stateMessage, anvatoData) {
+      switch(stateMessage) {
+        case 'USER_RESUME':
+        break;
+        case 'USER_PAUSE':
+        break;
+        case 'VIDEO_STARTED':
+        //anvatoData including video duration(anvatoData.duration) and time(anvatoData.currentTime)
+        //Logging function
+        break;
+        case 'VIDEO_FIRST_QUARTILE':
+        break;
+        case 'VIDEO_MID_POINT':
+        break;
+        case 'VIDEO_THIRD_QUARTILE':
+        break;
+        case 'VIDEO_COMPLETED':
+        break;
+      }
     }
   }
 }

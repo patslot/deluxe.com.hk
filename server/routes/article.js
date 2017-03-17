@@ -1,23 +1,44 @@
-module.exports = function(gQuery, categMapping) {
+module.exports = function(gQuery, categMapping, util) {
   return {
     renderArticle: function(req, res) {
-      gQuery.newsArticleQuery(req.params.articleID).then(function(result) {
-        var article = result.getNewsArticleDetail || {};
-        article.video = null;
-        article.mediaGroup.forEach(function(media, idx) {
-          if (media.type === "videos") {
-            article.video = article.mediaGroup[idx];
+      var articleID = req.params.articleID;
+      var article = {};
+      article.categ = req.params.categ;
+      article.ename = categMapping.nameToEname[article.categ];
+      article.adTag = categMapping.nameToAdTag[article.categ].detail;
+      article.type = categMapping.getArticleType(articleID);
+
+      if (articleID && article.type === 'news') {
+        gQuery.newsArticleQuery(articleID).then(function(result) {
+          article = util._extend(article, result.getNewsArticleDetail);
+          article.video = null;
+          var videos = article.mediaGroup.filter(function (item) {
+            return item.type === 'videos';
+          });
+          var numReg = /\d+/;
+          if (videos && videos.length > 0) {
+            videos.sort(function (v1, v2) {
+              return v1.quality.match(numReg) < v2.quality.match(numReg);
+            });
+            article.video = videos[0];
           }
+          res.render('articleDetail', article);
+        }, function(err) {
+          console.error(err);
+          res.sendStatus(500, err);
         });
-        var categ = req.params.categ;
-        article.categ = categ;
-        article.ename = categMapping.nameToEname[categ];
-        article.adTag = categMapping.nameToAdTag[categ].detail;
-        res.render('articleDetail', article);
-      }, function(err) {
-        console.error(err);
-        res.sendStatus(500, err);
-      });
+      } else if (article.type === 'cms') {
+        gQuery.cmsArticleQuery(articleID).then(function (result) {
+          article = util._extend(article, result.getCMSArticleDetail);
+          article.video = article.videoFile;
+          res.render('articleDetail', article);
+        }, function (err) {
+          console.error(err);
+          res.sendStatus(500, err);
+        });
+      } else {
+        res.sendStatus(500, 'Invalid article id: ' + articleID);
+      }
     }
   };
 };

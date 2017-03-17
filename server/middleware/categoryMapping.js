@@ -11,6 +11,17 @@ function createNameToAdTag() {
 
 var nameToAdTag = createNameToAdTag();
 
+var getArticleType = function (articleID) {
+  if (/^\d_(\d+)$/.test(articleID)) {
+    // Format for type news of article is like 1_8234.
+    return 'news';
+  } else if (/^(\d+)$/.test(articleID)) {
+    return 'cms';
+  } else {
+    return null;
+  }
+};
+
 module.exports = {
   // TODO(wkchan): Query menu API to get Name to Ename mapping?
   // If no, combine nameToEname and nameToAdTag to one dict.
@@ -24,5 +35,6 @@ module.exports = {
     'Editor picks': 'Editor picks',
     'Event': 'Event'
   },
-  nameToAdTag: nameToAdTag
+  nameToAdTag: nameToAdTag,
+  getArticleType: getArticleType
 };

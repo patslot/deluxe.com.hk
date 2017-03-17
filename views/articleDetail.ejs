@@ -13,77 +13,60 @@
     <%- include('partials/app.ejs') %>
     <skinner-block></skinner-block>
 
-  <div class="nm_v_menu visible-xs" vmenu="content">
-    <div ng-include="'/partials/mobileMenu.html'"></div>
-  </div>
-  <top-menu ng-categories="categs"></top-menu>
-  <div class="container nm_home">
-    <div class="row nm_row">
-      <div class="main_content">
-        <div class="nm_section">
-          <div class="head_banner_wrapper">
-            <div class="superhead_banner">
-              <div id="headBanner">
-                <script>
-                  showWebAd("HeadBanner", "headBanner");
-                </script>
-              </div>
-            </div>
-          </div>
-          <div class="row nm_row">
-            <div class="pull-right lrec_ad_wrapper hidden-xs">
-              <div class="lrec_ad_large">
-                <div id="lrec1">
+    <div class="nm_v_menu visible-xs" vmenu="content">
+      <div ng-include="'/partials/mobileMenu.html'"></div>
+    </div>
+    <div class="container nm_home" skinner_ad="align_top">
+      <top-menu ng-categories="categs"></top-menu>
+      <div class="row nm_row">
+        <div class="main_content">
+          <div class="nm_section">
+            <div class="head_banner_wrapper">
+              <div class="superhead_banner">
+                <div id="headBanner">
                   <script>
-                    showWebAd("LREC1", "lrec1");
+                    showWebAd("HeadBanner", "headBanner");
                   </script>
                 </div>
               </div>
-              <div class="lrec_ad_large">
-                <div id="lrec2">
-                  <script>
-                    showWebAd("LREC2", "lrec2");
-                  </script>
-                </div>
-              </div>
-              <facebook-block></facebook-block>
-              <instagram-medias ig-medias="igMedias"></instagram-medias>
             </div>
-            <div class="pull-right nm_mpm col-xs-12">
-              <div class="mpm_content artd_container">
-                  <div class="artd_article_label"><%- label %></div>
-                <div class="artd_article_title"><%- title %></div>
-                <div class="artd_article_publish_date">
-                    {{"<%= pubDate %>" | amUtc | amDateFormat:'LLL'}}
+            <div class="row nm_row">
+              <div class="pull-right lrec_ad_wrapper hidden-xs">
+                <div class="lrec_ad_large">
+                  <div id="lrec1">
+                    <script>
+                      showWebAd("LREC1", "lrec1");
+                    </script>
+                  </div>
                 </div>
-                <div class="artd_article_share_bar"></div>
-                  <div class="artd_article_video"></div>
-                    <div id="video_player"></div>
-                  <div class="artd_article_intro">
-                  <%- intro %>
+                <div class="lrec_ad_large">
+                  <div id="lrec2">
+                    <script>
+                      showWebAd("LREC2", "lrec2");
+                    </script>
+                  </div>
                 </div>
-                <% if (introPhotos && introPhotos.length > 0) { %>
-                  <% introPhotos.forEach(function (photo) { %>
-                    <div class="artd_intro_photo">
-                      <div class="artd_article_Photo">
-                        <img src="<%= photo.imagePathZoom %>">
-                      </div>
-                      <div class="artd_article_caption">
-                        <%= photo.caption %>
-                      </div>
+                <facebook-block></facebook-block>
+                <instagram-medias ig-medias="igMedias"></instagram-medias>
+              </div>
+              <% if (type === "news") { %>
+                <div class="pull-right nm_mpm col-xs-12">
+                  <div class="mpm_content artd_container">
+                    <div class="artd_article_label"><%- categ %></div>
+                    <div class="artd_article_title"><%- title %></div>
+                    <div class="artd_article_publish_date">
+                      日期：{{"<%= pubDate %>" | amUtc | amDateFormat:'lll'}}
                     </div>
-                  <% }) %>
-                <% } %>
-                <% if (contentBlocks && contentBlocks.length > 0) { %>
-                  <% contentBlocks.forEach(function (content) { %>
-                    <div class="artd_article_Text">
-                        <%= content.content %>
+                    <div class="artd_article_share_bar"></div>
+                    <div class="artd_article_video">
+                      <div id="video_player"></div>
                     </div>
-                    <% if (content.photos && content.photos.length > 0) { %>
-                      <% content.photos.forEach(function (photo) { %>
+                    <div class="artd_article_intro">
+                    <% if (introPhotos && introPhotos.length > 0) { %>
+                      <% introPhotos.forEach(function (photo) { %>
                         <div class="artd_intro_photo">
                           <div class="artd_article_Photo">
-                            <img src="<%= photo.imagePath %>">
+                            <img src="<%= photo.imagePathZoom %>">
                           </div>
                           <div class="artd_article_caption">
                             <%= photo.caption %>
@@ -91,8 +74,88 @@
                         </div>
                       <% }) %>
                     <% } %>
-                  <% }) %>
-                <% } %>
+                    <%- intro %>
+                    </div>
+                    <% if (contentBlocks && contentBlocks.length > 0) { %>
+                      <% contentBlocks.forEach(function (content) { %>
+                        <div class="artd_article_subHead">
+                          <%= content.subHead %>
+                        </div>
+                        <% if (content.photos && content.photos.length > 0) { %>
+                          <% content.photos.forEach(function (photo) { %>
+                            <div class="artd_intro_photo">
+                              <div class="artd_article_Photo">
+                                <img src="<%= photo.imagePath %>">
+                              </div>
+                              <div class="artd_article_caption">
+                                <%= photo.caption %>
+                              </div>
+                            </div>
+                          <% }) %>
+                        <% } %>
+                        <div class="artd_article_Text">
+                          <%= content.content %>
+                        </div>
+                      <% }) %>
+                    <% } %>
+                  </div>
+                </div>
+              <% } else if (type === "cms") { %>
+                <div class="pull-right nm_mpm col-xs-12">
+                  <div class="mpm_content artd_container">
+                    <div class="artd_article_label"><%- categ %></div>
+                    <div class="artd_article_title"><%- title %></div>
+                    <div class="artd_article_publish_date">
+                      日期：{{"<%- publish %>" | amUtc | amDateFormat:'lll'}}
+                    </div>
+                    <div class="artd_article_share_bar"></div>
+                    <div class="artd_article_video">
+                      <div id="video_player"></div>
+                    </div>
+                    <div class="artd_article_intro">
+                    <% if (imgBlock && imgBlock.length > 0) { %>
+                      <% imgBlock.forEach(function (photo) { %>
+                        <div class="artd_intro_photo">
+                          <div class="artd_article_Photo">
+                            <img src="<%- photo.imgFile %>">
+                          </div>
+                          <div class="artd_article_caption">
+                            <%- photo.caption %>
+                          </div>
+                        </div>
+                      <% }) %>
+                    <% } %>
+                    </div>
+                    <% if (artBlock && artBlock.length > 0) { %>
+                      <% artBlock.forEach(function (content) { %>
+                        <div class="artd_article_subHead">
+                          <%- content.subTitle %>
+                        </div>
+                        <div class="artd_intro_photo">
+                          <div class="artd_article_Photo">
+                            <img src="<%- content.imageFile %>">
+                          </div>
+                          <div class="artd_article_caption">
+                            <%- content.caption %>
+                          </div>
+                        </div>
+                        <div class="artd_article_Text">
+                          <%- content.content %>
+                        </div>
+                      <% }) %>
+                    <% } %>
+                  </div>
+                </div>
+              <% } %>
+            </div>
+          </div>
+
+          <div class="nm_section" loading="content">
+            <div class="head_banner_wrapper">
+              <div id="midBanner" class="superhead_banner">
+                <script>
+                  showWebAd("Midbanner", "midBanner");
+                </script>
               </div>
             </div>
           </div>
@@ -101,73 +164,14 @@
         <add-carousel title-class="'nm_recommend'" carousel-items="latestArticles"
           carousel-div="'recommend-carousel'"></add-carousel>
       </div>
-      <!--<div class="skinner_ad" skinner_ad_right></div>-->
+
+      <div ng-include="'/partials/footer.html'"></div>
+      <div ng-include="'/partials/newsletter.html'"></div>
     </div>
 
-    <div ng-include="'/partials/footer.html'"></div>
-    <div ng-include="'/partials/newsletter.html'"></div>
-  </div>
-
-  <script>
-    // TODO(camie): remove dummy js code.
-    $(document).ready(function() {
-      $('[inc]').each(function() {
-        var $this = $(this);
-        var url = $this.attr('inc');
-        if ($this.attr('loading') != "content")
-          $this.load(url);
-      });
-
-      // lazy load
-      var $loadingTrigger = $('[loading="trigger"]').first();
-      var isLoading = false;
-      var loadingIndex = 0;
-      if ($loadingTrigger.length > 0) {
-        $loadingContents = $('[loading="content"]');
-        $loadingContents.addClass('hidden');
-        $(document).on('scroll', function() {
-          if ($(window).height() + $(document).scrollTop() > $loadingTrigger.position().top &&
-            $loadingContents.length > loadingIndex &&
-            !isLoading) {
-            isLoading = true;
-            // console.log('start');
-            var $content = $($loadingContents.get(loadingIndex));
-            var url = $content.attr('inc');
-            $content.attr('loading', 'loaded');
-            $content.removeClass('hidden');
-            if (url) {
-              $content.load(url, function() {
-                isLoading = false;
-                // console.log('complete');
-              });
-            } else {
-              isLoading = false;
-            }
-            loadingIndex++;
-          } else if ($loadingContents.length <= loadingIndex) {
-            $loadingTrigger.addClass('hidden');
-          }
-        });
-      }
-    });
-  </script>
-
   <script type="text/javascript">
-    var displayVideo = function (mediaGroup) {
-      var numReg = /\d+/;
-      var videos = mediaGroup.filter(function (item) {
-        return item.type === 'videos';
-      });
-      videos.sort(function (v1, v2) {
-        return v1.quality.match(numReg) < v2.quality.match(numReg);
-      });
-      if (videos && videos.length > 0) {
-        renderVideo(videos[0]);
-      }
-    };
-
     $(document).ready(function() {
-      displayVideo(JSON.parse('<%- JSON.stringify(mediaGroup) %>'));
+      renderVideo(JSON.parse('<%- JSON.stringify(video) %>'));
     });
   </script>
   </body>
