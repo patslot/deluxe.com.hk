@@ -46,7 +46,7 @@ module.exports = function(options) {
         return $sce.trustAsHtml(htmlCode);
       }
     }])
-    .controller('HomepageController', ['$timeout', '$scope', 'gqModel',
+    .controller('HomepageController', ['$timeout', '$scope', 'gqModel', 'const',
       controllers.homepage])
     .controller('CategController', ['$timeout', '$scope', '$attrs', 'gqModel',
       'const', 'articleHandler', controllers.category])

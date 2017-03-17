@@ -17,13 +17,18 @@ module.exports = function(options) {
   app.locals.AD_MOBILE_BASE_TAG = options.adMobileBaseTag;
   app.use(express.static('public'));
   app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({extended: true}));
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.set('view engine', 'ejs');
 
   app.get('/', home.render);
   app.get('/favicon.ico', function(req, res) {
     res.sendStatus(204);
   });
+  if (options.isTesting === "true") {
+    var testHelper = require('./middleware/testHelper.js')();
+    app.get('/campaign/:categID/:image', testHelper.sendCampImage);
+    app.get('/campaign/compone/:categID/:image', testHelper.sendComponeImage);
+  }
   app.get('/:categ/:articleID/:title', article.renderArticle);
   app.get('/:categ', function(req, res) {
     var categ = req.params.categ;
@@ -34,9 +39,11 @@ module.exports = function(options) {
       res.status(500).send('Invalid article category: ' + categ);
       return;
     }
-    res.render('categ', {ename: ename,
+    res.render('categ', {
+      ename: ename,
       adTag: adTagMapping.list,
-      categ: categ});
+      categ: categ
+    });
   });
 
   return app;

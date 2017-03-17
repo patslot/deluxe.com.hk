@@ -55,49 +55,52 @@
           </div>
         </div>
 
-        <div ng-include="'/partials/homeArticles.html'"></div>
         <div ng-include="'/partials/homeArticlesFacebook.html'"></div>
+        <div ng-include="'/partials/homeArticles.html'"></div>
         <add-carousel title-class="'nm_highlight'" carousel-items="highlights"
           carousel-div="'highlight-carousel'"></add-carousel>
-        <div class="nm_section" loading="content">
-          <div class="head_banner_wrapper">
-            <div class="superhead_banner">
-              <div id="midbanner1">
-                <script>
-                  showWebAd("Midbanner", "midbanner1");
-                </script>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div ng-include="'/partials/homeArticlesInstagram.html'"></div>
-        <div ng-include="'/partials/homeArticlesEvent.html'"></div>
-        <add-carousel title-class="'nm_editor_pick'" carousel-items="editorPicks"
-          carousel-div="'editor-picks-carousel'"></add-carousel>
-        <div class="nm_section">
-          <div class="head_banner_wrapper">
-            <div class="superhead_banner">
-              <div id="midbanner2">
-                <script>
-                  showWebAd("Midbanner", "midbanner2");
-                </script>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="nm_section" lazy-scroll="loadCategArticles()" lazy-no-scroll="false">
-          <div class="row" ng-repeat="articles in categArticles">
-            <div class="col-sm-4 nm_section_block" ng-repeat="a in articles">
-              <div class="nm_img_wrapper" style="{{::a.style}}">
-              </div>
-              <div class="text-left">
-                <div class="nm_section_block_title_cat">[{{::a.catName}}]</div>
-                <div class="nm_section_block_title">{{::a.title}}</div>
-              </div>
-            </div>
-          </div>
+        <div class="nm_section" lazy-scroll="lazyLoadHomepage()" lazy-no-scroll="loaded">
           <div align="center" ng-show="loading" style="margin-top: 20px">
             <img src="/img/loading.gif" />
+          </div>
+        </div>
+        <div ng-if="loaded">
+          <div class="nm_section" loading="content">
+            <div class="head_banner_wrapper">
+              <div class="superhead_banner">
+                <div id="midbanner1">
+                  <script>
+                    showWebAd("Midbanner", "midbanner1");
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div ng-include="'/partials/homeArticlesInstagram.html'"></div>
+          <div ng-include="'/partials/homeArticlesEvent.html'"></div>
+          <add-carousel title-class="'nm_editor_pick'" carousel-items="editorPicks"
+            carousel-div="'editor-picks-carousel'"></add-carousel>
+          <div class="nm_section">
+            <!-- TODO(Nancy): load midbanner2, midbanner3, ... -->
+            <!-- div class="head_banner_wrapper">
+              <div class="superhead_banner">
+                <div id="midbanner2">
+                  <script>
+                    showWebAd("Midbanner", "midbanner2");
+                  </script>
+                </div>
+              </div>
+            </div -->
+            <div class="row" ng-repeat="articles in categArticles">
+              <div class="col-sm-4 nm_section_block" ng-repeat="a in articles">
+                <div class="nm_img_wrapper" style="{{::a.style}}">
+                </div>
+                <div class="text-left">
+                  <div class="nm_section_block_title_cat">[{{::a.catName}}]</div>
+                  <div class="nm_section_block_title">{{::a.content}}</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <!--<div class="skinner_ad" skinner_ad_right></div>-->

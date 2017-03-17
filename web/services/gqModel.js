@@ -162,15 +162,9 @@ export default function(c) {
     return queryName + ' ' + CmsComponeFeedItem;
   };
 
-  const listHomeHighlight = createCmsComponeFeedQuery('listHomeHighlight');
-  const listHomeLatestArticle = createCmsComponeFeedQuery('listHomeLatestArticle');
-
   var createQuery = function(queries) {
     return 'query { ' + queries.join(' ') + ' }';
   };
-
-  const homeQ = createQuery([listMenu, listInstagram, listHomeLatestArticle,
-    listHomeEditorPick, listHomeHighlight]);
 
   return {
     consts: {
@@ -180,12 +174,15 @@ export default function(c) {
         luxe: 'listHomeLuxeArticle',
         wedding: 'listHomeWeddingArticle',
         lifeStyle: 'listHomeLifeStyleArticle'
-      }
+      },
     },
-    queryHomeArticles: function(homeQueryNames) {
+    queryHomeLazy: function(homeQueryNames) {
       var queries = homeQueryNames.map(function(name) {
         return createCmsComponeFeedQuery(name);
       });
+      queries.push(listInstagram);
+      queries.push(listHomeEditorPick);
+      queries.push(createCmsComponeFeedQuery('listBannerForEvent'));
       return client.query(createQuery(queries));
     },
     queryCategArticles: function(listCategArticle) {
@@ -193,7 +190,11 @@ export default function(c) {
     },
     // TODO(wkchan): Menu sorting and display
     queryHome: function() {
-      return client.query(homeQ);
+      return client.query(createQuery([listMenu,
+        createCmsComponeFeedQuery('listHomeLatestArticle'),
+        createCmsComponeFeedQuery('listHomeHighlight'),
+        createCmsComponeFeedQuery('listBannerForContributor')
+      ]));
     },
     // Assume listCategArticle is not empty before calling queryCateg()
     queryCateg: function(listCategArticle) {
