@@ -2,12 +2,11 @@
 <html>
   <head>
     <%- include('partials/extHeader.ejs') %>
-    <script src="http://hk.adx.nextmedia.com/uvp2/js/anvp.common.lib-v1.0.2.js"></script>
     <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
+    <%- include('partials/videoUtil.ejs', {adTag: adTag}) %>
     <title><%- title %></title>
     <link rel="stylesheet" href="/css/common.css" />
     <link rel="stylesheet" href="/css/articleDetail.css" />
-    <link rel="stylesheet" href="/css/skinner.css" />
   </head>
   <body ng-app="addv2" ng-controller="ArticleController"
     categ-ename="<%= ename %>" categ-name="<%= categ %>">
@@ -18,7 +17,7 @@
     <div ng-include="'/partials/mobileMenu.html'"></div>
   </div>
   <top-menu ng-categories="categs"></top-menu>
-  <div class="container nm_home" skinner_ad="align_top">
+  <div class="container nm_home">
     <div class="row nm_row">
       <div class="main_content">
         <div class="nm_section">
@@ -154,7 +153,7 @@
   </script>
 
   <script type="text/javascript">
-    var displayViedo = function (mediaGroup) {
+    var displayVideo = function (mediaGroup) {
       var numReg = /\d+/;
       var videos = mediaGroup.filter(function (item) {
         return item.type === 'videos';
@@ -168,7 +167,7 @@
     };
 
     $(document).ready(function() {
-      displayViedo(JSON.parse('<%- JSON.stringify(mediaGroup) %>'));
+      displayVideo(JSON.parse('<%- JSON.stringify(mediaGroup) %>'));
     });
   </script>
   </body>

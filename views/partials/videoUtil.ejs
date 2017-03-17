@@ -1,13 +1,23 @@
-var renderVideo = function (video, elemId) {
+<script src="http://hk.adx.nextmedia.com/uvp2/js/anvp.common.lib-v1.0.2.js"></script>
+<script>
+function renderVideo(video, elemId) {
+  var adPrefixTag = '<%= AD_PREFIX_TAG %>';
+  var webTags = [];
+  if (adPrefixTag !== "") {
+    webTags.push(adPrefixTag);
+  }
+  webTags.push('<%= AD_WEB_BASE_TAG %>');
+  webTags.push('<%= adTag %>');
+  var webPrefix = "/" + webTags.join("/") + "/";
+
   var anvp1 = new AnvatoPlayer('anvp1'); // Unique player id
   anvp1.setVideoUrl(video.url);
-  anvp1.setPlayerSize(video.width, video.height);
+  anvp1.setPlayerSize("100%", "100%");
   anvp1.setTitle(video.title);
-  anvp1.setDescription();
+  anvp1.setDescription("");
   anvp1.setVolume(0.5); // Value between 0 - 1
   anvp1.setShareEnable(false);
-  var videopAdTagURL = anvp1.generateDFPvideoTag("dev.action_fun_marticle_preroll",
-    video.width + 'x' + video.height);
+  var videopAdTagURL = anvp1.generateDFPvideoTag(webPrefix + "preroll", "640x360");
   anvp1.setVideoAdTagURL(videopAdTagURL);
   anvp1.createInstance(elemId || 'video_player'); // Div Id match
 
@@ -32,3 +42,4 @@ var renderVideo = function (video, elemId) {
     }
   }
 }
+</script>
