@@ -1,7 +1,7 @@
 import angular from 'angular';
 import moment from 'moment/moment.js';
 import 'angular-moment/angular-moment.js';
-import './lib/lazy-scroll.min.js';
+import './lib/lazy-scroll.js';
 import 'ejs/ejs.js';
 
 var controllers = require('./controllers');

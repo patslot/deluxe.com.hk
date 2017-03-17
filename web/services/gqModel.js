@@ -165,18 +165,12 @@ export default function(c) {
   const listHomeHighlight = createCmsComponeFeedQuery('listHomeHighlight');
   const listHomeLatestArticle = createCmsComponeFeedQuery('listHomeLatestArticle');
 
-  var createTagNameQuery = function(queries) {
-    return 'query ($tagName: String, $offset: Int, $count: Int) { ' +
-      queries.join(' ') + ' }';
-  };
-
   var createQuery = function(queries) {
     return 'query { ' + queries.join(' ') + ' }';
   };
 
   const homeQ = createQuery([listMenu, listInstagram, listHomeLatestArticle,
     listHomeEditorPick, listHomeHighlight]);
-  const listCategArticleQ = createTagNameQuery([listArticle]);
 
   return {
     consts: {
@@ -194,8 +188,8 @@ export default function(c) {
       });
       return client.query(createQuery(queries));
     },
-    queryCategArticles: function(tagName, offset, count) {
-      return client.query(listCategArticleQ, { tagName: tagName, offset: offset, count: count });
+    queryCategArticles: function(listCategArticle) {
+      return client.query(createQuery([listCategArticle + ' ' + articleModel]));
     },
     // TODO(wkchan): Menu sorting and display
     queryHome: function() {
@@ -204,11 +198,11 @@ export default function(c) {
     // Assume listCategArticle is not empty before calling queryCateg()
     queryCateg: function(listCategArticle) {
       // Query listMenu and list<Categ=Fashion|...>Article
-      return client.query(createQuery([listCategArticle+ ' ' + articleModel,
+      return client.query(createQuery([listCategArticle + ' ' + articleModel,
         listMenu]));
     },
     queryArticle: function(listCategArticle) {
-      return client.query(createQuery([listCategArticle+ ' ' + articleModel,
+      return client.query(createQuery([listCategArticle + ' ' + articleModel,
         listMenu, listInstagram]));
     }
   };

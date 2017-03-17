@@ -73,7 +73,11 @@
         <articles-in-categ add-articles="latestArticles"></articles-in-categ>
       </div>
     </div>
-    <div class="main_content" lazy-scroll="loadCategArticles()" lazy-no-scroll="false">
+    <div class="main_content" lazy-scroll="loadCategArticles()"
+      lazy-no-scroll="noMoreArticles">
+      <div align="center" ng-show="loadingArticles" style="margin-top: 20px">
+        <img src="/img/loading.gif" />
+      </div>
       <div class="nm_section" ng-repeat="articles in moreArticleGroups">
         <!-- TODO(wkchan): Lazy load google ad tag -->
         <articles-in-categ add-articles="articles"></articles-in-categ>
