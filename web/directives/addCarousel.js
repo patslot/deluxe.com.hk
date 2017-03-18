@@ -5,6 +5,9 @@ export default function($timeout) {
        <% var _class = 'item'; if (idx === 0) { _class += ' active'; } %>
        <div class="<%= _class %>">
          <div class="col-xs-12 col-sm-6 col-md-3 item_block">
+           <% if (i.hasVideo) { %>
+           <img class="play" src="/img/icon-play.png" />
+           <% } %>
            <img src="<%= i.image %>" alt="">
            <div class="four_col_slide_content">
              <% if (i.label) { %>

@@ -82,6 +82,7 @@ export default function($timeout, $scope, gqModel, c) {
         editorPicks.forEach(function(p) {
           p.image = p.videoThumbnail || p.imgFile;
           p.title = p.title;
+          p.hasVideo = p.videoFile !== '';
         });
         $scope.editorPicks = editorPicks;
         var eBanners = res.listBannerForEvent || [];

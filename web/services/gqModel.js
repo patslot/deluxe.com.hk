@@ -62,69 +62,16 @@ export default function(c) {
       }
     }
     ... on CmsArticle {
-      categoryID
-      publish
-      articleThumbnail
-      videoThumbnail
       anvato
-      youtube
+      articleThumbnail
+      categoryID
       intro
-    }
-  }`;
-
-  const listArticle = `listArticle(tagName: $tagName, offset: $offset, count: $count) {
-    order
-    highlight
-    brandId
-    brandName
-    brandArticleId
-    brandCategoryId
-    mlCategoryId
-    mlArticleId
-    issueId
-    pubDate
-    updateDate
-    displayLayoutPreset
-    displayTime
-    forceToShowDate
-    title
-    label
-    mediaGroup {
-      type
-      smallPath
-      largePath
-      width
-      height
-      source
-      videoId
-      url
-      quality
-    }
-    sharing {
-      image
-      url
-    }
-    social {
-      likeCount
-      commentCount
-      viewCount
-      videoViewCount
-      facebookCommentId
-    }
-    logging {
-      pixelCategory
-      pixelNewsType
-      pixelKeyword
-      pixelSrc
-      pixelAuthor
-      krux_app_brand
-      krux_app_subsection_suffix
-      pixelCat
-      pixelNews
-    }
-    firstContentBlock {
-      subHead
-      content
+      lastUpdate
+      publish
+      title
+      videoFile
+      videoThumbnail
+      youtube
     }
   }`;
 

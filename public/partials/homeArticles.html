@@ -1,6 +1,7 @@
 <div class="nm_section">
   <div class="row">
     <div class="col-sm-4 nm_section_block" ng-repeat="a in latestArticles">
+      <img ng-if="a.hasVideo" class="play" src="/img/icon-play.png" />
       <div class="nm_img_wrapper" style="{{::a.style}}">
       </div>
       <div class="text-left">

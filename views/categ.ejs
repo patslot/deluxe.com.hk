@@ -55,6 +55,7 @@
             </div>
             <div class="pull-right nm_mpm col-xs-12">
               <div class="mpm_content">
+                <img ng-if="latestArticle.hasVideo" class="play" src="/img/icon-play.png" />
                 <img ng-src="{{::latestArticle.image}}" />
                 <div class="al_two_content_label">
                   [{{::latestArticle.label}}]
