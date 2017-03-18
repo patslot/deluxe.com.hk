@@ -93,13 +93,7 @@
             </div -->
             <div class="row" ng-repeat="articles in categArticles">
               <div class="col-sm-4 nm_section_block" ng-repeat="a in articles">
-                <img ng-if="a.hasVideo" class="play" src="/img/icon-play.png" />
-                <div class="nm_img_wrapper" style="{{::a.style}}">
-                </div>
-                <div class="text-left">
-                  <div class="nm_section_block_title_cat">[{{::a.catName}}]</div>
-                  <div class="nm_section_block_title">{{::a.content}}</div>
-                </div>
+                <home-article add-article="a"></home-article>
               </div>
             </div>
           </div>

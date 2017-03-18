@@ -4,20 +4,24 @@ export default function($timeout) {
      <% carouselItems.forEach(function(i, idx) { %>
        <% var _class = 'item'; if (idx === 0) { _class += ' active'; } %>
        <div class="<%= _class %>">
-         <a href="<%= i.detailLink %>">
-           <div class="col-xs-12 col-sm-6 col-md-3 item_block">
-             <% if (i.hasVideo) { %>
-             <img class="play" src="/img/icon-play.png" />
+         <div class="col-xs-12 col-sm-6 col-md-3 item_block">
+           <a href="<%= i.linkURL %>" target="<%= i.linkTarget %>">
+            <% if (i.hasVideo) { %>
+            <img class="play" src="/img/icon-play.png" />
+            <% } %>
+            <img src="<%= i.image %>" alt="">
+           </a>
+           <div class="four_col_slide_content">
+             <% if (i.label) { %>
+             <div class="nm_section_block_title_cat">[<%= i.label %>]</div>
              <% } %>
-             <img src="<%= i.image %>" alt="">
-             <div class="four_col_slide_content">
-               <% if (i.label) { %>
-               <div class="nm_section_block_title_cat">[<%= i.label %>]</div>
-               <% } %>
-               <div class="nm_section_block_title"><%- i.title %></div>
+             <div class="nm_section_block_title">
+               <a href="<%= i.linkURL %>" target="<%= i.linkTarget %>">
+                 <%- i.title %>
+               </a>
              </div>
            </div>
-         </a>
+         </div>
        </div>
      <% }) %>
      </div>

@@ -37,7 +37,8 @@ module.exports = function(options) {
     .directive('addCarousel', ['$timeout', dirs.addCarousel])
     .directive('facebookBlock', [dirs.facebook])
     .directive('instagramMedias', [dirs.instagram])
-    .directive('skinnerBlock', [dirs.skinner]);
+    .directive('skinnerBlock', [dirs.skinner])
+    .directive('homeArticle', [dirs.homeArticle]);
 
   angular
     .module('addv2', ['lazy-scroll', 'appServices', 'appDirectives',

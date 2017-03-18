@@ -4,6 +4,7 @@
 export default function($timeout, $scope, gqModel, c) {
   var isReady = false;
   var latestArticles = [];
+  var articleReg = new RegExp('^(\\d+_)*\\d+$');
 
   $scope.loading = false;
   $scope.loaded = false;
@@ -21,10 +22,21 @@ export default function($timeout, $scope, gqModel, c) {
     return s;
   }
 
+  function parseLinkURL(article) {
+    if (articleReg.test(article.linkURL)) {
+      article.linkURL = '/' + article.catName + '/' + article.linkURL + '/' +
+        article.content;
+      article.linkTarget = '_self';
+    } else {
+      article.linkTarget = '_blank';
+    }
+  }
+
   function parseArticles(origArticles) {
     var articles = origArticles || [];
     articles.forEach(function (a) {
       a.style = getImageStyle(a.imgName);
+      parseLinkURL(a);
     });
     return articles;
   }
@@ -42,6 +54,7 @@ export default function($timeout, $scope, gqModel, c) {
         h.image = h.imgName;
         h.label = h.catName;
         h.title = h.content;
+        parseLinkURL(h);
       });
       $scope.highlights = highlights;
       var cBanners = res.listBannerForContributor || [];
