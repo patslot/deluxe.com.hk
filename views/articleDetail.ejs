@@ -21,7 +21,7 @@
       <div class="row nm_row">
         <div class="main_content">
           <div class="nm_section">
-            <div class="head_banner_wrapper">
+            <div class="head_banner_wrapper hidden-xs">
               <div class="superhead_banner">
                 <div id="headBanner">
                   <script>
@@ -77,7 +77,7 @@
                     <%- intro %>
                     </div>
                     <% if (contentBlocks && contentBlocks.length > 0) { %>
-                      <% contentBlocks.forEach(function (content) { %>
+                      <% contentBlocks.forEach(function (content, index) { %>
                         <div class="artd_article_subHead">
                           <%= content.subHead %>
                         </div>
@@ -95,6 +95,13 @@
                         <% } %>
                         <div class="artd_article_Text">
                           <%= content.content %>
+                        </div>
+                        <div class="fix_banner_wrapper visible-xs">
+                          <div id="fixbanner1_<%= index %>" class="mobileAd">
+                            <script>
+                              showMobileAd("Fixedbanner1", "fixbanner1_<%= index %>");
+                            </script>
+                          </div>
                         </div>
                       <% }) %>
                     <% } %>
@@ -142,6 +149,13 @@
                         <div class="artd_article_Text">
                           <%- content.content %>
                         </div>
+                        <div class="fix_banner_wrapper visible-xs">
+                          <div id="fixbanner1_<%= index %>" class="mobileAd">
+                            <script>
+                              showMobileAd("Fixedbanner1", "fixbanner1_<%= index %>");
+                            </script>
+                          </div>
+                        </div>
                       <% }) %>
                     <% } %>
                   </div>
@@ -151,7 +165,7 @@
           </div>
 
           <div class="nm_section" loading="content">
-            <div class="head_banner_wrapper">
+            <div class="head_banner_wrapper hidden-xs">
               <div id="midBanner" class="superhead_banner">
                 <script>
                   showWebAd("Midbanner", "midBanner");

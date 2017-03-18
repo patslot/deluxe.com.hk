@@ -208,6 +208,11 @@ background: #ccc;
   position: relative;
 }
 
+/* fixbanner */
+
+.nm_home .fix_banner_wrapper {
+  margin-bottom: 15px;
+}
 
 /* mpm */
 
