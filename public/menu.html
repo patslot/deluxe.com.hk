@@ -1,4 +1,4 @@
-<div class="nm_header">
+<div class="nm_header navbar-fixed-top" vmenu="sibling">
   <div class="index-logo">
     <a class="logo" href="/">http://hk.add.nextmedia.com/</a>
   </div>
@@ -10,9 +10,24 @@
       <div class="nav--inner">
         <div class="nav--menu">
           <ul class="text">
-            <li ng-repeat="c in categories">
+            <li ng-repeat="c in categories | before: 6">
               <a ng-href="/{{::c.name}}" target="_self">{{::c.name}}</a>
             </li>
+            <li class="menu_dropdown">
+            	More
+            	<div class="menu_dropdown_content">
+                  <div ng-repeat="c in categories | after: 5">
+                    <a ng-href="/{{::c.name}}"
+                      target="_self">{{::c.name}}</a>
+                  </div>
+            	</div>
+            </li>
+            <span class="menu_fb_icon">
+              <img src="/img/sharefb.png">
+            </span>
+            <span class="menu_ig_icon">
+              <img src="/img/igicons.png">
+            </span>
           </ul>
           <!-- TODO: Share icons -->
           <!-- div class="search">
@@ -28,54 +43,107 @@
 <style>
   .nm_header {
     min-height: 60px;
+    background: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   }
-  
+
+  .nm_header a,
+  .nm_header li {
+    color:Grey;
+  }
+
+  .menu_fb_icon img {
+    height:25px;
+    width:25px;
+    margin-top:-10px;
+    margin-left:10px;
+    background-size: 25px 25px;
+  }
+
+  .menu_ig_icon img {
+    height:25px;
+    width:25px;
+    margin-top:-10px;
+    margin-left:10px;
+    background-size: 25px 25px;
+  }
+
+  .menu_dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    text-align:left;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+  }
+
+  .menu_dropdown {
+    cursor:pointer;
+  }
+
+  .menu_dropdown:hover .menu_dropdown_content {
+    display: block;
+  }
+
   @media all and (max-width: 768px) {
-    [vmenu="trigger"] {
+    [vmenu="trigger"]{
       position: absolute;
       top: 18px;
-      display: inherit!important;
+      display:inherit!important;
+      cursor: pointer;
     }
+
     .nm_header .trigger_button {
-      display: inherit!important;
+      display:inherit!important;
     }
+
     .nm_header #sticky-wrap {
-      display: none;
+      display:none;
     }
+
     .nm_header .icons {
-      display: none!important;
+      display:none!important;
     }
   }
-  
+
   [vmenu="trigger"] {
-    display: none;
+    display:none;
   }
-  
+
   .nm_header .index-logo {
     display: inline-table;
     width: 100%;
   }
-  
+
   .nm_header .index-logo .logo {
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
     display: block;
     margin: 0 auto;
-    width: 294px;
+    width: 230px;
     height: 85px;
-    background: url(/img/addlogo.png) no-repeat center;
+    background: url(/img/imgpsh_fullsize.png) no-repeat center;
+    background-size: 230px;
   }
-  
+
+  @media (max-width: 768px) {
+    .nm_header .index-logo .logo{
+      background-size: 200px;
+    }
+  }
+
   .nm_header #sticky-wrap {
     z-index: 11;
     text-transform: uppercase;
     position: relative;
     width: auto;
-    height: 65px;
+    height: 40px;
     margin: 0 auto;
   }
-  
+
   .nm_header .nav--inner {
     max-width: 1280px;
     margin: 0 auto;
@@ -83,7 +151,7 @@
     position: relative;
     height: auto;
   }
-  
+
   .nm_header .nav--menu {
     display: block;
     position: relative;
@@ -92,18 +160,18 @@
     vertical-align: middle;
     text-align: center;
   }
-  
-  .nm_header .index-logo+#sticky-wrap .nav .nav--menu .text {
+
+  .nm_header .index-logo + #sticky-wrap .nav .nav--menu .text {
     padding-left: 0px;
   }
-  
+
   .nm_header .nav--menu .text li {
     display: inline-block;
     margin: 0px 8px;
     font-size: 16px;
     font-weight: 300;
   }
-  
+
   .nm_header .icons {
     display: inline-block;
     position: absolute;
@@ -112,23 +180,23 @@
     right: 100px;
     background: #fff;
   }
-  
+
   .nm_header .icons .facebook {
     background-image: url(/img/sharefb.png);
     width: 25px;
     height: 25px;
-    display: inline-block;
+    display:inline-block;
     background-size: 25px 25px;
   }
-  
+
   .nm_header .icons .instagram {
     background-image: url(/img/igicons.png);
     width: 25px;
     height: 25px;
-    display: inline-block;
+    display:inline-block;
     background-size: 25px 25px;
   }
-  
+
   .nm_header .nav--menu .search {
     display: inline-block;
     position: absolute;
@@ -140,42 +208,31 @@
 </style>
 
 <script type="text/javascript">
+  var toggleMenu = function () {
+    var $content = $('[vmenu="content"]').first();
+    var $siblingContent = $('[vmenu="sibling"]');
+    if ($content.hasClass('active')){
+      $content.animate({
+        'left': '-320px'
+         });
+      $siblingContent.animate({
+        'left': '0'
+        });
+      $content.removeClass('active');
+    }
+    else{
+      $content.animate({
+        'left': '0px'
+        });
+      $siblingContent.animate({
+        'left': '320px'
+        });
+      $content.addClass('active');
+    }
+  }
   $(document).ready(function() {
     $('[vmenu="trigger"]').on('click', function() {
-      var $content = $('[vmenu="content"]').first();
-      if ($content.hasClass('active')) {
-        $content.animate({
-          'left': '-300px'
-        });
-        $content.next().animate({
-          'margin-left': '0',
-          'margin-right': '0'
-        });
-        $content.removeClass('active');
-      } else {
-        $content.animate({
-          'left': '0px'
-        });
-        $content.next().animate({
-          'margin-left': '300px',
-          'margin-right': '-300px'
-        });
-        $content.addClass('active');
-      }
-    });
-
-    $(window).on('resize', function() {
-      var $content = $('[vmenu="content"]').first();
-      if ($content.hasClass('active')) {
-        $content.animate({
-          'left': '-300px'
-        });
-        $content.next().animate({
-          'margin-left': '0',
-          'margin-right': '0'
-        });
-        $content.removeClass('active');
-      }
+      toggleMenu();
     });
   });
 </script>

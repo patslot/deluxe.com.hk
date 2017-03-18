@@ -12,6 +12,10 @@
   .nm_mpm {
     width: 100%!important;
   }
+  .nm_home {
+    position: relative;
+    margin-top: 95px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -26,6 +30,9 @@
     /*margin: 0 13px;*/
     margin: 0 auto;
     /*float: left;*/
+  }
+  .nm_home{
+      margin-top: 125px;
   }
 }
 
@@ -72,7 +79,6 @@
   display: block;
   margin: 0 13px;
   position: absolute;
-  top: 150px;
 }
 
 .skinner_ad[skinner_ad_left]{
@@ -229,6 +235,9 @@ background: #ccc;
 
 .nl-content {
   clear: both;
+  padding-top: 20px;
+  font-size: 20px;
+  margin-bottom: 15px;
 }
 
 .nm_v_menu {
@@ -241,6 +250,7 @@ background: #ccc;
   border-right: grey solid 1px;
   height: 100%;
   overflow: auto;
+  z-index: 999;
 }
 
 .artd_facebook_block {
@@ -286,4 +296,29 @@ background: #ccc;
 
 .nm_recommend {
   background-image: url(/img/icon12.png) !important;
+}
+
+.mm_container .close_btn {
+  float: right;
+  margin-right: 10px;
+  width: 35px;
+  height: 70px;
+  cursor: pointer;
+  background: url(/img/icon_close.png) no-repeat 0 30px;
+}
+
+.privacy_block_checkbox,
+.promotion_block_checkbox {
+  width:10%;
+  float:left;
+}
+
+.privacy_block_content,
+.promotion_block_content{
+  width:90%;
+  float:left;
+}
+
+.promotion-block{
+  margin-top:10px;
 }

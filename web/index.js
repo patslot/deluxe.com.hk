@@ -1,6 +1,7 @@
 import angular from 'angular';
 import moment from 'moment/moment.js';
 import 'angular-moment/angular-moment.js';
+import 'angular-filter/dist/angular-filter.js';
 import './lib/lazy-scroll.js';
 import 'ejs/ejs.js';
 
@@ -40,7 +41,7 @@ module.exports = function(options) {
 
   angular
     .module('addv2', ['lazy-scroll', 'appServices', 'appDirectives',
-      'angularMoment'])
+      'angularMoment', 'angular.filter'])
     .filter("trust", ['$sce', function($sce) {
       return function(htmlCode) {
         return $sce.trustAsHtml(htmlCode);

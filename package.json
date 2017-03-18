@@ -29,6 +29,7 @@
   "devDependencies": {
     "angular": "^1.6.2",
     "angular-moment": "^1.0.1",
+    "angular-filter": "^0.5.15",
     "moment": "^2.17.1",
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
