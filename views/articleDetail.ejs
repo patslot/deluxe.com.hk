@@ -55,10 +55,10 @@
                   <div class="mpm_content artd_container">
                     <div class="artd_article_label"><%- categ %></div>
                     <div class="artd_article_title"><%- title %></div>
-                    <div class="artd_article_publish_date">
+                    <div class="artd_article_publish_date" ng-cloak>
                       日期：{{"<%= pubDate %>" | amUtc | amDateFormat:'lll'}}
                     </div>
-                    <div class="artd_article_share_bar"></div>
+                    <share-bar post-title="'<%- title %>'"></share-bar>
                     <div class="artd_article_video">
                       <div id="video_player"></div>
                     </div>

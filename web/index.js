@@ -38,7 +38,8 @@ module.exports = function(options) {
     .directive('facebookBlock', [dirs.facebook])
     .directive('instagramMedias', [dirs.instagram])
     .directive('skinnerBlock', [dirs.skinner])
-    .directive('homeArticle', [dirs.homeArticle]);
+    .directive('homeArticle', [dirs.homeArticle])
+    .directive('shareBar', ['$location', dirs.shareBar]);
 
   angular
     .module('addv2', ['lazy-scroll', 'appServices', 'appDirectives',

@@ -6,3 +6,4 @@ export { default as addCarousel } from './addCarousel';
 export { default as articlesInCateg } from './articlesInCateg';
 export { default as skinner } from './skinner';
 export { default as homeArticle } from './homeArticle';
+export { default as shareBar } from "./shareBar";
