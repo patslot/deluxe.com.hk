@@ -76,6 +76,7 @@ export default function(c) {
   }`;
 
   const listHomeEditorPick = `listHomeEditorPick {
+    id
     expire
     lastUpdate
     title
@@ -105,12 +106,30 @@ export default function(c) {
     apCatID
   }`;
 
+  const listContributorArticle = `listContributorArticle(name: $name) {
+    id
+    categoryID
+    publish
+    lastUpdate
+    title
+    articleThumbnail
+    videoThumbnail
+    videoFile
+    anvato
+    youtube
+    intro
+  }`;
+
   var createCmsComponeFeedQuery = function(queryName) {
     return queryName + ' ' + CmsComponeFeedItem;
   };
 
   var createQuery = function(queries) {
     return 'query { ' + queries.join(' ') + ' }';
+  };
+
+  var createQueryWithParams = function(paramStr, queries) {
+    return 'query (' + paramStr + ') { ' + queries.join(' ') + ' }';
   };
 
   return {
@@ -152,6 +171,15 @@ export default function(c) {
     queryArticle: function(listCategArticle) {
       return client.query(createQuery([listCategArticle + ' ' + articleModel,
         listMenu, listInstagram]));
+    },
+    queryContributorIndex: function() {
+      return client.query(createQuery([listMenu,
+        createCmsComponeFeedQuery('listContributor')
+      ]));
+    },
+    queryContributorArticles: function(contrName) {
+      return client.query(createQueryWithParams('$name: String',
+        [listMenu, listContributorArticle]), {name: contrName});
     }
   };
 };

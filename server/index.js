@@ -8,6 +8,7 @@ module.exports = function(options) {
   var gQuery = require('./middleware/graphqlQuery.js')(options.graphqlEndpoint);
   var home = require('./routes/home.js')(gQuery);
   var article = require('./routes/article.js')(gQuery, categMapping);
+  var contributor = require('./routes/contributor.js')(gQuery);
 
   app.locals.GRAPHQL_ENDPOINT = options.graphqlEndpoint;
   app.locals.AD_PREFIX_TAG = options.adPrefixTag;
@@ -22,11 +23,16 @@ module.exports = function(options) {
   app.get('/favicon.ico', function(req, res) {
     res.sendStatus(204);
   });
+
   if (options.isTesting === "true") {
     var testHelper = require('./middleware/testHelper.js')();
     app.get('/campaign/:categID/:image', testHelper.sendCampImage);
     app.get('/campaign/compone/:categID/:image', testHelper.sendComponeImage);
   }
+
+  app.get('/Contributor', contributor.renderIndex);
+  app.get('/Contributor/:contrName', contributor.renderArticles);
+  app.get('/Editor picks/:articleID/:title', article.renderArticle);
   app.get('/:categ/:articleID/:title', article.renderArticle);
   app.get('/:categ', function(req, res) {
     var categ = req.params.categ;

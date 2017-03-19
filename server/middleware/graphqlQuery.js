@@ -2,9 +2,9 @@ var Lokka = require('lokka').Lokka;
 var Transport = require('lokka-transport-http').Transport;
 
 module.exports = function(GRAPHQL_ENDPOINT) {
-  var _client = new Lokka({transport: new Transport(GRAPHQL_ENDPOINT)});
+  var client = new Lokka({transport: new Transport(GRAPHQL_ENDPOINT)});
 
-  const photo = _client.createFragment(`
+  const photo = client.createFragment(`
     fragment on PhotoItem {
       imageId
       imagePath
@@ -128,15 +128,41 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     }
   }`;
 
+  const CmsComponeFeedItem = `{
+    homeGalleryID
+    apID
+    catName
+    imgName
+    caption
+    content
+    linkURL
+    sort
+    startDateTime
+    endDateTime
+    confirm
+    hasVideo
+    adCode
+    apCatID
+  }`;
+
+  var createCmsComponeFeedQuery = function(queryName) {
+    return queryName + ' ' + CmsComponeFeedItem;
+  };
+
   return {
     newsArticleQuery: function(articleID) {
-      return _client.query(newsArticleQ, {id: articleID});
+      return client.query(newsArticleQ, {id: articleID});
     },
+    // For CMS article or editor pick article
     cmsArticleQuery: function(articleID) {
-      return _client.query(cmsArticleQ, {id: articleID});
+      return client.query(cmsArticleQ, {id: articleID});
     },
     homeQuery: function() {
-      return _client.query(homeQ);
+      return client.query(homeQ);
+    },
+    contributorIndex: function() {
+      return client.query('query { ' +
+        createCmsComponeFeedQuery('listContributor') + ' }');
     }
   };
 };

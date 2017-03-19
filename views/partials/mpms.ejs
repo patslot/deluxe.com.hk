@@ -4,8 +4,8 @@
 <% mpms.forEach(function(mpm, idx) { %>
   <% var active = ""; if (idx === 0) { active = "active" } %>
     <li data-target="#myCarousel" data-slide-to="<%= idx %>" class="<%= active %>"></li>
-  </ol>
 <% }) %>
+  </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
@@ -40,6 +40,13 @@
 </div>
 
 <style>
+  .carousel-indicators .active {
+    background-color: #a7a7a7;
+  }
+  .carousel-indicators li {
+    border: 1px solid #a7a7a7;
+  }
+
   #home-slideshow-block .carousel-inner>.item>img,
   #home-slideshow-block .carousel-inner>.item>a>img {
     width: 100%;

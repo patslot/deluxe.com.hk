@@ -54,5 +54,9 @@ module.exports = function(options) {
     .controller('CategController', ['$timeout', '$scope', '$attrs', 'gqModel',
       'const', 'articleHandler', controllers.category])
     .controller('ArticleController', ['$timeout', '$scope', '$attrs', 'gqModel',
-      'const', 'articleHandler', controllers.article]);
+      'const', 'articleHandler', controllers.article])
+    .controller('ContributorController', ['$timeout', '$scope', 'gqModel',
+      controllers.contributor])
+    .controller('ContributorArticlesController', ['$timeout', '$scope',
+      'gqModel', '$attrs', controllers.contributorArticles]);
 }
