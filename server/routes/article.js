@@ -1,8 +1,11 @@
-module.exports = function(gQuery, categMapping, util) {
+var util = require('util');
+
+module.exports = function(gQuery, categMapping) {
   return {
     renderArticle: function(req, res) {
       var articleID = req.params.articleID;
       var article = {};
+      article.id = articleID;
       article.categ = req.params.categ;
       article.ename = categMapping.nameToEname[article.categ];
       article.adTag = categMapping.nameToAdTag[article.categ].detail;

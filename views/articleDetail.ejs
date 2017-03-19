@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="/css/articleDetail.css" />
   </head>
   <body ng-app="addv2" ng-controller="ArticleController"
-    categ-ename="<%= ename %>" categ-name="<%= categ %>">
+    categ-ename="<%= ename %>" categ-name="<%= categ %>"
+    article-id="<%= id %>">
     <%- include('partials/app.ejs') %>
     <skinner-block></skinner-block>
 
@@ -85,7 +86,7 @@
                           <% content.photos.forEach(function (photo) { %>
                             <div class="artd_intro_photo">
                               <div class="artd_article_Photo">
-                                <img src="<%= photo.imagePath %>">
+                                <img src="<%= photo.imagePathZoom %>">
                               </div>
                               <div class="artd_article_caption">
                                 <%= photo.caption %>
