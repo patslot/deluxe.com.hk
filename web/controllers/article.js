@@ -1,16 +1,16 @@
-export default function($timeout, $scope, $attrs, gqModel, c, articleHandler) {
+export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
   var categEname = $attrs.categEname;
   var categName = $attrs.categName;
   var articleId = $attrs.articleId;
 
   var handleRes = function (articleKey, res) {
     $timeout(function () {
-      $scope.categs = res.listMenu || [];
+      $scope.categs = queryHandler.parseMenu(res.listMenu);
       var articles = (res[articleKey] || []).filter(function (item) {
         return item.id !== articleId;
       });
 
-      $scope.latestArticles = articleHandler.parseArticles(
+      $scope.latestArticles = queryHandler.parseArticles(
         categName, articles.slice(0, 12));
       $scope.igMedias = res.listInstagram || [];
     });

@@ -1,4 +1,4 @@
-export default function($timeout, $scope, $attrs, gqModel, c, articleHandler) {
+export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
   var categEname = $attrs.categEname;
   var categName = $attrs.categName;
   var isReady = false;
@@ -25,12 +25,12 @@ export default function($timeout, $scope, $attrs, gqModel, c, articleHandler) {
       $timeout(function() {
         var categs = res.listMenu || [];
         $scope.currentCateg = currentCateg(categs, categEname);
-        $scope.categs = categs;
+        $scope.categs = queryHandler.parseMenu(categs);
         articles = res[listCategArticle] || [];
         if (articles.length === 0) {
           return;
         }
-        var first5Articles = articleHandler.parseArticles(
+        var first5Articles = queryHandler.parseArticles(
           categName, articles.slice(0, categIdx));
         $scope.latestArticle = first5Articles[0];
         $scope.latestArticles = first5Articles.slice(1, categIdx);
@@ -55,7 +55,7 @@ export default function($timeout, $scope, $attrs, gqModel, c, articleHandler) {
     if (categIdx < articles.length) {
       $scope.loadingArticles = true;
       var moreArticles = articles.slice(categIdx, categIdx + articleCount);
-      moreArticles = articleHandler.parseArticles(categName, moreArticles);
+      moreArticles = queryHandler.parseArticles(categName, moreArticles);
       if (moreArticles.length > 0) {
         $scope.moreArticleGroups.push(moreArticles);
       }

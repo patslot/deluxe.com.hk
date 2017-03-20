@@ -1,7 +1,6 @@
 import angular from 'angular';
 import moment from 'moment/moment.js';
 import 'angular-moment/angular-moment.js';
-import 'angular-filter/dist/angular-filter.js';
 import './lib/lazy-scroll.js';
 import 'ejs/ejs.js';
 
@@ -26,7 +25,7 @@ module.exports = function(options) {
 
   angular.module('appServices', [])
     .factory('const', [constant])
-    .factory('articleHandler', [services.articleHandler])
+    .factory('queryHandler', [services.queryHandler])
     .factory('gqModel', ['const', services.gqModel]);
 
   angular.module('appDirectives', [])
@@ -43,20 +42,20 @@ module.exports = function(options) {
 
   angular
     .module('addv2', ['lazy-scroll', 'appServices', 'appDirectives',
-      'angularMoment', 'angular.filter'])
+      'angularMoment'])
     .filter("trust", ['$sce', function($sce) {
       return function(htmlCode) {
         return $sce.trustAsHtml(htmlCode);
       }
     }])
     .controller('HomepageController', ['$timeout', '$scope', 'gqModel', 'const',
-      controllers.homepage])
+      'queryHandler', controllers.homepage])
     .controller('CategController', ['$timeout', '$scope', '$attrs', 'gqModel',
-      'const', 'articleHandler', controllers.category])
+      'const', 'queryHandler', controllers.category])
     .controller('ArticleController', ['$timeout', '$scope', '$attrs', 'gqModel',
-      'const', 'articleHandler', controllers.article])
+      'const', 'queryHandler', controllers.article])
     .controller('ContributorController', ['$timeout', '$scope', 'gqModel',
-      controllers.contributor])
+      'queryHandler', controllers.contributor])
     .controller('ContributorArticlesController', ['$timeout', '$scope',
-      'gqModel', '$attrs', controllers.contributorArticles]);
+      'gqModel', '$attrs', 'queryHandler', controllers.contributorArticles]);
 }

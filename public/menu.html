@@ -5,21 +5,21 @@
   <div vmenu="trigger">
     <img src="/img/icon02.jpg">
   </div>
-  <nav id="sticky-wrap">
+  <nav id="sticky-wrap" ng-show="categories">
     <div class="nav">
       <div class="nav--inner">
         <div class="nav--menu">
           <ul class="text">
-            <li ng-repeat="c in categories | before: 6">
+            <li ng-repeat="c in categories.main">
               <a ng-href="/{{::c.name}}" target="_self">{{::c.name}}</a>
             </li>
             <li class="menu_dropdown">
             	More
             	<div class="menu_dropdown_content">
-                  <div ng-repeat="c in categories | after: 5">
-                    <a ng-href="/{{::c.name}}"
-                      target="_self">{{::c.name}}</a>
-                  </div>
+                <div ng-repeat="c in categories.sub">
+                  <a ng-href="/{{::c.name}}"
+                    target="_self">{{::c.name}}</a>
+                </div>
             	</div>
             </li>
             <span class="menu_fb_icon">

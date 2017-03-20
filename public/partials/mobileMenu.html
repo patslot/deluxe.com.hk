@@ -6,7 +6,7 @@
 
   <div class="mn_major_menu">
     <ul>
-      <li ng-repeat="c in categs | before: 6">
+      <li ng-repeat="c in categs.main">
         <a ng-href="/{{::c.name}}" target="_self">{{::c.name | uppercase}}</a>
       </li>
     </ul>
@@ -15,7 +15,7 @@
   <div class="mn_more_menu">
     <div>More</div>
     <ul>
-      <li ng-repeat="c in categs | after: 5">
+      <li ng-repeat="c in categs.sub">
         <a ng-href="/{{::c.name}}" target="_self">{{::c.name | uppercase}}</a>
       </li>
     </ul>

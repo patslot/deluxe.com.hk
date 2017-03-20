@@ -1,7 +1,7 @@
 /**
  * HomepageController for homepage
  */
-export default function($timeout, $scope, gqModel, c) {
+export default function($timeout, $scope, gqModel, c, queryHandler) {
   var isReady = false;
   var latestArticles = [];
   var articleReg = new RegExp('^(\\d+_)*\\d+$');
@@ -44,7 +44,7 @@ export default function($timeout, $scope, gqModel, c) {
   gqModel.queryHome().then(function(res) {
     $timeout(function() {
       // TODO(wkchan): Move this parts as a function for unit test
-      $scope.categs = res.listMenu || [];
+      $scope.categs = queryHandler.parseMenu(res.listMenu);
       latestArticles = parseArticles(res.listHomeLatestArticle);
       var aLength = latestArticles.length;
       $scope.latestArticlesFacebook = latestArticles.slice(0, 2);

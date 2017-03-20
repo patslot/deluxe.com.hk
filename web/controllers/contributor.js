@@ -1,7 +1,7 @@
-export default function($timeout, $scope, gqModel) {
+export default function($timeout, $scope, gqModel, queryHandler) {
   gqModel.queryContributorIndex().then(function(res) {
     $timeout(function() {
-      $scope.categs = res.listMenu || [];
+      $scope.categs = queryHandler.parseMenu(res.listMenu);
       $scope.contributors = res.listContributor || [];
     });
   });
