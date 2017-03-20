@@ -55,7 +55,7 @@
             </div>
             <div class="pull-right nm_mpm col-xs-12">
               <div class="mpm_content">
-                <a ng-href="{{::latestArticle.detailLink}}">
+                <a ng-href="{{::latestArticle.linkURL}}">
                   <img ng-if="latestArticle.hasVideo" class="play mpm_play" src="/img/icon-play.png" />
                   <img ng-src="{{::latestArticle.image}}" />
                 </a>
@@ -64,7 +64,7 @@
                 <div class="al_two_content_label">
                   [{{::latestArticle.catName}}]
                 </div>
-                <a ng-href="{{::latestArticle.detailLink}}">
+                <a ng-href="{{::latestArticle.linkURL}}">
                   <div class="al_two_content_title">
                     {{::latestArticle.title}}
                   </div>

@@ -32,7 +32,6 @@ module.exports = function(options) {
 
   app.get('/Contributor', contributor.renderIndex);
   app.get('/Contributor/:contrName', contributor.renderArticles);
-  app.get('/Editor picks/:articleID/:title', article.renderArticle);
   app.get('/:categ/:articleID/:title', article.renderArticle);
   app.get('/:categ', function(req, res) {
     var categ = req.params.categ;

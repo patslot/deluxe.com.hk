@@ -2,7 +2,7 @@
   <div ng-if="$odd">
     <div class="al_two_content col-md-6 col-xs-12">
       <div class="al_two_content_label">[{{::a.catName}}]</div>
-      <a ng-href="{{::a.detailLink}}">
+      <a ng-href="{{::a.linkURL}}">
         <div class="al_two_content_title">
           {{::a.title}}
         </div>
@@ -12,7 +12,7 @@
       </a>
     </div>
     <div class="al_two_image col-md-6 col-xs-12">
-      <a ng-href="{{::a.detailLink}}">
+      <a ng-href="{{::a.linkURL}}">
         <img ng-if="a.hasVideo" class="play" src="/img/icon-play.png" />
         <img ng-src="{{::a.image}}" />
       </a>
@@ -20,14 +20,14 @@
   </div>
   <div ng-if="$even">
     <div class="al_two_image col-md-6 col-xs-12">
-      <a ng-href="{{::a.detailLink}}">
+      <a ng-href="{{::a.linkURL}}">
         <img ng-if="a.hasVideo" class="play" src="/img/icon-play.png" />
         <img ng-src="{{::a.image}}" />
       </a>
     </div>
     <div class="al_two_content col-md-6 col-xs-12">
       <div class="al_two_content_label">[{{::a.catName}}]</div>
-      <a ng-href="{{::a.detailLink}}">
+      <a ng-href="{{::a.linkURL}}">
         <div class="al_two_content_title">
           {{::a.title}}
         </div>

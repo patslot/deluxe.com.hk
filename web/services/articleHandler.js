@@ -12,7 +12,7 @@ export default function() {
         a.image = a.videoThumbnail || a.articleThumbnail;
         a.hasVideo = a.videoFile !== '';
       }
-      a.detailLink = '/' + categName + '/' + a.id + '/' + a.title;
+      a.linkURL = '/' + categName + '/' + a.id + '/' + a.title;
       a.catName = categName;
     });
     return articles;
