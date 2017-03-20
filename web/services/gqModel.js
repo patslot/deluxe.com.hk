@@ -132,6 +132,20 @@ export default function(c) {
     return 'query (' + paramStr + ') { ' + queries.join(' ') + ' }';
   };
 
+  const listEditorPick = `listEditorPick {
+    id
+    categoryID
+    publish
+    lastUpdate
+    title
+    articleThumbnail
+    videoThumbnail
+    videoFile
+    anvato
+    youtube
+    intro
+  }`;
+
   return {
     consts: {
       listHomeArticles: {
@@ -171,6 +185,10 @@ export default function(c) {
     queryArticle: function(listCategArticle) {
       return client.query(createQuery([listCategArticle + ' ' + articleModel,
         listMenu, listInstagram]));
+    },
+    queryEditorPicks: function() {
+      return client.query(createQuery([listEditorPick, listMenu,
+        listInstagram]));
     },
     queryContributorIndex: function() {
       return client.query(createQuery([listMenu,

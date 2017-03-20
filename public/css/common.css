@@ -324,13 +324,16 @@ background: #ccc;
 }
 
 img.play {
-  width: 60px !important;
-  height: 60px !important;
-  top: 50%;
+  width: 50px !important;
+  height: 50px !important;
+  top: 45%;
   left: 50%;
-  margin-top: -30px !important;
-  margin-left: -30px !important;
+  margin-top: -25px !important;
+  margin-left: -25px !important;
   position: absolute;
+}
+img.mpm_play {
+  top: 40%;
 }
 
 a, a:active, a:focus, a:hover {

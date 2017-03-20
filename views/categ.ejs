@@ -55,17 +55,22 @@
             </div>
             <div class="pull-right nm_mpm col-xs-12">
               <div class="mpm_content">
-                <img ng-if="latestArticle.hasVideo" class="play" src="/img/icon-play.png" />
-                <img ng-src="{{::latestArticle.image}}" />
+                <a ng-href="{{::latestArticle.detailLink}}">
+                  <img ng-if="latestArticle.hasVideo" class="play mpm_play" src="/img/icon-play.png" />
+                  <img ng-src="{{::latestArticle.image}}" />
+                </a>
+              </div>
+              <div class="mpm_content">
                 <div class="al_two_content_label">
-                  [{{::latestArticle.label}}]
+                  [{{::latestArticle.catName}}]
                 </div>
-                <div class="al_two_content_title">
-                  <!-- TODO(wkchan): Replace 'Fashion' with a category -->
-                  <a ng-href="{{::latestArticle.detailLink}}">
+                <a ng-href="{{::latestArticle.detailLink}}">
+                  <div class="al_two_content_title">
                     {{::latestArticle.title}}
-                  </a>
-                </div>
+                  </div>
+                  <div class="main_article al_two_content_content"
+                  ng-bind-html="latestArticle.firstContentBlock.content | trust"></div>
+                </a>
               </div>
             </div>
           </div>
