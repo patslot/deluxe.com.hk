@@ -29,13 +29,19 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+angular-filter@^0.5.15:
+  version "0.5.15"
+  resolved "https://registry.yarnpkg.com/angular-filter/-/angular-filter-0.5.15.tgz#73e09eddab1a65754d0f9c786a43111deccd0984"
+  dependencies:
+    angular "*"
+
 angular-moment@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/angular-moment/-/angular-moment-1.0.1.tgz#509d3326aea23f78221cfddb2b62bfede6841d31"
   dependencies:
     moment ">=2.8.0 <3.0.0"
 
-angular@^1.6.2:
+angular@*, angular@^1.6.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.2.tgz#d0b677242ac4bf9ae81424297c6320973af4bb5a"
 

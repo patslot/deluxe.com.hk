@@ -23,11 +23,10 @@
       <img ng-src="{{::currentCateg.img}}" />
     </div>
     <div class="row nm_row">
-      <!--<div class="skinner_ad" skinner_ad_left></div>-->
       <div class="main_content">
         <div class="nm_section">
           <!-- div inc='inc/sub_menu.html'></div -->
-          <div class="head_banner_wrapper">
+          <div class="head_banner_wrapper hidden-xs">
             <div class="superhead_banner">
               <div id="headBanner">
                 <script>
@@ -75,8 +74,10 @@
             </div>
           </div>
         </div>
-
-        <articles-in-categ add-articles="latestArticles"></articles-in-categ>
+        <div class="nm_section">
+          <fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner>
+          <articles-in-categ add-articles="latestArticles"></articles-in-categ>
+        </div>
       </div>
     </div>
     <div class="main_content" lazy-scroll="loadCategArticles()"
@@ -85,48 +86,18 @@
         <img src="/img/loading.gif" />
       </div>
       <div class="nm_section" ng-repeat="articles in moreArticleGroups">
-        <!-- TODO(wkchan): Lazy load google ad tag -->
+        <midbanner midbanner-id="midbanner_group_{{$index}}"></midbanner>
+        <fixedbanner fixedbanner-id="fixedbanner{{$index + 2}}" fixedbanner-num="{{$index + 2}}"></fixedbanner>
         <articles-in-categ add-articles="articles"></articles-in-categ>
       </div>
       <div align="center" ng-show="loadingArticles" style="margin-top: 20px">
         <img src="/img/loading.gif" />
       </div>
     </div>
-    <!--<div class="skinner_ad" skinner_ad_right></div>-->
   </div>
 
   <div ng-include="'/partials/footer.html'"></div>
   <div ng-include="'/partials/newsletter.html'"></div>
-
-  <script>
-    // $(document).ready(function(){
-    // 	var $skinnerAdRight = $('[skinner_ad_right]');
-    // 	var $skinnerAdLeft = $('[skinner_ad_left]');
-    // 	var $skinnerAdRightContainer = $skinnerAdRight.parent();
-    // 	var updateSkinnerAd = function(){
-
-    // 		if ($(document).scrollTop() >= 170){
-    // 			$('.skinner_ad').addClass('fixed');
-    // 			var offset = $(document).width() - $('body').width();
-    // 			// console.log(offset);
-    // 			$skinnerAdRight.css('right', ($(document).width() - ($skinnerAdRightContainer.position().left + $skinnerAdRightContainer.width())) - (offset > 0 ? offset - $(document).scrollLeft() : 0 ));
-    // 			if (offset > 0){
-    // 				$skinnerAdLeft.css('left', - $(document).scrollLeft());
-    // 			}
-    // 			else{
-    // 				$skinnerAdLeft.attr('style', 'left:auto');
-    // 			}
-    // 		}
-    // 		else{
-    // 			$('.skinner_ad').removeClass('fixed');
-    // 			$skinnerAdRight.css('right', '0px');
-    // 			$skinnerAdLeft.css('left', '0px');
-    // 		}
-    // 	}
-    // 	updateSkinnerAd();
-    // 	$(document).on('scroll', updateSkinnerAd);
-    // });
-  </script>
 </body>
 
 </html>

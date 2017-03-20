@@ -37,6 +37,8 @@ module.exports = function(options) {
     .directive('facebookBlock', [dirs.facebook])
     .directive('instagramMedias', [dirs.instagram])
     .directive('skinnerBlock', [dirs.skinner])
+    .directive('midbanner', [dirs.midbanner])
+    .directive('fixedbanner', [dirs.fixedbanner])
     .directive('homeArticle', [dirs.homeArticle])
     .directive('shareBar', ['$location', dirs.shareBar]);
 

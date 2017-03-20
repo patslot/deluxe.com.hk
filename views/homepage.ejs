@@ -18,10 +18,9 @@
   <div class="container nm_home">
     <top-menu ng-categories="categs"></top-menu>
     <div class="row nm_row">
-      <!--<div class="skinner_ad" skinner_ad_left></div>-->
       <div class="main_content">
         <div class="nm_section">
-          <div class="head_banner_wrapper">
+          <div class="head_banner_wrapper hidden-xs">
             <div class="superhead_banner">
               <div id="headBanner">
                 <script>
@@ -65,42 +64,21 @@
           </div>
         </div>
         <div ng-if="loaded">
-          <div class="nm_section" loading="content">
-            <div class="head_banner_wrapper">
-              <div class="superhead_banner">
-                <div id="midbanner1">
-                  <script>
-                    showWebAd("Midbanner", "midbanner1");
-                  </script>
-                </div>
-              </div>
-            </div>
-          </div>
+          <midbanner midbanner-id="midbanner_1"></midbanner>
           <div ng-include="'/partials/homeArticlesInstagram.html'"></div>
           <div ng-include="'/partials/homeArticlesEvent.html'"></div>
           <add-carousel title-class="'nm_editor_pick'" carousel-items="editorPicks"
             carousel-div="'editor-picks-carousel'"></add-carousel>
-          <div class="nm_section">
-            <!-- TODO(Nancy): load midbanner2, midbanner3, ... -->
-            <!-- div class="head_banner_wrapper">
-              <div class="superhead_banner">
-                <div id="midbanner2">
-                  <script>
-                    showWebAd("Midbanner", "midbanner2");
-                  </script>
-                </div>
-              </div>
-            </div -->
-            <div class="row" ng-repeat="articles in categArticles">
+          <div class="nm_section" ng-repeat="articles in categArticles">
+            <midbanner ng-if="$index % 3 === 0" midbanner-id="midbanner_categ_{{$index}}"></midbanner>
+            <div class="row">
               <div class="col-sm-4 nm_section_block" ng-repeat="a in articles">
                 <home-article add-article="a"></home-article>
               </div>
             </div>
           </div>
         </div>
-        <!--<div class="skinner_ad" skinner_ad_right></div>-->
       </div>
-
       <div ng-include="'/partials/footer.html'"></div>
       <div ng-include="'/partials/newsletter.html'"></div>
     </div>
