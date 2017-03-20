@@ -30,7 +30,6 @@ module.exports = function(options) {
 
   angular.module('appDirectives', [])
     .directive('topMenu', [dirs.menu])
-    // TODO: Check if latestArticles is used and remove it later if not used
     .directive('latestArticles', [dirs.latestArticles])
     .directive('articlesInCateg', [dirs.articlesInCateg])
     .directive('addCarousel', ['$timeout', dirs.addCarousel])

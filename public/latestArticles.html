@@ -1,11 +1,58 @@
-<h3>Latest {{articles.length}} articles</h3>
-<div ng-repeat="a in articles">
-  <!-- Handle display layout? MediaGroup of video? -->
-  {{a.displayLayoutPreset}}<br />
-  <img ng-if="a.mediaGroup.length > 0" ng-src="{{a.mediaGroup[0].smallPath}}" />
-  <br />
-  <!-- TODO(wkchan): Replace 'Fashion' with a category -->
-  <a ng-href="/Fashion/{{a.mlArticleId}}/{{a.title}}">{{a.title}}</a>
-  <br />[a.label]<br />
-  <div ng-bind-html="a.firstContentBlock.content | trust"></div>
+<div class="hidden-xs">
+  <div ng-repeat="a in articles">
+    <div ng-if="$odd">
+      <div class="ctb_two_content col-md-6 col-xs-12">
+        <div class="ctb_two_content_label">[TODO: Feature]</div>
+        <a ng-href="{{::a.linkURL}}" target={{::a.linkTarget}}>
+          <div class="ctb_two_content_title">{{::a.title}}</div>
+          <div class="ctb_two_content_content"
+            ng-html-bind="a.intro | trust">
+          </div>
+        </a>
+      </div>
+      <div class="ctb_two_image col-md-6 col-xs-12">
+        <a ng-href="{{::a.linkURL}}" target="{{::a.linkTarget}}">
+          <img ng-if="a.hasVideo" class="play" src="/img/icon-play.png" />
+          <img ng-src="{{::a.image}}" />
+        </a>
+      </div>
+    </div>
+    <div ng-if="$even">
+      <div class="ctb_two_image col-md-6 col-xs-12">
+        <a ng-href="{{::a.linkURL}}" target="{{::a.linkTarget}}">
+          <img ng-if="a.hasVideo" class="play" src="/img/icon-play.png" />
+          <img ng-src="{{::a.image}}" />
+        </a>
+      </div>
+      <div class="ctb_two_content col-md-6 col-xs-12">
+        <div class="ctb_two_content_label">[TODO: Feature]</div>
+        <a ng-href="{{::a.linkURL}}" target={{::a.linkTarget}}>
+          <div class="ctb_two_content_title">{{::a.title}}</div>
+          <div class="ctb_two_content_content"
+            ng-html-bind="a.intro | trust">
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
+<div class="visible-xs">
+  <div ng-repeat="a in articles">
+    <div class="ctb_two_image col-md-6 col-xs-12">
+      <a ng-href="{{::a.linkURL}}" target="{{::a.linkTarget}}">
+        <img ng-if="a.hasVideo" class="play" src="/img/icon-play.png" />
+        <img ng-src="{{::a.image}}" />
+      </a>
+    </div>
+    <div class="ctb_two_content col-md-6 col-xs-12">
+      <div class="ctb_two_content_label">[TODO: Feature]</div>
+      <a ng-href="{{::a.linkURL}}" target={{::a.linkTarget}}>
+        <div class="ctb_two_content_title">{{::a.title}}</div>
+        <div class="ctb_two_content_content"
+          ng-html-bind="a.intro | trust">
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<div style="clear:both"></div>

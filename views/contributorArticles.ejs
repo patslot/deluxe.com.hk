@@ -3,48 +3,70 @@
 
 <head>
   <%- include('partials/extHeader.ejs') %>
-  <title>Contributor Index</title>
-  <%- include('partials/googleAdTag.ejs', {adTag: 'Contributor_detail'}) %>
-  <link rel="stylesheet" href="/css/common.css" />
+    <title>Contributor Index</title>
+    <%- include('partials/googleAdTag.ejs', {adTag: 'Contributor_detail'}) %>
+      <link rel="stylesheet" type="text/css" href="/css/common.css" />
+      <link rel="stylesheet" type="text/css" href="/css/contributorArticles.css" />
 </head>
 
-<body ng-app="addv2" ng-controller="ContributorArticlesController"
-  contr-name="<%= contributor.catName %>">
+<body ng-app="addv2" ng-controller="ContributorArticlesController" contr-name="<%= contributor.catName %>">
   <%- include('partials/app.ejs') %>
-  <skinner-block></skinner-block>
+    <skinner-block></skinner-block>
 
-  <div class="nm_v_menu visible-xs" vmenu="content">
-    <div ng-include="'/partials/mobileMenu.html'"></div>
-  </div>
-  <div class="container nm_home">
-    <top-menu ng-categories="categs"></top-menu>
-    <div class="row nm_row">
-      <div class="main_content">
-        <div class="nm_section">
-          <!-- div inc='inc/sub_menu.html'></div -->
-          <div class="head_banner_wrapper">
-            <div class="superhead_banner">
-              <div id="headBanner">
-                <script>
-                  showWebAd("HeadBanner", "headBanner");
-                </script>
+    <div class="nm_v_menu visible-xs" vmenu="content">
+      <div ng-include="'/partials/mobileMenu.html'"></div>
+    </div>
+    <div class="container nm_home">
+      <top-menu ng-categories="categs"></top-menu>
+      <div class="row nm_row">
+        <div class="main_content">
+          <div class="nm_section">
+            <!-- div inc='inc/sub_menu.html'></div -->
+            <div class="head_banner_wrapper">
+              <div class="superhead_banner">
+                <div id="headBanner">
+                  <script>
+                    showWebAd("HeadBanner", "headBanner");
+                  </script>
+                </div>
+              </div>
+            </div>
+
+            <div class="ctb_two_col_container">
+              <div class="ctb_detail_image col-md-6 col-xs-12">
+                <img src="<%= contributor.imgName %>" />
+              </div>
+              <div class="ctb_detail_container col-md-6 col-xs-12">
+                <div class="ctb_detail_name">
+                  <%= contributor.catName %>
+                </div>
+                <div class="ctb_detail_post">
+                  <%= contributor.post %>
+                </div>
+                <div class="ctb_detail_description">
+                  <%- contributor.desc %>
+                </div>
+              </div>
+              <div style="clear:both"></div>
+              <latest-articles add-articles="latest4Articles"></latest-articles>
+            </div>
+            <div class="ctb_two_col_container"
+              lazy-scroll="loadArticles()" lazy-no-scroll="noMoreArticles">
+              <div align="center" ng-show="loadingArticles" style="margin-top: 20px">
+                <img src="/img/loading.gif" />
+              </div>
+              <div ng-repeat="articles in moreArticleGroups">
+                <latest-articles add-articles="articles"></latest-articles>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!--div class="main_content" lazy-scroll="loadCategArticles()"
-      lazy-no-scroll="noMoreArticles">
-      <div align="center" ng-show="loadingArticles" style="margin-top: 20px">
-        <img src="/img/loading.gif" />
-      </div>
       <!-- TODO(wkchan): Lazy load contributor's articles -->
-    </div-->
-  </div>
+        </div-->
+      </div>
 
-  <div ng-include="'/partials/footer.html'"></div>
-  <div ng-include="'/partials/newsletter.html'"></div>
+      <div ng-include="'/partials/footer.html'"></div>
+      <div ng-include="'/partials/newsletter.html'"></div>
 </body>
 
 </html>

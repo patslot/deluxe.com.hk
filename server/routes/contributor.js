@@ -10,7 +10,13 @@ module.exports = function(gQuery) {
           res.status(500).send('Cannot find a contributor having the name ' + name);
           return;
         }
-        res.render('contributorArticles', {contributor: contributors[0]});
+        var contributor = contributors[0];
+        var splitPos = contributor.content.indexOf('|');
+        if (splitPos > 0) {
+          contributor.post = contributor.content.slice(0, splitPos);
+          contributor.desc = contributor.content.slice(splitPos+1).trim();
+        }
+        res.render('contributorArticles', {contributor: contributor});
       }, function(err) {
         console.log(err);
         res.status(500).send('Error in contributor index query:' + err);

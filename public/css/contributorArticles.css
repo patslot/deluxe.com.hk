@@ -1,0 +1,73 @@
+.contributor_detail a {
+  cursor: pointer;
+  color: black;
+}
+
+.ctb_two_col_container .col-md-6 {
+  padding: 0px;
+}
+
+.ctb_two_content,
+.ctb_two_image {
+  float: left;
+  height: 320px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.ctb_two_image img {
+  height: 100%;
+  width: 100%;
+}
+
+.ctb_two_content_title {
+  font-family: Arial, 新細明體, sans-serif;
+  font-size: 25px;
+  line-height: 30px;
+  background: rgb(255, 255, 255);
+  margin: 0px auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.nm_recommend {
+  background-image: url(img/icon12.png)!important;
+}
+
+.ctb_two_content_label {
+  margin-top: 15px;
+  font-style: italic;
+  color: #8B0000;
+  font-size: 18px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.ctb_two_content_content {
+  margin-bottom: 15px;
+  padding: 15px;
+}
+
+.ctb_detail_image {
+  text-align: center;
+}
+
+.ctb_detail_name {
+  color: grey;
+  font-size: 40px;
+  text-align: center;
+}
+
+.ctb_detail_post {
+  color: grey;
+  font-size: 26px;
+  margin-top: -15px;
+  text-align: center;
+}
+
+.ctb_detail_description {
+  margin-top: 15px;
+  color: grey;
+  font-size: 18px;
+  text-align: center;
+}
