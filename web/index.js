@@ -38,6 +38,7 @@ module.exports = function(options) {
     .directive('skinnerBlock', [dirs.skinner])
     .directive('midbanner', [dirs.midbanner])
     .directive('fixedbanner', [dirs.fixedbanner])
+    .directive('splashScreen', ['$timeout', dirs.splashScreen])
     .directive('homeArticle', [dirs.homeArticle])
     .directive('shareBar', ['$location', dirs.shareBar])
     .directive('contributorBlock', [dirs.contributorBlock])

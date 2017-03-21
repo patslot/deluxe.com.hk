@@ -2,6 +2,7 @@
 </script>
 <script>
 var adPrefixTag = '<%= AD_PREFIX_TAG %>';
+var pageAdTag = '<%= adTag %>';
 var webTags = [];
 var mobileTags = [];
 
@@ -11,10 +12,23 @@ if (adPrefixTag !== "") {
 }
 
 webTags.push('<%= AD_WEB_BASE_TAG %>');
-webTags.push('<%= adTag %>');
+webTags.push(pageAdTag);
 
 mobileTags.push('<%= AD_MOBILE_BASE_TAG %>');
-mobileTags.push('<%= adTag %>');
+
+// form SplashAd tag prefix
+var isArticle = false;
+var pageTags = pageAdTag.split("_");
+if (pageTags.length === 2) {
+  if (pageTags[1] === "art" ||
+    pageTags[0] !== "Contributor" && pageTags[1] === "detail") {
+    isArticle = true;
+  }
+}
+var mobileSplashPrefix = "/" + mobileTags.join("/") + "/" +
+  (isArticle? "Article" : "Index") + "/";
+
+mobileTags.push(pageAdTag);
 
 var webPrefix = "/" + webTags.join("/") + "/";
 var webSlotSizes = {
@@ -81,9 +95,10 @@ function showWebAd(adType, divId) {
 function showMobileAd(adType, divId) {
   if (window.googletag && googletag.apiReady) {
     googletag.cmd.push(function() {
+      var prefix = (adType === "SplashAd")? mobileSplashPrefix : mobilePrefix;
       var slot = googletag
         .defineSlot(
-          mobilePrefix + adType,
+          prefix + adType,
           mobileSlotSizes[adType],
           divId)
         .addService(googletag.pubads());
