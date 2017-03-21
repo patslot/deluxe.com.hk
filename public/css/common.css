@@ -14,7 +14,6 @@
   }
   .nm_home {
     position: relative;
-    margin-top: 95px;
   }
 }
 
@@ -31,8 +30,20 @@
     margin: 0 auto;
     /*float: left;*/
   }
-  .nm_home {
-    margin-top: 125px;
+
+  .nm_header.fixed .index-logo {
+    display: none;
+  }
+
+  .nm_header.fixed #sticky-wrap .nav--menu .logo {
+    display: block;
+    float: left;
+    margin-left: 200px;
+  }
+
+  .nm_header.fixed #sticky-wrap .nav--menu .text {
+    float: left;
+    margin-left: 20px;
   }
 }
 
@@ -251,16 +262,18 @@ background: #ccc;
 }
 
 .nm_v_menu {
-  width: 300px;
+  width: 320px;
   position: fixed;
   top: 0;
   bottom: 0;
   background: white;
-  left: -300px;
+  left: -320px;
   border-right: grey solid 1px;
   height: 100%;
   overflow: auto;
   z-index: 999;
+  webkit-transition: left .2s ease-in-out;
+  transition: .2s ease-in-out;
 }
 
 .artd_facebook_block {
@@ -310,11 +323,11 @@ background: #ccc;
 
 .mm_container .close_btn {
   float: right;
-  margin-right: 10px;
-  width: 35px;
-  height: 70px;
+  margin: 15px;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
-  background: url(/img/icon_close.png) no-repeat 0 30px;
+  background: url(/img/icon_close.png) no-repeat;
 }
 
 .privacy_block_checkbox,
@@ -362,4 +375,25 @@ a {
 /* Footer */
 .site-footer {
     padding-bottom: 50px;
+}
+
+.nm_home.nav-panel-active,
+.nm_header.nav-panel-active {
+    left: 320px;
+    webkit-transition: left .2s ease-in-out;
+    transition: .2s ease-in-out;
+}
+
+.nm_v_menu.nav-panel-active {
+    left: 0px;
+}
+
+.mm_container .logo img {
+    width: 160px;
+    margin: 8px 0 8px 80px;
+}
+
+.nm_header.fixed #sticky-wrap {
+  position: fixed;
+  top: 0;
 }

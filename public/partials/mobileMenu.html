@@ -1,6 +1,6 @@
 <div class="mm_container">
-  <div class="index-logo">
-    <a class="logo" href="/">http://hk.add.nextmedia.com/</a>
+  <div class="logo">
+    <a href="/"><img src="/img/imgpsh_fullsize.png"></a>
     <div class="close_btn" vmenu="menu_close_trigger"></div>
   </div>
 
@@ -172,7 +172,7 @@
 <script>
 	$(document).ready(function(){
 		$('#mobile_subscript_form .glyphicon').hide();
-        $('[vmenu="menu_close_trigger"]').on('click', function () {toggleMenu();});
+        $('[vmenu="menu_close_trigger"]').on('click', toggleMenu);
 	});
 
 	function mobileValidFunction() {

@@ -12,11 +12,11 @@
   <%- include('partials/app.ejs') %>
     <skinner-block></skinner-block>
 
-    <div class="nm_v_menu visible-xs" vmenu="content">
+    <div class="nm_v_menu" vmenu="content">
       <div ng-include="'/partials/mobileMenu.html'"></div>
     </div>
+    <top-menu ng-categories="categs"></top-menu>
     <div class="container nm_home">
-      <top-menu ng-categories="categs"></top-menu>
       <div class="row nm_row">
         <div class="main_content">
           <div class="nm_section">
