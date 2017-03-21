@@ -1,136 +1,241 @@
-<div class="newsletter">
-  <div class="nl_container">
-    <div class="newsletter_header">
-      <div class="newsletter_title">
-        Subscribe
-      </div>
-      <div class="newsletter_close">
-                <a><img src="/img/delete-minimize-minus-remove-sign-icon.png"></a>
+<div class="newsletter circleBase">
+    <div class="nl_container">
+        <div class="newsletter_header">
+            <div class="newsletter_close"></div>
+            <br/>
+            <div class="newsletter_title">
+                Subscribe
             </div>
         </div>
     <div class="nl-content">
-      訂閱Apple Daily Deluxe 電子版以獲得最新資訊及優惠
+        訂閱Apple Daily Deluxe 電子版以獲得最新資訊及優惠
     </div>
-    <form>
-      <div class="form-group">
-      <input type="text" class="form-control input_small" id="lastname" placeholder="姓">
-      </div>
-      <div class="form-group">
-      <input type="text" class="form-control input_small" id="firstname" placeholder="名">
-      </div>
-      <div class="form-group">
-      <input type="email" class="form-control" id="firstname" placeholder="電子郵件地址">
-      </div>
-      <div class="privacy-block">
-        <input type="checkbox" name="privacycheck" value="privacycheck" id="privacycheck"><label for="love">本人已閱讀接受<a>個人資料的條款</a></label>
-      </div>
-      <div class="promotion-block">
-        <input type="checkbox" name="promotioncheck" value="promotioncheck" id="promotioncheck"><label for="love">本人願意收取就有關Next Media的刊物作直銷及品牌推廣之資訊。</label>
-      </div>
-      <button type="提交" class="btn btn-secondary submit-btn">提交</button>
+    <form id="desktop_subscript_form"  role="form" data-toggle="validator">
+        <div class="form-group col-xs-6">
+            <input type="text" class="form-control lastname" id="lastname" placeholder="姓" maxlength="10">
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        </div>
+        <div class="form-group col-xs-6">
+            <input type="text" class="form-control firstname" id="firstname" placeholder="名" maxlength="10">
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        </div>
+        <div class="form-group col-xs-12">
+            <input type="email" class="form-control email" id="email" placeholder="電子郵件地址" maxlength="50">
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        </div>
+        <div class="privacy-block col-xs-12">
+            <div class="privacy_block_checkbox">
+                <input type="checkbox" name="privacycheck" value="privacycheck" id="privacycheck" required>
+            </div>
+            <div class="privacy_block_content">
+                <label>本人已閱讀接受<a href="http://www.nextdigital.com.hk/info/tnc.html" target="_blank"><u>個人資料的條款</u></a></label>
+            </div>
+        </div>
+        <div class="promotion-block col-xs-12">
+            <div class="promotion_block_checkbox">
+                <input type="checkbox" name="promotioncheck" value="promotioncheck" id="promotioncheck">
+            </div>
+            <div class="promotion_block_content">
+                <label>本人願意收取就有關Next Media的刊物作直銷及品牌推廣之資訊。</label>
+            </div>
+        </div>
+        <button type="提交" class="btn btn-secondary submit-btn" onclick="desktopValidFunction()">提交</button>
     </form>
   </div>
 </div>
-<div class="newsletter_small">
-  <div class="newsletter_small_content">
-    SUBSCRIBE
-  </div>
-  <div class="newsletter_small_image">
-    <img src="/img/arrow1.png">
-  </div>
+<div class="newsletter_small circleBase">
+    <div class="newsletter_small_image">
+        <img src="img/arrow1.png">
+    </div>
+    <div class="newsletter_small_content">
+        SUBSCRIBE
+    </div>
 </div>
-
 <style>
     @media all and (max-width: 768px) {
        .newsletter{
-         display:none;
+            display:none;
        }
     }
 
-  .newsletter {
-      background-color: white;
-      color: black;
-      bottom: 0;
-      left: 6%;
-      position: fixed;
-      padding: 15px;
-  }
+    .privacy_block_checkbox,
+    .promotion_block_checkbox{
+        width:10%;
+        float:left;
+    }
 
-  .newsletter_small{
-      background-color: #272727;
-      color: white;
-      bottom: 0;
-      left: 6%;
-      font-size: 12px;
-      position: fixed;
-      cursor: pointer;
-      z-index: 999;
-  }
+    .privacy_block_content,
+    .promotion_block_content{
+        width:90%;
+        float:left;
+    }
 
-  .newsletter_small .newsletter_small_content{
-    height:25px;
-    padding: 5px 15px;
-  }
+    .promotion-block{
+        margin-top:10px;
+    }
 
-  .newsletter_small .newsletter_small_image{
-    background-color: #6d6e6e;
-      height: 15px;
-      text-align: center;
-  }
+    .circleBase {
+        border-radius: 50%;
+        behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+    }
 
-  .newsletter_small .newsletter_small_image img{
-      height: 15px;
-      width: auto;
-  }
 
-  .newsletter .input_small{
-    width:50%;
-    float:left;
-  }
+    .nl-content{
+        padding-top: 20px;
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
 
-  .newsletter .newsletter_title{
-    background-color:#e5e4e2;
-    font-weight: bold;
-    margin-bottom: 10px;
-    width: auto;
-    padding: 5px 5px;
-    margin-top: -15px;
-    margin-left: -15px;
-    height: 30px;
-    text-align: center;
-    padding-top: 5px;
-    color: black;
-    float:left;
-  }
+    .newsletter {
+        background-color: #313131;
+        color: white;
+        bottom: 0;
+        left: 6%;
+        position: fixed;
+        padding: 15px;
+        width: 500px;
+        height: 500px;
+        margin-bottom:-95px;
+        z-index: 999;
+    }
 
-  .newsletter .submit-btn{
-    color:black;
-  }
+    .newsletter .form-control{
+        background-color: #313131
+    }
 
-  .newsletter .newsletter_close{
-    cursor: pointer;
-    margin-top:-15px;
-      width:5%;
-      float: right;
-  }
+    .newsletter .label {
+        font-weight: inherit;
+    }
 
-  .newsletter .newsletter_close img{
-    height: 30px;
-    width: auto;
-  }  
+    .newsletter_header{
+        text-align: center;
+    }
+
+    .nl_container{
+        width: 350px;
+        margin: auto;
+    }
+
+    .newsletter_small{
+        background-color: #272727;
+        color: white;
+        bottom: 0;
+        left: 6%;
+        font-size: 12px;
+        position: fixed;
+        cursor: pointer;
+        z-index: 999;
+        width: 100px;
+        height: 100px;
+        margin-bottom: -50px;
+    }
+
+    .newsletter_small .newsletter_small_content{
+        height:25px;
+        padding: 5px 15px;
+    }
+
+    .newsletter_small .newsletter_small_image{
+        margin-top: 7px;
+        height: 15px;
+        text-align: center;
+        -webkit-transform: rotate(180deg); /* Safari and Chrome */
+        -moz-transform: rotate(180deg);   /* Firefox */
+        -ms-transform: rotate(180deg);   /* IE 9 */
+        -o-transform: rotate(180deg);   /* Opera */
+        transform: rotate(180deg);
+    }
+
+    .newsletter_small .newsletter_small_image img{
+        height: 15px;
+        width: auto;
+    }
+
+    .newsletter .input_small{
+        width:45%;
+        float:left;
+        margin-right: 5%;
+        margin-bottom: 15px;
+    }
+
+    .newsletter .input_big{
+        width: 95%;
+    }
+
+    .newsletter .newsletter_title{
+        font-weight: bold;
+        width: auto;
+        padding: 5px 5px;
+        text-align: center;
+        color: white;
+        display: inline-block;
+        font-size: 14px;
+    }
+
+    .newsletter .submit-btn{
+        color:black;
+        margin-top: 13px;
+    }
+
+    .newsletter .newsletter_close{
+        cursor: pointer;
+        display: inline-block;
+        width: 25px;
+        height: 15px;
+        margin-bottom: 8px;
+        border-bottom: white solid 3px;
+    }
+
+    .newsletter .newsletter_close img{
+        height: 30px;
+        width: auto;
+    }
+
+    .newsletter input+.form-control-feedback{
+        right: 20px;
+    }
+
 </style>
-
 <script>
-  $(document).ready(function(){
-    $('.newsletter').hide();
-    $('.newsletter_small').show();
-    $('.newsletter_close').click(function(){
-      $('.newsletter').hide();
-      $('.newsletter_small').show();
+    $(document).ready(function(){
+        $('.newsletter_small').hide();
+        $('.subscript_form .glyphicon').hide();
+        $('.newsletter_close').click(function(){
+            $('.newsletter').hide();
+            $('.newsletter_small').show();
+        });
+        $('.newsletter_small').click(function(){
+            $('.newsletter').show();
+            $('.newsletter_small').hide();
+        });
+        $('#desktop_subscript_form .glyphicon').hide();
+
     });
-    $('.newsletter_small').click(function(){
-      $('.newsletter').show();
-      $('.newsletter_small').hide();
-    });
-  });
+
+    function desktopValidFunction() {
+        $('#desktop_subscript_form .glyphicon').hide();
+        var isTrue = true;
+        if(!$('#desktop_subscript_form .lastname').val()){
+            $('#desktop_subscript_form .lastname').parent().addClass('has-error');
+            $('#desktop_subscript_form .lastname').next().show();
+            isTrue = false;
+        }
+        if(!$('#desktop_subscript_form .firstname').val()){
+            $('#desktop_subscript_form .firstname').parent().addClass('has-error');
+            $('#desktop_subscript_form .firstname').next().show();
+            isTrue = false;
+        }
+        if(!$('#desktop_subscript_form .email').val()){
+            $('#desktop_subscript_form .email').parent().addClass('has-error');
+            $('#desktop_subscript_form .email').next().show();
+            isTrue = false;
+        }
+        if(isTrue){
+            return true;
+        }
+        else{
+            event.preventDefault()
+            return false;
+        }
+    }
 </script>

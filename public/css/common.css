@@ -351,3 +351,8 @@ a:hover {
 a {
   background-color: transparent;
 }
+
+/* Footer */
+.site-footer {
+    padding-bottom: 50px;
+}
