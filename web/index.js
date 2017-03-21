@@ -39,7 +39,8 @@ module.exports = function(options) {
     .directive('midbanner', [dirs.midbanner])
     .directive('fixedbanner', [dirs.fixedbanner])
     .directive('homeArticle', [dirs.homeArticle])
-    .directive('shareBar', ['$location', dirs.shareBar]);
+    .directive('shareBar', ['$location', dirs.shareBar])
+    .directive('contributorBlock', [dirs.contributorBlock])
 
   angular
     .module('addv2', ['lazy-scroll', 'appServices', 'appDirectives',

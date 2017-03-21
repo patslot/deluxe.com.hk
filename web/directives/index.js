@@ -9,3 +9,4 @@ export { default as midbanner } from "./midbanner";
 export { default as fixedbanner } from "./fixedbanner";
 export { default as homeArticle } from './homeArticle';
 export { default as shareBar } from "./shareBar";
+export { default as contributorBlock } from "./contributorBlock";

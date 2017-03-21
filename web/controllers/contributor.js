@@ -23,8 +23,11 @@ export default function($timeout, $scope, gqModel, queryHandler) {
     $timeout(function() {
       $scope.categs = queryHandler.parseMenu(res.listMenu);
       contributors = res.listContributor || [];
-      var first6Contributors  = contributors.slice(0, contributorCount);
-      $scope.first6Contributors = processContributors(first6Contributors);
+      var firstBlockContributors  = processContributors(
+        contributors.slice(0, contributorCount));
+      $scope.firstContributor = firstBlockContributors[0];
+      $scope.restContributorsIn1stBlock = firstBlockContributors.slice(
+        1, contributorCount);
       isReady = true;
     });
   });

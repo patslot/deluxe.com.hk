@@ -30,23 +30,24 @@
             </div>
             <div class="row nm_row">
               <div class="ctb_listing">
-                <div class="ctb_item col-xs-12 col-md-4"
-                  ng-repeat="contributor in first6Contributors track by $index">
+                <div class="ctb_item col-xs-12 col-md-4">
                   <div class="ctb_item_image">
-                    <img ng-src="{{contributor.imgName}}">
+                    <img ng-src="{{::firstContributor.imgName}}">
                   </div>
                   <div class="ctb_item_container">
                     <div class="ctb_item_name">
-                      {{contributor.catName}}
+                      {{::firstContributor.catName}}
                     </div>
                     <div class="ctb_item_post">
-                      {{contributor.post}}
+                      {{::firstContributor.post}}
                     </div>
                     <div class="ctb_item_content">
-                      {{contributor.desc}}
+                      {{::firstContributor.desc}}
                     </div>
                   </div>
                 </div>
+                <fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner>
+                <contributor-block contributors="restContributorsIn1stBlock"></contributor-block>
               </div>
             </div>
             <div lazy-scroll="loadContributors()" lazy-no-scroll="noMoreContributor">
@@ -57,26 +58,11 @@
                 <div ng-repeat="contributors in moreContributorGroups track by
                     $index">
                   <midbanner midbanner-id="midbanner_group_{{$index}}"></midbanner>
+                  <fixedbanner fixedbanner-id="fixedbanner{{$index + 2}}"
+                    fixedbanner-num="{{$index + 2}}"></fixedbanner>
                   <div class="row nm_row">
                     <div class="ctb_listing">
-                        <div class="ctb_item col-xs-12 col-md-4"
-                          ng-repeat="contributor in contributors track by $index">
-                          <div class="ctb_item_image">
-                            <img ng-src="{{contributor.imgName}}">
-                          </div>
-                          <div class="ctb_item_container">
-                            <div class="ctb_item_name">
-                              {{contributor.catName}}
-                            </div>
-                            <div class="ctb_item_post">
-                              {{contributor.post}}
-                            </div>
-                            <div class="ctb_item_content">
-                              {{contributor.desc}}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <contributor-block contributors="contributors"></contributor-block>
                     </div>
                   </div>
                 </div>
