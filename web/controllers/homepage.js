@@ -38,8 +38,7 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
     $timeout(function() {
       // TODO(wkchan): Move this parts as a function for unit test
       $scope.categs = queryHandler.parseMenu(res.listMenu);
-      latestArticles = parseArticles(res.listHomeLatestArticle);
-      $scope.latestArticles1to4 = latestArticles.slice(0, 4);
+      latestArticles = res.listHomeLatestArticle || [];
       var highlights = res.listHomeHighlight || [];
       highlights.forEach(function(h) {
         h.image = h.imgName;
@@ -69,8 +68,9 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
     }
     $scope.loading = true;
 
-    $scope.latestArticles5to8 = latestArticles.length > 4 ?
+    var latestArticles5to8 = latestArticles.length > 4 ?
       latestArticles.slice(4, 8) : [];
+    $scope.latestArticles5to8 = parseArticles(latestArticles5to8);
 
     //listInstagram, listHomeEditorPick
     var categs = createLoadCateg();

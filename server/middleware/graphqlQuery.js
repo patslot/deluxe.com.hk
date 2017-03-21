@@ -109,23 +109,21 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     }
   }`;
 
-  const homeQ = `{
-    listMPM {
-      homeGalleryID
-      apID
-      catName
-      imgName
-      caption
-      content
-      linkURL
-      sort
-      startDateTime
-      endDateTime
-      confirm
-      hasVideo
-      adCode
-      apCatID
-    }
+  const listMPM = `listMPM {
+    homeGalleryID
+    apID
+    catName
+    imgName
+    caption
+    content
+    linkURL
+    sort
+    startDateTime
+    endDateTime
+    confirm
+    hasVideo
+    adCode
+    apCatID
   }`;
 
   const CmsComponeFeedItem = `{
@@ -145,8 +143,48 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     apCatID
   }`;
 
+  const articleModel = `{
+    __typename
+    id
+    title
+    lastUpdate
+    ... on NewsArticle {
+      mediaGroup {
+        type
+        smallPath
+        largePath
+        width
+        height
+        source
+        videoId
+        url
+        quality
+      }
+      firstContentBlock {
+        subHead
+        content
+      }
+    }
+    ... on CmsArticle {
+      anvato
+      articleThumbnail
+      categoryID
+      intro
+      lastUpdate
+      publish
+      title
+      videoFile
+      videoThumbnail
+      youtube
+    }
+  }`;
+
   var createCmsComponeFeedQuery = function(queryName) {
     return queryName + ' ' + CmsComponeFeedItem;
+  };
+
+  var createQuery = function(queries) {
+    return 'query { ' + queries.join(' ') + ' }';
   };
 
   return {
@@ -158,7 +196,12 @@ module.exports = function(GRAPHQL_ENDPOINT) {
       return client.query(cmsArticleQ, {id: articleID});
     },
     homeQuery: function() {
-      return client.query(homeQ);
+      return client.query(createQuery([listMPM,
+        createCmsComponeFeedQuery('listHomeLatestArticle')
+      ]));
+    },
+    categQuery: function(listCategArticle) {
+      return client.query(createQuery([listCategArticle + ' ' + articleModel]));
     },
     contributorIndex: function() {
       return client.query('query { ' +

@@ -52,31 +52,12 @@
                 </div>
               </div>
             </div>
-            <div class="pull-right nm_mpm col-xs-12">
-              <div class="mpm_content">
-                <a ng-href="{{::latestArticle.linkURL}}">
-                  <img ng-if="latestArticle.hasVideo" class="play mpm_play" src="/img/icon-play.png" />
-                  <img ng-src="{{::latestArticle.image}}" />
-                </a>
-              </div>
-              <div class="mpm_content">
-                <div class="al_two_content_label">
-                  [{{::latestArticle.catName}}]
-                </div>
-                <a ng-href="{{::latestArticle.linkURL}}">
-                  <div class="al_two_content_title">
-                    {{::latestArticle.title}}
-                  </div>
-                  <div class="main_article al_two_content_content"
-                  ng-bind-html="latestArticle.firstContentBlock.content | trust"></div>
-                </a>
-              </div>
-            </div>
+            <%- include('partials/categ1stArticle.ejs', {article: article1}) %>
           </div>
         </div>
         <div class="nm_section">
           <fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner>
-          <articles-in-categ add-articles="latestArticles"></articles-in-categ>
+          <%- include('partials/categArticles.ejs', {articles: articles2to5}) %>
         </div>
       </div>
     </div>

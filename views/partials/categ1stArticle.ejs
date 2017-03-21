@@ -1,0 +1,25 @@
+<% if (article) { %>
+<div class="pull-right nm_mpm col-xs-12">
+  <div class="mpm_content">
+    <a ng-href="<%= article.linkURL %>">
+      <% if (article.hasVideo) { %>
+      <img class="play mpm_play" src="/img/icon-play.png" />
+      <% } %>
+      <img ng-src="<%= article.image %>" />
+    </a>
+  </div>
+  <div class="mpm_content">
+    <div class="al_two_content_label">
+      [<%= article.catName %>]
+    </div>
+    <a ng-href="<%= article.linkURL %>">
+      <div class="al_two_content_title">
+        <%= article.title %>
+      </div>
+      <div class="main_article al_two_content_content">
+        <%- article.content %>
+      </div>
+    </a>
+  </div>
+</div>
+<% } %>

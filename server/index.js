@@ -4,7 +4,6 @@ var categMapping = require('./middleware/categoryMapping.js');
 var app = express();
 
 module.exports = function(options) {
-
   var gQuery = require('./middleware/graphqlQuery.js')(options.graphqlEndpoint);
   var home = require('./routes/home.js')(gQuery);
   var article = require('./routes/article.js')(gQuery, categMapping);
@@ -33,21 +32,7 @@ module.exports = function(options) {
   app.get('/Contributor', contributor.renderIndex);
   app.get('/Contributor/:contrName', contributor.renderArticles);
   app.get('/:categ/:articleID/:title', article.renderArticle);
-  app.get('/:categ', function(req, res) {
-    var categ = req.params.categ;
-    // TODO(wkchan): This code block also repeats in routes/article.js
-    var ename = categMapping.nameToEname[categ];
-    var adTagMapping = categMapping.nameToAdTag[categ];
-    if (!ename || !adTagMapping) {
-      res.status(500).send('Invalid article category: ' + categ);
-      return;
-    }
-    res.render('categ', {
-      ename: ename,
-      adTag: adTagMapping.list,
-      categ: categ
-    });
-  });
+  app.get('/:categ', article.renderArticles);
 
   return app;
 }

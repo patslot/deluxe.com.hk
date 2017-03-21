@@ -1,0 +1,74 @@
+<% articles.forEach(function(a, idx) { %>
+<div class="al_two_col_container hidden-xs">
+  <% var isEven = idx % 2 === 0; %>
+  <% if (!isEven) { %>
+  <div>
+    <div class="al_two_content col-md-6 col-xs-12">
+      <div class="al_two_content_label">[<%= a.catName %>]</div>
+      <a href="<%= a.linkURL %>">
+        <div class="al_two_content_title">
+          <%= a.title %>
+        </div>
+        <div class="other_article al_two_content_content">
+          <%- a.content %>
+        </div>
+      </a>
+    </div>
+    <div class="al_two_image col-md-6 col-xs-12">
+      <a href="<%= a.linkURL %>">
+        <% if (a.hasVideo) { %>
+        <img class="play" src="/img/icon-play.png" />
+        <% } %>
+        <img src="<%= a.image %>" />
+      </a>
+    </div>
+  </div>
+  <% } else if (isEven) { %>
+  <div>
+    <div class="al_two_image col-md-6 col-xs-12">
+      <a href="<%= a.linkURL %>">
+        <% if (a.hasVideo) { %>
+        <img class="play" src="/img/icon-play.png" />
+        <% } %>
+        <img src="<%= a.image %>" />
+      </a>
+    </div>
+    <div class="al_two_content col-md-6 col-xs-12">
+      <div class="al_two_content_label">[<%= a.catName %>]</div>
+      <a href="<%= a.linkURL %>">
+        <div class="al_two_content_title">
+          <%= a.title %>
+        </div>
+        <div class="other_article al_two_content_content">
+          <%- a.content %>
+        </div>
+      </a>
+    </div>
+  </div>
+  <% } %>
+</div>
+<% }) %>
+<% articles.forEach(function(a, idx) { %>
+<div class="al_two_col_container visible-xs">
+  <div class="al_two_content col-md-6 col-xs-12">
+    <div class="al_two_content_label">[<%= a.catName %>]</div>
+    <a href="<%= a.linkURL %>">
+      <div class="al_two_content_title">
+        <%= a.title %>
+      </div>
+      <div class="other_article al_two_content_content">
+        <%- a.content %>
+      </div>
+    </a>
+  </div>
+  <div class="al_two_image col-md-6 col-xs-12">
+    <a href="<%= a.linkURL %>">
+      <% if (a.hasVideo) { %>
+      <img class="play" src="/img/icon-play.png" />
+      <% } %>
+      <img src="<%= a.image %>" />
+    </a>
+  </div>
+</div>
+<div style="clear:both"></div>
+<% }) %>

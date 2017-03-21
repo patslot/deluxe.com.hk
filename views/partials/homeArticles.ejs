@@ -1,0 +1,16 @@
+<div class="row">
+  <% articles.forEach(function(a) { %>
+  <div class="col-md-6 nm_section_block">
+    <a ng-href="<%= a.linkURL %>" target="<%= a.linkTarget %>">
+      <img ng-if="a.hasVideo" class="play" src="/img/icon-play.png" />
+      <img ng-src="<%= a.imgName %>" />
+    </a>
+    <div class="text-left">
+      <div class="nm_section_block_title_cat">[<%= a.catName %>]</div>
+      <div class="nm_section_block_title">
+        <a ng-href="<%= a.linkURL %>" target=<%= a.linkTarget %>><%= a.content %></a>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+</div>

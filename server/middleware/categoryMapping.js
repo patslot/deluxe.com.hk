@@ -34,5 +34,12 @@ module.exports = {
     'Event': 'Event'
   },
   nameToAdTag: nameToAdTag,
+  enameToListCategAPI: {
+    'add_fash': 'listFashionArticle',
+    'add_beau': 'listBeautyArticle',
+    'add_luxe': 'listLuxeArticle',
+    'add_wedd': 'listWeddingArticle',
+    'add_life': 'listLifeStyleArticle'
+  },
   getArticleType: getArticleType
 };

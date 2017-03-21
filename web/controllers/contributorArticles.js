@@ -48,6 +48,5 @@ export default function($timeout, $scope, gqModel, $attrs, queryHandler) {
       }
       updateCategIdx();
     }
-    $scope.noMoreArticles = true;
   };
 };

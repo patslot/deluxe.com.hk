@@ -1,6 +1,8 @@
 var categMapping = require('../middleware/categoryMapping.js');
 
 module.exports = function(gQuery) {
+  var queryHandler = require('../middleware/queryHandler.js')();
+
   function parseMpms(origMpms) {
     var mpms = origMpms || [];
     mpms.forEach(function(m) {
@@ -18,7 +20,9 @@ module.exports = function(gQuery) {
   return {
     render: function(req, res) {
       gQuery.homeQuery().then(function(result) {
-        res.render('homepage', {mpms: parseMpms(result.listMPM)});
+        var articles = (result.listHomeLatestArticle || []).slice(0, 4);
+        res.render('homepage', {mpms: parseMpms(result.listMPM),
+          articles: queryHandler.parseHomeArticles(articles)});
       }, function(err) {
         console.error(err);
         res.sendStatus(500, err);

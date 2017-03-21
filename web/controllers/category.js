@@ -30,10 +30,6 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
         if (articles.length === 0) {
           return;
         }
-        var first5Articles = queryHandler.parseArticles(
-          categName, articles.slice(0, categIdx));
-        $scope.latestArticle = first5Articles[0];
-        $scope.latestArticles = first5Articles.slice(1, categIdx);
         isReady = true;
       });
     });
