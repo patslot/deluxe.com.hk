@@ -1,49 +1,94 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <%- include('partials/extHeader.ejs') %>
+    <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
+    <title>Contributor Index</title>
+    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="stylesheet" href="/css/contributor.css" />
+  </head>
+  <body ng-app="addv2" ng-controller="ContributorController">
+    <%- include('partials/app.ejs') %>
+    <skinner-block></skinner-block>
 
-<head>
-  <%- include('partials/extHeader.ejs') %>
-  <title>Contributor Index</title>
-  <%- include('partials/googleAdTag.ejs', {adTag: 'Contributor_list'}) %>
-  <link rel="stylesheet" href="/css/common.css" />
-</head>
-
-<body ng-app="addv2" ng-controller="ContributorController">
-  <%- include('partials/app.ejs') %>
-  <skinner-block></skinner-block>
-
-  <div class="nm_v_menu visible-xs" vmenu="content">
-    <div ng-include="'/partials/mobileMenu.html'"></div>
-  </div>
-  <div class="container nm_home">
+    <div class="nm_v_menu visible-xs" vmenu="content">
+      <div ng-include="'/partials/mobileMenu.html'"></div>
+    </div>
     <top-menu ng-categories="categs"></top-menu>
-    <div class="row nm_row">
-      <div class="main_content">
-        <div class="nm_section">
-          <!-- div inc='inc/sub_menu.html'></div -->
-          <div class="head_banner_wrapper">
-            <div class="superhead_banner">
-              <div id="headBanner">
-                <script>
-                  showWebAd("HeadBanner", "headBanner");
-                </script>
+    <div class="container nm_home" skinner_ad="align_top" vmenu="sibling">
+      <div class="row nm_row">
+        <div class="main_content">
+          <div class="nm_section">
+            <div class="head_banner_wrapper hidden-xs">
+              <div class="superhead_banner">
+                <div id="headBanner">
+                  <script>
+                    showWebAd("HeadBanner", "headBanner");
+                  </script>
+                </div>
+              </div>
+            </div>
+            <div class="row nm_row">
+              <div class="ctb_listing">
+                <div class="ctb_item col-xs-12 col-md-4"
+                  ng-repeat="contributor in first6Contributors track by $index">
+                  <div class="ctb_item_image">
+                    <img ng-src="{{contributor.imgName}}">
+                  </div>
+                  <div class="ctb_item_container">
+                    <div class="ctb_item_name">
+                      {{contributor.catName}}
+                    </div>
+                    <div class="ctb_item_post">
+                      {{contributor.post}}
+                    </div>
+                    <div class="ctb_item_content">
+                      {{contributor.desc}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div lazy-scroll="loadContributors()" lazy-no-scroll="noMoreContributor">
+              <div class="nm_section">
+                <div align="center" ng-show="loadingContributors" style="margin-top: 20px">
+                  <img src="/img/loading.gif" />
+                </div>
+                <div ng-repeat="contributors in moreContributorGroups track by
+                    $index">
+                  <midbanner midbanner-id="midbanner_group_{{$index}}"></midbanner>
+                  <div class="row nm_row">
+                    <div class="ctb_listing">
+                        <div class="ctb_item col-xs-12 col-md-4"
+                          ng-repeat="contributor in contributors track by $index">
+                          <div class="ctb_item_image">
+                            <img ng-src="{{contributor.imgName}}">
+                          </div>
+                          <div class="ctb_item_container">
+                            <div class="ctb_item_name">
+                              {{contributor.catName}}
+                            </div>
+                            <div class="ctb_item_post">
+                              {{contributor.post}}
+                            </div>
+                            <div class="ctb_item_content">
+                              {{contributor.desc}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <div ng-include="'/partials/footer.html'"></div>
+        <div ng-include="'/partials/newsletter.html'"></div>
       </div>
     </div>
-    <!--div class="main_content" lazy-scroll="loadCategArticles()"
-      lazy-no-scroll="noMoreArticles">
-      <div align="center" ng-show="loadingArticles" style="margin-top: 20px">
-        <img src="/img/loading.gif" />
-      </div>
-      <!-- TODO(wkchan): Lazy load contributors -->
-    </div-->
-  </div>
 
-  <div ng-include="'/partials/footer.html'"></div>
-  <div ng-include="'/partials/newsletter.html'"></div>
-</body>
+  </body>
 
 </html>

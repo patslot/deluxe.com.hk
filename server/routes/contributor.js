@@ -1,4 +1,4 @@
-module.exports = function(gQuery) {
+module.exports = function(gQuery, categoryMapping) {
   return {
     renderArticles: function(req, res) {
       var name = req.params.contrName;
@@ -23,7 +23,10 @@ module.exports = function(gQuery) {
       });
     },
     renderIndex: function(req, res) {
-      res.render('contributorIndex');
+      var adTagMapping = categoryMapping.nameToAdTag['Contributor'];
+      res.render('contributorIndex', {
+        adTag: adTagMapping.list
+      });
     }
   }
 };
