@@ -82,12 +82,10 @@
     </div>
     <div class="main_content" lazy-scroll="loadCategArticles()"
       lazy-no-scroll="noMoreArticles">
-      <div align="center" ng-show="loadingArticles" style="margin-top: 20px">
-        <img src="/img/loading.gif" />
-      </div>
       <div class="nm_section" ng-repeat="articles in moreArticleGroups">
         <midbanner midbanner-id="midbanner_group_{{$index}}"></midbanner>
-        <fixedbanner fixedbanner-id="fixedbanner{{$index + 2}}" fixedbanner-num="{{$index + 2}}"></fixedbanner>
+        <fixedbanner fixedbanner-id="fixedbanner{{$index + 2}}"
+          fixedbanner-num="{{$index + 2}}"></fixedbanner>
         <articles-in-categ add-articles="articles"></articles-in-categ>
       </div>
       <div align="center" ng-show="loadingArticles" style="margin-top: 20px">

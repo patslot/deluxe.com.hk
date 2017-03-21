@@ -17,8 +17,8 @@
   padding-top: 15px;
 }
 
-.al_two_image img {
-  height: 100%;
+.mpm_content img, .al_two_image img {
+  height: auto;
   width: 100%;
 }
 

@@ -3,86 +3,104 @@
 
 <head>
   <%- include('partials/extHeader.ejs') %>
-  <title>Apple Daily Deluxe</title>
-  <%- include('partials/googleAdTag.ejs', {adTag: 'Index'}) %>
-  <link rel="stylesheet" href="/css/common.css" />
+    <title>Apple Daily Deluxe</title>
+    <%- include('partials/googleAdTag.ejs', {adTag: 'Index'}) %>
+      <link rel="stylesheet" href="/css/common.css" />
 </head>
 
 <body ng-app="addv2" ng-controller="HomepageController">
   <%- include('partials/app.ejs') %>
-  <skinner-block></skinner-block>
+    <skinner-block></skinner-block>
 
-  <div class="nm_v_menu visible-xs" vmenu="content">
-    <div ng-include="'/partials/mobileMenu.html'"></div>
-  </div>
-  <div class="container nm_home">
-    <top-menu ng-categories="categs"></top-menu>
-    <div class="row nm_row">
-      <div class="main_content">
-        <div class="nm_section">
-          <div class="head_banner_wrapper hidden-xs">
-            <div class="superhead_banner">
-              <div id="headBanner">
-                <script>
-                  showWebAd("HeadBanner", "headBanner");
-                </script>
-              </div>
-            </div>
-          </div>
-          <div class="row nm_row">
-            <div class="pull-right lrec_ad_wrapper hidden-xs">
-              <div class="lrec_ad_large">
-                <div id="lrec1">
-                  <script>
-                    showWebAd("LREC1", "lrec1");
-                  </script>
-                </div>
-              </div>
-              <div class="lrec_ad_large">
-                <div id="lrec2">
-                  <script>
-                    showWebAd("LREC2", "lrec2");
-                  </script>
-                </div>
-              </div>
-            </div>
-            <div class="pull-right nm_mpm col-xs-12">
-              <div class="mpm_content">
-                <%- include('partials/mpms.ejs', {mpms: mpms}) %>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div ng-include="'/partials/homeArticlesFacebook.html'"></div>
-        <div ng-include="'/partials/homeArticles.html'"></div>
-        <add-carousel title-class="'nm_highlight'" carousel-items="highlights"
-          carousel-div="'highlight-carousel'"></add-carousel>
-        <div class="nm_section" lazy-scroll="lazyLoadHomepage()" lazy-no-scroll="loaded">
-          <div align="center" ng-show="loading" style="margin-top: 20px">
-            <img src="/img/loading.gif" />
-          </div>
-        </div>
-        <div ng-if="loaded">
-          <midbanner midbanner-id="midbanner_1"></midbanner>
-          <div ng-include="'/partials/homeArticlesInstagram.html'"></div>
-          <div ng-include="'/partials/homeArticlesEvent.html'"></div>
-          <add-carousel title-class="'nm_editor_pick'" carousel-items="editorPicks"
-            carousel-div="'editor-picks-carousel'"></add-carousel>
-          <div class="nm_section" ng-repeat="articles in categArticles">
-            <midbanner ng-if="$index % 3 === 0" midbanner-id="midbanner_categ_{{$index}}"></midbanner>
-            <div class="row">
-              <div class="col-sm-4 nm_section_block" ng-repeat="a in articles">
-                <home-article add-article="a"></home-article>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div ng-include="'/partials/footer.html'"></div>
-      <div ng-include="'/partials/newsletter.html'"></div>
+    <div class="nm_v_menu visible-xs" vmenu="content">
+      <div ng-include="'/partials/mobileMenu.html'"></div>
     </div>
-  </div>
+    <div class="container nm_home">
+      <top-menu ng-categories="categs"></top-menu>
+      <div class="row nm_row">
+        <div class="main_content">
+          <div class="nm_section">
+            <div class="head_banner_wrapper hidden-xs">
+              <div class="superhead_banner">
+                <div id="headBanner">
+                  <script>
+                    showWebAd("HeadBanner", "headBanner");
+                  </script>
+                </div>
+              </div>
+            </div>
+            <div class="row nm_row">
+              <div class="pull-right lrec_ad_wrapper hidden-xs">
+                <div class="lrec_ad_large">
+                  <div id="lrec1">
+                    <script>
+                      showWebAd("LREC1", "lrec1");
+                    </script>
+                  </div>
+                </div>
+                <div class="lrec_ad_large">
+                  <div id="lrec2">
+                    <script>
+                      showWebAd("LREC2", "lrec2");
+                    </script>
+                  </div>
+                </div>
+              </div>
+              <div class="pull-right nm_mpm col-xs-12">
+                <div class="mpm_content">
+                  <%- include('partials/mpms.ejs', {mpms: mpms}) %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-8 nm_section">
+                <div ng-include="'/partials/homeArticles.html'"></div>
+              </div>
+              <div class="col-md-4 nm_section">
+                <facebook-block></facebook-block>
+                <a href="/Contributor">
+                  <img ng-src="{{::cBanner.imgName}}" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <add-carousel title-class="'nm_highlight'" carousel-items="highlights" carousel-div="'highlight-carousel'"></add-carousel>
+          <div class="nm_section" lazy-scroll="lazyLoadHomepage()" lazy-no-scroll="loaded">
+            <div align="center" ng-show="loading" style="margin-top: 20px">
+              <img src="/img/loading.gif" />
+            </div>
+          </div>
+          <div ng-if="loaded">
+            <midbanner midbanner-id="midbanner_1"></midbanner>
+            <div class="nm_section">
+              <div class="row">
+                <div class="col-md-8 nm_section">
+                  <div ng-include="'/partials/homeArticles5to8.html'"></div>
+                </div>
+                <div class="col-md-4 nm_section">
+                  <instagram-medias ig-medias="igMedias"></instagram-medias>
+                  <a href="/Event">
+                    <img ng-src="{{::eBanner.imgName}}" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <add-carousel title-class="'nm_editor_pick'" carousel-items="editorPicks" carousel-div="'editor-picks-carousel'"></add-carousel>
+            <div class="nm_section" ng-repeat="articles in categArticles">
+              <midbanner ng-if="$index % 3 === 0" midbanner-id="midbanner_categ_{{$index}}"></midbanner>
+              <div class="row">
+                <div class="col-sm-4 nm_section_block" ng-repeat="a in articles">
+                  <home-article add-article="a"></home-article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-include="'/partials/footer.html'"></div>
+        <div ng-include="'/partials/newsletter.html'"></div>
+      </div>
+    </div>
 </body>
 
 </html>

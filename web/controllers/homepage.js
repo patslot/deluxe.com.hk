@@ -16,12 +16,6 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
       listArticles.wedding, listArticles.lifeStyle];
   }
 
-  function getImageStyle(imgName) {
-    var s = 'background: url(' + imgName +
-      ') center center no-repeat; background-size: cover;';
-    return s;
-  }
-
   function parseLinkURL(article) {
     if (articleReg.test(article.linkURL)) {
       article.linkURL = '/' + article.catName + '/' + article.linkURL + '/' +
@@ -35,7 +29,6 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
   function parseArticles(origArticles) {
     var articles = origArticles || [];
     articles.forEach(function (a) {
-      a.style = getImageStyle(a.imgName);
       parseLinkURL(a);
     });
     return articles;
@@ -46,9 +39,7 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
       // TODO(wkchan): Move this parts as a function for unit test
       $scope.categs = queryHandler.parseMenu(res.listMenu);
       latestArticles = parseArticles(res.listHomeLatestArticle);
-      var aLength = latestArticles.length;
-      $scope.latestArticlesFacebook = latestArticles.slice(0, 2);
-      $scope.latestArticles = aLength > 2 ? latestArticles.slice(2, 4) : [];
+      $scope.latestArticles1to4 = latestArticles.slice(0, 4);
       var highlights = res.listHomeHighlight || [];
       highlights.forEach(function(h) {
         h.image = h.imgName;
@@ -59,7 +50,7 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
       $scope.highlights = highlights;
       var cBanners = res.listBannerForContributor || [];
       if (cBanners.length > 0) {
-        $scope.cBannerStyle = getImageStyle(cBanners[0].imgName);
+        $scope.cBanner = cBanners[0];
       }
       isReady = true;
     });
@@ -78,9 +69,8 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
     }
     $scope.loading = true;
 
-    var aLength = latestArticles.length;
-    $scope.latestArticlesInstagram = aLength > 4 ? latestArticles.slice(4, 6) : [];
-    $scope.latestArticlesEvent = aLength > 6 ? latestArticles.slice(6, 8) : [];
+    $scope.latestArticles5to8 = latestArticles.length > 4 ?
+      latestArticles.slice(4, 8) : [];
 
     //listInstagram, listHomeEditorPick
     var categs = createLoadCateg();
@@ -102,7 +92,7 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
         $scope.editorPicks = editorPicks;
         var eBanners = res.listBannerForEvent || [];
         if (eBanners.length > 0) {
-          $scope.eBannerStyle = getImageStyle(eBanners[0].imgName);
+          $scope.eBanner = eBanners[0];
         }
         $scope.loading = false;
         $scope.loaded = true;
