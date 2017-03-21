@@ -29,16 +29,18 @@
   "devDependencies": {
     "angular": "^1.6.2",
     "angular-moment": "^1.0.1",
-    "moment": "^2.17.1",
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.1.10",
     "babel-register": "^6.23.0",
     "chai": "^3.5.0",
+    "css-loader": "^0.27.3",
     "file-loader": "^0.10.1",
     "json-loader": "^0.5.4",
     "mocha": "^3.2.0",
+    "moment": "^2.17.1",
+    "style-loader": "^0.15.0",
     "url-loader": "^0.5.8",
     "webpack": "^1.14.0"
   }

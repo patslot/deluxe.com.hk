@@ -1,0 +1,39 @@
+:local .artd_article_share_bar {
+  margin-top: 10px;
+}
+
+:local .artd_article_share_bar ul {
+  padding-left: 0px;
+}
+
+:local .share_item a {
+  width: 28px;
+  height: 28px;
+  display:inline-block;
+}
+
+:local .share_item {
+  background-size: 32px 24px;
+  border-radius: 20px;
+  background-position: center;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display:inline-block;
+}
+
+:local .share_item.share_fb {
+  background-image: url(../img/sharefb.png);
+}
+:local .share_item.share_tw {
+  background-image: url(../img/sharetw.png);
+}
+:local .share_item.share_gplus {
+  background-image: url(../img/sharegplus.png);
+}
+:local .share_item.share_whatsapp {
+  background-image: url(../img/sharewhatsapp.png);
+}
+:local .share_item.share_mail {
+  background-image: url(../img/sharemail.png);
+}

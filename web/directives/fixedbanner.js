@@ -1,10 +1,18 @@
+const TEMPLATE = `
+<div class="nm_section visible-xs">
+  <div class="fix_banner_wrapper">
+    <div ng-attr-id="{{divId}}"></div>
+  </div>
+</div>
+`;
+
 export default function() {
   return {
     restrict: 'E',
     scope: {
       divId: '@fixedbannerId'
     },
-    templateUrl: '/partials/fixedbanner.html',
+    template: TEMPLATE,
     link: function ($scope, element, attrs) {
       var fixedbannerId = attrs.fixedbannerId;
       var fixedbannerNum = attrs.fixedbannerNum;

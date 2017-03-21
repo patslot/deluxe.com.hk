@@ -1,34 +1,55 @@
-export default function($timeout) {
-   var htmlTpl = `
-     <div class="carousel-inner">
-     <% carouselItems.forEach(function(i, idx) { %>
-       <% var _class = 'item'; if (idx === 0) { _class += ' active'; } %>
-       <div class="<%= _class %>">
-         <div class="col-xs-12 col-sm-6 col-md-3 item_block">
-           <a href="<%= i.linkURL %>" target="<%= i.linkTarget %>">
-            <% if (i.hasVideo) { %>
-            <img class="play" src="/img/icon-play.png" />
-            <% } %>
-            <img src="<%= i.image %>" alt="">
-           </a>
-           <div class="four_col_slide_content">
-             <% if (i.label) { %>
-             <div class="nm_section_block_title_cat">[<%= i.label %>]</div>
-             <% } %>
-             <div class="nm_section_block_title">
-               <a href="<%= i.linkURL %>" target="<%= i.linkTarget %>">
-                 <%- i.title %>
-               </a>
-             </div>
-           </div>
-         </div>
-       </div>
-     <% }) %>
-     </div>
-     <a class="left carousel-control" href="<%= cDiv %>" data-slide="prev"></a>
-     <a class="right carousel-control" href="<%= cDiv %>" data-slide="next"></a>
-  `;
 
+const htmlTpl = `
+  <div class="carousel-inner">
+  <% carouselItems.forEach(function(i, idx) { %>
+    <% var _class = 'item'; if (idx === 0) { _class += ' active'; } %>
+    <div class="<%= _class %>">
+      <div class="col-xs-12 col-sm-6 col-md-3 item_block">
+        <a href="<%= i.linkURL %>" target="<%= i.linkTarget %>">
+         <% if (i.hasVideo) { %>
+         <img class="play" src="/img/icon-play.png" />
+         <% } %>
+         <img src="<%= i.image %>" alt="">
+        </a>
+        <div class="four_col_slide_content">
+          <% if (i.label) { %>
+          <div class="nm_section_block_title_cat">[<%= i.label %>]</div>
+          <% } %>
+          <div class="nm_section_block_title">
+            <a href="<%= i.linkURL %>" target="<%= i.linkTarget %>">
+              <%- i.title %>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+  </div>
+  <a class="left carousel-control" href="<%= cDiv %>" data-slide="prev"></a>
+  <a class="right carousel-control" href="<%= cDiv %>" data-slide="next"></a>
+`;
+
+const TEMPLATE = `
+<div class="nm_section">
+  <div class="row nm_row front">
+    <div class="col-sm-4 col-sm-offset-4">
+      <div class="nm_section_header_ball" ng-class="titleClass">
+      </div>
+    </div>
+  </div>
+  <div class="row nm_row nm_section_border">
+    <div class="col-md-12 four_col_slide">
+      <!-- Compile html with ejs in this div -->
+      <div class="carousel carousel-showmanymoveone slide"
+        ng-attr-id="{{::carouselDiv}}" ng-show="ready">
+      </div>
+    </div>
+  </div>
+</div>
+<link rel="stylesheet" href="/css/scrolls.css" />
+`;
+
+export default function($timeout) {
   return {
     restrict: 'E',
     scope: {
@@ -66,6 +87,6 @@ export default function($timeout) {
         scope.ready = true;
       });
     },
-    templateUrl: '/addCarousel.html'
+    template: TEMPLATE
   };
 };
