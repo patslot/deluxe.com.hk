@@ -47,7 +47,13 @@
   .nm_header {
     position: relative;
   }
-  
+
+  @media (width: 768px) {
+    .nm_header {
+      width: 970px;
+    }
+  }
+
   .nm_header .index-logo {
     display: none;
   }
@@ -112,7 +118,7 @@
   }
   
   .nm_header #sticky-wrap {
-    z-index: 11;
+    z-index: 999;
     text-transform: uppercase;
     position: relative;
     width: 100%;
@@ -181,9 +187,8 @@
     .nm_header .nav--menu .logo {
       display: none;
     }
-    .nm_header .index-logo {
-      display: block;
-    }
+
+    .nm_header .index-logo,
     .nm_header .nav--menu .text {
       display: block;
     }

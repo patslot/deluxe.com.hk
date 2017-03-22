@@ -55,12 +55,18 @@
                 <%- include('partials/homeArticles.ejs', {articles: articles}) %>
               </div>
               <div class="col-md-4 nm_section">
-                <facebook-block></facebook-block>
-                <fixedbanner fixedbanner-id="fixedbanner2"
-                  fixedbanner-num="2"></fixedbanner>
-                <a href="/Contributor">
-                  <img ng-src="{{::cBanner.imgName}}" />
-                </a>
+                <div class="nm_section">
+                  <facebook-block></facebook-block>
+                </div>
+                <div class="nm_section">
+                  <fixedbanner fixedbanner-id="fixedbanner2"
+                    fixedbanner-num="2"></fixedbanner>
+                </div>
+                <div class="nm_section">
+                  <a href="/Contributor">
+                    <img ng-src="{{::cBanner.imgName}}" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>

@@ -1,6 +1,5 @@
 .four_col_slide .carousel-showmanymoveone .carousel-control {
   width: 4%;
-  background-image: none;
 }
 
 .four_col_slide .carousel-showmanymoveone .carousel-control.left {
@@ -151,7 +150,7 @@ all and (min-width: 992px) and (-webkit-transform-3d) {
 }
 
 .carousel-control.right {
-  background-image: url(/img/icon11BIG.jpg) !important;
+  background-image: url(/img/icon11_medium.png);
   background-repeat: no-repeat;
   background-position: center;
   margin-bottom: 30px;
@@ -159,7 +158,7 @@ all and (min-width: 992px) and (-webkit-transform-3d) {
 }
 
 .carousel-control.left {
-  background-image: url(/img/icon11BIG.jpg) !important;
+  background-image: url(/img/icon11_medium.png);
   background-repeat: no-repeat;
   background-position: center;
   margin-bottom: 30px;

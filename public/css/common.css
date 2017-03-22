@@ -47,6 +47,12 @@
   }
 }
 
+@media (width: 768px) {
+  .nm_header.fixed #sticky-wrap .nav--menu .logo {
+    margin-left: 100px;
+  }
+}
+
 .nm_row {
   margin: 0 !important;
   position: relative;
@@ -69,6 +75,7 @@
   position: fixed;
   width: 100%;
   height: 100%;
+  top: 150px;
 }
 
 .skinner_ad_content {
@@ -230,6 +237,7 @@ background: #ccc;
 .nm_home .lrec_ad_wrapper .lrec_ad_large {
   width: 300px;
   position: relative;
+  margin-bottom: 10px;
 }
 
 

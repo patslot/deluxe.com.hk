@@ -16,10 +16,14 @@ var minimizeHeader = function () {
 var updateSkinnerADPos = function () {
     var skinnerAD = $('.skinner_ad_wrapper');
     var headerHeight = $('.nm_header').height();
+    var stickyWrapHeight = $('.nm_header.fixed #sticky-wrap').height();
     var scrollTop = $(document).scrollTop()
-    var targetTop = headerHeight - scrollTop
-    targetTop = targetTop > 0 ? targetTop : headerHeight;
-    skinnerAD.css('top', targetTop);
+    if (headerHeight) {
+        var targetTop = headerHeight - scrollTop
+        skinnerAD.css('top', targetTop);
+        return;
+    }
+    skinnerAD.css('top', stickyWrapHeight);
 }
 
 $(document).scroll(minimizeHeader);

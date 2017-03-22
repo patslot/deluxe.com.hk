@@ -1,10 +1,12 @@
 .ls_banner {
-  width: 100% height: 90px;
+  height: 90px;
 }
 
-.ls_banner img {
-  width: 100%;
-  height: 100%;
+@media (max-width: 767px) {
+  .ls_banner {
+    margin: 0 15px;
+    height: 45px;
+  }
 }
 
 .al_two_content,
@@ -15,11 +17,6 @@
 
 .al_two_content {
   padding-top: 15px;
-}
-
-.mpm_content img, .al_two_image img {
-  height: auto;
-  width: 100%;
 }
 
 .al_two_content_title {
