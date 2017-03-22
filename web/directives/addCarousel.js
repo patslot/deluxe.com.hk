@@ -1,4 +1,3 @@
-
 const htmlTpl = `
   <div class="carousel-inner">
   <% carouselItems.forEach(function(i, idx) { %>
@@ -41,7 +40,7 @@ const TEMPLATE = `
     <div class="col-md-12 four_col_slide">
       <!-- Compile html with ejs in this div -->
       <div class="carousel carousel-showmanymoveone slide"
-        ng-attr-id="{{::carouselDiv}}" ng-show="ready">
+        ng-attr-id="{{::carouselDiv}}" style="display: none">
       </div>
     </div>
   </div>
@@ -84,6 +83,7 @@ export default function($timeout) {
               .appendTo($(this));
           }
         });
+        $(cDiv).show();
         scope.ready = true;
       });
     },
