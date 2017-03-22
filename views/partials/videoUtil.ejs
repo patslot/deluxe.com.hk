@@ -2,14 +2,15 @@
 <script>
 function renderVideo(video, elemId) {
   if (video && video.url) {
-    var adPrefixTag = '<%= AD_PREFIX_TAG %>';
-    var webTags = [];
-    if (adPrefixTag !== "") {
-      webTags.push(adPrefixTag);
+    var videoAdTags = [];
+    var currentWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    if (currentWidth < 768) {
+      videoAdTags.push('<%= AD_MOBILE_BASE_TAG %>');
+    } else {
+      videoAdTags.push('<%= AD_WEB_BASE_TAG %>');
     }
-    webTags.push('<%= AD_WEB_BASE_TAG %>');
-    webTags.push('<%= adTag %>');
-    var webPrefix = "/" + webTags.join("/") + "/";
+    videoAdTags.push('<%= adTag %>');
+    var prerollTag = videoAdTags.join("/") + "/" + "preroll";
 
     var anvp1 = new AnvatoPlayer('anvp1'); // Unique player id
     anvp1.setVideoUrl(video.url);
@@ -18,7 +19,7 @@ function renderVideo(video, elemId) {
     anvp1.setDescription("");
     anvp1.setVolume(0.5); // Value between 0 - 1
     anvp1.setShareEnable(false);
-    var videopAdTagURL = anvp1.generateDFPvideoTag(webPrefix + "preroll", "640x360");
+    var videopAdTagURL = anvp1.generateDFPvideoTag(prerollTag, "640x360");
     anvp1.setVideoAdTagURL(videopAdTagURL);
     anvp1.createInstance(elemId || 'video_player'); // Div Id match
 
