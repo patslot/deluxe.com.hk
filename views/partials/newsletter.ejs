@@ -97,6 +97,7 @@
         height: 500px;
         margin-bottom:-95px;
         z-index: 999;
+        display: none;
     }
 
     .newsletter .form-control{
@@ -198,7 +199,8 @@
 </style>
 <script>
     $(document).ready(function(){
-        $('.newsletter_small').hide();
+        $('.newsletter').hide();
+        $('.newsletter_small').show();
         $('.subscript_form .glyphicon').hide();
         $('.newsletter_close').click(function(){
             $('.newsletter').hide();
@@ -209,7 +211,6 @@
             $('.newsletter_small').hide();
         });
         $('#desktop_subscript_form .glyphicon').hide();
-
     });
 
     function desktopValidFunction() {
