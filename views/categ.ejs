@@ -14,13 +14,11 @@
   <%- include('partials/app.ejs') %>
   <skinner-block></skinner-block>
   <splash-screen></splash-screen>
-  <div class="nm_v_menu visible-xs" vmenu="content">
-    <div ng-include="'/partials/mobileMenu.html'"></div>
-  </div>
+  <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
+  <%- include('partials/topMenu.ejs', {menu: menu}) %>
   <div class="container nm_home">
-    <top-menu ng-categories="categs"></top-menu>
     <div class="ls_banner">
-      <img ng-src="{{::currentCateg.img}}" />
+      <img src="<%= categImg %>" />
     </div>
     <div class="row nm_row">
       <div class="main_content">

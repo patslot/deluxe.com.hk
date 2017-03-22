@@ -37,7 +37,6 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
   gqModel.queryHome().then(function(res) {
     $timeout(function() {
       // TODO(wkchan): Move this parts as a function for unit test
-      $scope.categs = queryHandler.parseMenu(res.listMenu);
       latestArticles = res.listHomeLatestArticle || [];
       var highlights = res.listHomeHighlight || [];
       highlights.forEach(function(h) {

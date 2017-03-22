@@ -6,20 +6,6 @@ export default function(c) {
     transport: new Transport(c.GRAPHQL_ENDPOINT)
   });
 
-  const listMenu = `listMenu {
-    categoryID
-    campaignID
-    name
-    eName
-    showNew
-    genCatJSON
-    subCategory
-    display
-    sort
-    memo
-    img
-  }`;
-
   const listInstagram = `listInstagram(limit: 6) {
     link
     type
@@ -170,7 +156,7 @@ export default function(c) {
     },
     // TODO(wkchan): Menu sorting and display
     queryHome: function() {
-      return client.query(createQuery([listMenu,
+      return client.query(createQuery([
         createCmsComponeFeedQuery('listHomeLatestArticle'),
         createCmsComponeFeedQuery('listHomeHighlight'),
         createCmsComponeFeedQuery('listBannerForContributor')
@@ -178,26 +164,25 @@ export default function(c) {
     },
     // Assume listCategArticle is not empty before calling queryCateg()
     queryCateg: function(listCategArticle) {
-      // Query listMenu and list<Categ=Fashion|...>Article
-      return client.query(createQuery([listCategArticle + ' ' + articleModel,
-        listMenu]));
+      // Query list<Categ=Fashion|...>Article
+      return client.query(createQuery([listCategArticle + ' ' + articleModel]));
     },
     queryArticle: function(listCategArticle) {
       return client.query(createQuery([listCategArticle + ' ' + articleModel,
-        listMenu, listInstagram]));
+        listInstagram]));
     },
     queryEditorPicks: function() {
-      return client.query(createQuery([listEditorPick, listMenu,
+      return client.query(createQuery([listEditorPick,
         listInstagram]));
     },
     queryContributorIndex: function() {
-      return client.query(createQuery([listMenu,
+      return client.query(createQuery([
         createCmsComponeFeedQuery('listContributor')
       ]));
     },
     queryContributorArticles: function(contrName) {
       return client.query(createQueryWithParams('$name: String',
-        [listMenu, listContributorArticle]), {name: contrName});
+        [listContributorArticle]), {name: contrName});
     }
   };
 };

@@ -10,22 +10,10 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
   $scope.loadingArticles = false;
   $scope.moreArticleGroups = [];
 
-  function currentCateg(categs, categEname) {
-    for (var i = 0; i < categs.length; i++) {
-      if (('add' + categs[i].eName) === categEname) {
-        return categs[i];
-      }
-    }
-    return null;
-  }
-
   var listCategArticle = c.TAG_TO_LIST_ARTICLE_API[categEname];
   if (listCategArticle) {
     gqModel.queryCateg(listCategArticle).then(function(res) {
       $timeout(function() {
-        var categs = res.listMenu || [];
-        $scope.currentCateg = currentCateg(categs, categEname);
-        $scope.categs = queryHandler.parseMenu(categs);
         articles = res[listCategArticle] || [];
         if (articles.length === 0) {
           return;

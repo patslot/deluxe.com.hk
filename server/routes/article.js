@@ -1,8 +1,6 @@
 var util = require('util');
 
-module.exports = function(gQuery, categMapping) {
-  var queryHandler = require('../middleware/queryHandler.js')();
-
+module.exports = function(gQuery, categMapping, queryHandler) {
   function renderArticle(req, res) {
     var articleID = req.params.articleID;
     var article = {};
@@ -26,6 +24,7 @@ module.exports = function(gQuery, categMapping) {
           });
           article.video = videos[0];
         }
+        article.menu = queryHandler.parseMenu(result.listMenu);
         res.render('articleDetail', article);
       }, function(err) {
         console.error(err);
@@ -35,6 +34,7 @@ module.exports = function(gQuery, categMapping) {
       gQuery.cmsArticleQuery(articleID).then(function (result) {
         article = util._extend(article, result.getCMSArticleDetail);
         article.video = article.videoFile;
+        article.menu = queryHandler.parseMenu(result.listMenu);
         res.render('articleDetail', article);
       }, function (err) {
         console.error(err);
@@ -43,6 +43,15 @@ module.exports = function(gQuery, categMapping) {
     } else {
       res.sendStatus(500, 'Invalid article id: ' + articleID);
     }
+  }
+
+  function getCurrentCateg(categs, categName) {
+    for (var i = 0; i < categs.length; i++) {
+      if (categs[i].name === categName) {
+        return categs[i];
+      }
+    }
+    return null;
   }
 
   function renderArticles(req, res) {
@@ -58,7 +67,11 @@ module.exports = function(gQuery, categMapping) {
     gQuery.categQuery(listCategAPI).then(function(result) {
       var articles = queryHandler.parseArticles(categ,
         (result[listCategAPI] || []).slice(0, 5));
+      var categs = result.listMenu || [];
+      var currentCateg = getCurrentCateg(categs, categ);
       res.render('categ', {
+        menu: queryHandler.parseMenu(categs),
+        categImg: currentCateg ? currentCateg.img : '',
         article1: articles.length > 0 ? articles[0] : null,
         articles2to5: articles.length > 1 ? articles.slice(1) : [],
         ename: ename,

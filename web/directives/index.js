@@ -1,4 +1,3 @@
-export { default as menu } from './menu';
 export { default as instagram } from './instagram';
 export { default as facebook } from './facebook';
 export { default as latestArticles } from './latestArticles';

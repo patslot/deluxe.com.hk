@@ -29,7 +29,6 @@ module.exports = function(options) {
     .factory('gqModel', ['const', services.gqModel]);
 
   angular.module('appDirectives', [])
-    .directive('topMenu', [dirs.menu])
     .directive('latestArticles', [dirs.latestArticles])
     .directive('articlesInCateg', [dirs.articlesInCateg])
     .directive('addCarousel', ['$timeout', dirs.addCarousel])

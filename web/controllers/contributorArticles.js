@@ -10,7 +10,6 @@ export default function($timeout, $scope, gqModel, $attrs, queryHandler) {
 
   gqModel.queryContributorArticles($attrs.contrName).then(function(res) {
     $timeout(function() {
-      $scope.categs = queryHandler.parseMenu(res.listMenu);
       articles = res.listContributorArticle || [];
       var latest4Articles = articles.slice(0, articleCount);
       latest4Articles.forEach(function(a) {

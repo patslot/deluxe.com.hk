@@ -21,7 +21,6 @@ export default function($timeout, $scope, gqModel, queryHandler) {
   };
   gqModel.queryContributorIndex().then(function(res) {
     $timeout(function() {
-      $scope.categs = queryHandler.parseMenu(res.listMenu);
       contributors = res.listContributor || [];
       var firstBlockContributors  = processContributors(
         contributors.slice(0, contributorCount));

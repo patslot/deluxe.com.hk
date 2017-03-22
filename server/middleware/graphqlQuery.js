@@ -16,63 +16,61 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     }
   `);
 
-  const newsArticleQ = `
-    query ($id: String) {
-      getNewsArticleDetail(articleID: $id) {
-        brandId
-        brandArticleId
-        brandCategoryId
-        brandCategoryName
-        brandName
-        mlCategoryId
-        mlArticleId
-        issueId
-        magIssueId
-        pubDate
-        lastUpdate
-        displayTime
-        forceToShowDate
-        title
-        subTitle
-        intro
-        label
-        pageName
-        allowComment
-        pollingWidgetId
-        tags
-        newsTrack
-        themeTags
-        level3Category
-        level2Category
-        level1Category
-        level0Category
-        showRelatedArticleAtTop
-        mediaGroup {
-          type
-          smallPath
-          largePath
-          width
-          height
-          source
-          videoId
-          url
-          quality
-        }
-        contentBlocks {
-          subHead
-          photos {
-            ...${photo}
-          }
-          content
-        }
-        introPhotos {
+  const getNewsArticleDetail = `
+    getNewsArticleDetail(articleID: $id) {
+      brandId
+      brandArticleId
+      brandCategoryId
+      brandCategoryName
+      brandName
+      mlCategoryId
+      mlArticleId
+      issueId
+      magIssueId
+      pubDate
+      lastUpdate
+      displayTime
+      forceToShowDate
+      title
+      subTitle
+      intro
+      label
+      pageName
+      allowComment
+      pollingWidgetId
+      tags
+      newsTrack
+      themeTags
+      level3Category
+      level2Category
+      level1Category
+      level0Category
+      showRelatedArticleAtTop
+      mediaGroup {
+        type
+        smallPath
+        largePath
+        width
+        height
+        source
+        videoId
+        url
+        quality
+      }
+      contentBlocks {
+        subHead
+        photos {
           ...${photo}
         }
+        content
+      }
+      introPhotos {
+        ...${photo}
       }
     }
   `
 
-  const cmsArticleQ = `query($id: String) {
+  const getCMSArticleDetail = `
     getCMSArticleDetail(articleID: $id) {
       categoryID
       categoryName
@@ -107,7 +105,7 @@ module.exports = function(GRAPHQL_ENDPOINT) {
       tag
       restricted
     }
-  }`;
+  `;
 
   const listMPM = `listMPM {
     homeGalleryID
@@ -179,6 +177,20 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     }
   }`;
 
+  const listMenu = `listMenu {
+    categoryID
+    campaignID
+    name
+    eName
+    showNew
+    genCatJSON
+    subCategory
+    display
+    sort
+    memo
+    img
+  }`;
+
   var createCmsComponeFeedQuery = function(queryName) {
     return queryName + ' ' + CmsComponeFeedItem;
   };
@@ -187,25 +199,36 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     return 'query { ' + queries.join(' ') + ' }';
   };
 
+  var createQueryWithParams = function(paramStr, queries) {
+    return 'query (' + paramStr + ') { ' + queries.join(' ') + ' }';
+  };
+
   return {
     newsArticleQuery: function(articleID) {
-      return client.query(newsArticleQ, {id: articleID});
+      return client.query(createQueryWithParams('$id: String',
+        [listMenu, getNewsArticleDetail]), {id: articleID});
     },
     // For CMS article or editor pick article
     cmsArticleQuery: function(articleID) {
-      return client.query(cmsArticleQ, {id: articleID});
+      return client.query(createQueryWithParams('$id: String',
+        [listMenu, getCMSArticleDetail]), {id: articleID});
     },
     homeQuery: function() {
       return client.query(createQuery([listMPM,
+        listMenu,
         createCmsComponeFeedQuery('listHomeLatestArticle')
       ]));
     },
     categQuery: function(listCategArticle) {
-      return client.query(createQuery([listCategArticle + ' ' + articleModel]));
+      return client.query(createQuery([listCategArticle + ' ' + articleModel,
+        listMenu]));
     },
-    contributorIndex: function() {
-      return client.query('query { ' +
-        createCmsComponeFeedQuery('listContributor') + ' }');
+    contributorIndexQuery: function() {
+      return client.query(createQuery([listMenu]));
+    },
+    contributorArticlesQuery: function() {
+      return client.query(createQuery([listMenu,
+        createCmsComponeFeedQuery('listContributor')]));
     }
   };
 };

@@ -1,0 +1,212 @@
+<div class="nm_v_menu visible-xs" vmenu="content">
+  <div>
+    <div class="mm_container">
+      <div class="logo">
+        <a href="/"><img src="/img/imgpsh_fullsize.png"></a>
+        <div class="close_btn" vmenu="menu_close_trigger"></div>
+      </div>
+    
+      <div class="mn_major_menu">
+        <ul>
+          <% menu.main.forEach(function(m) { %>
+          <li>
+            <a href="/<%= m.name %>" target="_self">
+              <%= m.name %>
+            </a>
+          </li>
+          <% }) %>
+        </ul>
+      </div>
+    
+      <div class="mn_more_menu">
+        <div>More</div>
+        <ul>
+          <% menu.sub.forEach(function(m) { %>
+          <li>
+            <a href="/<%= m.name %>" target="_self">
+              <%= m.name %>
+            </a>
+          </li>
+          <% }) %>
+        </ul>
+      </div>
+      <div class="mobile_subscribe">
+        <div class="nl-content">
+          訂閱Apple Daily Deluxe 電子版以獲得最新資訊及優惠
+        </div>
+        <form id="mobile_subscript_form">
+          <div class="form-group col-xs-6">
+            <input type="text" class="form-control lastname" placeholder="姓" maxlength="10">
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>
+          <div class="form-group col-xs-6">
+            <input type="text" class="form-control firstname" placeholder="名" maxlength="10">
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>
+          <div class="form-group col-xs-12">
+            <input type="email" class="form-control email" placeholder="電子郵件地址" maxlength="50">
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>
+          <div class="privacy-block col-xs-12">
+            <div class="privacy_block_checkbox">
+              <input type="checkbox" name="privacycheck" value="privacycheck" id="privacycheck" required>
+            </div>
+            <div class="privacy_block_content">
+              <label>本人已閱讀接受<a href="http://www.nextdigital.com.hk/info/tnc.html" target="_blank"><u>個人資料的條款</u></a></label>
+            </div>
+          </div>
+          <div class="promotion-block col-xs-12">
+            <div class="promotion_block_checkbox">
+              <input type="checkbox" name="promotioncheck" value="promotioncheck" id="promotioncheck">
+            </div>
+            <div class="promotion_block_content">
+              <label>本人願意收取就有關Next Media的刊物作直銷及品牌推廣之資訊。</label>
+            </div>
+          </div>
+          <button type="提交" class="btn btn-secondary submit-btn" onclick="mobileValidFunction()">提交</button>
+        </form>
+      </div>
+      <div class="icons">
+        <span class="menu_fb_icon"><img src="/img/fbIcon.png"></span>
+        <span class="menu_ig_icon"><img src="/img/igicons.png"></span>
+      </div>
+      <div class="mn_third_menu">
+        <ul>
+          <li><a href="http://www.nextdigital.com.hk/info/privacy.html" target="_self">私隱聲明</a></li>
+          <li><a href="http://www.nextdigital.com.hk/info/tnc.html" target="_self">服務條款</a></li>
+          <li><a href="http://nextmobile.hk/en/home" target="_self">刊登廣告</a></li>
+          <li><a href="http://www.nextdigital.com.hk/info/contactus.html" target="_self">聯絡我們</a></li>
+        </ul>
+        © 2016 AD Internet Limited. All rights reserved. 版權所有 不得轉載
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .mm_container {
+    height: auto;
+    overflow: scroll;
+  }
+  
+  .mm_container .mn_major_menu {
+    margin: 15px 30px;
+    border-bottom: #4C4C4C solid 1px;
+    text-align: left;
+  }
+  
+  .mm_container .mn_major_menu a {
+    color: #4C4C4C;
+  }
+  
+  .mm_container .mn_more_menu {
+    margin: 15px 30px;
+    border-bottom: #4C4C4C solid 1px;
+    text-align: left;
+  }
+  
+  .mm_container .mn_more_menu a {
+    color: #4C4C4C;
+  }
+  
+  .mm_container .mn_third_menu {
+    margin: 15px 30px;
+    border-bottom: #4C4C4C solid 1px;
+    text-align: left;
+  }
+  
+  .mm_container .mn_third_menu a {
+    color: #4C4C4C;
+  }
+  
+  .mn_more_menu ul {
+    list-style-type: none;
+  }
+  
+  .mn_more_menu li {
+    margin-top: 5px;
+  }
+  
+  .mn_major_menu ul {
+    list-style-type: none;
+    padding-left: 0px;
+  }
+  
+  .mn_major_menu li {
+    margin-top: 5px;
+  }
+  
+  .mn_third_menu ul {
+    list-style-type: none;
+    padding-left: 0px;
+  }
+  
+  .mn_third_menu li {
+    margin-top: 5px;
+  }
+  
+  .mobile_subscribe {
+    padding: 30px;
+  }
+  
+  .mm_container .index-logo {
+    display: inline-table;
+    width: 100%;
+  }
+  
+  .mm_container .index-logo .logo {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    display: table-column;
+    margin: 0 auto;
+    width: 294px;
+    height: 85px;
+    background: url(/img/imgpsh_fullsize.png) no-repeat center;
+    background-size: 200px;
+  }
+  
+  .mm_container .icons {
+    margin-left: 30px;
+    margin-right: 30px;
+    padding-bottom: 8px;
+    border-bottom: #4C4C4C solid 1px;
+  }
+  
+  .mobile_subscribe input+.form-control-feedback {
+    right: 20px;
+  }
+</style>
+
+<script>
+  $(document).ready(function() {
+    $('#mobile_subscript_form .glyphicon').hide();
+    $('[vmenu="menu_close_trigger"]').on('click', toggleMenu);
+  });
+
+  function mobileValidFunction() {
+    $('#mobile_subscript_form .glyphicon').hide();
+    var isTrue = true;
+    if (!$('#mobile_subscript_form .lastname').val()) {
+      $('#mobile_subscript_form .lastname').parent().addClass('has-error');
+      $('#mobile_subscript_form .lastname').next().show();
+      isTrue = false;
+    }
+    if (!$('#mobile_subscript_form .firstname').val()) {
+      $('#mobile_subscript_form .firstname').parent().addClass('has-error');
+      $('#mobile_subscript_form .firstname').next().show();
+      isTrue = false;
+    }
+    if (!$('#mobile_subscript_form .email').val()) {
+      $('#mobile_subscript_form .email').parent().addClass('has-error');
+      $('#mobile_subscript_form .email').next().show();
+      isTrue = false;
+    }
+    if (isTrue) {
+      return true;
+    } else {
+      event.preventDefault()
+      return false;
+    }
+  }
+</script>

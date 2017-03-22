@@ -5,7 +5,6 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
 
   var handleRes = function (articleKey, res) {
     $timeout(function () {
-      $scope.categs = queryHandler.parseMenu(res.listMenu);
       var articles = (res[articleKey] || []).filter(function (item) {
         return item.id !== articleId;
       });
