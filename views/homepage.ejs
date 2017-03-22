@@ -79,9 +79,16 @@
           <div ng-if="loaded">
             <midbanner midbanner-id="midbanner_1"></midbanner>
             <div class="nm_section">
-              <div class="row">
+              <!-- NOTE: Used when event pages are ready -->
+              <!-- div class="row">
                 <div class="col-md-8 nm_section">
-                  <div ng-include="'/partials/homeArticles5to8.html'"></div>
+                  <div class="row">
+                    <div class="col-md-6 nm_section_block" ng-repeat="a in latestArticles5to8">
+                      <fixedbanner ng-if="$index === 3" fixedbanner-id="fixedbanner3"
+                        fixedbanner-num="3"></fixedbanner>
+                      <home-article add-article="a"></home-article>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-md-4 nm_section">
                   <instagram-medias ig-medias="igMedias"></instagram-medias>
@@ -89,13 +96,35 @@
                     <img ng-src="{{::eBanner.imgName}}" />
                   </a>
                 </div>
+              </div -->
+              <!-- NOTE: Used when event pages are not ready -->
+              <div class="row">
+                <div class="col-sm-4 nm_section_block" ng-repeat="a in latestArticles5to6 track by $index">
+                  <home-article add-article="a"></home-article>
+                </div>
+                <div class="hidden-xs col-sm-4 nm_section_block">
+                  <instagram-medias ig-medias="igMedias"></instagram-medias>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4 nm_section_block" ng-repeat="a in latestArticles7to9 track by $index">
+                  <fixedbanner ng-if="$index === 1" fixedbanner-id="fixedbanner3"
+                    fixedbanner-num="3"></fixedbanner>
+                  <home-article add-article="a" ng-if="$index < 2"></home-article>
+                </div>
+                <div class="visible-xs col-sm-4 nm_section_block">
+                  <instagram-medias ig-medias="igMedias"></instagram-medias>
+                </div>
+                <div class="col-sm-4 nm_section_block" ng-repeat="a in latestArticles7to9 track by $index">
+                  <home-article add-article="a" ng-if="$index === 2"></home-article>
+                </div>
               </div>
             </div>
             <add-carousel title-class="'nm_editor_pick'" carousel-items="editorPicks" carousel-div="'editor-picks-carousel'"></add-carousel>
             <div class="nm_section" ng-repeat="articles in categArticles">
               <midbanner ng-if="$index % 3 === 0" midbanner-id="midbanner_categ_{{$index}}"></midbanner>
               <div class="row">
-                <div class="col-sm-4 nm_section_block" ng-repeat="a in articles">
+                <div class="col-sm-4 nm_section_block" ng-repeat="a in articles track by $index">
                   <fixedbanner ng-if="$parent.$index === 0 && $index === 1"
                     fixedbanner-id="fixedbanner4"
                     fixedbanner-num="4"></fixedbanner>

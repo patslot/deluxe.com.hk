@@ -4,7 +4,6 @@
 export default function($timeout, $scope, gqModel, c, queryHandler) {
   var isReady = false;
   var latestArticles = [];
-  var articleReg = new RegExp('^(\\d+_)*\\d+$');
 
   $scope.loading = false;
   $scope.loaded = false;
@@ -16,24 +15,6 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
       listArticles.wedding, listArticles.lifeStyle];
   }
 
-  function parseLinkURL(article) {
-    if (articleReg.test(article.linkURL)) {
-      article.linkURL = '/' + article.catName + '/' + article.linkURL + '/' +
-        article.content;
-      article.linkTarget = '_self';
-    } else {
-      article.linkTarget = '_blank';
-    }
-  }
-
-  function parseArticles(origArticles) {
-    var articles = origArticles || [];
-    articles.forEach(function (a) {
-      parseLinkURL(a);
-    });
-    return articles;
-  }
-
   gqModel.queryHome().then(function(res) {
     $timeout(function() {
       // TODO(wkchan): Move this parts as a function for unit test
@@ -43,7 +24,7 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
         h.image = h.imgName;
         h.label = h.catName;
         h.title = h.content;
-        parseLinkURL(h);
+        queryHandler.parseLinkURL(h);
       });
       $scope.highlights = highlights;
       var cBanners = res.listBannerForContributor || [];
@@ -67,16 +48,23 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
     }
     $scope.loading = true;
 
-    var latestArticles5to8 = latestArticles.length > 4 ?
+    // NOTE: Used when event pages are ready
+    /*var latestArticles5to8 = latestArticles.length > 4 ?
       latestArticles.slice(4, 8) : [];
-    $scope.latestArticles5to8 = parseArticles(latestArticles5to8);
+    $scope.latestArticles5to8 = queryHandler.parseHomeArticles(latestArticles5to8);*/
+    // NOTE: Used when event pages are not ready
+    var latestArticles5to9 = latestArticles.length > 4 ?
+      latestArticles.slice(4, 9) : [];
+    latestArticles5to9 = queryHandler.parseHomeArticles(latestArticles5to9);
+    $scope.latestArticles5to6 = latestArticles5to9.slice(0, 2);
+    $scope.latestArticles7to9 = latestArticles5to9.slice(2, 5);
 
     //listInstagram, listHomeEditorPick
     var categs = createLoadCateg();
     gqModel.queryHomeLazy(categs).then(function(res) {
       $timeout(function() {
         categs.forEach(function(categ) {
-         $scope.categArticles.push(parseArticles(res[categ]));
+         $scope.categArticles.push(queryHandler.parseHomeArticles(res[categ]));
         });
         $scope.igMedias = res.listInstagram || [];
         var editorPicks = res.listHomeEditorPick || [];

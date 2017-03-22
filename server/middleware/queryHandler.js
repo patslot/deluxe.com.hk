@@ -78,6 +78,7 @@ module.exports = function() {
   }
 
   return {
+    parseLinkURL: parseLinkURL,
     parseHomeArticles: parseHomeArticles,
     parseMenu: parseMenu,
     parseCmsArticle: parseCmsArticle,
