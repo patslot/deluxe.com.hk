@@ -4,6 +4,8 @@ function createNameToAdTag() {
     'Contributor', 'Editorpicks'].forEach(function(categ) {
     nameToAdTag[categ] = {list: categ + '_list', detail: categ + '_detail'}
   });
+  // Category URL 'Editor picks' is used by ad tag is 'Editorpicks'
+  nameToAdTag['Editor picks'] = nameToAdTag.Editorpicks;
   return nameToAdTag;
 }
 
@@ -30,7 +32,7 @@ module.exports = {
     'Wedding': 'add_wedd',
     'Lifestyle': 'add_life',
     // Different content API for editor picks and events: not using Ename
-    'Editorpicks': 'editor_picks',
+    'Editor picks': 'editor_picks',
     'Contributor': 'contributor',
     'Event': 'Event'
   },
@@ -40,7 +42,8 @@ module.exports = {
     'add_beau': 'listBeautyArticle',
     'add_luxe': 'listLuxeArticle',
     'add_wedd': 'listWeddingArticle',
-    'add_life': 'listLifeStyleArticle'
+    'add_life': 'listLifeStyleArticle',
+    'editor_picks': 'listEditorPick',
   },
   getArticleType: getArticleType
 };

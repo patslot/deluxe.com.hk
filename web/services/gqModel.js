@@ -171,9 +171,14 @@ export default function(c) {
       return client.query(createQuery([listCategArticle + ' ' + articleModel,
         listInstagram]));
     },
+    // queryEditorPicks used in editor pick articles page, it also query instagram
     queryEditorPicks: function() {
       return client.query(createQuery([listEditorPick,
         listInstagram]));
+    },
+    // queryEditorPickArticles only query editor pick articles
+    queryEditorPickArticles: function() {
+      return client.query(createQuery([listEditorPick]));
     },
     queryContributorIndex: function() {
       return client.query(createQuery([

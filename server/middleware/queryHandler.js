@@ -69,10 +69,19 @@ module.exports = function() {
     return articles;
   }
 
+  function parseCmsArticles(categName, origArticles) {
+    var articles = origArticles || [];
+    articles.forEach(function(a) {
+      parseCmsArticle(categName, a)
+    });
+    return articles;
+  }
+
   return {
     parseHomeArticles: parseHomeArticles,
     parseMenu: parseMenu,
     parseCmsArticle: parseCmsArticle,
+    parseCmsArticles: parseCmsArticles,
     parseNewsArticle: parseNewsArticle,
     parseArticles: parseArticles
   }

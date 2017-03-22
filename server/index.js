@@ -20,6 +20,7 @@ module.exports = function(options) {
   app.set('view engine', 'ejs');
 
   app.get('/', home.render);
+  // TODO: Add favicon.ico?
   app.get('/favicon.ico', function(req, res) {
     res.sendStatus(204);
   });

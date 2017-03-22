@@ -214,6 +214,20 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     intro
   }`;
 
+  const listEditorPick = `listEditorPick {
+    id
+    categoryID
+    publish
+    lastUpdate
+    title
+    articleThumbnail
+    videoThumbnail
+    videoFile
+    anvato
+    youtube
+    intro
+  }`;
+
   var createCmsComponeFeedQuery = function(queryName) {
     return queryName + ' ' + CmsComponeFeedItem;
   };
@@ -258,6 +272,9 @@ module.exports = function(GRAPHQL_ENDPOINT) {
           listContributorArticle
         ]),
         {name: contrName});
-    }
+    },
+    queryEditorPicks: function() {
+      return client.query(createQuery([listMenu, listEditorPick]));
+    },
   };
 };

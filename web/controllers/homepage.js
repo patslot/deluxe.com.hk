@@ -85,7 +85,7 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
           p.image = p.videoThumbnail || p.imgFile;
           p.title = p.title;
           p.hasVideo = p.videoFile !== '';
-          p.linkURL = '/Editorpicks/' + p.id + '/' + p.title;
+          p.linkURL = '/Editor picks/' + p.id + '/' + p.title;
           p.linkTarget = '_self';
         });
         $scope.editorPicks = editorPicks;

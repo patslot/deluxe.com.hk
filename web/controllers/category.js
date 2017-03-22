@@ -11,8 +11,17 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
   $scope.moreArticleGroups = [];
 
   var listCategArticle = c.TAG_TO_LIST_ARTICLE_API[categEname];
-  if (listCategArticle) {
-    gqModel.queryCateg(listCategArticle).then(function(res) {
+  var query = null;
+  var queryHandleFunc = null;
+  if (categName === 'Editor picks') {
+    query = gqModel.queryEditorPickArticles();
+    queryHandleFunc = queryHandler.parseCmsArticles;
+  } else if (listCategArticle) {
+    query = gqModel.queryCateg(listCategArticle);
+    queryHandleFunc = queryHandler.parseArticles;
+  }
+  if (query) {
+    query.then(function(res) {
       $timeout(function() {
         articles = res[listCategArticle] || [];
         if (articles.length === 0) {
@@ -29,7 +38,7 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
   };
 
   $scope.loadCategArticles = function() {
-    if (!isReady || $scope.noMoreArticles) {
+    if (!isReady || $scope.noMoreArticles || !queryHandleFunc) {
       return false;
     }
     if ($scope.loadingArticles) {
@@ -39,7 +48,7 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
     if (categIdx < articles.length) {
       $scope.loadingArticles = true;
       var moreArticles = articles.slice(categIdx, categIdx + articleCount);
-      moreArticles = queryHandler.parseArticles(categName, moreArticles);
+      moreArticles = queryHandleFunc(categName, moreArticles);
       if (moreArticles.length > 0) {
         $scope.moreArticleGroups.push(moreArticles);
       }

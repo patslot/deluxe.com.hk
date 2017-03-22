@@ -65,8 +65,16 @@ module.exports = function(gQuery, categMapping, queryHandler) {
     if (!ename || !adTagMapping || !listCategAPI) {
       return next();
     }
-    gQuery.categQuery(listCategAPI).then(function(result) {
-      var articles = queryHandler.parseArticles(categ,
+    var query, handleFunc;
+    if (categ === 'Editor picks') {
+      query = gQuery.queryEditorPicks();
+      handleFunc = queryHandler.parseCmsArticles;
+    } else {
+      query = gQuery.categQuery(listCategAPI);
+      handleFunc = queryHandler.parseArticles;
+    }
+    query.then(function(result) {
+      var articles = handleFunc(categ,
         (result[listCategAPI] || []).slice(0, 5));
       var categs = result.listMenu || [];
       var currentCateg = getCurrentCateg(categs, categ);
