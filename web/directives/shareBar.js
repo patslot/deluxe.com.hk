@@ -30,11 +30,13 @@ export default function($location) {
   return {
     restrict: 'E',
     scope: {
-      title: '@postTitle'
+      title: '@postTitle',
+      id: '@postId'
     },
     template: TEMPLATE,
     link: function (scope) {
-      scope.url = $location.absUrl();
+      scope.url = $location.protocol() + '://' + $location.host() + ':' +
+        $location.port() + '/article/' + scope.id;
       scope.css = css;
     }
   };

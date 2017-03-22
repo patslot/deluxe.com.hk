@@ -1,17 +1,19 @@
 <div class="ctb_item col-xs-12 col-md-4"
   ng-repeat="contributor in contributors track by $index">
-  <div class="ctb_item_image">
-    <img ng-src="{{::contributor.imgName}}">
-  </div>
-  <div class="ctb_item_container">
-    <div class="ctb_item_name">
-      {{::contributor.catName}}
+  <a ng-href="/Contributor/{{::contributor.catName}}">
+    <div class="ctb_item_image">
+      <img ng-src="{{::contributor.imgName}}">
     </div>
-    <div class="ctb_item_post">
-      {{::contributor.post}}
+    <div class="ctb_item_container">
+      <div class="ctb_item_name">
+        {{::contributor.catName}}
+      </div>
+      <div class="ctb_item_post">
+        {{::contributor.post}}
+      </div>
+      <div class="ctb_item_content">
+        {{::contributor.desc}}
+      </div>
     </div>
-    <div class="ctb_item_content">
-      {{::contributor.desc}}
-    </div>
-  </div>
+  </a>
 </div>

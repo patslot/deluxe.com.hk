@@ -46,6 +46,7 @@ module.exports = function(GRAPHQL_ENDPOINT) {
       level1Category
       level0Category
       showRelatedArticleAtTop
+      categoryName
       mediaGroup {
         type
         smallPath
@@ -73,7 +74,6 @@ module.exports = function(GRAPHQL_ENDPOINT) {
   const getCMSArticleDetail = `
     getCMSArticleDetail(articleID: $id) {
       categoryID
-      categoryName
       publish
       expire
       lastUpdate
@@ -104,6 +104,15 @@ module.exports = function(GRAPHQL_ENDPOINT) {
       oldSecName
       tag
       restricted
+      categoryName
+    }
+  `;
+
+  const getContributorName = `
+    getCMSArticleDetail(articleID: $id) {
+      ... on ContributorArticleDetail {
+        contributorName
+      }
     }
   `;
 
@@ -225,7 +234,7 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     // For CMS article or editor pick article
     cmsArticleQuery: function(articleID) {
       return client.query(createQueryWithParams('$id: String',
-        [listMenu, getCMSArticleDetail]), {id: articleID});
+        [listMenu, getCMSArticleDetail, getContributorName]), {id: articleID});
     },
     homeQuery: function() {
       return client.query(createQuery([listMPM,

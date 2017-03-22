@@ -2,6 +2,7 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
   var categEname = $attrs.categEname;
   var categName = $attrs.categName;
   var articleId = $attrs.articleId;
+  var articleAuthor = $attrs.articleAuthor;
 
   var handleRes = function (articleKey, res) {
     $timeout(function () {
@@ -21,6 +22,13 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
         item.__typename = 'CmsArticle';
       });
       handleRes('listEditorPick', res);
+    });
+  } else if (categEname === 'contributor') {
+    gqModel.queryContributorArticles(articleAuthor).then(function (res) {
+      res.listContributorArticle.forEach(function (item) {
+        item.__typename = 'CmsArticle';
+      });
+      handleRes('listContributorArticle', res);
     });
   } else {
     var listCategArticle = c.TAG_TO_LIST_ARTICLE_API[categEname];

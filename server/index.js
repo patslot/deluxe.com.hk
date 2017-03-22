@@ -34,6 +34,7 @@ module.exports = function(options) {
   app.get('/Contributor/:contrName', contributor.renderArticles);
   app.get('/:categ/:articleID/:title', article.renderArticle);
   app.get('/:categ', article.renderArticles);
+  app.get('/article/:articleID', article.renderArticle);
 
   app.use(function(err, req, res, next) {
     console.error(err);

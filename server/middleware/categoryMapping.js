@@ -31,6 +31,7 @@ module.exports = {
     'Lifestyle': 'add_life',
     // Different content API for editor picks and events: not using Ename
     'Editorpicks': 'editor_picks',
+    'Contributor': 'contributor',
     'Event': 'Event'
   },
   nameToAdTag: nameToAdTag,

@@ -5,14 +5,14 @@ module.exports = function(gQuery, categMapping, queryHandler) {
     var articleID = req.params.articleID;
     var article = {};
     article.id = articleID;
-    article.categ = req.params.categ;
-    article.ename = categMapping.nameToEname[article.categ];
-    article.adTag = categMapping.nameToAdTag[article.categ].detail;
     article.type = categMapping.getArticleType(articleID);
 
     if (articleID && article.type === 'news') {
       gQuery.newsArticleQuery(articleID).then(function(result) {
         article = util._extend(article, result.getNewsArticleDetail);
+        article.ename = categMapping.nameToEname[article.categoryName];
+        article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
+        article.contributorName = '';
         article.video = null;
         var videos = article.mediaGroup.filter(function (item) {
           return item.type === 'videos';
@@ -32,6 +32,10 @@ module.exports = function(gQuery, categMapping, queryHandler) {
     } else if (article.type === 'cms') {
       gQuery.cmsArticleQuery(articleID).then(function (result) {
         article = util._extend(article, result.getCMSArticleDetail);
+        article.contributorName = article.contributorName ?
+          article.contributorName.replace(/\,/,'') : '';
+        article.ename = categMapping.nameToEname[article.categoryName];
+        article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
         article.video = article.videoFile;
         article.menu = queryHandler.parseMenu(result.listMenu);
         res.render('articleDetail', article);

@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="/css/articleDetail.css" />
   </head>
   <body ng-app="addv2" ng-controller="ArticleController"
-    categ-ename="<%= ename %>" categ-name="<%= categ %>"
-    article-id="<%= id %>">
+    categ-ename="<%= ename %>" categ-name="<%= categoryName %>"
+    article-id="<%= id %>", article-author="<%= contributorName %>">
     <skinner-block></skinner-block>
     <splash-screen></splash-screen>
     <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
@@ -53,12 +53,13 @@
               <% if (type === "news") { %>
                 <div class="pull-right nm_mpm col-xs-12">
                   <div class="mpm_content artd_container">
-                    <div class="artd_article_label"><%- categ %></div>
+                    <div class="artd_article_label"><%- categoryName %></div>
                     <div class="artd_article_title"><%- title %></div>
                     <div class="artd_article_publish_date" ng-cloak>
                       日期：{{"<%= pubDate %>" | amUtc | amDateFormat:'lll'}}
                     </div>
-                    <share-bar post-title="'<%- title %>'"></share-bar>
+                    <share-bar post-id="<%- id %>"
+                      post-title="<%- title %>"></share-bar>
                     <div class="artd_article_video">
                       <div id="video_player"></div>
                     </div>
@@ -105,7 +106,7 @@
               <% } else if (type === "cms") { %>
                 <div class="pull-right nm_mpm col-xs-12">
                   <div class="mpm_content artd_container">
-                    <div class="artd_article_label"><%- categ %></div>
+                    <div class="artd_article_label"><%- categoryName %></div>
                     <div class="artd_article_title"><%- title %></div>
                     <div class="artd_article_publish_date">
                       日期：{{"<%- publish %>" | amUtc | amDateFormat:'lll'}}
