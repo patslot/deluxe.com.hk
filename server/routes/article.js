@@ -1,7 +1,7 @@
 var util = require('util');
 
 module.exports = function(gQuery, categMapping, queryHandler) {
-  function renderArticle(req, res) {
+  function renderArticle(req, res, next) {
     var articleID = req.params.articleID;
     var article = {};
     article.id = articleID;
@@ -27,8 +27,7 @@ module.exports = function(gQuery, categMapping, queryHandler) {
         article.menu = queryHandler.parseMenu(result.listMenu);
         res.render('articleDetail', article);
       }, function(err) {
-        console.error(err);
-        res.sendStatus(500, err);
+        return next(err);
       });
     } else if (article.type === 'cms') {
       gQuery.cmsArticleQuery(articleID).then(function (result) {
@@ -37,11 +36,10 @@ module.exports = function(gQuery, categMapping, queryHandler) {
         article.menu = queryHandler.parseMenu(result.listMenu);
         res.render('articleDetail', article);
       }, function (err) {
-        console.error(err);
-        res.sendStatus(500, err);
+        return next(err);
       });
     } else {
-      res.sendStatus(500, 'Invalid article id: ' + articleID);
+      return next();
     }
   }
 
@@ -54,15 +52,14 @@ module.exports = function(gQuery, categMapping, queryHandler) {
     return null;
   }
 
-  function renderArticles(req, res) {
+  function renderArticles(req, res, next) {
     var categ = req.params.categ;
     // TODO(wkchan): This code block also repeats in routes/article.js
     var ename = categMapping.nameToEname[categ];
     var adTagMapping = categMapping.nameToAdTag[categ];
     var listCategAPI = categMapping.enameToListCategAPI[ename || ''];
     if (!ename || !adTagMapping || !listCategAPI) {
-      res.status(500).send('Invalid article category: ' + categ);
-      return;
+      return next();
     }
     gQuery.categQuery(listCategAPI).then(function(result) {
       var articles = queryHandler.parseArticles(categ,
@@ -79,8 +76,7 @@ module.exports = function(gQuery, categMapping, queryHandler) {
         categ: categ
       });
     }, function(err) {
-      console.error(err);
-      res.status(500).send('Error in listing category articles: ' + err);
+      return next(err);
     });
   }
 

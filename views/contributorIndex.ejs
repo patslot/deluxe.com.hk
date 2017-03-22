@@ -4,11 +4,9 @@
     <%- include('partials/extHeader.ejs') %>
     <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
     <title>Contributor Index</title>
-    <link rel="stylesheet" href="/css/common.css" />
     <link rel="stylesheet" href="/css/contributor.css" />
   </head>
   <body ng-app="addv2" ng-controller="ContributorController">
-    <%- include('partials/app.ejs') %>
     <skinner-block></skinner-block>
     <splash-screen></splash-screen>
     <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
@@ -51,8 +49,8 @@
             </div>
           </div>
         </div>
-        <div ng-include="'/partials/footer.html'"></div>
-        <div ng-include="'/partials/newsletter.html'"></div>
+        <%- include('partials/footer.ejs') %>
+        <%- include('partials/newsletter.ejs') %>
       </div>
     </div>
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('partials/extHeader.ejs') %>
+  <title>Apple Daily Deluxe</title>
+  <%- include('partials/googleAdTag.ejs', {adTag: 'Index'}) %>
+</head>
+
+<body ng-app="addv2">
+    <skinner-block></skinner-block>
+    <splash-screen></splash-screen>
+    <%- include('partials/mobileMenu.ejs', {menu: {main:[], sub: []}}) %>
+    <%- include('partials/topMenu.ejs', {menu: {main:[], sub: []}}) %>
+    <div class="container nm_home">
+      <div class="row nm_row">
+        <div class="main_content">
+          <h1>404</h1>
+        </div>
+        <%- include('partials/footer.ejs') %>
+        <%- include('partials/newsletter.ejs') %>
+      </div>
+    </div>
+</body>
+
+</html>

@@ -2,15 +2,14 @@ module.exports = function(gQuery, categoryMapping, queryHandler) {
   var articleCount = 4;
   var contributorBlockCount = 6;
 
-  function renderArticles(req, res) {
+  function renderArticles(req, res, next) {
     var name = req.params.contrName;
     gQuery.contributorArticlesQuery(name).then(function(r) {
       var contributors = (r.listContributor || []).filter(function(c) {
         return c.catName === name;
       });
       if (contributors.length === 0) {
-        res.status(500).send('Cannot find a contributor having the name ' + name);
-        return;
+        return next();
       }
       var contributor = contributors[0];
       var splitPos = contributor.content.indexOf('|');
@@ -26,12 +25,11 @@ module.exports = function(gQuery, categoryMapping, queryHandler) {
         menu: queryHandler.parseMenu(r.listMenu),
         articles: articles});
     }, function(err) {
-      console.log(err);
-      res.status(500).send('Error in contributor articles query:' + err);
+      return next(err);
     });
   }
 
-  function renderIndex(req, res) {
+  function renderIndex(req, res, next) {
     var adTagMapping = categoryMapping.nameToAdTag['Contributor'];
     gQuery.contributorIndexQuery().then(function(r) {
       res.render('contributorIndex', {
@@ -40,8 +38,7 @@ module.exports = function(gQuery, categoryMapping, queryHandler) {
         adTag: adTagMapping.list
       });
     }, function(err) {
-      console.log(err);
-      res.status(500).send('Error in contributor index query:' + err);
+      return next(err);
     });
   }
 

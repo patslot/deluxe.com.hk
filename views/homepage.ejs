@@ -3,13 +3,11 @@
 
 <head>
   <%- include('partials/extHeader.ejs') %>
-    <title>Apple Daily Deluxe</title>
-    <%- include('partials/googleAdTag.ejs', {adTag: 'Index'}) %>
-      <link rel="stylesheet" href="/css/common.css" />
+  <title>Apple Daily Deluxe</title>
+  <%- include('partials/googleAdTag.ejs', {adTag: 'Index'}) %>
 </head>
 
 <body ng-app="addv2" ng-controller="HomepageController">
-  <%- include('partials/app.ejs') %>
     <skinner-block></skinner-block>
     <splash-screen></splash-screen>
     <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
@@ -101,8 +99,8 @@
             </div>
           </div>
         </div>
-        <div ng-include="'/partials/footer.html'"></div>
-        <div ng-include="'/partials/newsletter.html'"></div>
+        <%- include('partials/footer.ejs') %>
+        <%- include('partials/newsletter.ejs') %>
       </div>
     </div>
 </body>

@@ -35,5 +35,14 @@ module.exports = function(options) {
   app.get('/:categ/:articleID/:title', article.renderArticle);
   app.get('/:categ', article.renderArticles);
 
+  app.use(function(err, req, res, next) {
+    console.error(err);
+    return res.render("500");
+  });
+  
+  app.use(function(req, res) {
+    return res.render("404");
+  });
+  
   return app;
 }

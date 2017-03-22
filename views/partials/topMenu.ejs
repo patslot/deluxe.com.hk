@@ -8,6 +8,7 @@
         <div class="nav--menu">
           <label vmenu="trigger" for="nav-toggle" class="nav-toggle-icon"></label>
           <a href="/" class="logo"><img src="/img/imgpsh_fullsize.png"></a>
+          <% if (menu.main.length > 0) { %>
           <ul class="text">
             <% menu.main.forEach(function(m) { %>
             <li>
@@ -35,6 +36,7 @@
               <img src="/img/igicons.png">
             </span>
           </ul>
+          <% } %>
         </div>
       </div>
     </div>

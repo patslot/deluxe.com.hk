@@ -3,14 +3,12 @@
 
 <head>
   <%- include('partials/extHeader.ejs') %>
-    <title>Contributor Index</title>
-    <%- include('partials/googleAdTag.ejs', {adTag: 'Contributor_detail'}) %>
-      <link rel="stylesheet" type="text/css" href="/css/common.css" />
-      <link rel="stylesheet" type="text/css" href="/css/contributorArticles.css" />
+  <title>Contributor Index</title>
+  <%- include('partials/googleAdTag.ejs', {adTag: 'Contributor_detail'}) %>
+  <link rel="stylesheet" type="text/css" href="/css/contributorArticles.css" />
 </head>
 
 <body ng-app="addv2" ng-controller="ContributorArticlesController" contr-name="<%= contributor.catName %>">
-  <%- include('partials/app.ejs') %>
     <skinner-block></skinner-block>
     <splash-screen></splash-screen>
     <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
@@ -61,8 +59,8 @@
         </div>
       </div>
 
-      <div ng-include="'/partials/footer.html'"></div>
-      <div ng-include="'/partials/newsletter.html'"></div>
+      <%- include('partials/footer.ejs') %>
+      <%- include('partials/newsletter.ejs') %>
 </body>
 
 </html>

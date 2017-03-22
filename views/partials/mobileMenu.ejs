@@ -5,7 +5,7 @@
         <a href="/"><img src="/img/imgpsh_fullsize.png"></a>
         <div class="close_btn" vmenu="menu_close_trigger"></div>
       </div>
-    
+      <% if (menu.main.length > 0) { %>
       <div class="mn_major_menu">
         <ul>
           <% menu.main.forEach(function(m) { %>
@@ -30,6 +30,7 @@
           <% }) %>
         </ul>
       </div>
+      <% } %>
       <div class="mobile_subscribe">
         <div class="nl-content">
           訂閱Apple Daily Deluxe 電子版以獲得最新資訊及優惠
