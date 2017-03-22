@@ -50,6 +50,7 @@
                 </div>
               </div>
             </div>
+            <fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner>
 
             <div class="row">
               <div class="col-md-8 nm_section">
@@ -57,6 +58,8 @@
               </div>
               <div class="col-md-4 nm_section">
                 <facebook-block></facebook-block>
+                <fixedbanner fixedbanner-id="fixedbanner2"
+                  fixedbanner-num="2"></fixedbanner>
                 <a href="/Contributor">
                   <img ng-src="{{::cBanner.imgName}}" />
                 </a>
@@ -89,6 +92,9 @@
               <midbanner ng-if="$index % 3 === 0" midbanner-id="midbanner_categ_{{$index}}"></midbanner>
               <div class="row">
                 <div class="col-sm-4 nm_section_block" ng-repeat="a in articles">
+                  <fixedbanner ng-if="$parent.$index === 0 && $index === 1"
+                    fixedbanner-id="fixedbanner4"
+                    fixedbanner-num="4"></fixedbanner>
                   <home-article add-article="a"></home-article>
                 </div>
               </div>
