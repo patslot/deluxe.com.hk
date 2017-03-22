@@ -38,11 +38,11 @@ module.exports = function(options) {
 
   app.use(function(err, req, res, next) {
     console.error(err);
-    return res.render("500");
+    return res.render("500", {menu: {main: [], sub: []}});
   });
   
   app.use(function(req, res) {
-    return res.render("404");
+    return res.render("404", {menu: {main: [], sub: []}});
   });
   
   return app;
