@@ -1,0 +1,21 @@
+<% contributors.forEach(function(c, idx) { %>
+<div class="ctb_item col-xs-12 col-md-4">
+  <div class="ctb_item_image">
+    <img src="<%= c.imgName %>" />
+  </div>
+  <div class="ctb_item_container">
+    <div class="ctb_item_name">
+      <%= c.catName %>
+    </div>
+    <div class="ctb_item_post">
+      <%= c.post %>
+    </div>
+    <div class="ctb_item_content">
+      <%- c.desc %>
+    </div>
+  </div>
+</div>
+  <% if (idx === 0) { %>
+<fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner>
+  <% } %>
+<% }) %>

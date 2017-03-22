@@ -11,11 +11,6 @@ export default function($timeout, $scope, gqModel, $attrs, queryHandler) {
   gqModel.queryContributorArticles($attrs.contrName).then(function(res) {
     $timeout(function() {
       articles = res.listContributorArticle || [];
-      var latest4Articles = articles.slice(0, articleCount);
-      latest4Articles.forEach(function(a) {
-        queryHandler.parseCmsArticle('Contributor', a);
-      });
-      $scope.latest4Articles = latest4Articles;
       isReady = true;
     });
   });

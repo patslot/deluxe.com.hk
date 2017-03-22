@@ -22,11 +22,6 @@ export default function($timeout, $scope, gqModel, queryHandler) {
   gqModel.queryContributorIndex().then(function(res) {
     $timeout(function() {
       contributors = res.listContributor || [];
-      var firstBlockContributors  = processContributors(
-        contributors.slice(0, contributorCount));
-      $scope.firstContributor = firstBlockContributors[0];
-      $scope.restContributorsIn1stBlock = firstBlockContributors.slice(
-        1, contributorCount);
       isReady = true;
     });
   });

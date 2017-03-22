@@ -28,24 +28,7 @@
             </div>
             <div class="row nm_row">
               <div class="ctb_listing">
-                <div class="ctb_item col-xs-12 col-md-4">
-                  <div class="ctb_item_image">
-                    <img ng-src="{{::firstContributor.imgName}}">
-                  </div>
-                  <div class="ctb_item_container">
-                    <div class="ctb_item_name">
-                      {{::firstContributor.catName}}
-                    </div>
-                    <div class="ctb_item_post">
-                      {{::firstContributor.post}}
-                    </div>
-                    <div class="ctb_item_content">
-                      {{::firstContributor.desc}}
-                    </div>
-                  </div>
-                </div>
-                <fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner>
-                <contributor-block contributors="restContributorsIn1stBlock"></contributor-block>
+                <%- include('partials/contributorsBlock.ejs', {contributors: contributors}) %>
               </div>
             </div>
             <div lazy-scroll="loadContributors()" lazy-no-scroll="noMoreContributor">

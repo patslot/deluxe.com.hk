@@ -46,7 +46,7 @@
                 </div>
               </div>
               <div style="clear:both"></div>
-              <latest-articles add-articles="latest4Articles"></latest-articles>
+              <%- include('partials/contributorArticles.ejs', {articles: articles}) %>
             </div>
             <div class="ctb_two_col_container"
               lazy-scroll="loadArticles()" lazy-no-scroll="noMoreArticles">
@@ -59,8 +59,6 @@
             </div>
           </div>
         </div>
-      <!-- TODO(wkchan): Lazy load contributor's articles -->
-        </div-->
       </div>
 
       <div ng-include="'/partials/footer.html'"></div>

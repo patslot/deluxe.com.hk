@@ -191,6 +191,20 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     img
   }`;
 
+  const listContributorArticle = `listContributorArticle(name: $name) {
+    id
+    categoryID
+    publish
+    lastUpdate
+    title
+    articleThumbnail
+    videoThumbnail
+    videoFile
+    anvato
+    youtube
+    intro
+  }`;
+
   var createCmsComponeFeedQuery = function(queryName) {
     return queryName + ' ' + CmsComponeFeedItem;
   };
@@ -224,11 +238,17 @@ module.exports = function(GRAPHQL_ENDPOINT) {
         listMenu]));
     },
     contributorIndexQuery: function() {
-      return client.query(createQuery([listMenu]));
-    },
-    contributorArticlesQuery: function() {
       return client.query(createQuery([listMenu,
-        createCmsComponeFeedQuery('listContributor')]));
+        createCmsComponeFeedQuery('listContributor')
+      ]));
+    },
+    contributorArticlesQuery: function(contrName) {
+      return client.query(createQueryWithParams('$name: String',
+        [listMenu,
+          createCmsComponeFeedQuery('listContributor'),
+          listContributorArticle
+        ]),
+        {name: contrName});
     }
   };
 };
