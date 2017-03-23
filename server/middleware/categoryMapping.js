@@ -2,7 +2,10 @@ function createNameToAdTag() {
   var nameToAdTag = {};
   ['Fashion', 'Beauty', 'Luxe', 'Wedding', 'Lifestyle', 'Event',
     'Contributor', 'Editorpicks'].forEach(function(categ) {
-    nameToAdTag[categ] = {list: categ + '_list', detail: categ + '_detail'}
+    nameToAdTag[categ] = {
+      list: categ + '_list',
+      detail: categ + (categ === 'Contributor'? '_art' : '_detail')
+    };
   });
   // Category URL 'Editor picks' is used by ad tag is 'Editorpicks'
   nameToAdTag['Editor picks'] = nameToAdTag.Editorpicks;
