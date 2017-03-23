@@ -156,6 +156,10 @@
 
           <midbanner midbanner-id="midbanner_1"></midbanner>
         </div>
+
+        <add-carousel title-class="'nm_recommend'" carousel-items="latestArticles"
+          carousel-div="'recommend-carousel'"></add-carousel>
+
         <% if (categoryName === "Contributor" || categoryName === "Editor picks") { %>
           <div class="nm_section visible-xs">
             <div class="nm_section_block">
@@ -166,9 +170,6 @@
             </div>
           </div>
         <% } %>
-
-        <add-carousel title-class="'nm_recommend'" carousel-items="latestArticles"
-          carousel-div="'recommend-carousel'"></add-carousel>
       </div>
 
       <%- include('partials/footer.ejs') %>
