@@ -156,6 +156,16 @@
 
           <midbanner midbanner-id="midbanner_1"></midbanner>
         </div>
+        <% if (categoryName === "Contributor" || categoryName === "Editor picks") { %>
+          <div class="nm_section visible-xs">
+            <div class="nm_section_block">
+              <facebook-block></facebook-block>
+            </div>
+            <div class="nm_section_block">
+              <instagram-medias ig-medias="igMedias"></instagram-medias>
+            </div>
+          </div>
+        <% } %>
 
         <add-carousel title-class="'nm_recommend'" carousel-items="latestArticles"
           carousel-div="'recommend-carousel'"></add-carousel>
