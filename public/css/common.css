@@ -1,8 +1,16 @@
+body {
+  font-family: "Microsoft JhengHei", Arial, 新細明體, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
+
+.nm_section_block {
+  margin-bottom: 15px;
+}
+
 @media all and (max-width: 768px) {
-  .nm_section_block {
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
   .nm_section_block_title {
     text-align: center
   }
@@ -38,24 +46,26 @@
   .nm_header.fixed #sticky-wrap .nav--menu .logo {
     display: block;
     float: left;
-    margin-left: 200px;
+    margin-left: 5px;
   }
 
   .nm_header.fixed #sticky-wrap .nav--menu .text {
     float: left;
     margin-left: 20px;
+    margin-top: 9px;
   }
 }
 
-@media (width: 768px) {
+@media (max-width: 768px) {
   .nm_header.fixed #sticky-wrap .nav--menu .logo {
-    margin-left: 100px;
+    margin-left: 0;
   }
 }
 
 .nm_row {
   margin: 0 !important;
   position: relative;
+  padding-top: 20px;
 }
 
 .nm_row.front {
@@ -75,7 +85,7 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  top: 150px;
+  top: 170px;
 }
 
 .skinner_ad_content {
@@ -124,7 +134,7 @@
 /* section */
 
 .nm_section {
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 .nm_section img {
@@ -192,9 +202,17 @@ background: #ccc;
 .nm_section .nm_section_block .nm_section_block_title_cat {
   font-style: italic;
   color: #8B0000;
+  font-size: 11px;
+  margin: 5px 0 0;
 }
 
-.nm_section .nm_section_block .nm_section_block_title {}
+.nm_section .nm_section_block .nm_section_block_title,
+.nm_section_block .nm_section_block_title {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 5px 0 0;
+  height: 50px;
+}
 
 .nm_section .nm_section_block .nm_section_block_content {
   text-align:
@@ -219,7 +237,7 @@ background: #ccc;
 .nm_home .head_banner_wrapper {
   height: auto;
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .nm_home .head_banner_wrapper .superhead_banner {
@@ -382,7 +400,7 @@ a {
 
 /* Footer */
 .site-footer {
-    padding-bottom: 50px;
+    padding: 15px 0 50px 0;
 }
 
 .nm_home.nav-panel-active,

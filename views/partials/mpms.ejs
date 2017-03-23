@@ -55,11 +55,18 @@
   }
 
   #home-slideshow-block {
-    padding-bottom: 30px;
+    padding-bottom: 40px;
   }
 
   #home-slideshow-block .carousel-control {
     width: 8%;
+  }
+
+  @media (max-width: 767px) {
+    #home-slideshow-block .carousel-control {
+      width: 8%;
+      height: 64%;
+    }
   }
 
   #home-slideshow-block .item img {
@@ -76,12 +83,15 @@
   #home-slideshow-block .nm_section_block_title_cat {
     font-style: italic;
     color: #8B0000;
-    font-size: 18px;
+    font-size: 11px;
+    margin-top: 10px;
+    margin-bottom: 5px;
   }
 
   #home-slideshow-block .nm_section_block_title {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
+    height: 50px;
   }
 
   #home-slideshow-block .carousel-control.left {

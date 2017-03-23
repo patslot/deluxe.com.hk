@@ -39,22 +39,24 @@
   </div>
 </div>
 <div class="al_two_col_container visible-xs" ng-repeat="a in articles">
-  <div class="al_two_content col-md-6 col-xs-12">
-    <div class="al_two_content_label">[{{::a.catName}}]</div>
-    <a ng-href="{{::a.linkURL}}">
-      <div class="al_two_content_title">
-        {{::a.title}}
-      </div>
-      <div class="other_article al_two_content_content"
-        ng-bind-html="a.content | trust">
-      </div>
-    </a>
-  </div>
-  <div class="al_two_image col-md-6 col-xs-12">
-    <a ng-href="{{::a.linkURL}}">
-      <img ng-if="a.hasVideo" class="play" src="/img/icon-play.png" />
-      <img ng-src="{{::a.image}}" />
-    </a>
+  <div class="row">
+    <div class="al_two_image col-md-6 col-xs-12">
+      <a ng-href="{{::a.linkURL}}">
+        <img ng-if="a.hasVideo" class="play" src="/img/icon-play.png" />
+        <img ng-src="{{::a.image}}" />
+      </a>
+    </div>
+    <div class="al_two_content col-md-6 col-xs-12">
+      <div class="al_two_content_label">[{{::a.catName}}]</div>
+      <a ng-href="{{::a.linkURL}}">
+        <div class="al_two_content_title">
+          {{::a.title}}
+        </div>
+        <div class="other_article al_two_content_content"
+          ng-bind-html="a.content | trust">
+        </div>
+      </a>
+    </div>
   </div>
 </div>
 <div style="clear:both"></div>

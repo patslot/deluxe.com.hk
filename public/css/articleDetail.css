@@ -22,7 +22,12 @@
 }
 
 .artd_article_Text {
-  margin-top: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.artd_article_caption {
+  margin: 5px 0 0;
 }
 
 .artd_intro_photo {
