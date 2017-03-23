@@ -9,58 +9,62 @@
 </head>
 
 <body ng-app="addv2" ng-controller="ContributorArticlesController" contr-name="<%= contributor.catName %>">
-    <skinner-block></skinner-block>
-    <splash-screen></splash-screen>
-    <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
-    <%- include('partials/topMenu.ejs', {menu: menu}) %>
-    <div class="container nm_home">
-      <div class="row nm_row">
-        <div class="main_content">
-          <div class="nm_section">
-            <!-- div inc='inc/sub_menu.html'></div -->
-            <div class="head_banner_wrapper">
-              <div class="superhead_banner">
-                <div id="headBanner">
-                  <script>
-                    showWebAd("HeadBanner", "headBanner");
-                  </script>
-                </div>
+  <skinner-block></skinner-block>
+  <splash-screen></splash-screen>
+  <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
+  <%- include('partials/topMenu.ejs', {menu: menu}) %>
+  <div class="container nm_home">
+    <div class="row nm_row">
+      <div class="main_content">
+        <div class="nm_section">
+          <div class="head_banner_wrapper hidden-xs">
+            <div class="superhead_banner">
+              <div id="headBanner">
+                <script>
+                  showWebAd("HeadBanner", "headBanner");
+                </script>
               </div>
             </div>
+          </div>
 
-            <div class="ctb_two_col_container">
-              <div class="ctb_detail_image col-md-6 col-xs-12">
-                <img src="<%= contributor.imgName %>" />
-              </div>
-              <div class="ctb_detail_container col-md-6 col-xs-12">
-                <div class="ctb_detail_name">
-                  <%= contributor.catName %>
-                </div>
-                <div class="ctb_detail_post">
-                  <%= contributor.post %>
-                </div>
-                <div class="ctb_detail_description">
-                  <%- contributor.desc %>
-                </div>
-              </div>
-              <div style="clear:both"></div>
-              <%- include('partials/contributorArticles.ejs', {articles: articles}) %>
+          <div class="ctb_two_col_container">
+            <div class="ctb_detail_image col-md-6 col-xs-12">
+              <img src="<%= contributor.imgName %>" />
             </div>
-            <div class="ctb_two_col_container"
-              lazy-scroll="loadArticles()" lazy-no-scroll="noMoreArticles">
-              <div align="center" ng-show="loadingArticles" style="margin-top: 20px">
-                <img src="/img/loading.gif" />
+            <div class="ctb_detail_container col-md-6 col-xs-12">
+              <div class="ctb_detail_name">
+                <%= contributor.catName %>
               </div>
-              <div ng-repeat="articles in moreArticleGroups">
-                <latest-articles add-articles="articles"></latest-articles>
+              <div class="ctb_detail_post">
+                <%= contributor.post %>
               </div>
+              <div class="ctb_detail_description">
+                <%- contributor.desc %>
+              </div>
+            </div>
+            <div style="clear:both"></div>
+            <fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner>
+            <%- include('partials/contributorArticles.ejs', {articles: articles}) %>
+          </div>
+          <div class="ctb_two_col_container"
+            lazy-scroll="loadArticles()" lazy-no-scroll="noMoreArticles">
+            <div align="center" ng-show="loadingArticles" style="margin-top: 20px">
+              <img src="/img/loading.gif" />
+            </div>
+            <div ng-repeat="articles in moreArticleGroups">
+              <midbanner midbanner-id="midbanner_group_{{$index}}"></midbanner>
+              <fixedbanner fixedbanner-id="fixedbanner{{$index + 2}}"
+                fixedbanner-num="{{$index + 2}}"></fixedbanner>
+              <latest-articles add-articles="articles"></latest-articles>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <%- include('partials/footer.ejs') %>
-      <%- include('partials/newsletter.ejs') %>
+    <%- include('partials/footer.ejs') %>
+    <%- include('partials/newsletter.ejs') %>
+  </div>
 </body>
 
 </html>
