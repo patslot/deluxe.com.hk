@@ -19,9 +19,11 @@ module.exports = function(gQuery, queryHandler) {
     render: function(req, res, next) {
       gQuery.homeQuery().then(function(result) {
         var articles = (result.listHomeLatestArticle || []).slice(0, 4);
-        res.render('homepage', {mpms: parseMpms(result.listMPM),
+        res.render('homepage', {
+          mpms: parseMpms(result.listMPM),
           menu: queryHandler.parseMenu(result.listMenu),
-          articles: queryHandler.parseHomeArticles(articles)});
+          articles: queryHandler.parseHomeArticles(articles)
+        });
       }, function(err) {
         return next(err);
       });

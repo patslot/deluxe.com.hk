@@ -14,6 +14,7 @@ module.exports = function(options) {
   app.locals.AD_PREFIX_TAG = options.adPrefixTag;
   app.locals.AD_WEB_BASE_TAG = options.adWebBaseTag;
   app.locals.AD_MOBILE_BASE_TAG = options.adMobileBaseTag;
+  app.locals.GA_CODE = options.GA_CODE;
   app.use(express.static('public'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
@@ -39,11 +40,17 @@ module.exports = function(options) {
 
   app.use(function(err, req, res, next) {
     console.error(err);
-    return res.render("500", {menu: {main: [], sub: []}});
+    return res.render("500", {
+      GA_CODE: options.GA_CODE
+      ,menu: {main: [], sub: []}
+    });
   });
   
   app.use(function(req, res) {
-    return res.render("404", {menu: {main: [], sub: []}});
+    return res.render("404", {
+      GA_CODE: options.GA_CODE,
+      menu: {main: [], sub: []}
+    });
   });
   
   return app;

@@ -21,7 +21,8 @@ module.exports = function(gQuery, categoryMapping, queryHandler) {
       articles.forEach(function(a) {
         queryHandler.parseCmsArticle('Contributor', a);
       });
-      res.render('contributorArticles', {contributor: contributor,
+      res.render('contributorArticles', {
+        contributor: contributor,
         menu: queryHandler.parseMenu(r.listMenu),
         articles: articles});
     }, function(err) {

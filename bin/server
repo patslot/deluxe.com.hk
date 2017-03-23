@@ -7,7 +7,8 @@ var server = Server({
   graphqlEndpoint: process.env.GRAPHQL_ENDPOINT || "http://localhost:4000/graphql",
   adPrefixTag: process.env.AD_PREFIX_TAG || "7350",
   adWebBaseTag: process.env.AD_WEB_BASE_TAG || "dev.ADD",
-  adMobileBaseTag: process.env.AD_MOBILE_BASE_TAG || "dev.ADD_Mobilesite"
+  adMobileBaseTag: process.env.AD_MOBILE_BASE_TAG || "dev.ADD_Mobilesite",
+  GA_CODE: process.env.GA_CODE
 });
 
 server.set('port', process.env.PORT || 3000);
