@@ -187,7 +187,7 @@ export default function(c) {
     },
     queryContributorArticles: function(contrName) {
       return client.query(createQueryWithParams('$name: String',
-        [listContributorArticle]), {name: contrName});
+        [listContributorArticle, listInstagram]), {name: contrName});
     }
   };
 };
