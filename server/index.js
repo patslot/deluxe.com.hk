@@ -9,6 +9,7 @@ module.exports = function(options) {
   var home = require('./routes/home.js')(gQuery, queryHandler);
   var article = require('./routes/article.js')(gQuery, categMapping, queryHandler);
   var contributor = require('./routes/contributor.js')(gQuery, categMapping, queryHandler);
+  var events = require('./routes/events.js')(gQuery, categMapping, queryHandler)
 
   app.locals.GRAPHQL_ENDPOINT = options.graphqlEndpoint;
   app.locals.AD_PREFIX_TAG = options.adPrefixTag;
@@ -34,6 +35,7 @@ module.exports = function(options) {
 
   app.get('/Contributor', contributor.renderIndex);
   app.get('/Contributor/:contrName', contributor.renderArticles);
+  app.get('/Event', events.renderEvents);
   app.get('/:categ/:articleID/:title', article.renderArticle);
   app.get('/:categ', article.renderArticles);
   app.get('/article/:articleID', article.renderArticle);
@@ -45,13 +47,13 @@ module.exports = function(options) {
       ,menu: {main: [], sub: []}
     });
   });
-  
+
   app.use(function(req, res) {
     return res.render("404", {
       GA_CODE: options.GA_CODE,
       menu: {main: [], sub: []}
     });
   });
-  
+
   return app;
 }

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('partials/extHeader.ejs') %>
+  <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
+  <title>Events</title>
+  <link rel="stylesheet" href="/css/contributor.css" />
+  <style>
+    @media all and (max-width: 768px) {
+      .evtlist_listing .event_item_media {
+        width: 30%!important;
+      }
+      .evtlist_listing .event_item_content {
+        width: 70%!important;
+      }
+    }
+    
+    .evtlist_listing .event_item_media img {
+      width: 100%;
+      height: auto;
+    }
+    
+    .evtlist_listing a {
+      cursor: pointer;
+      color: black;
+    }
+    
+    .evtlist_article_label {
+      font-style: italic;
+      color: #8B0000;
+      font-size: 18px;
+    }
+    
+    .evtlist_article_title {
+      font-family: Arial, 新細明體, sans-serif;
+      font-size: 25px;
+      line-height: 30px;
+      background: rgb(255, 255, 255);
+      margin: 0px auto;
+    }
+    
+    .evtlist_article_Photo img {
+      width: 100%;
+      height: auto;
+    }
+    
+    .evtlist_article_Text {
+      overflow: hidden;
+    }
+    
+    .evtlist_container {
+      margin-bottom: 15px;
+    }
+    
+    .evtlist_listing .event_item {
+      border-top: solid grey 1px;
+      display: inline-block;
+      padding-top: 20px;
+      width: 100%;
+    }
+    
+    .evtlist_listing .event_item_media {
+      width: 20%;
+      float: left;
+      text-align: center;
+    }
+    
+    .evtlist_listing .event_item_content {
+      width: 80%;
+      float: left;
+      padding-left: 30px;
+      padding-top: 5px;
+    }
+    
+    .evtlist_listing .event_item_content_title {
+      font-size: 18px;
+    }
+    
+    .evtlist_listing .event_item_content_date {
+      color: grey;
+    }
+    
+    .pagination {
+      display: inline-block;
+    }
+    
+    .pagination a {
+      color: black;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+    }
+    
+    .pagination_block {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body ng-app="addv2" ng-controller="EventsController"
+  num-of-pages="<%= numOfPages %>">
+  <skinner-block></skinner-block>
+  <splash-screen></splash-screen>
+  <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
+  <%- include('partials/topMenu.ejs', {menu: menu}) %>
+  <div class="container nm_home">
+    <div class="row nm_row">
+      <div class="main_content evtlist_listing">
+        <div class="nm_section">
+          <div class="head_banner_wrapper hidden-xs">
+            <div class="superhead_banner">
+              <div id="headBanner">
+                <script>
+                  showWebAd("HeadBanner", "headBanner");
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row nm_row">
+          <div class="pull-right lrec_ad_wrapper hidden-xs">
+            <div class="lrec_ad_large"></div>
+            <div class="lrec_ad_small"></div>
+          </div>
+          <div class="pull-right nm_mpm col-xs-12">
+            <% if (latestEvent) { %>
+            <div class="mpm_content evtlist_container">
+              <div class="evtlist_article_Photo">
+                <a><img src="<%= latestEvent.image %>"></a>
+              </div>
+              <div class="evtlist_article_label">[<%= latestEvent.catName %>]</div>
+              <a>
+                <div class="evtlist_article_title"><%= latestEvent.title %></div>
+                <div class="evtlist_article_Text"><%- latestEvent.content %></div>
+              </a>
+            </div>
+            <% } %>
+          </div>
+        </div>
+
+        <div class="row nm_row">
+          <div class="pull-right lrec_ad_wrapper hidden-xs">
+            <div class="up_coming_event">
+              <%- include('partials/upcomingEvents.ejs', {events: upcomingEvents}) %>
+            </div>
+          </div>
+          <div class="pull-right nm_mpm col-xs-12">
+            <% events.forEach(function(e) { %>
+            <div class="event_item">
+              <div class="event_item_media">
+                <img src="<%= e.image %>">
+              </div>
+              <div class="event_item_content">
+                <div class="event_item_content_title">
+                  <%= e.title %>
+                </div>
+                <div class="event_item_content_date">
+                  <%= e.publish %>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+        </div>
+        <!-- TODO: Client-side pagination -->
+        <!-- div style="clear:both"></div>
+        <div class="pagination_block">
+          <div class="pagination">
+            <a href="#">&laquo;</a>
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#">&raquo;</a>
+          </div>
+        </div -->
+      </div>
+      <%- include('partials/footer.ejs') %>
+      <%- include('partials/newsletter.ejs') %>
+    </div>
+  </div>
+<%- include('partials/google-analytics.ejs') %>
+</body>
+
+</html>

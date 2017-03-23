@@ -132,6 +132,20 @@ export default function(c) {
     intro
   }`;
 
+  const cmsArticleModel = `{
+    id
+    categoryID
+    publish
+    lastUpdate
+    title
+    articleThumbnail
+    videoThumbnail
+    videoFile
+    anvato
+    youtube
+    intro
+  }`;
+
   return {
     consts: {
       listHomeArticles: {
@@ -188,6 +202,12 @@ export default function(c) {
     queryContributorArticles: function(contrName) {
       return client.query(createQueryWithParams('$name: String',
         [listContributorArticle, listInstagram]), {name: contrName});
+    },
+    queryEvents: function(pagesize, page, start) {
+      return client.query(createQueryWithParams('$pagesize: Int, $page: Int, $start: Int'
+        ['listPostEvent (pagesize: $pagesize, page: $page, start: $start) ' +
+          cmsArticleModel]),
+        {pagesize: pagesize, page: page, start: start});
     }
   };
 };

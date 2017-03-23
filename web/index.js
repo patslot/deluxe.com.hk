@@ -59,5 +59,7 @@ module.exports = function(options) {
     .controller('ContributorController', ['$timeout', '$scope', 'gqModel',
       'queryHandler', controllers.contributor])
     .controller('ContributorArticlesController', ['$timeout', '$scope',
-      'gqModel', '$attrs', 'queryHandler', controllers.contributorArticles]);
+      'gqModel', '$attrs', 'queryHandler', controllers.contributorArticles])
+    .controller('EventsController', ['$timeout', '$scope',
+      'gqModel', '$attrs', 'queryHandler', controllers.events]);
 }

@@ -116,7 +116,7 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     }
   `;
 
-  const listMPM = `listMPM {
+  const cmsComponeFeedModel = `{
     homeGalleryID
     apID
     catName
@@ -214,7 +214,7 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     intro
   }`;
 
-  const listEditorPick = `listEditorPick {
+  const cmsArticleModel = `{
     id
     categoryID
     publish
@@ -251,7 +251,7 @@ module.exports = function(GRAPHQL_ENDPOINT) {
         [listMenu, getCMSArticleDetail, getContributorName]), {id: articleID});
     },
     homeQuery: function() {
-      return client.query(createQuery([listMPM,
+      return client.query(createQuery(['listMPM ' + cmsComponeFeedModel,
         listMenu,
         createCmsComponeFeedQuery('listHomeLatestArticle')
       ]));
@@ -274,7 +274,16 @@ module.exports = function(GRAPHQL_ENDPOINT) {
         {name: contrName});
     },
     queryEditorPicks: function() {
-      return client.query(createQuery([listMenu, listEditorPick]));
+      return client.query(createQuery([listMenu,
+        'listEditorPick ' + cmsArticleModel]));
     },
+    eventsQuery: function(pagesize, page) {
+      return client.query(createQueryWithParams('$pagesize: Int, $page: Int',
+        [listMenu, 'totalPostEvent',
+          'listUpcomingEvent ' + cmsComponeFeedModel,
+          'listPostEvent (pagesize: $pagesize, page: $page) ' +
+          cmsArticleModel]),
+        {pagesize: pagesize, page: page});
+    }
   };
 };

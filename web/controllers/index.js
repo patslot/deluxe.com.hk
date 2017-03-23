@@ -8,3 +8,4 @@ export { default as category } from './category';
 export { default as article } from './article';
 export { default as contributor } from './contributor';
 export { default as contributorArticles } from './contributorArticles';
+export { default as events } from './events';

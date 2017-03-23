@@ -1,0 +1,64 @@
+<div class="nm_section up_coming_section">
+  <div class="row nm_row front">
+    <div class="col-sm-4 col-sm-offset-4">
+      <div class="up_coming_ball nm_up_coming">
+        <h4 class="text-center nm_section_header"></h4>
+      </div>
+    </div>
+  </div>
+  <div class="row nm_row nm_section_border">
+    <% events.forEach(function(e) { %>
+    <div class="text-left nm_section_content">
+      <div class="uce_date">
+        TODO: 14 Feb, 2017
+      </div>
+      <div class="uce_title">
+        TODO: 巴黎時裝週
+      </div>
+      <div class="uce_time">
+        TODO: 時間 : 3-5 pm
+      </div>
+      <div class="uce_location">
+        TODO: 地點 : landmark LV STORE
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</div>
+
+<style>
+  .up_coming_section {
+    width: 300px;
+  }
+  
+  .up_coming_ball {
+    height: 100px;
+    width: 100px;
+    margin: 0px -9px;
+    padding: 0px 0px;
+    color: white;
+    border-radius: 69px;
+    margin-bottom: -53px;
+  }
+  
+  .up_coming_section .nm_section_border {
+    padding-top: 60px;
+    height: 450px;
+    overflow-y: scroll;
+  }
+  
+  .up_coming_section .nm_section_content {
+    font-size: 18px;
+    margin-right: 15px;
+    margin-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: auto;
+    border-bottom: solid grey 1px;
+  }
+
+  .nm_up_coming {
+    background-image: url(/img/icon13.png) !important;
+    background-size: 100%;
+  }
+</style>
