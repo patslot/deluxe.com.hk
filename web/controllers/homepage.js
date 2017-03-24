@@ -48,16 +48,9 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
     }
     $scope.loading = true;
 
-    // NOTE: Used when event pages are ready
-    /*var latestArticles5to8 = latestArticles.length > 4 ?
+    var latestArticles5to8 = latestArticles.length > 4 ?
       latestArticles.slice(4, 8) : [];
-    $scope.latestArticles5to8 = queryHandler.parseHomeArticles(latestArticles5to8);*/
-    // NOTE: Used when event pages are not ready
-    var latestArticles5to9 = latestArticles.length > 4 ?
-      latestArticles.slice(4, 9) : [];
-    latestArticles5to9 = queryHandler.parseHomeArticles(latestArticles5to9);
-    $scope.latestArticles5to6 = latestArticles5to9.slice(0, 2);
-    $scope.latestArticles7to9 = latestArticles5to9.slice(2, 5);
+    $scope.latestArticles5to8 = queryHandler.parseHomeArticles(latestArticles5to8);
 
     //listInstagram, listHomeEditorPick
     var categs = createLoadCateg();
