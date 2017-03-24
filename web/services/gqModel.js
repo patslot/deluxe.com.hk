@@ -92,6 +92,21 @@ export default function(c) {
     apCatID
   }`;
 
+  const CmsArticle = ` {
+    id
+    categoryID
+    publish
+    lastUpdate
+    title
+    articleThumbnail
+    videoThumbnail
+    videoFile
+    anvato
+    youtube
+    intro
+  }`;
+
+
   const listContributorArticle = `listContributorArticle(name: $name) {
     id
     categoryID
@@ -118,19 +133,9 @@ export default function(c) {
     return 'query (' + paramStr + ') { ' + queries.join(' ') + ' }';
   };
 
-  const listEditorPick = `listEditorPick {
-    id
-    categoryID
-    publish
-    lastUpdate
-    title
-    articleThumbnail
-    videoThumbnail
-    videoFile
-    anvato
-    youtube
-    intro
-  }`;
+  var createCmsArticleQuery = function(queryName) {
+    return queryName + ' ' + CmsArticle;
+  };
 
   const cmsArticleModel = `{
     id
@@ -187,12 +192,14 @@ export default function(c) {
     },
     // queryEditorPicks used in editor pick articles page, it also query instagram
     queryEditorPicks: function() {
-      return client.query(createQuery([listEditorPick,
+      return client.query(createQuery([
+        createCmsArticleQuery('listEditorPick'),
         listInstagram]));
     },
     // queryEditorPickArticles only query editor pick articles
     queryEditorPickArticles: function() {
-      return client.query(createQuery([listEditorPick]));
+      return client.query(createQuery([
+        createCmsArticleQuery('listEditorPick')]));
     },
     queryContributorIndex: function() {
       return client.query(createQuery([
@@ -208,6 +215,10 @@ export default function(c) {
         ['listPostEvent (pagesize: $pagesize, page: $page, start: $start) ' +
           cmsArticleModel]),
         {pagesize: pagesize, page: page, start: start});
+    },
+    queryPostEvents: function () {
+      return client.query(createQuery([
+        createCmsArticleQuery('listPostEvent')]));
     }
   };
 };

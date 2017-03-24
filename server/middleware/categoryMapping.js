@@ -37,7 +37,7 @@ module.exports = {
     // Different content API for editor picks and events: not using Ename
     'Editor picks': 'editor_picks',
     'Contributor': 'contributor',
-    'Event': 'Event'
+    'Event': 'event'
   },
   nameToAdTag: nameToAdTag,
   enameToListCategAPI: {

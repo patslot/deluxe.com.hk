@@ -284,6 +284,11 @@ module.exports = function(GRAPHQL_ENDPOINT) {
           'listPostEvent (pagesize: $pagesize, page: $page) ' +
           cmsArticleModel]),
         {pagesize: pagesize, page: page});
+    },
+    upcomingEventQuery: function () {
+      return client.query(createQuery([
+        createCmsComponeFeedQuery('listUpcomingEvent')
+      ]));
     }
   };
 };

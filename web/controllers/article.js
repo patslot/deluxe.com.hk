@@ -4,37 +4,34 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
   var articleId = $attrs.articleId;
   var articleAuthor = $attrs.articleAuthor;
 
-  var handleRes = function (articleKey, res) {
+  var handleRes = function (articleKey, res, parseFunc) {
     $timeout(function () {
+      $scope.igMedias = res.listInstagram || [];
       var articles = (res[articleKey] || []).filter(function (item) {
         return item.id !== articleId;
-      });
+      }).slice(0, 12);
 
-      $scope.latestArticles = queryHandler.parseArticles(
-        categName, articles.slice(0, 12));
-      $scope.igMedias = res.listInstagram || [];
+      $scope.latestArticles = parseFunc(categName, articles);
     });
   };
 
   if (categEname === 'editor_picks') {
     gqModel.queryEditorPicks().then(function (res) {
-      res.listEditorPick.forEach(function (item) {
-        item.__typename = 'CmsArticle';
-      });
-      handleRes('listEditorPick', res);
+      handleRes('listEditorPick', res, queryHandler.parseCmsArticles);
     });
   } else if (categEname === 'contributor') {
     gqModel.queryContributorArticles(articleAuthor).then(function (res) {
-      res.listContributorArticle.forEach(function (item) {
-        item.__typename = 'CmsArticle';
-      });
-      handleRes('listContributorArticle', res);
+      handleRes('listContributorArticle', res, queryHandler.parseCmsArticles);
+    });
+  } else if (categEname === 'event') {
+    gqModel.queryPostEvents().then(function (res) {
+      handleRes('listPostEvent', res, queryHandler.parseCmsArticles);
     });
   } else {
     var listCategArticle = c.TAG_TO_LIST_ARTICLE_API[categEname];
     if (listCategArticle) {
       gqModel.queryArticle(listCategArticle).then(function(res) {
-        handleRes('listFashionArticle', res);
+        handleRes(listCategArticle, res, queryHandler.parseArticles);
       });
     }
   }

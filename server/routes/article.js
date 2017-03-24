@@ -38,7 +38,14 @@ module.exports = function(gQuery, categMapping, queryHandler) {
         article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
         article.video = article.videoFile;
         article.menu = queryHandler.parseMenu(result.listMenu);
-        res.render('articleDetail', article);
+        if (article.categoryName === 'Event') {
+          gQuery.upcomingEventQuery().then(function (result) {
+            article.upcomingEvents = result.listUpcomingEvent || [];
+            res.render('articleDetail', article);
+          });
+        } else {
+          res.render('articleDetail', article);
+        }
       }, function (err) {
         return next(err);
       });

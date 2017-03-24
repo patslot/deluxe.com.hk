@@ -43,12 +43,20 @@
                     </script>
                   </div>
                 </div>
-                <div class="artd_facebook_block">
-                  <facebook-block></facebook-block>
-                </div>
-                <div class="artd_instagram_block">
-                  <instagram-medias ig-medias="igMedias"></instagram-medias>
-                </div>
+                <% if (categoryName !== "Event") { %>
+                  <div class="artd_facebook_block">
+                    <facebook-block></facebook-block>
+                  </div>
+                  <div class="artd_instagram_block">
+                    <instagram-medias ig-medias="igMedias"></instagram-medias>
+                  </div>
+                <% } %>
+                <% if (categoryName === "Event") { %>
+                  <div class="up_coming_event">
+                    <%- include('partials/upcomingEvents.ejs',
+                      {events: upcomingEvents}) %>
+                  </div>
+                <% } %>
               </div>
               <% if (type === "news") { %>
                 <div class="pull-right nm_mpm col-xs-12">
@@ -56,7 +64,7 @@
                     <div class="artd_article_label"><%- categoryName %></div>
                     <div class="artd_article_title"><%- title %></div>
                     <div class="artd_article_publish_date" ng-cloak>
-                      日期：{{"<%= pubDate %>" | amUtc | amDateFormat:'lll'}}
+                      日期：{{"<%- pubDate %>" | amUtc | amDateFormat:'lll'}}
                     </div>
                     <share-bar post-id="<%- id %>"
                       post-title="<%- title %>"></share-bar>
@@ -68,10 +76,10 @@
                       <% introPhotos.forEach(function (photo) { %>
                         <div class="artd_intro_photo">
                           <div class="artd_article_Photo">
-                            <img src="<%= photo.imagePathZoom %>">
+                            <img src="<%- photo.imagePathZoom %>">
                           </div>
                           <div class="artd_article_caption">
-                            <%= photo.caption %>
+                            <%- photo.caption %>
                           </div>
                         </div>
                       <% }) %>
@@ -81,22 +89,22 @@
                     <% if (contentBlocks && contentBlocks.length > 0) { %>
                       <% contentBlocks.forEach(function (content, index) { %>
                         <div class="artd_article_subHead">
-                          <%= content.subHead %>
+                          <%- content.subHead %>
                         </div>
                         <% if (content.photos && content.photos.length > 0) { %>
                           <% content.photos.forEach(function (photo) { %>
                             <div class="artd_intro_photo">
                               <div class="artd_article_Photo">
-                                <img src="<%= photo.imagePathZoom %>">
+                                <img src="<%- photo.imagePathZoom %>">
                               </div>
                               <div class="artd_article_caption">
-                                <%= photo.caption %>
+                                <%- photo.caption %>
                               </div>
                             </div>
                           <% }) %>
                         <% } %>
                         <div class="artd_article_Text">
-                          <%= content.content %>
+                          <%- content.content %>
                         </div>
                         <fixedbanner fixedbanner-id="fixedbanner1_<%= index %>"></fixedbanner>
                       <% }) %>
@@ -111,7 +119,8 @@
                     <div class="artd_article_publish_date">
                       日期：{{"<%- publish %>" | amUtc | amDateFormat:'lll'}}
                     </div>
-                    <share-bar post-title="'<%- title %>'"></share-bar>
+                    <share-bar post-id="<%- id %>"
+                      post-title="<%- title %>"></share-bar>
                     <div class="artd_article_video">
                       <div id="video_player"></div>
                     </div>
@@ -157,6 +166,15 @@
           <midbanner midbanner-id="midbanner_1"></midbanner>
         </div>
 
+        <% if (categoryName === "Event") { %>
+          <div class="nm_section visible-xs">
+            <div class="up_coming_event">
+              <%- include('partials/upcomingEvents.ejs',
+                {events: upcomingEvents}) %>
+            </div>
+          </div>
+        <% } %>
+
         <add-carousel title-class="'nm_recommend'" carousel-items="latestArticles"
           carousel-div="'recommend-carousel'"></add-carousel>
 
@@ -181,7 +199,7 @@
         renderVideo(JSON.parse('<%- JSON.stringify(video) %>'));
       });
     </script>
-    
+
     <%- include('partials/google-analytics.ejs') %>
   </body>
 </html>
