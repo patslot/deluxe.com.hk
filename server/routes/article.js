@@ -1,6 +1,8 @@
 var util = require('util');
 
 module.exports = function(gQuery, categMapping, queryHandler) {
+  var maxUpcomingEvent = 10;
+
   function renderArticle(req, res, next) {
     var articleID = req.params.articleID;
     var article = {};
@@ -40,7 +42,8 @@ module.exports = function(gQuery, categMapping, queryHandler) {
         article.menu = queryHandler.parseMenu(result.listMenu);
         if (article.categoryName === 'Event') {
           gQuery.upcomingEventQuery().then(function (result) {
-            article.upcomingEvents = result.listUpcomingEvent || [];
+            var upcomingEvents = (result.listUpcomingEvent || []).slice(0, maxUpcomingEvent);
+            article.upcomingEvents = queryHandler.parseUpcomingEvents(upcomingEvents);
             res.render('articleDetail', article);
           });
         } else {

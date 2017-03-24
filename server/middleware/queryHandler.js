@@ -1,3 +1,5 @@
+var moment = require('moment/moment.js');
+
 module.exports = function() {
   var articleReg = new RegExp('^(\\d+_)*\\d+$');
 
@@ -77,6 +79,27 @@ module.exports = function() {
     return articles;
   }
 
+  function parseUpcomingEvents(origEvents) {
+    var events = origEvents || [];
+    events.forEach(function(e) {
+      e.content = e.content.replace(/\n/g, '<br />');
+      e.endDateTime = parseEventDate(e.endDateTime);
+    });
+    return events;
+  }
+
+  function parseEventDate(iso8601Time) {
+    return moment(iso8601Time, moment.ISO_8601).utc().format('DD MMM, YYYY');
+  }
+
+  function parsePostEvents(categName, events) {
+    var events = parseCmsArticles(categName, events);
+    events.forEach(function(e) {
+      e.lastUpdate = parseEventDate(e.lastUpdate);
+    });
+    return events;
+  }
+
   return {
     parseLinkURL: parseLinkURL,
     parseHomeArticles: parseHomeArticles,
@@ -84,6 +107,9 @@ module.exports = function() {
     parseCmsArticle: parseCmsArticle,
     parseCmsArticles: parseCmsArticles,
     parseNewsArticle: parseNewsArticle,
-    parseArticles: parseArticles
+    parseArticles: parseArticles,
+    parseEventDate: parseEventDate,
+    parsePostEvents: parsePostEvents,
+    parseUpcomingEvents: parseUpcomingEvents
   }
 };

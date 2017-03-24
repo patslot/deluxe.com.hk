@@ -3,6 +3,7 @@ import moment from 'moment/moment.js';
 import 'angular-moment/angular-moment.js';
 import './lib/lazy-scroll.js';
 import 'ejs/ejs.js';
+import 'bootpag/lib/jquery.bootpag.js';
 
 var controllers = require('./controllers');
 var services = require('./services');

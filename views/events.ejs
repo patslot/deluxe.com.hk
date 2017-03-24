@@ -15,23 +15,23 @@
         width: 70%!important;
       }
     }
-    
+
     .evtlist_listing .event_item_media img {
       width: 100%;
       height: auto;
     }
-    
+
     .evtlist_listing a {
       cursor: pointer;
       color: black;
     }
-    
+
     .evtlist_article_label {
       font-style: italic;
       color: #8B0000;
       font-size: 18px;
     }
-    
+
     .evtlist_article_title {
       font-family: Arial, 新細明體, sans-serif;
       font-size: 25px;
@@ -39,67 +39,79 @@
       background: rgb(255, 255, 255);
       margin: 0px auto;
     }
-    
+
     .evtlist_article_Photo img {
       width: 100%;
       height: auto;
     }
-    
+
     .evtlist_article_Text {
       overflow: hidden;
     }
-    
+
     .evtlist_container {
       margin-bottom: 15px;
     }
-    
+
     .evtlist_listing .event_item {
       border-top: solid grey 1px;
       display: inline-block;
       padding-top: 20px;
       width: 100%;
     }
-    
+
     .evtlist_listing .event_item_media {
       width: 20%;
       float: left;
       text-align: center;
     }
-    
+
     .evtlist_listing .event_item_content {
       width: 80%;
       float: left;
       padding-left: 30px;
       padding-top: 5px;
     }
-    
+
     .evtlist_listing .event_item_content_title {
       font-size: 18px;
     }
-    
+
     .evtlist_listing .event_item_content_date {
       color: grey;
     }
-    
+
     .pagination {
       display: inline-block;
     }
-    
+
     .pagination a {
       color: black;
       float: left;
       padding: 8px 16px;
       text-decoration: none;
     }
-    
+
     .pagination_block {
       text-align: center;
+    }
+
+    .pagination>li>a, .pagination>li>span {
+      border: none !important;
+      color: #333 !important;
+    }
+    .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+      background-color: white !important;
+      text-decoration: underline;
+    }
+    .pagination>li>a:hover {
+      background-color: white !important;
     }
   </style>
 </head>
 
-<body ng-app="addv2" ng-controller="EventsController"
-  num-of-pages="<%= numOfPages %>">
+<body id="eventBody" ng-app="addv2" ng-controller="EventsController"
+  categ-name="<%= categName %>" num-of-pages="<%= numOfPages %>">
   <skinner-block></skinner-block>
   <splash-screen></splash-screen>
   <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
@@ -120,8 +132,20 @@
         </div>
         <div class="row nm_row">
           <div class="pull-right lrec_ad_wrapper hidden-xs">
-            <div class="lrec_ad_large"></div>
-            <div class="lrec_ad_small"></div>
+            <div class="lrec_ad_large">
+              <div id="lrec1">
+                <script>
+                  showWebAd("LREC1", "lrec1");
+                </script>
+              </div>
+            </div>
+            <div class="lrec_ad_large">
+              <div id="lrec2">
+                <script>
+                  showWebAd("LREC2", "lrec2");
+                </script>
+              </div>
+            </div>
           </div>
           <div class="pull-right nm_mpm col-xs-12">
             <% if (latestEvent) { %>
@@ -140,43 +164,69 @@
         </div>
 
         <div class="row nm_row">
+          <fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner>
           <div class="pull-right lrec_ad_wrapper hidden-xs">
             <div class="up_coming_event">
               <%- include('partials/upcomingEvents.ejs', {events: upcomingEvents}) %>
             </div>
           </div>
-          <div class="pull-right nm_mpm col-xs-12">
+          <div class="pull-right nm_mpm col-xs-12" id="firstPage">
             <% events.forEach(function(e) { %>
             <div class="event_item">
-              <div class="event_item_media">
-                <img src="<%= e.image %>">
-              </div>
-              <div class="event_item_content">
-                <div class="event_item_content_title">
-                  <%= e.title %>
+              <a href="<%= e.linkURL %>" target="<%= e.linkTarget %>">
+                <div class="event_item_media">
+                  <img src="<%= e.image %>">
                 </div>
-                <div class="event_item_content_date">
-                  <%= e.publish %>
+                <div class="event_item_content">
+                  <div class="event_item_content_title">
+                    <%= e.title %>
+                  </div>
+                  <div class="event_item_content_date">
+                    <%= e.lastUpdate %>
+                  </div>
                 </div>
-              </div>
+              </a>
             </div>
             <% }) %>
           </div>
-        </div>
-        <!-- TODO: Client-side pagination -->
-        <!-- div style="clear:both"></div>
-        <div class="pagination_block">
-          <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">&raquo;</a>
+          <div class="pull-right nm_mpm col-xs-12" id="anotherPage" style="display: none">
+            <div class="event_item" ng-repeat="e in events">
+              <a ng-href="{{e.linkURL}}" target="{{e.linkTarget}}">
+                <div class="event_item_media">
+                  <img ng-src="{{e.image}}">
+                </div>
+                <div class="event_item_content">
+                  <div class="event_item_content_title">
+                    {{e.title}}
+                  </div>
+                  <div class="event_item_content_date">
+                    {{e.lastUpdate}}
+                  </div>
+                </div>
+              </a>
+            </div>
           </div>
-        </div -->
+        </div>
+        <div style="clear:both"></div>
+        <div class="pagination_block">
+          <div id="page-selection" class="pagination"></div>
+          <script>
+            $('#page-selection').bootpag({
+              total: <%= numOfPages %>,
+              page: 1,
+              maxVisible: 6
+            }).on('page', function(event, num) {
+              if (num === 1) {
+                $('#firstPage').show();
+                $('#anotherPage').hide();
+              } else {
+                $('#firstPage').hide();
+                angular.element(document.getElementById("eventBody")).scope()
+                  .loadEvents(num, $('#anotherPage'));
+              }
+            });
+          </script>
+        </div>
       </div>
       <%- include('partials/footer.ejs') %>
       <%- include('partials/newsletter.ejs') %>

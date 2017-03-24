@@ -211,7 +211,7 @@ export default function(c) {
         [listContributorArticle, listInstagram]), {name: contrName});
     },
     queryEvents: function(pagesize, page, start) {
-      return client.query(createQueryWithParams('$pagesize: Int, $page: Int, $start: Int'
+      return client.query(createQueryWithParams('$pagesize: Int, $page: Int, $start: Int',
         ['listPostEvent (pagesize: $pagesize, page: $page, start: $start) ' +
           cmsArticleModel]),
         {pagesize: pagesize, page: page, start: start});

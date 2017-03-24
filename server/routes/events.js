@@ -1,5 +1,6 @@
 module.exports = function(gQuery, categoryMapping, queryHandler) {
-  var eventCount = 8;
+  var eventCount = 7;
+  var maxUpcomingEvents = 10;
   var categEvent = 'Event';
 
   function getNumOfPages(totalPostEvent) {
@@ -14,12 +15,14 @@ module.exports = function(gQuery, categoryMapping, queryHandler) {
   function renderEvents(req, res, next) {
     var totalEvents = eventCount + 1;
     gQuery.eventsQuery(totalEvents, 1).then(function(r) {
-      var events = queryHandler.parseCmsArticles(categEvent, r.listPostEvent);
+      var events = queryHandler.parsePostEvents(categEvent, r.listPostEvent);
+      var upcomingEvents = (r.listUpcomingEvent || []).slice(0, maxUpcomingEvents);
       res.render('events', {
+        categName: categEvent,
         adTag: categoryMapping.nameToAdTag[categEvent].list,
         numOfPages: getNumOfPages(r.totalPostEvent),
         latestEvent: events.length > 0 ? events[0] : null,
-        upcomingEvents: r.listUpcomingEvent || [],
+        upcomingEvents: queryHandler.parseUpcomingEvents(upcomingEvents),
         events: events.slice(1, totalEvents),
         menu: queryHandler.parseMenu(r.listMenu)});
     }, function(err) {
