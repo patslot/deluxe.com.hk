@@ -100,6 +100,23 @@ module.exports = function() {
     return events;
   }
 
+  function parseContributor(c) {
+    var splitPos = c.content.indexOf('|');
+    if (splitPos > 0) {
+      c.post = c.content.slice(0, splitPos);
+      c.desc = c.content.slice(splitPos+1).trim();
+    }
+    return c;
+  }
+
+  function parseContributors(origContributors) {
+    var contributors = origContributors || [];
+    contributors.forEach(function(c) {
+      parseContributor(c);
+    });
+    return contributors;
+  }
+
   return {
     parseLinkURL: parseLinkURL,
     parseHomeArticles: parseHomeArticles,
@@ -110,6 +127,8 @@ module.exports = function() {
     parseArticles: parseArticles,
     parseEventDate: parseEventDate,
     parsePostEvents: parsePostEvents,
-    parseUpcomingEvents: parseUpcomingEvents
+    parseUpcomingEvents: parseUpcomingEvents,
+    parseContributor: parseContributor,
+    parseContributors: parseContributors
   }
 };

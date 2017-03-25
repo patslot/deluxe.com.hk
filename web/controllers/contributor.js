@@ -8,17 +8,6 @@ export default function($timeout, $scope, gqModel, queryHandler) {
   $scope.loadingContributors = false;
   $scope.moreContributorGroups = [];
 
-  var processContributors = function (contributors) {
-    for (var i = 0, len = contributors.length; i < len; i++) {
-      var contributor = contributors[i];
-      var splitPos = contributor.content.indexOf('|');
-      if (splitPos > 0) {
-        contributor.post = contributor.content.slice(0, splitPos);
-        contributor.desc = contributor.content.slice(splitPos+1).trim();
-      }
-    }
-    return contributors;
-  };
   gqModel.queryContributorIndex().then(function(res) {
     $timeout(function() {
       contributors = res.listContributor || [];
@@ -45,7 +34,7 @@ export default function($timeout, $scope, gqModel, queryHandler) {
         contributorIdx, contributorIdx + contributorCount);
       if (moreContributors.length > 0) {
         $scope.moreContributorGroups.push(
-          processContributors(moreContributors));
+          queryHandler.parseContributors(moreContributors));
       }
       if (moreContributors.length < contributorCount) {
         $scope.noMoreContributor = true;

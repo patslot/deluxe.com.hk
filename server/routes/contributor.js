@@ -11,18 +11,12 @@ module.exports = function(gQuery, categoryMapping, queryHandler) {
       if (contributors.length === 0) {
         return next();
       }
-      var contributor = contributors[0];
-      var splitPos = contributor.content.indexOf('|');
-      if (splitPos > 0) {
-        contributor.post = contributor.content.slice(0, splitPos);
-        contributor.desc = contributor.content.slice(splitPos+1).trim();
-      }
       var articles = (r.listContributorArticle || []).slice(0, articleCount);
       articles.forEach(function(a) {
         queryHandler.parseCmsArticle('Contributor', a);
       });
       res.render('contributorArticles', {
-        contributor: contributor,
+        contributor: queryHandler.parseContributor(contributors[0]),
         menu: queryHandler.parseMenu(r.listMenu),
         articles: articles});
     }, function(err) {
@@ -34,7 +28,8 @@ module.exports = function(gQuery, categoryMapping, queryHandler) {
     var adTagMapping = categoryMapping.nameToAdTag['Contributor'];
     gQuery.contributorIndexQuery().then(function(r) {
       res.render('contributorIndex', {
-        contributors: (r.listContributor || []).slice(0, contributorBlockCount),
+        contributors: queryHandler.parseContributors(
+          (r.listContributor || []).slice(0, contributorBlockCount)),
         menu: queryHandler.parseMenu(r.listMenu),
         adTag: adTagMapping.list
       });
