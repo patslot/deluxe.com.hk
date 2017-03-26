@@ -15,15 +15,14 @@ export default function() {
       divId: '@midbannerId'
     },
     link: function (scope, element) {
-      scope.ready = false;
-      scope.$watch(function(newVal) {
+      var unwatch = scope.$watch(function(newVal) {
         var divId = newVal.divId;
-        if (scope.ready || !divId) {
+        if (!divId) {
           return;
         }
         element.html(ejs.render(htmlTpl, {divId: divId}));
         showWebAd("Midbanner", divId);
-        scope.ready = true;
+        unwatch();
       });
     }
   };

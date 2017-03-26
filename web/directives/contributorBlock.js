@@ -28,14 +28,13 @@ export default function() {
       contributors: '='
     },
     link: function(scope, element) {
-      scope.ready = false;
-      scope.$watch(function(newVal) {
+      var unwatch = scope.$watch(function(newVal) {
         var contributors = newVal.contributors;
-        if (scope.ready || !contributors) {
+        if (!contributors) {
           return;
         }
         element.html(ejs.render(htmlTpl, {contributors: contributors}));
-        scope.ready = true;
+        unwatch();
       });
     }
   };

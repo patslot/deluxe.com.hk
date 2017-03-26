@@ -20,14 +20,13 @@ export default function() {
       article: '=addArticle',
     },
     link: function(scope, element) {
-      scope.ready = false;
-      scope.$watch(function(newVal) {
+      var unwatch = scope.$watch(function(newVal) {
         var article = newVal.article;
-        if (scope.ready || !article) {
+        if (!article) {
           return;
         }
         element.html(ejs.render(htmlTpl, {a: article}));
-        scope.ready = true;
+        unwatch();
       });
     }
   };

@@ -80,14 +80,13 @@ export default function() {
       articles: '=addArticles'
     },
     link: function(scope, element) {
-      scope.ready = false;
-      scope.$watch(function(newVal) {
+      var unwatch = scope.$watch(function(newVal) {
         var articles = newVal.articles;
-        if (scope.ready || !articles) {
+        if (!articles) {
           return;
         }
         element.html(ejs.render(htmlTpl, {articles: articles}));
-        scope.ready = true;
+        unwatch();
       });
     }
   };

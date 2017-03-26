@@ -34,18 +34,17 @@ export default function($location) {
       id: '@postId'
     },
     link: function (scope, element) {
-      scope.ready = false;
-      scope.$watch(function(newVal) {
+      var unwatch = scope.$watch(function(newVal) {
         var title = newVal.title;
         var id = newVal.id;
-        if (scope.ready || !title || !id) {
+        if (!title || !id) {
           return;
         }
         scope.url = $location.protocol() + '://' + $location.host() + ':' +
           $location.port() + '/article/' + scope.id;
         scope.css = css;
         element.html(ejs.render(htmlTpl, scope));
-        scope.ready = true;
+        unwatch();
       });
     }
   };

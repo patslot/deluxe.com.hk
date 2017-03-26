@@ -54,13 +54,12 @@ export default function() {
       carouselDiv: '='
     },
     link: function(scope, element) {
-      scope.ready = false;
-      scope.$watch(function(newVal) {
+      var unwatch = scope.$watch(function(newVal) {
         var carouselItems = newVal.carouselItems;
         var div = newVal.carouselDiv;
         var cDiv = '#' + div;
         var titleClass = newVal.titleClass;
-        if (scope.ready || !carouselItems || !cDiv || !titleClass) {
+        if (!carouselItems || !cDiv || !titleClass) {
           return;
         }
         element.html(ejs.render(htmlTpl, {carouselItems: carouselItems,
@@ -82,7 +81,7 @@ export default function() {
         });
         (angular.element)(cDiv).carousel({interval: 5000})
           .show();
-        scope.ready = true;
+        unwatch();
       });
     }
   };

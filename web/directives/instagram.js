@@ -18,14 +18,13 @@ export default function() {
       igMedias: '='
     },
     link: function(scope, element) {
-      scope.ready = false;
-      scope.$watch(function(newVal) {
+      var unwatch = scope.$watch(function(newVal) {
         var igMedias = newVal.igMedias;
-        if (scope.ready || !igMedias) {
+        if (!igMedias) {
           return;
         }
         element.html(ejs.render(htmlTpl, {igMedias: igMedias}));
-        scope.ready = true;
+        unwatch();
       });
     }
   };

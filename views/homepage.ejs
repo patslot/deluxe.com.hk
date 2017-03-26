@@ -97,16 +97,16 @@
                 </div>
               </div>
             </div>
-            <add-carousel title-class="'nm_editor_pick'" carousel-items="editorPicks" carousel-div="'editor-picks-carousel'"></add-carousel>
-            <div ng-repeat="articles in categArticles">
-              <midbanner ng-if="$index % 3 === 0" midbanner-id="midbanner_categ_{{$index}}"></midbanner>
-              <div class="row">
-                <div class="col-sm-4 nm_section_block" ng-repeat="a in articles track by $index">
-                  <fixedbanner ng-if="$parent.$index === 0 && $index === 1"
-                    fixedbanner-id="fixedbanner4"
-                    fixedbanner-num="4"></fixedbanner>
-                  <home-article add-article="a"></home-article>
-                </div>
+          </div>
+          <add-carousel title-class="'nm_editor_pick'" carousel-items="editorPicks" carousel-div="'editor-picks-carousel'"></add-carousel>
+          <div ng-repeat="articles in categArticles">
+            <midbanner ng-if="$index % 3 === 0" midbanner-id="midbanner_categ_{{$index}}"></midbanner>
+            <div class="row">
+              <div class="col-sm-4 nm_section_block" ng-repeat="a in articles track by $index">
+                <fixedbanner ng-if="$parent.$index === 0 && $index === 1"
+                  fixedbanner-id="fixedbanner4"
+                  fixedbanner-num="4"></fixedbanner>
+                <home-article add-article="a"></home-article>
               </div>
             </div>
           </div>
