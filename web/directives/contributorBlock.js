@@ -1,6 +1,6 @@
 const htmlTpl = `
 <% contributors.forEach(function(contributor) { %>
-<div class="ctb_item col-xs-12 col-md-4">
+<div class="ctb_item col-xs-12 col-sm-5 col-md-4">
   <a href="/Contributor/<%= contributor.catName %>">
     <div class="ctb_item_image">
       <img src="<%= contributor.imgName %>">

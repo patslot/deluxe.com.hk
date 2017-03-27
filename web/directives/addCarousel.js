@@ -7,7 +7,7 @@ const htmlTpl = `
     </div>
   </div>
   <div class="row nm_row nm_section_border">
-    <div class="col-md-12 four_col_slide">
+    <div class="col-xs-12 col-sm-10 col-md-12 four_col_slide">
       <!-- Compile html with ejs in this div -->
       <div class="carousel carousel-showmanymoveone slide"
         id="<%= div %>" style="display: none">
@@ -15,7 +15,7 @@ const htmlTpl = `
         <% carouselItems.forEach(function(i, idx) { %>
           <% var _class = 'item'; if (idx === 0) { _class += ' active'; } %>
           <div class="<%= _class %>">
-            <div class="col-xs-12 col-sm-6 col-md-3 item_block">
+            <div class="col-xs-12 col-sm-5 col-md-3 item_block">
               <a href="<%= i.linkURL %>" target="<%= i.linkTarget %>">
                <% if (i.hasVideo) { %>
                <img class="play" src="/img/icon-play.png" />

@@ -1,6 +1,6 @@
 <div class="row">
   <% articles.forEach(function(a) { %>
-  <div class="col-md-6 nm_section_block">
+  <div class="col-xs-12 col-sm-6 col-md-6 nm_section_block">
     <a ng-href="<%= a.linkURL %>" target="<%= a.linkTarget %>">
       <img ng-if="a.hasVideo" class="play" src="/img/icon-play.png" />
       <img ng-src="<%= a.imgName %>" />
