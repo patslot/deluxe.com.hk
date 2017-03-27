@@ -51,7 +51,7 @@
             <div align="center" ng-show="loadingArticles" style="margin-top: 20px">
               <img src="/img/loading.gif" />
             </div>
-            <div ng-repeat="articles in moreArticleGroups">
+            <div ng-repeat="articles in moreArticleGroups track by $index">
               <midbanner midbanner-id="midbanner_group_{{$index}}"></midbanner>
               <fixedbanner fixedbanner-id="fixedbanner{{$index + 2}}"
                 fixedbanner-num="{{$index + 2}}"></fixedbanner>

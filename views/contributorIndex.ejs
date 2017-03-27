@@ -34,8 +34,7 @@
                 <div align="center" ng-show="loadingContributors" style="margin-top: 20px">
                   <img src="/img/loading.gif" />
                 </div>
-                <div ng-repeat="contributors in moreContributorGroups track by
-                    $index">
+                <div ng-repeat="contributors in moreContributorGroups track by $index">
                   <midbanner midbanner-id="midbanner_group_{{$index}}"></midbanner>
                   <fixedbanner fixedbanner-id="fixedbanner{{$index + 2}}"
                     fixedbanner-num="{{$index + 2}}"></fixedbanner>
