@@ -9,7 +9,8 @@ var server = Server({
   adWebBaseTag: process.env.AD_WEB_BASE_TAG || "dev.ADD",
   adMobileBaseTag: process.env.AD_MOBILE_BASE_TAG || "dev.ADD_Mobilesite",
   edmSubscriptionEndpoint: process.env.EDM_SUBSCRIPTION_ENDPOINT,
-  GA_CODE: process.env.GA_CODE
+  GA_CODE: process.env.GA_CODE,
+  LOGGING_GEO_API: process.env.LOGGING_GEO_API
 });
 
 server.set('port', process.env.PORT || 3000);

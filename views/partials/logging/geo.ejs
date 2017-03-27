@@ -1,0 +1,26 @@
+<!-- Begin Geo log -->
+<script>
+  (function() {
+    var hexed = ("ADAILY," + new Date().getTime())
+      .split("")
+      .map(c => c.charCodeAt(0).toString(16))
+      .join("");
+    
+    $.ajax({
+      url: "<%= LOGGING_GEO_API %>",
+      data: {
+        k: hexed,
+        format: "dfp"
+      }
+    }).done(function(data) {
+      if (!!window.localStorage) {
+        localStorage.setItem("1x1_GEO", JSON.stringify(data))
+      } else {
+        console.log("unable to find localStorage, browser is not supported");
+      }
+    }).fail(function(xhr, textStatus, err) {
+      console.error(err);
+    });
+  })();
+</script>
+<!-- End Geo log -->
