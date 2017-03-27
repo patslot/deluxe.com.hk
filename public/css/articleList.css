@@ -1,6 +1,7 @@
 .ls_banner {
   height: 90px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+  margin-top: 20px;
 }
 
 .al_two_col_container.visible-xs {
@@ -15,28 +16,35 @@
 .al_two_image {
   float: left;
   height: 255px;
-  margin-bottom: 30px;
-}
-
-@media (max-width: 767px) {
-  .ls_banner {
-    margin: 0 15px 15px 15px;
-    height: 45px;
-  }
-
-  .al_two_content,
-  .al_two_image {
-    height: auto;
-  }
+  margin-bottom: 15px;
 }
 
 .al_two_content {
   padding-top: 15px;
 }
 
+@media (max-width: 767px) {
+  .ls_banner {
+    margin: 0 15px 0 15px;
+    height: 45px;
+  }
+
+  .al_two_content,
+  .al_two_image {
+    float: left;
+    height: auto;
+    margin-bottom: 0;
+  }
+
+  .al_two_content {
+    height: auto;
+    padding-top: 0;
+  }
+}
+
 .al_two_content_title {
-  font-size: 25px;
-  line-height: 30px;
+  font-size: 20px;
+  line-height: 26px;
   background: rgb(255, 255, 255);
   margin: 0px auto;
   margin-bottom: 10px;
@@ -48,6 +56,7 @@
   font-style: italic;
   color: #C4063D;
   font-size: 11px;
+  font-weight: bold;
 }
 
 .al_two_content_content {

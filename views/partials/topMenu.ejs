@@ -2,6 +2,7 @@
   <div class="index-logo">
     <a class="logo" href="/">http://hk.add.nextmedia.com/</a>
   </div>
+  <div class="sticky-placeholder"></div>
   <nav id="sticky-wrap">
     <div class="nav">
       <div class="nav--inner">
@@ -69,8 +70,7 @@
   }
 
   .nm_header a:hover,
-  .nm_header a:focus,
-  .nm_header li {
+  .nm_header a:focus {
     color: #C4063D;
     text-decoration: none;
   }
@@ -130,7 +130,7 @@
   }
 
   .nm_header #sticky-wrap {
-    z-index: 999;
+    z-index: 100;
     text-transform: uppercase;
     position: relative;
     width: 100%;
@@ -141,6 +141,7 @@
 
   #sticky-wrap .nav {
     position: relative;
+    background-color: #fff;
     width: 100%;
     height: 65px;
     margin: 0 auto;
@@ -167,7 +168,7 @@
 
   .nm_header .nav--menu .logo img {
     width: 160px;
-    margin: 8px 0 0 20px;
+    margin: 8px 20px 0 20px;
   }
 
   .nm_header .index-logo+#sticky-wrap .nav .nav--menu .text {

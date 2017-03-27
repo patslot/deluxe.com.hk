@@ -1,19 +1,19 @@
 .artd_container {
-  padding: 10px 15px;
+  padding: 10px 0 0;
 }
 
 .artd_article_label {
   font-style: italic;
-  color: #8B0000;
-  font-size: 18px;
+  color: #C4063D;
+  font-size: 11px;
+  font-weight: bold;
 }
 
 .artd_article_title {
-  font-family: Arial, 新細明體, sans-serif;
   font-size: 25px;
   line-height: 30px;
   background: rgb(255, 255, 255);
-  margin: 0px auto;
+  margin: 0px auto 5px;
 }
 
 .artd_article_Photo img {
@@ -31,7 +31,8 @@
 }
 
 .artd_intro_photo {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 .artd_intro_caption {
@@ -39,7 +40,7 @@
 }
 
 .artd_article_subHead {
-  margin-top: 30px;
+  margin-top: 15px;
   font-size: 18px;
   font-weight: bold;
 }
