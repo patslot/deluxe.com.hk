@@ -3,7 +3,7 @@ export default function(c) {
   var Transport = require('lokka-transport-http').Transport;
 
   var client = new Lokka({
-    transport: new Transport(c.GRAPHQL_ENDPOINT)
+    transport: new Transport(c.GRAPHQL_ENDPOINT, { credentials: false })
   });
 
   const listInstagram = `listInstagram(limit: 6) {
