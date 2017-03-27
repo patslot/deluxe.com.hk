@@ -1,4 +1,4 @@
-var moment = require('moment/moment.js');
+var moment = require('moment');
 
 module.exports = function() {
   var articleReg = new RegExp('^(\\d+_)*\\d+$');

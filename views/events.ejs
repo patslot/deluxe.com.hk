@@ -156,12 +156,14 @@
             <div class="mpm_content evtlist_container">
               <div class="evtlist_article_Photo">
                 <a href="<%= latestEvent.linkURL %>" target="<%= latestEvent.linkTarget %>">
-                  <img src="<%= latestEvent.image %>">
+                  <%- include('partials/imageHasVideo.ejs',
+                    {a: {hasVideo: latestEvent.hasVideo, image: latestEvent.image}}) %>
                 </a>
               </div>
               <div class="evtlist_article_label">[<%= latestEvent.catName %>]</div>
               <a href="<%= latestEvent.linkURL %>" target="<%= latestEvent.linkTarget %>">
                 <div class="evtlist_article_title"><%= latestEvent.title %></div>
+                <div class="event_item_content_date"><%= latestEvent.lastUpdate %></div>
                 <div class="evtlist_article_Text"><%- latestEvent.content %></div>
               </a>
             </div>
@@ -186,7 +188,8 @@
             <div class="event_item">
               <a href="<%= e.linkURL %>" target="<%= e.linkTarget %>">
                 <div class="event_item_media">
-                  <img src="<%= e.image %>">
+                  <%- include('partials/imageHasVideo.ejs',
+                    {a: {hasVideo: e.hasVideo, image: e.image}}) %>
                 </div>
                 <div class="event_item_content">
                   <div class="event_item_content_title">
@@ -204,7 +207,10 @@
             <div class="event_item" ng-repeat="e in events track by $index">
               <a ng-href="{{e.linkURL}}" target="{{e.linkTarget}}">
                 <div class="event_item_media">
-                  <img ng-src="{{e.image}}">
+                  <div class="pos-relative">
+                    <img ng-if="e.hasVideo" class="play" src="/img/icon-play.png" />
+                    <img ng-src="{{e.image}}" />
+                  </div>
                 </div>
                 <div class="event_item_content">
                   <div class="event_item_content_title">

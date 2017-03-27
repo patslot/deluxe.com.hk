@@ -64,7 +64,7 @@
                     <div class="artd_article_label"><%- categoryName %></div>
                     <div class="artd_article_title"><%- title %></div>
                     <div class="artd_article_publish_date" ng-cloak>
-                      日期：{{"<%- pubDate %>" | amUtc | amDateFormat:'lll'}}
+                      日期：<%- pubDate %>
                     </div>
                     <share-bar post-id="<%- id %>"
                       post-title="<%- title %>"></share-bar>
@@ -117,7 +117,7 @@
                     <div class="artd_article_label"><%- categoryName %></div>
                     <div class="artd_article_title"><%- title %></div>
                     <div class="artd_article_publish_date">
-                      日期：{{"<%- publish %>" | amUtc | amDateFormat:'lll'}}
+                      日期：<%- publish %>
                     </div>
                     <share-bar post-id="<%- id %>"
                       post-title="<%- title %>"></share-bar>

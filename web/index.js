@@ -1,6 +1,5 @@
 import angular from 'angular';
 import moment from 'moment/moment.js';
-import 'angular-moment/angular-moment.js';
 import './lib/lazy-scroll.js';
 import 'ejs/ejs.js';
 import 'bootpag/lib/jquery.bootpag.js';
@@ -44,8 +43,7 @@ module.exports = function(options) {
     .directive('contributorBlock', [dirs.contributorBlock])
 
   angular
-    .module('addv2', ['lazy-scroll', 'appServices', 'appDirectives',
-      'angularMoment'])
+    .module('addv2', ['lazy-scroll', 'appServices', 'appDirectives'])
     .filter("trust", ['$sce', function($sce) {
       return function(htmlCode) {
         return $sce.trustAsHtml(htmlCode);

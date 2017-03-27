@@ -1,7 +1,12 @@
 var util = require('util');
+var moment = require('moment');
 
 module.exports = function(gQuery, categMapping, queryHandler) {
   var maxUpcomingEvent = 10;
+
+  function parsePubDate(pubDate) {
+    return moment(pubDate, moment.ISO_8601).utc().format('lll');
+  }
 
   function renderArticle(req, res, next) {
     var articleID = req.params.articleID;
@@ -26,6 +31,7 @@ module.exports = function(gQuery, categMapping, queryHandler) {
           });
           article.video = videos[0];
         }
+        article.pubDate = parsePubDate(article.pubDate);
         article.menu = queryHandler.parseMenu(result.listMenu);
         res.render('articleDetail', article);
       }, function(err) {
@@ -39,6 +45,7 @@ module.exports = function(gQuery, categMapping, queryHandler) {
         article.ename = categMapping.nameToEname[article.categoryName];
         article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
         article.video = article.videoFile;
+        article.publish = parsePubDate(article.publish);
         article.menu = queryHandler.parseMenu(result.listMenu);
         if (article.categoryName === 'Event') {
           gQuery.upcomingEventQuery().then(function (result) {
