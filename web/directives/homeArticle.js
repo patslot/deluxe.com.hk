@@ -1,9 +1,11 @@
 const htmlTpl = `
 <a href="<%= a.linkURL %>" target="<%= a.linkTarget %>">
-  <% if (a.hasVideo) { %>
-  <img class="play" src="/img/icon-play.png" />
-  <% } %>
-  <img src="<%= a.imgName %>" />
+  <div class="pos-relative">
+    <% if (a.hasVideo) { %>
+    <img class="play" src="/img/icon-play.png" />
+    <% } %>
+    <img src="<%= a.imgName %>" />
+  </div>
 </a>
 <div class="text-left">
   <div class="nm_section_block_title_cat">[<%= a.catName %>]</div>

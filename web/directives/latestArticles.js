@@ -16,10 +16,12 @@ const htmlTpl = `
       </div>
       <div class="ctb_two_image col-md-6 col-xs-12">
         <a href="<%= a.linkURL %>" target="<%= a.linkTarget %>">
-          <% if (a.hasVideo) { %>
-          <img class="play" src="/img/icon-play.png" />
-          <% } %>
-          <img src="<%= a.image %>" />
+          <div class="pos-relative">
+            <% if (a.hasVideo) { %>
+            <img class="play" src="/img/icon-play.png" />
+            <% } %>
+            <img src="<%= a.image %>" />
+          </div>
         </a>
       </div>
     </div>
@@ -27,10 +29,12 @@ const htmlTpl = `
     <div>
       <div class="ctb_two_image col-md-6 col-xs-12">
         <a href="<%= a.linkURL %>" target="<%= a.linkTarget %>">
-          <% if (a.hasVideo) { %>
-          <img class="play" src="/img/icon-play.png" />
-          <% } %>
-          <img src="<%= a.image %>" />
+          <div class="pos-relative">
+            <% if (a.hasVideo) { %>
+            <img class="play" src="/img/icon-play.png" />
+            <% } %>
+            <img src="<%= a.image %>" />
+          </div>
         </a>
       </div>
       <div class="ctb_two_content col-md-6 col-xs-12">
@@ -52,10 +56,12 @@ const htmlTpl = `
   <div>
     <div class="ctb_two_image col-md-6 col-xs-12">
       <a href="<%= a.linkURL %>" target="<%= a.linkTarget %>">
-        <% if (a.hasVideo) { %>
-        <img class="play" src="/img/icon-play.png" />
-        <% } %>
-        <img src="<%= a.image %>" />
+        <div class="pos-relative">
+          <% if (a.hasVideo) { %>
+          <img class="play" src="/img/icon-play.png" />
+          <% } %>
+          <img src="<%= a.image %>" />
+        </div>
       </a>
     </div>
     <div class="ctb_two_content col-md-6 col-xs-12">

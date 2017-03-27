@@ -2,10 +2,7 @@
 <div class="pull-right nm_mpm col-xs-12">
   <div class="mpm_content">
     <a ng-href="<%= article.linkURL %>">
-      <% if (article.hasVideo) { %>
-      <img class="play mpm_play" src="/img/icon-play.png" />
-      <% } %>
-      <img ng-src="<%= article.image %>" />
+      <%- include('imageHasVideo.ejs', {a: {hasVideo: article.hasVideo, image: article.image}}) %>
     </a>
   </div>
   <div class="mpm_content">

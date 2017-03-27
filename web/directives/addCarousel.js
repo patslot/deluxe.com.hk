@@ -17,10 +17,12 @@ const htmlTpl = `
           <div class="<%= _class %>">
             <div class="col-xs-12 col-sm-5 col-md-3 item_block">
               <a href="<%= i.linkURL %>" target="<%= i.linkTarget %>">
-               <% if (i.hasVideo) { %>
-               <img class="play" src="/img/icon-play.png" />
-               <% } %>
-               <img src="<%= i.image %>" alt="">
+                <div class="pos-relative">
+                  <% if (i.hasVideo) { %>
+                  <img class="play" src="/img/icon-play.png" />
+                  <% } %>
+                  <img src="<%= i.image %>" alt="">
+                </div>
               </a>
               <div class="four_col_slide_content">
                 <% if (i.label) { %>

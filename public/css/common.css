@@ -389,15 +389,11 @@ background: #ccc;
 img.play {
   width: 50px !important;
   height: 50px !important;
-  top: 45%;
+  top: 50%;
   left: 50%;
   margin-top: -25px !important;
   margin-left: -25px !important;
   position: absolute;
-}
-
-img.mpm_play {
-  top: 40%;
 }
 
 a,
@@ -450,4 +446,8 @@ a {
 
 .nav--menu ul {
   padding-left: 0;
+}
+
+.pos-relative {
+  position: relative;
 }
