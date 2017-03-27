@@ -10,6 +10,7 @@ module.exports = function(options) {
   var article = require('./routes/article.js')(gQuery, categMapping, queryHandler);
   var contributor = require('./routes/contributor.js')(gQuery, categMapping, queryHandler);
   var events = require('./routes/events.js')(gQuery, categMapping, queryHandler)
+  var api = require("./routes/api.js")(options.edmSubscriptionEndpoint);
 
   app.locals.GRAPHQL_ENDPOINT = options.graphqlEndpoint;
   app.locals.AD_PREFIX_TAG = options.adPrefixTag;
@@ -20,6 +21,8 @@ module.exports = function(options) {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.set('view engine', 'ejs');
+
+  app.use("/api", api);
 
   app.get('/', home.render);
   // TODO: Add favicon.ico?

@@ -25,7 +25,8 @@
     "express": "^4.14.1",
     "lokka": "^1.7.0",
     "lokka-transport-http": "^1.6.1",
-    "moment": "^2.17.1"
+    "moment": "^2.17.1",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "angular": "^1.6.2",

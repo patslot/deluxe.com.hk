@@ -30,41 +30,57 @@
         </ul>
       </div>
       <% } %>
-      <div class="mobile_subscribe">
-        <div class="nl-content">
-          訂閱Apple Daily Deluxe 電子版以獲得最新資訊及優惠
+      <div class="mobile_newsletter_title">
+        Subscribe
+      </div>
+      <div class="mobile_subscribe newsletter_new_subscription">
+        <div class="mobile_subscribe_title">
+          訂閱Apple Daily Deluxe電子版以獲得最新資訊及優惠
         </div>
         <form id="mobile_subscript_form">
           <div class="form-group col-xs-6">
-            <input type="text" class="form-control lastname" placeholder="姓" maxlength="10">
+            <input type="text" class="form-control lastname" placeholder="姓" maxlength="10" id="mobile_lastname" name="last_name" />
             <span class="glyphicon glyphicon-remove form-control-feedback"></span>
           </div>
           <div class="form-group col-xs-6">
-            <input type="text" class="form-control firstname" placeholder="名" maxlength="10">
+            <input type="text" class="form-control firstname" placeholder="名" maxlength="10" id="mobile_firstname" name="first_name" />
             <span class="glyphicon glyphicon-remove form-control-feedback"></span>
           </div>
           <div class="form-group col-xs-12">
-            <input type="email" class="form-control email" placeholder="電子郵件地址" maxlength="50">
+            <input type="email" class="form-control email" placeholder="電子郵件地址" maxlength="50" id="mobile_email" name="email" />
             <span class="glyphicon glyphicon-remove form-control-feedback"></span>
           </div>
           <div class="privacy-block col-xs-12">
             <div class="privacy_block_checkbox">
-              <input type="checkbox" name="privacycheck" value="privacycheck" id="privacycheck" required>
+              <input type="checkbox" name="privacy" value="yes" id="mobile_privacycheck" required />
             </div>
             <div class="privacy_block_content">
-              <label>本人已閱讀接受<a href="http://www.nextdigital.com.hk/info/tnc.html" target="_blank"><u>個人資料的條款</u></a></label>
+              <label>本人已閱讀並接受<a href="http://www.nextdigital.com.hk/info/tnc.html" target="_blank"><u>個人資料的條款</u></a></label>
             </div>
           </div>
           <div class="promotion-block col-xs-12">
             <div class="promotion_block_checkbox">
-              <input type="checkbox" name="promotioncheck" value="promotioncheck" id="promotioncheck">
+              <input type="checkbox" name="promotion" value="yes" id="mobile_promotioncheck" />
             </div>
             <div class="promotion_block_content">
               <label>本人願意收取就有關Next Media的刊物作直銷及品牌推廣之資訊。</label>
             </div>
           </div>
-          <button type="提交" class="btn btn-secondary submit-btn" onclick="mobileValidFunction()">提交</button>
+          <button type="submit" class="btn btn-secondary submit-btn newsletter_submit" onclick="mobileValidFunction(event)">提交</button>
         </form>
+      </div>
+      <div class="mobile_sent_subscription newsletter_sent_success">
+        <span class="mobile_subscribe_title">感謝閣下的訂閱！</span>
+        <br />
+        您將收到確認電郵並得到最新資訊及優惠
+        <br />
+        <br />
+        您已成功註冊！您將收到確認電郵並得到獨家資訊及優惠。歡迎加入Apple Daily Deluxe！
+      </div>
+      <div class="mobile_sent_subscription newsletter_sent_error">
+        <span class="mobile_subscribe_title">系統錯誤</span>
+        <br />
+        系統暫時未能處理您的申請，請稍後再試。
       </div>
       <div class="icons">
         <span class="menu_fb_icon">
@@ -143,7 +159,7 @@
   }
 
   .mobile_subscribe {
-    padding: 30px;
+    margin: 15px 30px;
   }
 
   .mm_container .index-logo {
@@ -173,36 +189,95 @@
   .mobile_subscribe input+.form-control-feedback {
     right: 20px;
   }
+
+  .mobile_sent_subscription{
+    display: none;
+    font-size: 14px;
+    margin: 15px 30px;
+  }
+
+  .mobile_subscribe_title{
+    font-size: 20px;
+  }
+
+  .mobile_newsletter_title{
+    font-weight: bold;
+    width: 100%;
+    margin: 15px 30px 0px;
+    display: inline-block;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
 </style>
 
 <script>
   $(document).ready(function() {
+    $(".mobile_sent_subscription").hide();
     $('#mobile_subscript_form .glyphicon').hide();
     $('[vmenu="menu_close_trigger"]').on('click', toggleMenu);
+
+    // set validation message
+    var emailWarningMsg = "請輸入完整的電子郵件地址。";
+    var privacyWarningMsg = "請閱讀並接受個人資料的條款。";
+    ["input", "invalid"].forEach(function(e) {
+      document.getElementById("mobile_email")
+        .addEventListener(e, function(event) {
+          this.setCustomValidity("");
+          if (!event.target.validity.valid) {
+            this.setCustomValidity(emailWarningMsg);
+          }
+        }, false);
+    });
+    ["click", "invalid"].forEach(function(e) {
+      document.getElementById("mobile_privacycheck")
+        .addEventListener(e, function(event) {
+          this.setCustomValidity("");
+          if (event.target.validity.valueMissing) {
+            this.setCustomValidity(privacyWarningMsg);
+          }
+        }, false);
+    });
+
+    $("#mobile_subscript_form").submit(function() {
+      $(".newsletter_submit").prop("disabled", true);
+      $.post("/api/subscribe", $(this).serialize(), function(response) {
+        $(".newsletter_new_subscription").hide();
+        $(".newsletter_sent_subscription").show();
+        $(".newsletter_sent_success").show();
+      }, "json")
+      .error(function(err) {
+        $(".newsletter_new_subscription").hide();
+        $(".newsletter_sent_subscription").show();
+        $(".newsletter_sent_error").show();
+      });
+    });
   });
 
-  function mobileValidFunction() {
+  function mobileValidFunction(event) {
     $('#mobile_subscript_form .glyphicon').hide();
-    var isTrue = true;
+    $('#mobile_subscript_form .lastname').parent().removeClass('has-error');
+    $('#mobile_subscript_form .firstname').parent().removeClass('has-error');
+    $('#mobile_subscript_form .email').parent().removeClass('has-error');
+    var isValid = true;
     if (!$('#mobile_subscript_form .lastname').val()) {
       $('#mobile_subscript_form .lastname').parent().addClass('has-error');
       $('#mobile_subscript_form .lastname').next().show();
-      isTrue = false;
+      isValid = false;
     }
     if (!$('#mobile_subscript_form .firstname').val()) {
       $('#mobile_subscript_form .firstname').parent().addClass('has-error');
       $('#mobile_subscript_form .firstname').next().show();
-      isTrue = false;
+      isValid = false;
     }
     if (!$('#mobile_subscript_form .email').val()) {
       $('#mobile_subscript_form .email').parent().addClass('has-error');
       $('#mobile_subscript_form .email').next().show();
-      isTrue = false;
+      isValid = false;
     }
-    if (isTrue) {
+    if (isValid) {
       return true;
     } else {
-      event.preventDefault()
+      event.preventDefault();
       return false;
     }
   }
