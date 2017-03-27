@@ -151,10 +151,12 @@
             <% if (latestEvent) { %>
             <div class="mpm_content evtlist_container">
               <div class="evtlist_article_Photo">
-                <a><img src="<%= latestEvent.image %>"></a>
+                <a href="<%= latestEvent.linkURL %>" target="<%= latestEvent.linkTarget %>">
+                  <img src="<%= latestEvent.image %>">
+                </a>
               </div>
               <div class="evtlist_article_label">[<%= latestEvent.catName %>]</div>
-              <a>
+              <a href="<%= latestEvent.linkURL %>" target="<%= latestEvent.linkTarget %>">
                 <div class="evtlist_article_title"><%= latestEvent.title %></div>
                 <div class="evtlist_article_Text"><%- latestEvent.content %></div>
               </a>
