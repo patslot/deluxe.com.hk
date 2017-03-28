@@ -1,27 +1,37 @@
 <!-- Begin Geo log -->
 <script>
   (function() {
-    var hexed = ("ADAILY," + new Date().getTime())
-      .split("")
-      .map(c => c.charCodeAt(0).toString(16))
-      .join("");
-    
-    $.ajax({
-      url: "<%= LOGGING_GEO_API %>",
-      data: {
-        k: hexed,
-        format: "dfp"
-      },
-      timeout: 5000
-    }).done(function(data) {
-      if (!!window.localStorage) {
-        localStorage.setItem("1x1_GEO", JSON.stringify(data))
-      } else {
-        console.log("unable to find localStorage, browser is not supported");
+    if (!!window.localStorage) {
+      var geoData = localStorage.getItem("1x1_GEO");
+      if (geoData) {
+        var data = JSON.parse(geoData);
+        if (data.savedAt && (new Date().getTime() - data.savedAt) < 86400000) {
+          return; // not update for 1 day
+        }
       }
-    }).fail(function(xhr, textStatus, err) {
-      console.error(err);
-    });
+
+      var hexed = ("ADAILY," + new Date().getTime())
+        .split("")
+        .map(c => c.charCodeAt(0).toString(16))
+        .join("");
+
+      $.ajax({
+        url: "<%= LOGGING_GEO_API %>",
+        data: { k: hexed, format: "dfp" },
+        timeout: 5000
+      }).done(function(data) {
+        localStorage.setItem(
+          "1x1_GEO",
+          JSON.stringify(
+            Object.assign({}, data, { savedAt: new Date().getTime() })
+          )
+        );
+      }).fail(function(xhr, textStatus, err) {
+        console.error(err);
+      });
+    } else {
+      console.log("unable to find localStorage, browser is not supported");
+    }
   })();
 </script>
 <!-- End Geo log -->

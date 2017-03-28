@@ -1,34 +1,43 @@
 <!-- Begin CRM log -->
 <script>
   (function() {
-    var hexed = ("ADAILY," + new Date().getTime())
-      .split("")
-      .map(c => c.charCodeAt(0).toString(16))
-      .join("");
-      
-    var nxtu = (document.cookie || "")
-      .split(";")
-      .map(function(d) { return d.trim().split("="); })
-      .filter(function(d) { return d.length === 2 && d[0] === "NXTU"; })
-      .reduce(function(acc, val) { return val; }, "");
-    
-    $.ajax({
-      url: "<%= LOGGING_CRM_API %>",
-      data: {
-        NXTU: nxtu,
-        k: hexed,
-        format: "dfp"
-      },
-      timeout: 5000
-    }).done(function(data) {
-      if (!!window.localStorage) {
-        localStorage.setItem("1x1_CRM", JSON.stringify(data))
-      } else {
-        console.log("unable to find localStorage, browser is not supported");
+    if (!!window.localStorage) {
+      var crmData = localStorage.getItem("1x1_CRM");
+      if (crmData) {
+        var data = JSON.parse(crmData);
+        if (data.savedAt && (new Date().getTime() - data.savedAt) < 86400000) {
+          return; // not update for 1 day
+        }
       }
-    }).fail(function(xhr, textStatus, err) {
-      console.error(err);
-    });
+
+      var hexed = ("ADAILY," + new Date().getTime())
+        .split("")
+        .map(c => c.charCodeAt(0).toString(16))
+        .join("");
+
+      var nxtu = (document.cookie || "")
+        .split(";")
+        .map(function(d) { return d.trim().split("="); })
+        .filter(function(d) { return d.length === 2 && d[0] === "NXTU"; })
+        .reduce(function(acc, val) { return val; }, "");
+
+      $.ajax({
+        url: "<%= LOGGING_CRM_API %>",
+        data: { NXTU: nxtu, k: hexed, format: "dfp" },
+        timeout: 5000
+      }).done(function(data) {
+        localStorage.setItem(
+          "1x1_CRM",
+          JSON.stringify(
+            Object.assign({}, data, { savedAt: new Date().getTime() })
+          )
+        );
+      }).fail(function(xhr, textStatus, err) {
+        console.error(err);
+      });
+    } else {
+      console.log("unable to find localStorage, browser is not supported");
+    }
   })();
 </script>
 <!-- End CRM log -->
