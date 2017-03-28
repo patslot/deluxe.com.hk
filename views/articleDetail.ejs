@@ -74,14 +74,7 @@
                     <div class="artd_article_intro">
                     <% if (introPhotos && introPhotos.length > 0) { %>
                       <% introPhotos.forEach(function (photo) { %>
-                        <div class="artd_intro_photo">
-                          <div class="artd_article_Photo">
-                            <img src="<%- photo.imagePathZoom %>">
-                          </div>
-                          <div class="artd_article_caption">
-                            <%- photo.caption %>
-                          </div>
-                        </div>
+                        <%- include('partials/imageWithCaption.ejs', {image: photo.imagePathZoom, caption: photo.caption}) %>
                       <% }) %>
                     <% } %>
                     <%- intro %>
@@ -93,14 +86,7 @@
                         </div>
                         <% if (content.photos && content.photos.length > 0) { %>
                           <% content.photos.forEach(function (photo) { %>
-                            <div class="artd_intro_photo">
-                              <div class="artd_article_Photo">
-                                <img src="<%- photo.imagePathZoom %>">
-                              </div>
-                              <div class="artd_article_caption">
-                                <%- photo.caption %>
-                              </div>
-                            </div>
+                            <%- include('partials/imageWithCaption.ejs', {image: photo.imagePathZoom, caption: photo.caption}) %>
                           <% }) %>
                         <% } %>
                         <div class="artd_article_Text">
@@ -127,14 +113,7 @@
                     <div class="artd_article_intro">
                     <% if (imgBlock && imgBlock.length > 0) { %>
                       <% imgBlock.forEach(function (photo) { %>
-                        <div class="artd_intro_photo">
-                          <div class="artd_article_Photo">
-                            <img src="<%- photo.imgFile %>">
-                          </div>
-                          <div class="artd_article_caption">
-                            <%- photo.caption %>
-                          </div>
-                        </div>
+                        <%- include('partials/imageWithCaption.ejs', {image: photo.imgFile, caption: photo.caption}) %>
                       <% }) %>
                     <% } %>
                     </div>
@@ -143,14 +122,7 @@
                         <div class="artd_article_subHead">
                           <%- content.subTitle %>
                         </div>
-                        <div class="artd_intro_photo">
-                          <div class="artd_article_Photo">
-                            <img src="<%- content.imgFile %>">
-                          </div>
-                          <div class="artd_article_caption">
-                            <%- content.caption %>
-                          </div>
-                        </div>
+                        <%- include('partials/imageWithCaption.ejs', {image: content.imgFile, caption: content.caption}) %>
                         <div class="artd_article_Text">
                           <%- content.content %>
                         </div>
