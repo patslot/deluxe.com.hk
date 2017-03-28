@@ -22,17 +22,20 @@ module.exports = function() {
   }
 
   // Parse menu to create 'MORE' sub-menu
-  function parseMenu(origMenu) {
+  function parseMenu(origMenu, categName) {
     var mainMenu = [];
     var subMenu = [];
     var menu = origMenu || [];
-    menu.forEach(function(m, idx) {
+    categName = categName || '';
+    for (var i = 0; i < menu.length; i++) {
+      var m = menu[i];
+      m.activeClass = m.name === categName ? 'active' : '';
       if (m.sort < 1000) {
-        mainMenu.push(menu[idx]);
+        mainMenu.push(m);
       } else {
-        subMenu.push(menu[idx]);
+        subMenu.push(m);
       }
-    });
+    }
     return {main: mainMenu, sub: subMenu};
   }
 

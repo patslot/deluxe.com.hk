@@ -24,7 +24,7 @@ module.exports = function(gQuery, categoryMapping, queryHandler) {
         latestEvent: events.length > 0 ? events[0] : null,
         upcomingEvents: queryHandler.parseUpcomingEvents(upcomingEvents),
         events: events.slice(1, totalEvents),
-        menu: queryHandler.parseMenu(r.listMenu)});
+        menu: queryHandler.parseMenu(r.listMenu, categEvent)});
     }, function(err) {
       return next(err);
     });

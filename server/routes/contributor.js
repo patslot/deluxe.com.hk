@@ -1,6 +1,7 @@
 module.exports = function(gQuery, categoryMapping, queryHandler) {
   var articleCount = 4;
   var contributorBlockCount = 6;
+  var categContr = 'Contributor';
 
   function renderArticles(req, res, next) {
     var name = req.params.contrName;
@@ -17,7 +18,7 @@ module.exports = function(gQuery, categoryMapping, queryHandler) {
       });
       res.render('contributorArticles', {
         contributor: queryHandler.parseContributor(contributors[0]),
-        menu: queryHandler.parseMenu(r.listMenu),
+        menu: queryHandler.parseMenu(r.listMenu, categContr),
         articles: articles});
     }, function(err) {
       return next(err);
@@ -25,12 +26,12 @@ module.exports = function(gQuery, categoryMapping, queryHandler) {
   }
 
   function renderIndex(req, res, next) {
-    var adTagMapping = categoryMapping.nameToAdTag['Contributor'];
+    var adTagMapping = categoryMapping.nameToAdTag[categContr];
     gQuery.contributorIndexQuery().then(function(r) {
       res.render('contributorIndex', {
         contributors: queryHandler.parseContributors(
           (r.listContributor || []).slice(0, contributorBlockCount)),
-        menu: queryHandler.parseMenu(r.listMenu),
+        menu: queryHandler.parseMenu(r.listMenu, categContr),
         adTag: adTagMapping.list
       });
     }, function(err) {

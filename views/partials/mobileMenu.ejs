@@ -9,7 +9,7 @@
         <ul>
           <% menu.main.forEach(function(m) { %>
           <li>
-            <a href="/<%= m.name %>" target="_self">
+            <a href="/<%= m.name %>" class="<%= m.activeClass %>">
               <%= m.name %>
             </a>
           </li>
@@ -22,7 +22,7 @@
         <ul>
           <% menu.sub.forEach(function(m) { %>
           <li>
-            <a href="/<%= m.name %>" target="_self">
+            <a href="/<%= m.name %>" class="<%= m.activeClass %>">
               <%= m.name %>
             </a>
           </li>
@@ -207,6 +207,11 @@
     display: inline-block;
     font-size: 14px;
     text-transform: uppercase;
+  }
+
+  .mm_container a.active, .mm_container a:hover, .mm_container a:focus {
+    color: #C4063D;
+    text-decoration: none;
   }
 </style>
 

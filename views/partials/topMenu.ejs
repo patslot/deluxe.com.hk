@@ -13,7 +13,7 @@
           <ul class="text">
             <% menu.main.forEach(function(m) { %>
             <li>
-              <a ng-href="/<%= m.name %>" target="_self">
+              <a href="/<%= m.name %>" class="<%= m.activeClass %>">
                 <%= m.name %>
               </a>
             </li>
@@ -23,7 +23,7 @@
               <div class="menu_dropdown_content">
                 <% menu.sub.forEach(function(m) { %>
                   <div>
-                    <a ng-href="/<%= m.name %>" target="_self">
+                    <a href="/<%= m.name %>" class="<%= m.activeClass %>">
                       <%= m.name %>
                     </a>
                   </div>
@@ -69,8 +69,7 @@
     color: #000000;
   }
 
-  .nm_header a:hover,
-  .nm_header a:focus {
+  .nm_header a.active, .nm_header a:hover, .nm_header a:focus {
     color: #C4063D;
     text-decoration: none;
   }

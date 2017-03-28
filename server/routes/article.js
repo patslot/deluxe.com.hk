@@ -96,7 +96,7 @@ module.exports = function(gQuery, categMapping, queryHandler) {
       var categs = result.listMenu || [];
       var currentCateg = getCurrentCateg(categs, categ);
       res.render('categ', {
-        menu: queryHandler.parseMenu(categs),
+        menu: queryHandler.parseMenu(categs, categ),
         categImg: currentCateg ? currentCateg.img : '',
         article1: articles.length > 0 ? articles[0] : null,
         articles2to5: articles.length > 1 ? articles.slice(1) : [],
