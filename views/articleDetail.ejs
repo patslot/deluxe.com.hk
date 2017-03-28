@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title><%= title %> - <%= SITE_NAME %></title>
     <%- include('partials/extHeader.ejs') %>
     <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
     <%- include('partials/videoUtil.ejs', {adTag: adTag}) %>
-    <title><%- title %></title>
     <link rel="stylesheet" href="/css/articleDetail.css" />
   </head>
   <body ng-app="addv2" ng-controller="ArticleController"
