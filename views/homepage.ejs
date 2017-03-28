@@ -55,8 +55,11 @@
                 <%- include('partials/homeArticles.ejs', {articles: articles}) %>
               </div>
               <div class="col-xs-12 col-sm-4 col-md-4 nm_section">
-                <div class="nm_section">
-                  <facebook-block></facebook-block>
+                <div class="nm_section_block">
+                  <div class="homepage_facebook_block">
+                    <facebook-block></facebook-block>
+                  </div>
+                  <div style="clear: both;"></div>
                 </div>
                 <div class="nm_section">
                   <fixedbanner fixedbanner-id="fixedbanner2"
@@ -91,10 +94,12 @@
                   </div>
                 </div>
                 <div class="col-xs-12 col-sm-4 col-md-4 nm_section">
-                  <instagram-medias ig-medias="igMedias"></instagram-medias>
-                  <a href="/Event">
-                    <img ng-src="{{::eBanner.imgName}}" />
-                  </a>
+                  <div class="nm_section_block homepage_instagram_block">
+                    <instagram-medias ig-medias="igMedias"></instagram-medias>
+                  </div>
+                  <div class="nm_section_block">
+                    <a href="/Event"><img ng-src="{{::eBanner.imgName}}" /></a>
+                  </div>
                 </div>
               </div>
             </div>

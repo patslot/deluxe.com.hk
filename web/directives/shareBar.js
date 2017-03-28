@@ -19,8 +19,7 @@ const htmlTpl = `
       <a href="whatsapp://send?text=<%= url %>"></a>
     </li>
     <li class="<%= css.share_item %> <%= css.share_mail %>">
-      <a href="mailto:?subject=<%= title %>&amp;body=<%= title %> - <%= url %>"
-        target="_blank"></a>
+      <a href="mailto:?subject=<%= title %>&amp;body=<%= title %> - <%= url %>"></a>
     </li>
   </ul>
 </div>

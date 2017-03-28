@@ -46,17 +46,17 @@ module.exports = function(options) {
 
   app.use(function(err, req, res, next) {
     console.error(err);
-    return res.render("500", {
-      GA_CODE: options.GA_CODE
-      ,menu: {main: [], sub: []}
-    });
+    if (req.accepts(["text/html", "application/json"]) === "application/json") {
+      return res.status(500).json({status: 500, message: err});
+    }
+    return res.status(500).render("500", { menu: {main: [], sub: []} });
   });
 
   app.use(function(req, res) {
-    return res.render("404", {
-      GA_CODE: options.GA_CODE,
-      menu: {main: [], sub: []}
-    });
+    if (req.accepts(["text/html", "application/json"]) === "application/json") {
+      return res.status(404).json({status: 404, message: "not found"});
+    }
+    return res.status(404).render("404", { menu: {main: [], sub: []} });
   });
 
   return app;

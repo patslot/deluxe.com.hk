@@ -10,8 +10,8 @@ const TEMPLATE = `
   }(document, 'script', 'facebook-jssdk'));
 </script>
 <div>
-  <div class="nm_img_wrapper" style="background: url('./img/key11-313x176.jpg') center center no-repeat; background-size: cover; width: 300px; margin: auto;">
-    <div class="fb-page" data-href="https://www.facebook.com/appledailydeluxe/" data-tabs="timeline" data-width="300" data-height="363" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/appledailydeluxe/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/appledailydeluxe/">Apple Daily Deluxe</a></blockquote></div>
+  <div class="nm_img_wrapper" style="background: url('./img/key11-313x176.jpg') center center no-repeat; background-size: cover; width: 300px; height: auto; margin: auto;">
+    <div class="fb-page" data-href="https://www.facebook.com/appledailydeluxe/" data-tabs="timeline" data-width="300" data-height="375" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/appledailydeluxe/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/appledailydeluxe/">Apple Daily Deluxe</a></blockquote></div>
   </div>
 </div>
 `;
