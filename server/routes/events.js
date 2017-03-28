@@ -1,4 +1,4 @@
-module.exports = function(gQuery, categoryMapping, queryHandler) {
+module.exports = function(gQuery, categoryMapping, queryHandler, edm) {
   var eventCount = 7;
   var maxUpcomingEvents = 10;
   var categEvent = 'Event';
@@ -24,7 +24,10 @@ module.exports = function(gQuery, categoryMapping, queryHandler) {
         latestEvent: events.length > 0 ? events[0] : null,
         upcomingEvents: queryHandler.parseUpcomingEvents(upcomingEvents),
         events: events.slice(1, totalEvents),
-        menu: queryHandler.parseMenu(r.listMenu, categEvent)});
+        menu: queryHandler.parseMenu(r.listMenu, categEvent),
+        campaigns: r.listCampaign || [],
+        showEDM: edm.showEDM(req.cookies.addEDM, r.listCampaign)
+      });
     }, function(err) {
       return next(err);
     });

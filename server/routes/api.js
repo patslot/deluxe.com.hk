@@ -21,6 +21,10 @@ module.exports = function(edmSubscriptionEndpoint) {
           res.status(500);
           res.end();
         } else {
+          res.cookie("addEDM", "subscribed", {
+            maxAge: 1000 * 60 * 60 * 24 * 365,
+            httpOnly: true
+          });
           res.status(200);
           res.end(JSON.stringify(edmBody));
         }

@@ -1,4 +1,4 @@
-module.exports = function(gQuery, categoryMapping, queryHandler) {
+module.exports = function(gQuery, categoryMapping, queryHandler, edm) {
   var articleCount = 4;
   var contributorBlockCount = 6;
   var categContr = 'Contributor';
@@ -19,7 +19,10 @@ module.exports = function(gQuery, categoryMapping, queryHandler) {
       res.render('contributorArticles', {
         contributor: queryHandler.parseContributor(contributors[0]),
         menu: queryHandler.parseMenu(r.listMenu, categContr),
-        articles: articles});
+        articles: articles,
+        campaigns: r.listCampaign || [],
+        showEDM: edm.showEDM(req.cookies.addEDM, r.listCampaign)
+      });
     }, function(err) {
       return next(err);
     });
@@ -32,7 +35,9 @@ module.exports = function(gQuery, categoryMapping, queryHandler) {
         contributors: queryHandler.parseContributors(
           (r.listContributor || []).slice(0, contributorBlockCount)),
         menu: queryHandler.parseMenu(r.listMenu, categContr),
-        adTag: adTagMapping.list
+        adTag: adTagMapping.list,
+        campaigns: r.listCampaign || [],
+        showEDM: edm.showEDM(req.cookies.addEDM, r.listCampaign)
       });
     }, function(err) {
       return next(err);

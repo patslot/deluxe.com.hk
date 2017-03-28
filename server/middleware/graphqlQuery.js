@@ -200,6 +200,12 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     img
   }`;
 
+  const listCampaign = `listCampaign {
+    imgName
+    linkURL
+    content
+  }`;
+
   const listContributorArticle = `listContributorArticle(name: $name) {
     id
     categoryID
@@ -243,43 +249,44 @@ module.exports = function(GRAPHQL_ENDPOINT) {
   return {
     newsArticleQuery: function(articleID) {
       return client.query(createQueryWithParams('$id: String',
-        [listMenu, getNewsArticleDetail]), {id: articleID});
+        [listMenu, listCampaign, getNewsArticleDetail]), {id: articleID});
     },
     // For CMS article or editor pick article
     cmsArticleQuery: function(articleID) {
       return client.query(createQueryWithParams('$id: String',
-        [listMenu, getCMSArticleDetail, getContributorName]), {id: articleID});
+        [listMenu, listCampaign, getCMSArticleDetail, getContributorName]), {id: articleID});
     },
     homeQuery: function() {
       return client.query(createQuery(['listMPM ' + cmsComponeFeedModel,
         listMenu,
+        listCampaign,
         createCmsComponeFeedQuery('listHomeLatestArticle')
       ]));
     },
     categQuery: function(listCategArticle) {
       return client.query(createQuery([listCategArticle + ' ' + articleModel,
-        listMenu]));
+        listMenu, listCampaign]));
     },
     contributorIndexQuery: function() {
-      return client.query(createQuery([listMenu,
+      return client.query(createQuery([listMenu, listCampaign,
         createCmsComponeFeedQuery('listContributor')
       ]));
     },
     contributorArticlesQuery: function(contrName) {
       return client.query(createQueryWithParams('$name: String',
-        [listMenu,
+        [listMenu, listCampaign,
           createCmsComponeFeedQuery('listContributor'),
           listContributorArticle
         ]),
         {name: contrName});
     },
     queryEditorPicks: function() {
-      return client.query(createQuery([listMenu,
+      return client.query(createQuery([listMenu, listCampaign,
         'listEditorPick ' + cmsArticleModel]));
     },
     eventsQuery: function(pagesize, page) {
       return client.query(createQueryWithParams('$pagesize: Int, $page: Int',
-        [listMenu, 'totalPostEvent',
+        [listMenu, listCampaign, 'totalPostEvent',
           'listUpcomingEvent ' + cmsComponeFeedModel,
           'listPostEvent (pagesize: $pagesize, page: $page) ' +
           cmsArticleModel]),

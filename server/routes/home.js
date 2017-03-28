@@ -1,6 +1,4 @@
-var categMapping = require('../middleware/categoryMapping.js');
-
-module.exports = function(gQuery, queryHandler) {
+module.exports = function(gQuery, categMapping, queryHandler, edm) {
   function parseMpms(origMpms) {
     var mpms = origMpms || [];
     mpms.forEach(function(m) {
@@ -23,7 +21,9 @@ module.exports = function(gQuery, queryHandler) {
         res.render('homepage', {
           mpms: parseMpms(result.listMPM),
           menu: queryHandler.parseMenu(result.listMenu),
-          articles: queryHandler.parseHomeArticles(articles)
+          articles: queryHandler.parseHomeArticles(articles),
+          campaigns: result.listCampaign || [],
+          showEDM: edm.showEDM(req.cookies.addEDM, result.listCampaign)
         });
       }, function(err) {
         return next(err);

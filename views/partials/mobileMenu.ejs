@@ -30,6 +30,7 @@
         </ul>
       </div>
       <% } %>
+      <% if (showEDM) { %>
       <div class="mobile_newsletter_title">
         Subscribe
       </div>
@@ -82,6 +83,18 @@
         <br />
         系統暫時未能處理您的申請，請稍後再試。
       </div>
+      <% } %>
+      <% if (campaigns.length > 0) { %>
+      <div class="mobile_campaign_container">
+        <% campaigns.forEach(function(c) { %>
+        <div class="mobile_campaign_item">
+          <a href="<%= c.linkURL %>" target="_blank">
+            <img src="<%= c.imgName %>" alt="<%= c.content %>" />
+          </a>
+        </div>
+        <% }) %>
+      </div>
+      <% } %>
       <div class="icons">
         <span class="menu_fb_icon">
           <a href="https://www.facebook.com/appledailydeluxe" target="_blank">
@@ -213,13 +226,23 @@
     color: #C4063D;
     text-decoration: none;
   }
+
+  .mobile_campaign_container{
+    margin: 15px 30px;
+    display: block;
+  }
+
+  .mobile_campaign_item img{
+    max-width: 100%;
+  }
 </style>
 
 <script>
   $(document).ready(function() {
+    $('[vmenu="menu_close_trigger"]').on('click', toggleMenu);
+    <% if (showEDM) { %>
     $(".mobile_sent_subscription").hide();
     $('#mobile_subscript_form .glyphicon').hide();
-    $('[vmenu="menu_close_trigger"]').on('click', toggleMenu);
 
     // set validation message
     var emailWarningMsg = "請輸入完整的電子郵件地址。";
@@ -250,14 +273,16 @@
         $(".newsletter_sent_subscription").show();
         $(".newsletter_sent_success").show();
       }, "json")
-      .error(function(err) {
+      .fail(function(err) {
         $(".newsletter_new_subscription").hide();
         $(".newsletter_sent_subscription").show();
         $(".newsletter_sent_error").show();
       });
     });
+    <% } %>
   });
 
+  <% if (showEDM) { %>
   function mobileValidFunction(event) {
     $('#mobile_subscript_form .glyphicon').hide();
     $('#mobile_subscript_form .lastname').parent().removeClass('has-error');
@@ -286,4 +311,5 @@
       return false;
     }
   }
+  <% } %>
 </script>

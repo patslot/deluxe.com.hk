@@ -1,15 +1,17 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var categMapping = require('./middleware/categoryMapping.js');
+var edm = require('./middleware/edm.js');
 var app = express();
 
 module.exports = function(options) {
   var gQuery = require('./middleware/graphqlQuery.js')(options.graphqlEndpoint);
   var queryHandler = require('./middleware/queryHandler.js')();
-  var home = require('./routes/home.js')(gQuery, queryHandler);
-  var article = require('./routes/article.js')(gQuery, categMapping, queryHandler);
-  var contributor = require('./routes/contributor.js')(gQuery, categMapping, queryHandler);
-  var events = require('./routes/events.js')(gQuery, categMapping, queryHandler)
+  var home = require('./routes/home.js')(gQuery, categMapping, queryHandler, edm);
+  var article = require('./routes/article.js')(gQuery, categMapping, queryHandler, edm);
+  var contributor = require('./routes/contributor.js')(gQuery, categMapping, queryHandler, edm);
+  var events = require('./routes/events.js')(gQuery, categMapping, queryHandler, edm)
   var api = require("./routes/api.js")(options.edmSubscriptionEndpoint);
 
   app.locals.GRAPHQL_ENDPOINT = options.graphqlEndpoint;
@@ -24,6 +26,7 @@ module.exports = function(options) {
   app.use(express.static('public'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(cookieParser());
   app.set('view engine', 'ejs');
 
   app.use("/api", api);
@@ -52,14 +55,22 @@ module.exports = function(options) {
     if (req.accepts(["text/html", "application/json"]) === "application/json") {
       return res.status(500).json({status: 500, message: err});
     }
-    return res.status(500).render("500", { menu: {main: [], sub: []} });
+    return res.status(500).render("500", {
+      menu: {main: [], sub: []},
+      campaigns: [],
+      showEDM: false
+    });
   });
 
   app.use(function(req, res) {
     if (req.accepts(["text/html", "application/json"]) === "application/json") {
       return res.status(404).json({status: 404, message: "not found"});
     }
-    return res.status(404).render("404", { menu: {main: [], sub: []} });
+    return res.status(404).render("404", {
+      menu: {main: [], sub: []},
+      campaigns: [],
+      showEDM: false
+    });
   });
 
   return app;

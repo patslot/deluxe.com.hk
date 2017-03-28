@@ -27,7 +27,6 @@ export default function($timeout) {
         typeof document.referrer != "undefined" &&
         document.referrer !== "") {
         var referrerHost =  document.referrer.match(/:\/\/(.[^/]+)/)[1];
-        console.log(location.host, referrerHost);
         if (location.host !== referrerHost) {
           element.show();
           showMobileAd("SplashAd", "splashad");

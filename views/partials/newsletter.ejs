@@ -1,3 +1,4 @@
+<% if (showEDM) { %>
 <div class="newsletter circleBase hidden-xs">
   <div class="nl_container">
     <div class="newsletter_header">
@@ -275,7 +276,7 @@
         $(".newsletter_sent_subscription").show();
         $(".newsletter_sent_success").show();
       }, "json")
-      .error(function(err) {
+      .fail(function(err) {
         $(".newsletter_new_subscription").hide();
         $(".newsletter_sent_subscription").show();
         $(".newsletter_sent_error").show();
@@ -312,3 +313,4 @@
     }
   }
 </script>
+<% } %>
