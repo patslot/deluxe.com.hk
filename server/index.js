@@ -18,6 +18,7 @@ module.exports = function(options) {
   app.locals.AD_MOBILE_BASE_TAG = options.adMobileBaseTag;
   app.locals.GA_CODE = options.GA_CODE;
   app.locals.LOGGING_GEO_API = options.LOGGING_GEO_API;
+  app.locals.LOGGING_CRM_API = options.LOGGING_CRM_API;
   app.use(express.static('public'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));

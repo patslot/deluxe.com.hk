@@ -1,21 +1,28 @@
-<!-- Begin Geo log -->
+<!-- Begin CRM log -->
 <script>
   (function() {
     var hexed = ("ADAILY," + new Date().getTime())
       .split("")
       .map(c => c.charCodeAt(0).toString(16))
       .join("");
+      
+    var nxtu = (document.cookie || "")
+      .split(";")
+      .map(function(d) { return d.trim().split("="); })
+      .filter(function(d) { return d.length === 2 && d[0] === "NXTU"; })
+      .reduce(function(acc, val) { return val; }, "");
     
     $.ajax({
-      url: "<%= LOGGING_GEO_API %>",
+      url: "<%= LOGGING_CRM_API %>",
       data: {
+        NXTU: nxtu,
         k: hexed,
         format: "dfp"
       },
       timeout: 5000
     }).done(function(data) {
       if (!!window.localStorage) {
-        localStorage.setItem("1x1_GEO", JSON.stringify(data))
+        localStorage.setItem("1x1_CRM", JSON.stringify(data))
       } else {
         console.log("unable to find localStorage, browser is not supported");
       }
@@ -24,4 +31,4 @@
     });
   })();
 </script>
-<!-- End Geo log -->
+<!-- End CRM log -->

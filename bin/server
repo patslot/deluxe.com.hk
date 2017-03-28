@@ -10,7 +10,8 @@ var server = Server({
   adMobileBaseTag: process.env.AD_MOBILE_BASE_TAG || "dev.ADD_Mobilesite",
   edmSubscriptionEndpoint: process.env.EDM_SUBSCRIPTION_ENDPOINT,
   GA_CODE: process.env.GA_CODE,
-  LOGGING_GEO_API: process.env.LOGGING_GEO_API
+  LOGGING_GEO_API: process.env.LOGGING_GEO_API,
+  LOGGING_CRM_API: process.env.LOGGING_CRM_API
 });
 
 server.set('port', process.env.PORT || 3000);
