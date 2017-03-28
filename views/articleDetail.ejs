@@ -110,13 +110,6 @@
                     <div class="artd_article_video">
                       <div id="video_player"></div>
                     </div>
-                    <div class="artd_article_intro">
-                    <% if (imgBlock && imgBlock.length > 0) { %>
-                      <% imgBlock.forEach(function (photo) { %>
-                        <%- include('partials/imageWithCaption.ejs', {image: photo.imgFile, caption: photo.caption}) %>
-                      <% }) %>
-                    <% } %>
-                    </div>
                     <% if (artBlock && artBlock.length > 0) { %>
                       <% artBlock.forEach(function (content, index) { %>
                         <div class="artd_article_subHead">
