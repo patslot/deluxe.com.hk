@@ -5,7 +5,7 @@ module.exports = function(gQuery, categMapping, queryHandler) {
   var maxUpcomingEvent = 10;
 
   function parsePubDate(pubDate) {
-    return moment(pubDate, moment.ISO_8601).utc().format('lll');
+    return moment(pubDate, moment.ISO_8601).utcOffset(8).format('MMM DD, YYYY h:mm A');
   }
 
   function renderArticle(req, res, next) {

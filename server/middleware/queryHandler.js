@@ -89,7 +89,7 @@ module.exports = function() {
   }
 
   function parseEventDate(iso8601Time) {
-    return moment(iso8601Time, moment.ISO_8601).utc().format('DD MMM, YYYY');
+    return moment(iso8601Time, moment.ISO_8601).utcOffset(8).format('DD MMM, YYYY');
   }
 
   function parsePostEvents(categName, events) {
