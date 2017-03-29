@@ -19,6 +19,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
       gQuery.homeQuery().then(function(result) {
         var articles = (result.listHomeLatestArticle || []).slice(0, 4);
         res.render('homepage', {
+          pageviewLog: categMapping.categPageviewLog('HOME'),
           mpms: parseMpms(result.listMPM),
           menu: queryHandler.parseMenu(result.listMenu),
           articles: queryHandler.parseHomeArticles(articles),

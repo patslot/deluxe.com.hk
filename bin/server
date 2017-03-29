@@ -13,6 +13,7 @@ var server = Server({
   SITE_NAME: process.env.SITE_NAME || "Apple Daily Deluxe",
   LOGGING_GEO_API: process.env.LOGGING_GEO_API,
   LOGGING_CRM_API: process.env.LOGGING_CRM_API,
+  LOGGING_PAGEVIEW_API: process.env.LOGGING_PAGEVIEW_API,
   LOGGING_PARSELY_SITE_DOMAIN: process.env.LOGGING_PARSELY_SITE_DOMAIN
 });
 

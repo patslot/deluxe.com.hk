@@ -1,4 +1,4 @@
-module.exports = function(gQuery, categoryMapping, queryHandler, edm) {
+module.exports = function(gQuery, categMapping, queryHandler, edm) {
   var eventCount = 7;
   var maxUpcomingEvents = 10;
   var categEvent = 'Event';
@@ -18,8 +18,9 @@ module.exports = function(gQuery, categoryMapping, queryHandler, edm) {
       var events = queryHandler.parsePostEvents(categEvent, r.listPostEvent);
       var upcomingEvents = (r.listUpcomingEvent || []).slice(0, maxUpcomingEvents);
       res.render('events', {
+        pageviewLog: categMapping.categPageviewLog(categEvent),
         categName: categEvent,
-        adTag: categoryMapping.nameToAdTag[categEvent].list,
+        adTag: categMapping.nameToAdTag[categEvent].list,
         numOfPages: getNumOfPages(r.totalPostEvent),
         latestEvent: events.length > 0 ? events[0] : null,
         upcomingEvents: queryHandler.parseUpcomingEvents(upcomingEvents),

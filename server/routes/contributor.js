@@ -1,7 +1,8 @@
-module.exports = function(gQuery, categoryMapping, queryHandler, edm) {
+module.exports = function(gQuery, categMapping, queryHandler, edm) {
   var articleCount = 4;
   var contributorBlockCount = 6;
   var categContr = 'Contributor';
+  var columnist = 'COLUMNIST';
 
   function renderArticles(req, res, next) {
     var name = req.params.contrName;
@@ -17,6 +18,7 @@ module.exports = function(gQuery, categoryMapping, queryHandler, edm) {
         queryHandler.parseCmsArticle(categContr, a);
       });
       res.render('contributorArticles', {
+        pageviewLog: categMapping.categPageviewLog(columnist, 'INDEX'),
         contributor: queryHandler.parseContributor(contributors[0]),
         menu: queryHandler.parseMenu(r.listMenu, categContr),
         articles: articles,
@@ -29,9 +31,10 @@ module.exports = function(gQuery, categoryMapping, queryHandler, edm) {
   }
 
   function renderIndex(req, res, next) {
-    var adTagMapping = categoryMapping.nameToAdTag[categContr];
+    var adTagMapping = categMapping.nameToAdTag[categContr];
     gQuery.contributorIndexQuery().then(function(r) {
       res.render('contributorIndex', {
+        pageviewLog: categMapping.categPageviewLog(columnist),
         contributors: queryHandler.parseContributors(
           (r.listContributor || []).slice(0, contributorBlockCount)),
         menu: queryHandler.parseMenu(r.listMenu, categContr),

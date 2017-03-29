@@ -47,6 +47,17 @@ module.exports = function(GRAPHQL_ENDPOINT) {
       level0Category
       showRelatedArticleAtTop
       categoryName
+      logging {
+        krux_app_brand
+        krux_app_subsection_suffix
+        pixelAuthor
+        pixelCat
+        pixelCategory
+        pixelKeyword
+        pixelNews
+        pixelNewsType
+        pixelSrc
+      }
       mediaGroup {
         type
         smallPath

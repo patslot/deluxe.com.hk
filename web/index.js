@@ -1,6 +1,7 @@
 import $ from "jquery";
 window.jQuery = $;
 window.$ = $;
+global.jQuery = $;
 
 import angular from 'angular';
 import moment from 'moment/moment.js';

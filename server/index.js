@@ -21,6 +21,7 @@ module.exports = function(options) {
   app.locals.GA_CODE = options.GA_CODE;
   app.locals.LOGGING_GEO_API = options.LOGGING_GEO_API;
   app.locals.LOGGING_CRM_API = options.LOGGING_CRM_API;
+  app.locals.LOGGING_PAGEVIEW_API = options.LOGGING_PAGEVIEW_API;
   app.locals.LOGGING_PARSELY_SITE_DOMAIN = options.LOGGING_PARSELY_SITE_DOMAIN;
   app.locals.SITE_NAME = options.SITE_NAME;
   app.use(express.static('public'));

@@ -3,6 +3,8 @@ var moment = require('moment');
 
 module.exports = function(gQuery, categMapping, queryHandler, edm) {
   var maxUpcomingEvent = 10;
+  var cmsNewsType = 'OTHER';
+  var columnist = 'COLUMNIST';
 
   function parsePubDate(pubDate) {
     return moment(pubDate, moment.ISO_8601).utcOffset(8).format('MMM DD, YYYY h:mm A');
@@ -36,6 +38,8 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
         article.menu = queryHandler.parseMenu(result.listMenu);
         article.campaigns = result.listCampaign || [];
         article.showEDM = edm.showEDM(req.cookies.addEDM, result.listCampaign);
+        article.pageviewLog = categMapping.articlePageviewLog(article.categoryName,
+          (article.logging || {}).pixelNews, article.id, article.issueId, article.title, '');
         res.render('articleDetail', article);
       }, function(err) {
         return next(err);
@@ -52,6 +56,9 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
         article.menu = queryHandler.parseMenu(result.listMenu);
         article.campaigns = result.listCampaign || [];
         article.showEDM = edm.showEDM(req.cookies.addEDM, result.listCampaign);
+        var categoryName = article.categoryName === 'Contributor' ? columnist : article.categoryName
+        article.pageviewLog = categMapping.articlePageviewLog(categoryName,
+          cmsNewsType, article.id, article.issueId, article.title, article.contributorName);
         if (article.categoryName === 'Event') {
           gQuery.upcomingEventQuery().then(function (result) {
             var upcomingEvents = (result.listUpcomingEvent || []).slice(0, maxUpcomingEvent);
@@ -101,6 +108,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
       var categs = result.listMenu || [];
       var currentCateg = getCurrentCateg(categs, categ);
       res.render('categ', {
+        pageviewLog: categMapping.categPageviewLog(categ),
         menu: queryHandler.parseMenu(categs, categ),
         categImg: currentCateg ? currentCateg.img : '',
         article1: articles.length > 0 ? articles[0] : null,

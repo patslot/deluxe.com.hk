@@ -2,3 +2,6 @@
 <%- include('logging/geo.ejs') %>
 <%- include('logging/crm.ejs') %>
 <%- include('logging/parsely.ejs') %>
+<% if (pageviewLog) { %>
+<%- include('logging/pageview.ejs', pageviewLog) %>
+<% } %>

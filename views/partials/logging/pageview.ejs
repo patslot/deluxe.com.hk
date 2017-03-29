@@ -1,0 +1,49 @@
+<!-- Begin pageview log -->
+<div id="nxm_iframeDiv" style="display: none"></div>
+<div id="nxm_vtrk_iframeDiv" style="display: none"></div>
+<script type="text/javascript" language="javascript" src="<%= LOGGING_PAGEVIEW_API %>"></script>
+<script>
+  (function() {
+    var nxmObj = {"region": "HK", "prod": "ADD", "site": "https://add.appledaily.com.hk",
+      "platform": "WEB/MOBWEB", "section": "<%= section %>", "media": "TEXT",
+      "content": "<%= content %>", "issueid": "<%= issueid %>", "title": "<%= title %>",
+      "cid": "<%= cid %>", "news": "<%= news %>",
+      "edm": "", "action": "PAGEVIEW", "subsect": "", "subsubsect": "",
+      "menu": "", "auth": "<%= auth %>", "src": "AD", "L": "TC",
+      "ch": "<%= channel %>", "cat": "<%= category %>", "ky": "", "ngsid": "", "ref": ""};
+
+    for (var nxmProp in nxmObj) {
+      nxmTrack.nxmAddSeg(nxmProp.toUpperCase() + '=' + encodeURIComponent(nxmObj[nxmProp]));
+    }
+    var ngs_id = nxmTrack.readCookie('ngs_id');
+    if (ngs_id == null) ngs_id = '';
+    nxmTrack.nxmAddSeg('NGSID=' + ngs_id);
+
+    nxmTrack.nxmSendPageDepth(0, new Date().getTime());
+    //Scroll Depth tracking
+    var trackRecords = [];
+    $(window).scroll(function() {
+      var scrollPercent = getPageScrollPercent();
+      if (scrollPercent >= 25 && trackRecords.indexOf("25") == -1) {
+        trackRecords.push("25");
+        nxmTrack.nxmSendPageDepth(25, new Date().getTime());
+      } else if (scrollPercent >= 50 && trackRecords.indexOf("50") == -1) {
+        trackRecords.push("50");
+        nxmTrack.nxmSendPageDepth(50, new Date().getTime());
+      } else if (scrollPercent >= 75 && trackRecords.indexOf("75") == -1) {
+        trackRecords.push("75");
+        nxmTrack.nxmSendPageDepth(75, new Date().getTime());
+      } else if (scrollPercent == 100 && trackRecords.indexOf("100") == -1) {
+        trackRecords.push("100");
+        nxmTrack.nxmSendPageDepth(100, new Date().getTime());
+      }
+    });
+
+    function getPageScrollPercent() {
+      var bottom = $(window).height() + $(window).scrollTop();
+      var height = $(document).height();
+      return Math.round(100 * bottom / height);
+    }
+  })();
+</script>
+<!-- End pageview log -->

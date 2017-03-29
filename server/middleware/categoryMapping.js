@@ -14,7 +14,7 @@ function createNameToAdTag() {
 
 var nameToAdTag = createNameToAdTag();
 
-var getArticleType = function (articleID) {
+function getArticleType(articleID) {
   if (/^\d_(\d+)$/.test(articleID)) {
     // Format for type news of article is like 1_8234.
     return 'news';
@@ -24,6 +24,36 @@ var getArticleType = function (articleID) {
     return null;
   }
 };
+
+function categPageviewLog(categ, content) {
+  categ = categ.toUpperCase();
+  return {
+    section: 'HOME',
+    content: content ? content : 'HOME',
+    news: 'COMBINE',
+    cid: '',
+    issueid: '',
+    title: '',
+    auth: '',
+    channel: categ,
+    category: categ
+  };
+}
+
+function articlePageviewLog(categ, newsType, articleID, issueDate, title, author) {
+  categ = categ.toUpperCase();
+  return {
+    section: categ,
+    content: 'ARTICLE',
+    news: newsType,
+    cid: articleID,
+    issueid: issueDate,
+    title: title,
+    auth: author,
+    channel: categ,
+    category: categ
+  };
+}
 
 module.exports = {
   // TODO(wkchan): Query menu API to get Name to Ename mapping?
@@ -48,5 +78,7 @@ module.exports = {
     'add_life': 'listLifeStyleArticle',
     'editor_picks': 'listEditorPick',
   },
-  getArticleType: getArticleType
+  getArticleType: getArticleType,
+  categPageviewLog: categPageviewLog,
+  articlePageviewLog: articlePageviewLog
 };
