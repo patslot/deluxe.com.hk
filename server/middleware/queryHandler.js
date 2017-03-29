@@ -17,6 +17,7 @@ module.exports = function() {
     var articles = origArticles || [];
     articles.forEach(function (a) {
       parseLinkURL(a);
+      a.catName = a.catName.toLowerCase();
     });
     return articles;
   }
@@ -42,7 +43,8 @@ module.exports = function() {
   function parseArticleCommon(categName, a) {
     a.linkURL = '/' + categName + '/' + a.id + '/' + a.title;
     a.linkTarget = '_self';
-    a.catName = categName;
+    a.catName = categName.toLowerCase();
+    a.label = a.catName;
   }
 
   function parseNewsArticle(categName, a) {
@@ -55,7 +57,6 @@ module.exports = function() {
   }
 
   function parseCmsArticle(categName, a) {
-    a.label = categName;
     a.image = a.videoThumbnail || a.articleThumbnail;
     a.hasVideo = a.videoFile !== '';
     a.content = a.intro;

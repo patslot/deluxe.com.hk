@@ -21,10 +21,10 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
       latestArticles = res.listHomeLatestArticle || [];
       var highlights = res.listHomeHighlight || [];
       highlights.forEach(function(h) {
-        h.image = h.imgName;
-        h.label = h.catName;
-        h.title = h.content;
         queryHandler.parseLinkURL(h);
+        h.image = h.imgName;
+        h.label = h.catName.toLowerCase();
+        h.title = h.content;
       });
       $scope.highlights = highlights;
       var cBanners = res.listBannerForContributor || [];

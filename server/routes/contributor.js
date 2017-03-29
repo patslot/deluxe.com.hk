@@ -14,7 +14,7 @@ module.exports = function(gQuery, categoryMapping, queryHandler) {
       }
       var articles = (r.listContributorArticle || []).slice(0, articleCount);
       articles.forEach(function(a) {
-        queryHandler.parseCmsArticle('Contributor', a);
+        queryHandler.parseCmsArticle(categContr, a);
       });
       res.render('contributorArticles', {
         contributor: queryHandler.parseContributor(contributors[0]),

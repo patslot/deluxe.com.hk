@@ -224,6 +224,7 @@
           </div>
         </div>
         <div style="clear:both"></div>
+        <% if (numOfPages > 1) { %>
         <div class="pagination_block">
           <div id="page-selection" class="pagination"></div>
           <script>
@@ -249,6 +250,7 @@
             });
           </script>
         </div>
+        <% } %>
       </div>
       <%- include('partials/footer.ejs') %>
       <%- include('partials/newsletter.ejs') %>

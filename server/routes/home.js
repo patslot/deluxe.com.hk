@@ -11,6 +11,7 @@ module.exports = function(gQuery, queryHandler) {
       } else {
         m.linkTarget = '_blank';
       }
+      m.catName = m.catName.toLowerCase();
     });
     return mpms;
   }

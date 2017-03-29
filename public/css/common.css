@@ -418,6 +418,7 @@ a {
 /* Footer */
 .site-footer {
     padding: 15px 0 50px 0;
+    margin-top: 50px;
 }
 
 .nm_home.nav-panel-active,
