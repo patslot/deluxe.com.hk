@@ -13,6 +13,7 @@ module.exports = function(gQuery, categMapping, queryHandler) {
     var article = {};
     article.id = articleID;
     article.type = categMapping.getArticleType(articleID);
+    article.fullURL = req.protocol + "://" + req.get('host') + req.originalUrl;
 
     if (articleID && article.type === 'news') {
       gQuery.newsArticleQuery(articleID).then(function(result) {

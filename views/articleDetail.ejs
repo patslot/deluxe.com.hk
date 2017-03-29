@@ -29,6 +29,21 @@
             </div>
             <div class="row nm_row">
               <% if (type === "news") { %>
+                <script type="application/ld+json">
+                  {
+                    "@context": "http://schema.org",
+                    "@type": "NewsArticle",
+                    "headline": "<%- title.split("").map(function(c) { return "\\u" + ("000" + c.charCodeAt(0).toString(16)).substr(-4); }).join("") %>",
+                    "url": "<%- fullURL.replace(/\//g, "\\/") %>",
+                    <% if (introPhotos && introPhotos.length > 0) { %>
+                      "thumbnailUrl": "<%- (introPhotos[0].imagePathZoom || "").replace(/\//g, "\\/") %>",
+                    <% } %>
+                    "dateCreated": "<%- pubDate %>",
+                    "articleSection": "<%- categoryName %>",
+                    "creator": ["Next Mobile Limited"],
+                    "keywords": <%- JSON.stringify(themeTags) %>
+                  }
+                </script>
                 <div class="pull-left nm_mpm col-xs-12">
                   <div class="mpm_content artd_container">
                     <div class="artd_article_label"><%- categoryName %></div>
@@ -68,6 +83,23 @@
                   </div>
                 </div>
               <% } else if (type === "cms") { %>
+                <script type="application/ld+json">
+                  {
+                    "@context": "http://schema.org",
+                    "@type": "NewsArticle",
+                    "headline": "<%- title.split("").map(function(c) { return "\\u" + ("000" + c.charCodeAt(0).toString(16)).substr(-4); }).join("") %>",
+                    "url": "<%- fullURL.replace(/\//g, "\\/") %>",
+                    <% if (videoThumbnail && videoThumbnail !== "") { %>
+                        "thumbnailUrl": "<%- videoThumbnail.replace(/\//g, "\\/") %>",
+                    <% } else if (artBlock && artBlock.length > 0) { %>
+                        "thumbnailUrl": "<%- (artBlock[0].imgFile || "").replace(/\//g, "\\/") %>",
+                    <% } %>
+                    "dateCreated": "<%- publish %>",
+                    "articleSection": "<%- categoryName %>",
+                    "creator": ["Next Mobile Limited"],
+                    "keywords": <%- JSON.stringify([tag]) %>
+                  }
+                </script>
                 <div class="pull-left nm_mpm col-xs-12">
                   <div class="mpm_content artd_container">
                     <div class="artd_article_label"><%- categoryName %></div>

@@ -12,7 +12,8 @@ var server = Server({
   GA_CODE: process.env.GA_CODE,
   SITE_NAME: process.env.SITE_NAME || "Apple Daily Deluxe",
   LOGGING_GEO_API: process.env.LOGGING_GEO_API,
-  LOGGING_CRM_API: process.env.LOGGING_CRM_API
+  LOGGING_CRM_API: process.env.LOGGING_CRM_API,
+  LOGGING_PARSELY_SITE_DOMAIN: process.env.LOGGING_PARSELY_SITE_DOMAIN
 });
 
 server.set('port', process.env.PORT || 3000);
