@@ -10,7 +10,7 @@ module.exports = {
     extensions: ["", ".js"]
   },
   output: {
-    path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, "public/bundle"),
     filename: "[name].js",
     libraryTarget: "var",
     library: "AddApp"
@@ -41,6 +41,11 @@ module.exports = {
       "process.env": {
         "NODE_ENV": JSON.stringify("production")
       }
+    }),
+    new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        "window.jQuery": "jquery"
     })
   ]
 };

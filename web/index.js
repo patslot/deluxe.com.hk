@@ -1,12 +1,55 @@
+import $ from "jquery";
+window.jQuery = $;
+window.$ = $;
+
 import angular from 'angular';
 import moment from 'moment/moment.js';
 import './lib/lazy-scroll.js';
 import 'ejs/ejs.js';
 import 'bootpag/lib/jquery.bootpag.js';
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap";
+
 
 var controllers = require('./controllers');
 var services = require('./services');
 var dirs = require('./directives');
+
+
+(function() {
+  var minimizeHeader = function () {
+    var nmHeader = $('.nm_header');
+    var logo = $('.nm_header .index-logo .logo');
+    var stickyWrap = $('.nm_header #sticky-wrap');
+    var scrollTop = $(document).scrollTop();
+    var height = logo.height();
+
+    if (scrollTop > height) {
+      nmHeader.addClass('fixed');
+    } else {
+      nmHeader.removeClass('fixed');
+    }
+  }
+
+  var updateSkinnerADPos = function () {
+    var skinnerAD = $('.skinner_ad_wrapper');
+    var header = $('.nm_header');
+    var logo = $('.nm_header .index-logo .logo');
+    var stickyWrap = $('.nm_header #sticky-wrap');
+    var scrollTop = $(document).scrollTop();
+
+    if (header.hasClass('fixed')) {
+      skinnerAD.css('top', stickyWrap.height());
+    } else {
+      var targetTop = logo.outerHeight(true) + stickyWrap.height() - scrollTop;
+      skinnerAD.css('top', targetTop);
+    }
+  }
+
+  $(document).scroll(minimizeHeader);
+  $(document).scroll(updateSkinnerADPos);
+})();
+
 
 module.exports = function(options) {
   var constant = function() {

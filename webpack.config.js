@@ -1,4 +1,5 @@
 var path = require("path");
+var webpack = require("webpack");
 
 module.exports = {
   name: "web",
@@ -9,7 +10,7 @@ module.exports = {
     extensions: ["", ".js"]
   },
   output: {
-    path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, "public/bundle"),
     filename: "[name].js",
     libraryTarget: "var",
     library: "AddApp"
@@ -34,5 +35,12 @@ module.exports = {
         loader: "json-loader"
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        "window.jQuery": "jquery"
+    })
+  ]
 };
