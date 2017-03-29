@@ -68,9 +68,6 @@ const htmlTpl = `
       <div class="ctb_two_content_label">[<%= a.catName %>]</div>
       <a href="<%= a.linkURL %>" target=<%= a.linkTarget %>>
         <div class="ctb_two_content_title"><%= a.title %></div>
-        <div class="ctb_two_content_content">
-          <%- a.intro %>
-        </div>
       </a>
     </div>
   </div>

@@ -72,9 +72,6 @@ const htmlTpl = `
         <div class="al_two_content_title">
           <%= a.title %>
         </div>
-        <div class="other_article al_two_content_content">
-          <%- a.content %>
-        </div>
       </a>
     </div>
   </div>
