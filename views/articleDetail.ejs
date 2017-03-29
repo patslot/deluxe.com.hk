@@ -28,38 +28,8 @@
               </div>
             </div>
             <div class="row nm_row">
-              <div class="pull-right lrec_ad_wrapper hidden-xs">
-                <div class="lrec_ad_large">
-                  <div id="lrec1">
-                    <script>
-                      showWebAd("LREC1", "lrec1");
-                    </script>
-                  </div>
-                </div>
-                <div class="lrec_ad_large">
-                  <div id="lrec2">
-                    <script>
-                      showWebAd("LREC2", "lrec2");
-                    </script>
-                  </div>
-                </div>
-                <% if (categoryName !== "Event") { %>
-                  <div class="artd_facebook_block">
-                    <facebook-block></facebook-block>
-                  </div>
-                  <div class="artd_instagram_block">
-                    <instagram-medias ig-medias="igMedias"></instagram-medias>
-                  </div>
-                <% } %>
-                <% if (categoryName === "Event") { %>
-                  <div class="up_coming_event">
-                    <%- include('partials/upcomingEvents.ejs',
-                      {events: upcomingEvents}) %>
-                  </div>
-                <% } %>
-              </div>
               <% if (type === "news") { %>
-                <div class="pull-right nm_mpm col-xs-12">
+                <div class="pull-left nm_mpm col-xs-12">
                   <div class="mpm_content artd_container">
                     <div class="artd_article_label"><%- categoryName %></div>
                     <div class="artd_article_title"><%- title %></div>
@@ -98,7 +68,7 @@
                   </div>
                 </div>
               <% } else if (type === "cms") { %>
-                <div class="pull-right nm_mpm col-xs-12">
+                <div class="pull-left nm_mpm col-xs-12">
                   <div class="mpm_content artd_container">
                     <div class="artd_article_label"><%- categoryName %></div>
                     <div class="artd_article_title"><%- title %></div>
@@ -125,20 +95,43 @@
                   </div>
                 </div>
               <% } %>
+              <div class="pull-left lrec_ad_wrapper">
+                <div class="lrec_ad_large hidden-xs">
+                  <div id="lrec1">
+                    <script>
+                      showWebAd("LREC1", "lrec1");
+                    </script>
+                  </div>
+                </div>
+                <div class="lrec_ad_large hidden-xs">
+                  <div id="lrec2">
+                    <script>
+                      showWebAd("LREC2", "lrec2");
+                    </script>
+                  </div>
+                </div>
+                <% if (categoryName !== "Event") { %>
+                  <div class="artd_facebook_block hidden-xs">
+                    <facebook-block></facebook-block>
+                  </div>
+                  <div class="artd_instagram_block hidden-xs">
+                    <instagram-medias ig-medias="igMedias"></instagram-medias>
+                  </div>
+                <% } %>
+                <% if (categoryName === "Event") { %>
+                  <div class="upcoming_events_wrap">
+                    <div class="up_coming_event">
+                      <%- include('partials/upcomingEvents.ejs',
+                        {events: upcomingEvents}) %>
+                    </div>
+                  </div>
+                <% } %>
+              </div>
             </div>
           </div>
 
           <midbanner midbanner-id="midbanner_1"></midbanner>
         </div>
-
-        <% if (categoryName === "Event") { %>
-          <div class="nm_section visible-xs">
-            <div class="up_coming_event">
-              <%- include('partials/upcomingEvents.ejs',
-                {events: upcomingEvents}) %>
-            </div>
-          </div>
-        <% } %>
 
         <add-carousel title-class="'nm_recommend'" carousel-items="latestArticles"
           carousel-div="'recommend-carousel'"></add-carousel>

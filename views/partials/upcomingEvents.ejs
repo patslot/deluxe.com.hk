@@ -6,7 +6,7 @@
       </div>
     </div>
   </div>
-  <div class="row nm_row nm_section_border">
+  <div class="row nm_row nm_section_border" id="upcoming_events_content">
     <% events.forEach(function(e) { %>
     <div class="text-left nm_section_content">
       <div class="uce_date">
@@ -66,3 +66,14 @@
     background-size: 100%;
   }
 </style>
+
+<script>
+$(document).ready(function() {
+  $('#upcoming_events_content').endlessScroll({
+    callback: function() {
+      var $eventItem = $('#upcoming_events_content div.nm_section_content:nth-last-child(10)').clone();
+      $('#upcoming_events_content .endless_scroll_inner_wrap').append($eventItem);
+    }
+  });
+});
+</script>

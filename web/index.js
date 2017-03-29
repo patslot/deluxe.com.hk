@@ -5,6 +5,7 @@ window.$ = $;
 import angular from 'angular';
 import moment from 'moment/moment.js';
 import './lib/lazy-scroll.js';
+import './lib/jquery.endless-scroll.js';
 import 'ejs/ejs.js';
 import 'bootpag/lib/jquery.bootpag.js';
 import "bootstrap/dist/css/bootstrap.css";
