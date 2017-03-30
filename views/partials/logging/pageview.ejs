@@ -4,11 +4,15 @@
 <script type="text/javascript" language="javascript" src="<%= LOGGING_PAGEVIEW_API %>"></script>
 <script>
   (function() {
+    var platform = "WEB";
+    if (!window.matchMedia('(min-width: 768px)').matches) {
+      platform = "MOBWEB";
+    }
     var nxmObj = {"region": "HK", "prod": "ADD", "site": "https://add.appledaily.com.hk",
-      "platform": "WEB/MOBWEB", "section": "<%= section %>", "media": "TEXT",
+      "platform": platform, "section": "<%= section %>", "media": "TEXT",
       "content": "<%= content %>", "issueid": "<%= issueid %>", "title": "<%= title %>",
       "cid": "<%= cid %>", "news": "<%= news %>",
-      "edm": "", "action": "PAGEVIEW", "subsect": "", "subsubsect": "",
+      "edm": "", "action": "PAGEVIEW", "subsect": "<%= subsect %>", "subsubsect": "",
       "menu": "", "auth": "<%= auth %>", "src": "AD", "L": "TC",
       "ch": "<%= channel %>", "cat": "<%= category %>", "ky": "", "ngsid": "", "ref": ""};
 

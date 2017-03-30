@@ -18,7 +18,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
         queryHandler.parseCmsArticle(categContr, a);
       });
       res.render('contributorArticles', {
-        pageviewLog: categMapping.categPageviewLog(columnist, 'INDEX'),
+        pageviewLog: categMapping.categPageviewLog(columnist, 'INDEX', name),
         contributor: queryHandler.parseContributor(contributors[0]),
         menu: queryHandler.parseMenu(r.listMenu, categContr),
         articles: articles,

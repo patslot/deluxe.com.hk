@@ -3,46 +3,107 @@
 function renderVideo(video, elemId) {
   if (video && video.url) {
     var videoAdTags = [];
-    var currentWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    if (currentWidth < 768) {
-      videoAdTags.push('<%= AD_MOBILE_BASE_TAG %>');
-    } else {
+    if (window.matchMedia('(min-width: 768px)').matches) {
       videoAdTags.push('<%= AD_WEB_BASE_TAG %>');
+    } else {
+      videoAdTags.push('<%= AD_MOBILE_BASE_TAG %>');
     }
     videoAdTags.push('<%= adTag %>');
     var prerollTag = videoAdTags.join("/") + "/" + "preroll";
 
-    var anvp1 = new AnvatoPlayer('anvp1'); // Unique player id
-    anvp1.setVideoUrl(video.url);
-    anvp1.setPlayerSize("100%", "100%");
-    anvp1.setTitle(video.title);
-    anvp1.setDescription("");
-    anvp1.setVolume(0.5); // Value between 0 - 1
-    anvp1.setShareEnable(false);
-    var videopAdTagURL = anvp1.generateDFPvideoTag(prerollTag, "640x360");
-    anvp1.setVideoAdTagURL(videopAdTagURL);
-    anvp1.createInstance(elemId || 'video_player'); // Div Id match
+    var videoId = video.videoId || "";
+    var anvpId = "anvp" + videoId; // Unique player id
+    var anvpInstance = new AnvatoPlayer(anvpId);
+    anvpInstance.setVideoUrl(video.url);
+    anvpInstance.setPlayerSize("100%", "100%");
+    anvpInstance.setTitle(video.title);
+    anvpInstance.setDescription("");
+    anvpInstance.setVolume(0.5); // Value between 0 - 1
+    anvpInstance.setShareEnable(false);
+    var videopAdTagURL = anvpInstance.generateDFPvideoTag(prerollTag, "640x360");
+    anvpInstance.setVideoAdTagURL(videopAdTagURL);
+    anvpInstance.createInstance(elemId || "video_player"); // Div Id match
 
-    function liveStateChanged(stateMessage, anvatoData) {
-      switch(stateMessage) {
-        case 'USER_RESUME':
-        break;
-        case 'USER_PAUSE':
-        break;
-        case 'VIDEO_STARTED':
-        //anvatoData including video duration(anvatoData.duration) and time(anvatoData.currentTime)
-        //Logging function
-        break;
-        case 'VIDEO_FIRST_QUARTILE':
-        break;
-        case 'VIDEO_MID_POINT':
-        break;
-        case 'VIDEO_THIRD_QUARTILE':
-        break;
-        case 'VIDEO_COMPLETED':
-        break;
+  }
+}
+
+// logging
+var autoPlay = true;
+function liveStateChanged(stateMessage, anvatoData) {
+  var videoId = "<%= videoId %>";
+  var videoUrl = "<%= videoUrl %>";
+
+  var logVideoViewThrough = function(stateMessage, logData) {
+    if (stateMessage === "VIDEO_STARTED") {
+      try {
+        var vlog = {
+          "eventCategory": "Video View Through",
+          "eventAction": "View " + logData.depth + "%",
+          "eventLabel": "<%- pageviewLog.title.split("").map(function(c) { return "\\u" + ("000" + c.charCodeAt(0).toString(16)).substr(-4); }).join("") %>"
+        };
+        // GA log
+        ga("send", "event", vlog.eventCategory, vlog.eventAction, vlog.eventLabel);
+      } catch(ex) {
       }
     }
+
+    try {
+      var platform = "WEB";
+      if (!window.matchMedia('(min-width: 768px)').matches) {
+        platform = "MOBWEB";
+      }
+
+      // 1x1 video tracking
+      var nxmVideoObj = {
+        "region": "HK",
+        "prod": "ADD",
+        "site": "https://add.appledaily.com.hk",
+        "platform": platform,
+        "section": "<%= pageviewLog.section %>",
+        "media": "VIDEO",
+        "content": "VIDEO",
+        "cat": "<%= pageviewLog.category %>",
+        "ch": "<%= pageviewLog.channel %>",
+        "title": encodeURIComponent("<%- pageviewLog.title %>"),
+        "cid": videoId,
+        "news": "<%= pageviewLog.news %>",
+        "edm": "",
+        "action": "VIDEOVIEW",
+        "subsect": "<%= pageviewLog.subsect %>",
+        "subsubsect": "",
+        "menu": "",
+        "issueid": "<%= pageviewLog.issueid %>",
+        "depth": logData.depth,
+        "video-length": logData.duration,
+        "video-duration": logData.currentTime,
+        "video-path": videoUrl,
+        "ngsid": "",
+        "src": "AD",
+        "ky": "",
+        "l": "TC",
+        "artid": "<%= pageviewLog.cid %>",
+        "auto": autoPlay ? "Y" : "N"
+      };
+      for (var nxmProp in nxmVideoObj) {
+        nxmTrack.nxmAddSegVideo(nxmProp.toUpperCase() + "=" + nxmVideoObj[nxmProp]);
+      }
+      nxmTrack.nxmSendVideoDur(logData.currentTime, new Date().getTime());
+    } catch(ex) {
+    }
+  };
+
+  switch(stateMessage) {
+    case "USER_RESUME":
+    case "USER_PAUSE":
+      autoPlay = false;
+      break;
+    case "VIDEO_STARTED":
+    case "VIDEO_FIRST_QUARTILE":
+    case "VIDEO_MID_POINT":
+    case "VIDEO_THIRD_QUARTILE":
+    case "VIDEO_COMPLETED":
+      logVideoViewThrough(stateMessage, anvatoData);
+      break;
   }
 }
 </script>

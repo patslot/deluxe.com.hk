@@ -25,10 +25,11 @@ function getArticleType(articleID) {
   }
 };
 
-function categPageviewLog(categ, content) {
+function categPageviewLog(categ, content, author) {
   categ = categ.toUpperCase();
   return {
     section: 'HOME',
+    subsect: categ === 'COLUMNIST' && content === 'INDEX' ? author : '',
     content: content ? content : 'HOME',
     news: 'COMBINE',
     cid: '',
@@ -44,6 +45,7 @@ function articlePageviewLog(categ, newsType, articleID, issueDate, title, author
   categ = categ.toUpperCase();
   return {
     section: categ,
+    subsect: categ === 'COLUMNIST' ? author : '',
     content: 'ARTICLE',
     news: newsType,
     cid: articleID,

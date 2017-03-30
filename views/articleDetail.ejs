@@ -4,7 +4,6 @@
     <title><%= title %> - <%= SITE_NAME %></title>
     <%- include('partials/extHeader.ejs') %>
     <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
-    <%- include('partials/videoUtil.ejs', {adTag: adTag}) %>
   </head>
   <body ng-app="addv2" ng-controller="ArticleController"
     categ-ename="<%= ename %>" categ-name="<%= categoryName %>"
@@ -184,13 +183,18 @@
       <%- include('partials/campaign.ejs') %>
     </div>
 
+    <%- include('partials/logging.ejs', {pageviewLog: pageviewLog}) %>
+    <%- include('partials/google-analytics.ejs') %>
+    <%- include('partials/videoUtil.ejs', {
+      adTag: adTag,
+      pageviewLog: pageviewLog,
+      videoId: (video && video.videoId) ? video.videoId : "",
+      videoUrl: (video && video.url) ? video.url : ""
+    }) %>
     <script type="text/javascript">
       $(document).ready(function() {
         renderVideo(JSON.parse('<%- JSON.stringify(video) %>'));
       });
     </script>
-
-    <%- include('partials/logging.ejs', {pageviewLog: pageviewLog}) %>
-    <%- include('partials/google-analytics.ejs') %>
   </body>
 </html>
