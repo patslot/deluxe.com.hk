@@ -44,7 +44,6 @@ const htmlTpl = `
     </div>
   </div>
 </div>
-<link rel="stylesheet" href="/css/scrolls.css" />
 `;
 
 export default function() {

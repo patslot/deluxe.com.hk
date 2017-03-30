@@ -1,0 +1,41 @@
+.up_coming_section {
+  width: 300px;
+  margin: auto;
+}
+
+.up_coming_ball {
+  height: 100px;
+  width: 100px;
+  margin: 0px auto;
+  padding: 0px 0px;
+  color: white;
+  border-radius: 69px;
+  margin-bottom: -53px;
+}
+
+.up_coming_section .nm_section_border {
+  padding-top: 60px;
+  height: 450px;
+  overflow-y: scroll;
+}
+
+@media (max-width: 767px) {
+  .up_coming_section .nm_section_border {
+    height: 215px;
+  }
+}
+
+.up_coming_section .nm_section_content {
+  font-size: 18px;
+  margin-right: 15px;
+  margin-left: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  height: auto;
+  border-bottom: solid grey 1px;
+}
+
+.nm_up_coming {
+  background-image: url(/img/icon13.png) !important;
+  background-size: 100%;
+}

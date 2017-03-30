@@ -12,11 +12,23 @@ import 'bootpag/lib/jquery.bootpag.js';
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap";
 
+import './assets/css/topMenu.css';
+import './assets/css/mobileMenu.css';
+import './assets/css/articleDetail.css';
+import './assets/css/common.css';
+import './assets/css/contributorArticles.css';
+import './assets/css/scrolls.css';
+import './assets/css/articleList.css';
+import './assets/css/contributor.css';
+import './assets/css/events.css';
+import './assets/css/campaign.css';
+import './assets/css/mpm.css';
+import './assets/css/newsletter.css';
+import './assets/css/upcomingEvents.css';
 
 var controllers = require('./controllers');
 var services = require('./services');
 var dirs = require('./directives');
-
 
 (function() {
   var minimizeHeader = function () {
