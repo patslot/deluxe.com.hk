@@ -22,14 +22,6 @@
     <% }) %>
   </div>
 </div>
-
 <script>
-$(document).ready(function() {
-  $('#upcoming_events_content').endlessScroll({
-    callback: function() {
-      var $eventItem = $('#upcoming_events_content div.nm_section_content:nth-last-child(10)').clone();
-      $('#upcoming_events_content .endless_scroll_inner_wrap').append($eventItem);
-    }
-  });
-});
+  var numOfUpcomingEvents = <%= events.length %>;
 </script>

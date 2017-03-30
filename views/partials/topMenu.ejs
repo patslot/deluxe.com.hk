@@ -47,26 +47,3 @@
     </div>
   </nav>
 </div>
-
-<script type="text/javascript">
-  var toggleMenu = function() {
-    var $content = $('[vmenu="content"]').first();
-    var $siblingContent = $('[vmenu="sibling"]');
-    var $nmHome = $('.nm_home');
-    var $nmHeader = $('.nm_header');
-    var $mobilePanel = $('.nm_v_menu');
-    if ($nmHome.hasClass('nav-panel-active')) {
-      $nmHome.removeClass('nav-panel-active');
-      $nmHeader.removeClass('nav-panel-active');
-      $mobilePanel.removeClass('nav-panel-active')
-    } else {
-      $nmHome.addClass('nav-panel-active');
-      $nmHeader.addClass('nav-panel-active');
-      $mobilePanel.addClass('nav-panel-active')
-    }
-  }
-
-  $(document).ready(function() {
-    $('[vmenu="trigger"]').on('click', toggleMenu);
-  });
-</script>

@@ -120,21 +120,8 @@
 </div>
 
 <script>
+  <% if (showEDM) { %>
   $(document).ready(function() {
-    $('[vmenu="menu_close_trigger"]').on('click', toggleMenu);
-    $(window).resize(function() {
-      if (window.matchMedia('(min-width: 768px)').matches) {
-        var $mobilePanel = $('.nm_v_menu');
-        if ($mobilePanel.hasClass('nav-panel-active')) {
-          var $nmHome = $('.nm_home');
-          var $nmHeader = $('.nm_header');
-          $nmHome.removeClass('nav-panel-active');
-          $nmHeader.removeClass('nav-panel-active');
-          $mobilePanel.removeClass('nav-panel-active')
-        }
-      }
-    });
-    <% if (showEDM) { %>
     $(".mobile_sent_subscription").hide();
     $('#mobile_subscript_form .glyphicon').hide();
 
@@ -173,10 +160,8 @@
         $(".newsletter_sent_error").show();
       });
     });
-    <% } %>
   });
 
-  <% if (showEDM) { %>
   function mobileValidFunction(event) {
     $('#mobile_subscript_form .glyphicon').hide();
     $('#mobile_subscript_form .lastname').parent().removeClass('has-error');
