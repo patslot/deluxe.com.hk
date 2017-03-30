@@ -1,6 +1,6 @@
 const htmlTpl = `
 <div class="row">
-<h4 class="artd_instagram_header col-md-12 col-xs-12 col-sm-12"><img src="/img/icon08.png"></h4>
+<h4 class="artd_instagram_header col-md-12 col-xs-12 col-sm-12"><img src="/img/icon08.jpg"></h4>
 </div>
 <div class="row">
 <div class="col-md-12 col-xs-12 col-sm-12">
