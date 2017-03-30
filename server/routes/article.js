@@ -51,7 +51,8 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
           article.contributorName.replace(/\,/,'') : '';
         article.ename = categMapping.nameToEname[article.categoryName];
         article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
-        article.video = article.videoFile;
+        article.video = {url: article.videoFile,
+          title: article.title};
         article.publish = parsePubDate(article.publish);
         article.menu = queryHandler.parseMenu(result.listMenu);
         article.campaigns = result.listCampaign || [];
