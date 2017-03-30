@@ -483,3 +483,22 @@ a {
     padding-bottom: 15px;
   }
 }
+
+.nm_section_block_title a {
+  display: block;
+  height: 42.86px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nm_section_block_title_cat {
+  height: 15.71428573px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

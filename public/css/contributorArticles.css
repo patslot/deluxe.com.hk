@@ -31,6 +31,12 @@
   margin: 0px auto 10px;
   padding-left: 15px;
   padding-right: 15px;
+  height: 26px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .nm_recommend {
@@ -46,11 +52,23 @@
   font-weight: bold;
   padding-left: 15px;
   padding-right: 15px;
+  height: 15.71px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ctb_two_content_content {
   margin-bottom: 15px;
   padding: 0 15px;
+  max-height: 40px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ctb_detail_image {

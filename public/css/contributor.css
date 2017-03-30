@@ -7,6 +7,11 @@
   width: 90%;
   margin-left: auto;
   margin-right: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ctb_item_name{

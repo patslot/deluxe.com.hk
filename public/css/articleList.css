@@ -48,6 +48,21 @@
   background: rgb(255, 255, 255);
   margin: 0px auto;
   margin-bottom: 10px;
+  max-height: 26px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.other_article.al_two_content_title {
+  max-height: 52px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .al_two_content_label {
@@ -57,6 +72,12 @@
   color: #C4063D;
   font-size: 11px;
   font-weight: bold;
+  height: 15.71px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .al_two_content_content {
@@ -66,8 +87,18 @@
 
 .main_article.al_two_content_content {
   max-height: 40px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .other_article.al_two_content_content {
   max-height: 100px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
