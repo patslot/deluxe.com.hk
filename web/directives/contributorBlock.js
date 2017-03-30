@@ -1,23 +1,29 @@
 const htmlTpl = `
-<% contributors.forEach(function(contributor) { %>
-<div class="ctb_item col-xs-12 col-sm-5 col-md-4">
-  <a href="/Contributor/<%= contributor.catName %>">
-    <div class="ctb_item_image">
-      <img src="<%= contributor.imgName %>">
-    </div>
-    <div class="ctb_item_container">
-      <div class="ctb_item_name">
-        <%= contributor.catName %>
+<% contributors.forEach(function(contributor, index) { %>
+<% if (index % 3 == 0) { %>
+<div class="row">
+<% } %>
+  <div class="ctb_item col-xs-12 col-sm-5 col-md-4 ctb-item-<%-index%>">
+    <a href="/Contributor/<%= contributor.catName %>">
+      <div class="ctb_item_image">
+        <img src="<%= contributor.imgName %>">
       </div>
-      <div class="ctb_item_post">
-        <%= contributor.post %>
+      <div class="ctb_item_container">
+        <div class="ctb_item_name">
+          <%= contributor.catName %>
+        </div>
+        <div class="ctb_item_post">
+          <%= contributor.post %>
+        </div>
+        <div class="ctb_item_content">
+          <%- contributor.desc %>
+        </div>
       </div>
-      <div class="ctb_item_content">
-        <%- contributor.desc %>
-      </div>
-    </div>
-  </a>
+    </a>
+  </div>
+<% if (index % 3 == 2) { %>
 </div>
+<% } %>
 <% }) %>
 `;
 

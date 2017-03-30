@@ -29,10 +29,9 @@
   text-align: center;
 }
 
-.ctb_item_image {
+.ctb_item_image img {
   width: 300px;
-  height: auto;
-  margin: auto;
+  height: 300px;
 }
 
 @media all and (max-width: 768px) {
@@ -41,8 +40,4 @@
   .ctb_item_container{
       text-align:center;
   }
-}
-
-.ctb_item {
-  padding-left: 0px !important;
 }
