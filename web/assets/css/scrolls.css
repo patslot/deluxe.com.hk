@@ -154,9 +154,6 @@ all and (min-width: 992px) and (-webkit-transform-3d) {
 }
 
 .four_col_slide .nm_section_block_title_cat {
-  font-style: italic;
-  color: #8B0000;
-  font-size: 11px;
   margin: 5px 0 0;
 }
 
