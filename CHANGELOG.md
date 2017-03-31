@@ -1,5 +1,13 @@
 ## Change Log
 
+### Upcoming
+- resolve UAT issues
+
+### v1.0.1
+- revise layout
+- resolve UAT issues
+- general improvements, bug fixes and refactoring
+
 ### v1.0.0-M3
 - add videoview logging
 - add pageview logging
@@ -12,14 +20,14 @@
 - add comscore logging
 - revise layout
 - resolve UAT issues
-- general bug fix and refactor
+- general improvements, bug fixes and refactoring
 - update Google Analytics code block
 
 ### v1.0.0-M2
 - handle pagination in event list page
 - add Google Analytics code block
 - add error pages
-- general bug fix and refactor
+- general improvements, bug fixes and refactoring
 - integrate editor picks data
 - add contributor index, contributor article list, editor picks, event list and event detail pages
 - parse menu into main and sub(MORE) menus
