@@ -4,11 +4,11 @@
   margin-top: 20px;
 }
 
-.al_two_col_container.visible-xs {
-  margin-bottom: 15px;
+.al_two_col_container {
+  margin-bottom: 20px;
 }
 
-.al_two_col_container.visible-xs .row {
+.al_two_col_container .row {
   margin: 0;
 }
 

@@ -2,6 +2,7 @@
  * HomepageController for homepage
  */
 export default function($timeout, $scope, gqModel, c, queryHandler) {
+  var maxCategArticles = 3;
   var isReady = false;
   var latestArticles = [];
 
@@ -57,7 +58,8 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
     gqModel.queryHomeLazy(categs).then(function(res) {
       $timeout(function() {
         categs.forEach(function(categ) {
-         $scope.categArticles.push(queryHandler.parseHomeArticles(res[categ]));
+          $scope.categArticles.push(queryHandler.parseHomeArticles(
+            (res[categ] || []).slice(0, maxCategArticles)));
         });
         $scope.igMedias = res.listInstagram || [];
         var editorPicks = res.listHomeEditorPick || [];

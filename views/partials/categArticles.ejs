@@ -2,7 +2,7 @@
 <div class="al_two_col_container hidden-xs">
   <% var isEven = idx % 2 === 0; %>
   <% if (!isEven) { %>
-  <div>
+  <div class="row">
     <div class="al_two_content col-sm-5 col-md-6 col-xs-12">
       <div class="al_two_content_label">[<%= a.catName %>]</div>
       <a href="<%= a.linkURL %>">
@@ -21,7 +21,7 @@
     </div>
   </div>
   <% } else if (isEven) { %>
-  <div>
+  <div class="row">
     <div class="al_two_image col-sm-5 col-md-6 col-xs-12">
       <a href="<%= a.linkURL %>">
         <%- include('imageHasVideo.ejs', {a: a}) %>

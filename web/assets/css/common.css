@@ -244,11 +244,6 @@ background: #ccc;
 /* head banner */
 
 @media only screen and (min-width: 768px) {
-  .nm_home .head_banner_wrapper {
-    height: auto;
-    position: relative;
-    margin-bottom: 15px;
-  }
   .nm_home .head_banner_wrapper .superhead_banner {
     width: 970px;
     position: relative;
@@ -259,7 +254,8 @@ background: #ccc;
 .nm_home .head_banner_wrapper {
   height: auto;
   position: relative;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .nm_home .head_banner_wrapper .superhead_banner {
@@ -290,7 +286,7 @@ background: #ccc;
 /* fixbanner */
 
 .nm_home .fix_banner_wrapper {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
