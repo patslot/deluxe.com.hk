@@ -1,6 +1,6 @@
 ## Change Log
 
-### Upcoming
+### v1.0.2
 - resolve UAT issues
 
 ### v1.0.1
