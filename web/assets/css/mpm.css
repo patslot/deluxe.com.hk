@@ -19,15 +19,13 @@
 #home-slideshow-block .carousel-control {
   width: 4%;
   height: 25%;
-  top: 30%;
+  top: calc(38% - 60px);
   padding: 0 5%;
 }
 
 @media (max-width: 767px) {
   #home-slideshow-block .carousel-control {
     width: 8%;
-    height: 25%;
-    top: 20%;
   }
 }
 
@@ -59,13 +57,13 @@
   background-image: url("/img/icon11_big.png");
   background-repeat: no-repeat;
   background-position: center;
-  margin-bottom: 30px;
+  margin-bottom: 0;
 }
 
 #home-slideshow-block .carousel-control.right {
   background-image: url("/img/icon11_big.png");
   background-repeat: no-repeat;
   background-position: center;
-  margin-bottom: 30px;
+  margin-bottom: 0;
   transform: rotate(180deg);
 }
