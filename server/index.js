@@ -1,9 +1,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var minifyHTML = require('express-minify-html');
+
 var categMapping = require('./middleware/categoryMapping.js');
 var edm = require('./middleware/edm.js');
-var app = express();
 
 module.exports = function(options) {
   var gQuery = require('./middleware/graphqlQuery.js')(options.graphqlEndpoint);
@@ -14,6 +15,7 @@ module.exports = function(options) {
   var events = require('./routes/events.js')(gQuery, categMapping, queryHandler, edm)
   var api = require("./routes/api.js")(options.edmSubscriptionEndpoint);
 
+  var app = express();
   app.locals.GRAPHQL_ENDPOINT = options.graphqlEndpoint;
   app.locals.AD_PREFIX_TAG = options.adPrefixTag;
   app.locals.AD_WEB_BASE_TAG = options.adWebBaseTag;
@@ -24,10 +26,21 @@ module.exports = function(options) {
   app.locals.LOGGING_PAGEVIEW_API = options.LOGGING_PAGEVIEW_API;
   app.locals.LOGGING_PARSELY_SITE_DOMAIN = options.LOGGING_PARSELY_SITE_DOMAIN;
   app.locals.SITE_NAME = options.SITE_NAME;
+
+  app.use(minifyHTML({
+    override:      true,
+    exception_url: false,
+    htmlMinifier: {
+      removeComments:            true,
+      collapseWhitespace:        true,
+      minifyJS:                  true
+    }
+  }));
   app.use(express.static('public'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cookieParser());
+
   app.set('view engine', 'ejs');
 
   app.use("/api", api);
