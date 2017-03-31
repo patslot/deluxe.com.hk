@@ -169,14 +169,6 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     ... on NewsArticle {
       mediaGroup {
         type
-        smallPath
-        largePath
-        width
-        height
-        source
-        videoId
-        url
-        quality
       }
       firstContentBlock {
         subHead

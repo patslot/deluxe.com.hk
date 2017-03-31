@@ -63,6 +63,10 @@ export default function() {
         if (!carouselItems || !cDiv || !titleClass) {
           return;
         }
+        if (carouselItems.length === 0) {
+          unwatch();
+          return;
+        }
         element.html(ejs.render(htmlTpl, {carouselItems: carouselItems,
           div: div, cDiv: cDiv, titleClass: titleClass}));
 

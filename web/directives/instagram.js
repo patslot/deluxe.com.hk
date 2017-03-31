@@ -6,7 +6,14 @@ const htmlTpl = `
 <div class="col-md-12 col-xs-12 col-sm-12">
 <% igMedias.forEach(function(ig) { %>
 <div class="artd_instagram_small_image">
-  <a href="<%= ig.link %>" target="_blank"><img src="<%= ig.images.thumbnail.url %>" /></a>
+  <% if (ig.imageUrl) { %>
+  <a href="<%= ig.link %>" target="_blank">
+    <% if (ig.hasVideo) { %>
+    <img class="play" src="/img/icon-play.png" />
+    <% } %>
+    <img src="<%= ig.imageUrl %>" />
+  </a>
+  <% } %>
 </div>
 <% }) %>
 </div>

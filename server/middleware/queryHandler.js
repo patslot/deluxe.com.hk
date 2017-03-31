@@ -121,7 +121,21 @@ module.exports = function() {
     return contributors;
   }
 
+  function parseInstagram(origIgs) {
+    var igs = origIgs || [];
+    igs.forEach(function(ig) {
+      if (ig.videos) {
+        ig.imageUrl = ig.videos.thumbnail.url;
+        ig.hasVideo = true;
+      } else if (ig.images) {
+        ig.imageUrl = ig.images.thumbnail.url;
+      }
+    });
+    return igs;
+  }
+
   return {
+    parseInstagram: parseInstagram,
     parseLinkURL: parseLinkURL,
     parseHomeArticles: parseHomeArticles,
     parseMenu: parseMenu,

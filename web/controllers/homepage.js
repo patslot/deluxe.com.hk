@@ -61,7 +61,7 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
           $scope.categArticles.push(queryHandler.parseHomeArticles(
             (res[categ] || []).slice(0, maxCategArticles)));
         });
-        $scope.igMedias = res.listInstagram || [];
+        $scope.igMedias = queryHandler.parseInstagram(res.listInstagram);
         var editorPicks = res.listHomeEditorPick || [];
         // TODO(wkchan): Handle video thumbnail?
         editorPicks.forEach(function(p) {

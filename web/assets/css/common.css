@@ -332,7 +332,7 @@ background: #ccc;
 .artd_facebook_block {
   margin-top: 30px;
   width: 300px;
-  height: 400px;
+  height: 350px;
   position: relative;
 }
 
@@ -355,6 +355,7 @@ background: #ccc;
   text-align: center;
   margin-top: 5px;
   margin-bottom: 5px;
+  position: relative;
 }
 
 .artd_instagram_small_image img {

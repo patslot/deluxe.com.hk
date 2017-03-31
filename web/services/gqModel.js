@@ -12,15 +12,11 @@ export default function(c) {
     videos {
       thumbnail {
         url
-        width
-        height
       }
     }
     images {
       thumbnail {
         url
-        width
-        height
       }
     }
   }`;
@@ -33,14 +29,7 @@ export default function(c) {
     ... on NewsArticle {
       mediaGroup {
         type
-        smallPath
         largePath
-        width
-        height
-        source
-        videoId
-        url
-        quality
       }
       firstContentBlock {
         subHead

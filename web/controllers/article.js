@@ -6,7 +6,7 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
 
   var handleRes = function (articleKey, res, parseFunc) {
     $timeout(function () {
-      $scope.igMedias = res.listInstagram || [];
+      $scope.igMedias = queryHandler.parseInstagram(res.listInstagram);
       var articles = (res[articleKey] || []).filter(function (item) {
         return item.id !== articleId;
       }).slice(0, 12);
