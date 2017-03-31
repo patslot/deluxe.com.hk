@@ -12,6 +12,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "public/bundle"),
     filename: "[name].js",
+    publicPath: "/bundle/",
     libraryTarget: "var",
     library: "AddApp"
   },
