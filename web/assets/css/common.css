@@ -444,18 +444,19 @@ a {
     margin: 8px 0 8px 80px;
 }
 
+.nm_header.fixed,
 .nm_header.fixed #sticky-wrap .nav {
   position: fixed;
   top: 0;
 }
 
-.nm_header .sticky-placeholder {
+.sticky-placeholder {
   position: relative;
-  height: 85px;
+  height: 160px;
   display: none;
 }
 
-.nm_header.fixed .sticky-placeholder {
+.sticky-placeholder.fixed {
   display: block;
 }
 

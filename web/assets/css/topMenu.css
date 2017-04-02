@@ -1,6 +1,7 @@
 .nm_header {
   position: relative;
   background-color: #fff;
+  z-index: 100;
 }
 
 @media (width: 768px) {
