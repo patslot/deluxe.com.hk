@@ -8,7 +8,7 @@ const htmlTpl = `
 <div class="artd_instagram_small_image">
   <% if (ig.imageUrl) { %>
   <a href="<%= ig.link %>" target="_blank">
-    <% if (ig.hasVideo) { %>
+    <% if (ig.videoUrl) { %>
     <img class="play" src="/img/icon-play.png" />
     <% } %>
     <img src="<%= ig.imageUrl %>" />

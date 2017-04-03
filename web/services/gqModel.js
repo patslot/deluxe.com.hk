@@ -10,7 +10,7 @@ export default function(c) {
     link
     type
     videos {
-      thumbnail {
+      standard_resolution {
         url
       }
     }
