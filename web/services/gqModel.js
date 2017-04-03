@@ -21,7 +21,7 @@ export default function(c) {
     }
   }`;
 
-  const articleModel = `{
+  const articleModel = ` (offset: $offset, count: $count) {
     __typename
     id
     title
@@ -159,9 +159,6 @@ export default function(c) {
       queries.push(createCmsComponeFeedQuery('listBannerForEvent'));
       return client.query(createQuery(queries));
     },
-    queryCategArticles: function(listCategArticle) {
-      return client.query(createQuery([listCategArticle + ' ' + articleModel]));
-    },
     // TODO(wkchan): Menu sorting and display
     queryHome: function() {
       return client.query(createQuery([
@@ -171,24 +168,30 @@ export default function(c) {
       ]));
     },
     // Assume listCategArticle is not empty before calling queryCateg()
-    queryCateg: function(listCategArticle) {
+    queryCateg: function(listCategArticle, offset, count) {
       // Query list<Categ=Fashion|...>Article
-      return client.query(createQuery([listCategArticle + ' ' + articleModel]));
+      return client.query(createQueryWithParams('$offset: Int, $count: Int',
+        [listCategArticle + ' ' + articleModel]),
+        {offset: offset, count: count});
     },
-    queryArticle: function(listCategArticle) {
-      return client.query(createQuery([listCategArticle + ' ' + articleModel,
-        listInstagram]));
+    queryArticle: function(listCategArticle, offset, count) {
+      return client.query(createQueryWithParams('$offset: Int, $count: Int',
+        [listCategArticle + ' ' + articleModel,
+        listInstagram]),
+        {offset: offset, count: count});
     },
     // queryEditorPicks used in editor pick articles page, it also query instagram
-    queryEditorPicks: function() {
-      return client.query(createQuery([
-        createCmsArticleQuery('listEditorPick'),
-        listInstagram]));
+    queryEditorPicks: function(offset, count) {
+      return client.query(createQueryWithParams('$offset: Int, $count: Int',
+        [createCmsArticleQuery('listEditorPick (offset: $offset, count: $count)'),
+        listInstagram]),
+        {offset: offset, count: count});
     },
     // queryEditorPickArticles only query editor pick articles
-    queryEditorPickArticles: function() {
-      return client.query(createQuery([
-        createCmsArticleQuery('listEditorPick')]));
+    queryEditorPickArticles: function(offset, count) {
+      return client.query(createQueryWithParams('$offset: Int, $count: Int',
+        [createCmsArticleQuery('listEditorPick (offset: $offset, count: $count)')]),
+        {offset: offset, count: count});
     },
     queryContributorIndex: function() {
       return client.query(createQuery([

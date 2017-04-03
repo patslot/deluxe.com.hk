@@ -99,16 +99,17 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
       return next();
     }
     var query, handleFunc;
+    var offset = 0;
+    var count = 5;
     if (categ === 'Editor picks') {
-      query = gQuery.queryEditorPicks();
+      query = gQuery.queryEditorPicks(offset, count);
       handleFunc = queryHandler.parseCmsArticles;
     } else {
-      query = gQuery.categQuery(listCategAPI);
+      query = gQuery.categQuery(listCategAPI, offset, count);
       handleFunc = queryHandler.parseArticles;
     }
     query.then(function(result) {
-      var articles = handleFunc(categ,
-        (result[listCategAPI] || []).slice(0, 5));
+      var articles = handleFunc(categ, (result[listCategAPI] || []));
       var categs = result.listMenu || [];
       var currentCateg = getCurrentCateg(categs, categ);
       res.render('categ', {

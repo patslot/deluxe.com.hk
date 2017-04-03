@@ -5,6 +5,7 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
   var categIdx = 5; // Start article offset of lazy load articles in category
   var articleCount = c.LOAD_CATEG_ARTICLES_COUNT;
   var articles = [];
+  var maxArticles = 200;
 
   $scope.noMoreArticles = false;
   $scope.loadingArticles = false;
@@ -14,28 +15,44 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
   var query = null;
   var queryHandleFunc = null;
   if (categName === 'Editor picks') {
-    query = gqModel.queryEditorPickArticles();
+    query = function(offset, count) {
+      return gqModel.queryEditorPickArticles(offset, count);
+    }
     queryHandleFunc = queryHandler.parseCmsArticles;
+    listCategArticle = 'listEditorPick';
   } else if (listCategArticle) {
-    query = gqModel.queryCateg(listCategArticle);
+    query = function(offset, count) {
+      return gqModel.queryCateg(listCategArticle, offset, count);
+    };
     queryHandleFunc = queryHandler.parseArticles;
   }
   if (query) {
-    query.then(function(res) {
-      $timeout(function() {
-        articles = res[listCategArticle] || [];
-        if (articles.length === 0) {
-          return;
-        }
-        isReady = true;
-      });
-    });
+    isReady = true;
   }
 
   function updateCategIdx() {
     categIdx += articleCount;
     $scope.loadingArticles = false;
   };
+
+  function loadCategArticles() {
+    if (categIdx < maxArticles) {
+      $scope.loadingArticles = true;
+      query(categIdx, articleCount).then(function(res) {
+        var moreArticles = res[listCategArticle];
+        moreArticles = queryHandleFunc(categName, moreArticles);
+        if (moreArticles.length > 0) {
+          $scope.moreArticleGroups.push(moreArticles);
+        }
+        if (moreArticles.length < articleCount) {
+          $scope.noMoreArticles = true;
+        }
+        updateCategIdx();
+      }, function(err) {
+        $scope.loadingArticles = false;
+      });
+    }
+  }
 
   $scope.loadCategArticles = function() {
     if (!isReady || $scope.noMoreArticles || !queryHandleFunc) {
@@ -44,18 +61,8 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
     if ($scope.loadingArticles) {
       return false;
     }
-    // TODO(wkchan): Max number of articles?
-    if (categIdx < articles.length) {
-      $scope.loadingArticles = true;
-      var moreArticles = articles.slice(categIdx, categIdx + articleCount);
-      moreArticles = queryHandleFunc(categName, moreArticles);
-      if (moreArticles.length > 0) {
-        $scope.moreArticleGroups.push(moreArticles);
-      }
-      if (moreArticles.length < articleCount) {
-        $scope.noMoreArticles = true;
-      }
-      updateCategIdx();
+    if (query) {
+      loadCategArticles();
     }
   };
 };

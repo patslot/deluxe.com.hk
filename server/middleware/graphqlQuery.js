@@ -161,7 +161,7 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     apCatID
   }`;
 
-  const articleModel = `{
+  const articleModel = ` (offset: $offset, count: $count) {
     __typename
     id
     title
@@ -267,9 +267,11 @@ module.exports = function(GRAPHQL_ENDPOINT) {
         createCmsComponeFeedQuery('listHomeLatestArticle')
       ]));
     },
-    categQuery: function(listCategArticle) {
-      return client.query(createQuery([listCategArticle + ' ' + articleModel,
-        listMenu, listCampaign]));
+    categQuery: function(listCategArticle, offset, count) {
+      return client.query(createQueryWithParams('$offset: Int, $count: Int',
+        [listCategArticle + ' ' + articleModel,
+        listMenu, listCampaign]),
+        {offset: offset, count: count});
     },
     contributorIndexQuery: function() {
       return client.query(createQuery([listMenu, listCampaign,
@@ -284,9 +286,11 @@ module.exports = function(GRAPHQL_ENDPOINT) {
         ]),
         {name: contrName});
     },
-    queryEditorPicks: function() {
-      return client.query(createQuery([listMenu, listCampaign,
-        'listEditorPick ' + cmsArticleModel]));
+    queryEditorPicks: function(offset, count) {
+      return client.query(createQueryWithParams('$offset: Int, $count: Int',
+        [listMenu, listCampaign,
+        'listEditorPick (offset: $offset, count: $count) ' + cmsArticleModel]),
+        {offset: offset, count: count});
     },
     eventsQuery: function(pagesize, page) {
       return client.query(createQueryWithParams('$pagesize: Int, $page: Int',
