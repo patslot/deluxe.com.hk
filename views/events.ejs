@@ -77,7 +77,7 @@
               <a href="<%= e.linkURL %>" target="<%= e.linkTarget %>">
                 <div class="event_item_media">
                   <%- include('partials/imageHasVideo.ejs',
-                    {a: {hasVideo: e.hasVideo, image: e.image}}) %>
+                    {a: {playClass: 'play36px', hasVideo: e.hasVideo, image: e.image}}) %>
                 </div>
                 <div class="event_item_content">
                   <div class="event_item_content_title">
@@ -96,7 +96,7 @@
               <a ng-href="{{e.linkURL}}" target="{{e.linkTarget}}">
                 <div class="event_item_media">
                   <div class="pos-relative">
-                    <img ng-if="e.hasVideo" class="play" src="/img/icon-play.png" />
+                    <img ng-if="e.hasVideo" class="play36px" src="/img/icon-play.png" />
                     <img ng-src="{{e.image}}" />
                   </div>
                 </div>

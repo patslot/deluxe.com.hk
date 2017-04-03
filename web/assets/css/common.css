@@ -400,14 +400,22 @@ background: #ccc;
   margin-top: 10px;
 }
 
-img.play {
-  width: 50px !important;
-  height: 50px !important;
+img.play, img.play36px {
   top: 50%;
   left: 50%;
+  position: absolute;
+}
+img.play {
   margin-top: -25px !important;
   margin-left: -25px !important;
-  position: absolute;
+  width: 50px !important;
+  height: 50px !important;
+}
+img.play36px {
+  margin-top: -18px !important;
+  margin-left: -18px !important;
+  width: 36px !important;
+  height: 36px !important;
 }
 
 a,

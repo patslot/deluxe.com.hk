@@ -39,9 +39,10 @@
 }
 
 .evtlist_listing .event_item {
-  border-top: solid grey 1px;
+  border-top: solid #ddd 1px;
   display: inline-block;
-  padding-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   width: 100%;
 }
 

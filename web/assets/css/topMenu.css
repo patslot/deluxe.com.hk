@@ -53,13 +53,13 @@
 }
 
 .nm_header .nav--menu .nav-toggle-icon {
-  background: url(/img/icon02.jpg) no-repeat center;
   width: 50px;
   height: 50px;
   position: absolute;
-  top: 2px;
-  left: 5px;
+  top: 12px;
+  left: 10px;
   margin: 0;
+  font-size: 25px;
 }
 
 .nm_header label[for="nav-toggle"] {
