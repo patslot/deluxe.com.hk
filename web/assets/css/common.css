@@ -74,6 +74,17 @@ html {
   }
 }
 
+@media (max-width: 1249px) {
+  .skinner_ad_wrapper {
+    display: none;
+  }
+}
+@media (min-width: 1250px) {
+  .skinner_ad_wrapper {
+    display: block;
+  }
+}
+
 .nm_row {
   margin: 0 !important;
   position: relative;
