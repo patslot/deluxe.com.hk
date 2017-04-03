@@ -31,7 +31,7 @@ module.exports = function() {
     for (var i = 0; i < menu.length; i++) {
       var m = menu[i];
       m.activeClass = m.name === categName ? 'active' : '';
-      if (m.sort < 1000) {
+      if (m.sort < 100) {
         mainMenu.push(m);
       } else {
         subMenu.push(m);
