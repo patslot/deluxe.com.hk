@@ -19,6 +19,11 @@
   margin-bottom: 15px;
 }
 
+.al_two_image img {
+  max-height: 255px;
+  max-width: 100%;
+}
+
 .al_two_content {
   padding-top: 15px;
 }
