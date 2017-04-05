@@ -24,15 +24,6 @@
   text-decoration: none;
 }
 
-.menu_fb_icon img,
-.menu_ig_icon img {
-  height: 25px;
-  width: 25px;
-  margin-top: -10px;
-  margin-left: 10px;
-  background-size: 25px 25px;
-}
-
 .menu_dropdown_content {
   display: none;
   position: absolute;
@@ -96,7 +87,7 @@
   height: 65px;
   margin: 0 auto;
   padding: 5px 0;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 8px 16px -8px rgba(0, 0, 0, 0.3);
 }
 
 .nm_header .nav--inner {
@@ -140,10 +131,9 @@
 .menu_fb_icon img, .menu_ig_icon img {
   height: 20px;
   width: 20px;
-  margin-top: -10px;
+  margin-top: -5px;
   margin-left: 10px;
-  background-size: 25px 25px;
-  vertical-align: -webkit-baseline-middle;
+  background-size: 20px 20px;
 }
 
 .nm_header .nav--menu .search {
