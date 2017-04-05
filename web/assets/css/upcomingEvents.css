@@ -47,13 +47,13 @@
 }
 
 .uce_title {
-  font-family: "Heiti TC Medium", Helvetica, Arial, sans-serif;
+  font-family: "Heiti TC", Helvetica, Arial, sans-serif;
   font-size: 15px;
   font-weight: bold;
 }
 
 .uce_content {
-  font-family: "Heiti TC Light", Helvetica, Arial, sans-serif;
+  font-family: "Heiti TC", Helvetica, Arial, sans-serif;
   font-size: 13.5px;
   color: #A9A9A9;
 }
