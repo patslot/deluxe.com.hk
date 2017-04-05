@@ -18,14 +18,16 @@
 
 #home-slideshow-block .carousel-control {
   width: 4%;
-  height: 25%;
-  top: calc(38% - 60px);
+  height: 360px;
   padding: 0 5%;
+  background-size: auto;
 }
 
 @media (max-width: 767px) {
   #home-slideshow-block .carousel-control {
     width: 8%;
+    height: 25%;
+    top: calc(38% - 60px);
   }
 }
 

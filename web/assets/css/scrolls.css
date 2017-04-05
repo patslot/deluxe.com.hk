@@ -1,19 +1,35 @@
+.carousel-control {
+  opacity: 0.8;
+}
+
+.carousel-control:hover {
+  opacity: 1;
+}
+
 .four_col_slide .carousel-showmanymoveone .carousel-control {
   width: 4%;
+}
+
+.four_col_slide .carousel-showmanymoveone .carousel-control.left {
+  margin-left: -18px;
+}
+
+.four_col_slide .carousel-showmanymoveone .carousel-control.right {
+  margin-right: -18px;
 }
 
 @media (max-width: 767px) {
   .four_col_slide .carousel-showmanymoveone .carousel-control {
     width: 12%;
   }
-}
 
-.four_col_slide .carousel-showmanymoveone .carousel-control.left {
-  margin-left: 15px;
-}
+  .four_col_slide .carousel-showmanymoveone .carousel-control.left {
+    margin-left: -15px;
+  }
 
-.four_col_slide .carousel-showmanymoveone .carousel-control.right {
-  margin-right: 15px;
+  .four_col_slide .carousel-showmanymoveone .carousel-control.right {
+    margin-right: -15px;
+  }
 }
 
 .four_col_slide .carousel-showmanymoveone .cloneditem-1,
@@ -157,17 +173,15 @@ all and (min-width: 992px) and (-webkit-transform-3d) {
   margin: 5px 0 0;
 }
 
+.carousel-control.left,
 .carousel-control.right {
   background-image: url(/img/icon11_medium.png);
+  background-size: 28px 74px;
   background-repeat: no-repeat;
-  background-position: center;
-  margin-bottom: 30px;
-  transform: rotate(180deg);
+  background-position: 50%;
+  margin-bottom: 54px;
 }
 
-.carousel-control.left {
-  background-image: url(/img/icon11_medium.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  margin-bottom: 30px;
+.carousel-control.right {
+  transform: rotate(180deg);
 }
