@@ -45,8 +45,7 @@ var mobileSlotSizes = {
   Fixedbanner1: [[320, 80], [320, 360], [300, 250]],
   Fixedbanner2: [[320, 80], [320, 360], [300, 250]],
   Fixedbanner3: [[320, 80], [320, 360], [300, 250]],
-  Fixedbanner4: [[320, 80], [320, 360], [300, 250]],
-  SplashAd: [[320, 460], [320, 480], [320, 548]]
+  Fixedbanner4: [[320, 80], [320, 360], [300, 250]]
 };
 
 if (window.googletag && googletag.apiReady) {
@@ -95,13 +94,24 @@ function showWebAd(adType, divId) {
 function showMobileAd(adType, divId) {
   if (window.googletag && googletag.apiReady) {
     googletag.cmd.push(function() {
-      var prefix = (adType === "SplashAd")? mobileSplashPrefix : mobilePrefix;
-      var slot = googletag
-        .defineSlot(
-          prefix + adType,
-          mobileSlotSizes[adType],
-          divId)
-        .addService(googletag.pubads());
+      var slot = null;
+      if (adType === "SplashAd") {
+        var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        var slotSize = (h >= 559)? [320, 548] : [320, 460];
+        slot = googletag
+          .defineSlot(
+            mobileSplashPrefix + adType,
+            slotSize,
+            divId)
+          .addService(googletag.pubads());
+      } else {
+        slot = googletag
+          .defineSlot(
+            mobilePrefix + adType,
+            mobileSlotSizes[adType],
+            divId)
+          .addService(googletag.pubads());
+      }
       mobileAdSlots[divId] = slot;
       mobileAdDivIds.push(divId);
       if ($("#" + divId).is(":visible")) {

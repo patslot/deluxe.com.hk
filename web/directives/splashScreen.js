@@ -22,15 +22,10 @@ export default function($timeout) {
       angular.element('#adCloseBtn').click(function() {
         element.hide();
       });
-      // show splash ad only if came from other site
-      if (typeof location.host != "undefined" &&
-        typeof document.referrer != "undefined" &&
-        document.referrer !== "") {
-        var referrerHost =  document.referrer.match(/:\/\/(.[^/]+)/)[1];
-        if (location.host !== referrerHost) {
-          element.show();
-          showMobileAd("SplashAd", "splashad");
-        }
+      // show splash ad if not come from next media or apple daily
+      if (!/(http|https)?:\/\/[\w\.]{2,}.(nextmedia.com|appledaily.com)/i.test(document.referrer)) {
+        element.show();
+        showMobileAd("SplashAd", "splashad");
       }
     }
   };
