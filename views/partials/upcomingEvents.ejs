@@ -6,12 +6,10 @@
       </div>
     </div>
   </div>
-  <div class="row nm_row nm_section_border" id="upcoming_events_content">
+  <div class="nm_section_border">
+  <div class="row nm_row nm_section_scroll" id="upcoming_events_content">
     <% events.forEach(function(e) { %>
     <div class="text-left nm_section_content">
-      <div class="uce_date">
-        <%- e.endDateTime %>
-      </div>
       <div class="uce_title">
         <%= e.catName %>
       </div>
@@ -20,6 +18,7 @@
       </div>
     </div>
     <% }) %>
+  </div>
   </div>
 </div>
 <script>

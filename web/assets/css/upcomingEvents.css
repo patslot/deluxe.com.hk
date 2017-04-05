@@ -16,10 +16,16 @@
 .up_coming_section .nm_section_border {
   padding-top: 60px;
   height: 450px;
+}
+.up_coming_section .nm_section_scroll {
+  height: 380px;
   overflow-y: scroll;
 }
 
 @media (max-width: 767px) {
+  .up_coming_section .nm_section_scroll {
+    height: 145px;
+  }
   .up_coming_section .nm_section_border {
     height: 215px;
   }
@@ -32,10 +38,22 @@
   padding-top: 15px;
   padding-bottom: 15px;
   height: auto;
-  border-bottom: solid #ddd 1px;
+  border-bottom: solid #A9A9A9 1px;
 }
 
 .nm_up_coming {
   background-image: url(/img/icon13.jpg) !important;
   background-size: 100%;
+}
+
+.uce_title {
+  font-family: "Heiti TC Medium", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.uce_content {
+  font-family: "Heiti TC Light", Helvetica, Arial, sans-serif;
+  font-size: 13.5px;
+  color: #A9A9A9;
 }
