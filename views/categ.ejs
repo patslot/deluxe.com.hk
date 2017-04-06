@@ -28,8 +28,9 @@
               </div>
             </div>
           </div>
-          <div class="row nm_row">
-            <div class="pull-right lrec_ad_wrapper hidden-xs">
+          <div class="row">
+            <%- include('partials/categ1stArticle.ejs', {article: article1}) %>
+            <div class="lrec_ad_wrapper hidden-xs col-md-3">
               <div class="lrec_ad_large">
                 <div id="lrec1">
                   <script>
@@ -45,7 +46,6 @@
                 </div>
               </div>
             </div>
-            <%- include('partials/categ1stArticle.ejs', {article: article1}) %>
           </div>
         </div>
         <div class="nm_section">

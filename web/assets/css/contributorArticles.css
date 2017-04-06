@@ -7,17 +7,16 @@
   padding-top: 20px;
 }
 
-.ctb_two_col_container .col-md-6 {
-  padding: 0px;
+.ctb_two_col_container .hidden-xs .al_two_col_container .ctb_two_image {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .ctb_two_content,
 .ctb_two_image {
   float: left;
-  height: 320px;
+  width: 485px;
   margin-bottom: 15px;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 
 .ctb_two_image img {
@@ -108,12 +107,8 @@
     margin-right: auto;
   }
 
-  .ctb_two_col_container .col-md-6 {
-    padding: 0px;
-    margin-bottom: 0px;
-  }
-
   .ctb_two_content, .ctb_two_image {
+    width: auto;
     height: auto;
     margin-bottom: 0;
   }

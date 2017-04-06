@@ -25,7 +25,7 @@
                 </div>
               </div>
             </div>
-            <div class="row nm_row">
+            <div class="row">
               <% if (type === "news") { %>
                 <script type="application/ld+json">
                   {
@@ -42,7 +42,7 @@
                     "keywords": <%- JSON.stringify(themeTags) %>
                   }
                 </script>
-                <div class="pull-left nm_mpm col-xs-12">
+                <div class="nm_mpm col-md-6 col-xs-12">
                   <div class="mpm_content artd_container">
                     <div class="artd_article_label">[<%- categoryName.toLowerCase() %>]</div>
                     <div class="artd_article_title"><%- title %></div>
@@ -98,7 +98,7 @@
                     "keywords": <%- JSON.stringify([tag]) %>
                   }
                 </script>
-                <div class="pull-left nm_mpm col-xs-12">
+                <div class="nm_mpm col-md-6 col-xs-12">
                   <div class="mpm_content artd_container">
                     <div class="artd_article_label">[<%- categoryName.toLowerCase() %>]</div>
                     <div class="artd_article_title"><%- title %></div>
@@ -126,7 +126,7 @@
                   </div>
                 </div>
               <% } %>
-              <div class="pull-left lrec_ad_wrapper">
+              <div class="lrec_ad_wrapper col-md-3">
                 <div class="lrec_ad_large hidden-xs">
                   <div id="lrec1">
                     <script>

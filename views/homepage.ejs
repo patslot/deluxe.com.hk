@@ -25,8 +25,13 @@
                 </div>
               </div>
             </div>
-            <div class="row nm_row">
-              <div class="pull-right lrec_ad_wrapper hidden-xs">
+            <div class="row">
+              <div class="nm_mpm col-md-6 col-xs-12">
+                <div class="mpm_content">
+                  <%- include('partials/mpms.ejs', {mpms: mpms}) %>
+                </div>
+              </div>
+              <div class="lrec_ad_wrapper hidden-xs col-md-3">
                 <div class="lrec_ad_large">
                   <div id="lrec1">
                     <script>
@@ -40,11 +45,6 @@
                       showWebAd("LREC2", "lrec2");
                     </script>
                   </div>
-                </div>
-              </div>
-              <div class="pull-right nm_mpm col-xs-12">
-                <div class="mpm_content">
-                  <%- include('partials/mpms.ejs', {mpms: mpms}) %>
                 </div>
               </div>
             </div>

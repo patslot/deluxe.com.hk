@@ -12,16 +12,16 @@
   margin: 0;
 }
 
+.al_two_col_container.hidden-xs .al_two_image {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .al_two_content,
 .al_two_image {
   float: left;
-  height: 255px;
+  width: 485px;
   margin-bottom: 15px;
-}
-
-.al_two_image img {
-  max-height: 255px;
-  max-width: 100%;
 }
 
 .al_two_content {
@@ -37,6 +37,7 @@
   .al_two_content,
   .al_two_image {
     float: left;
+    width: auto;
     height: auto;
     margin-bottom: 0;
   }

@@ -27,24 +27,8 @@
             </div>
           </div>
         </div>
-        <div class="row nm_row">
-          <div class="pull-right lrec_ad_wrapper hidden-xs">
-            <div class="lrec_ad_large">
-              <div id="lrec1">
-                <script>
-                  showWebAd("LREC1", "lrec1");
-                </script>
-              </div>
-            </div>
-            <div class="lrec_ad_large">
-              <div id="lrec2">
-                <script>
-                  showWebAd("LREC2", "lrec2");
-                </script>
-              </div>
-            </div>
-          </div>
-          <div class="pull-right nm_mpm col-xs-12">
+        <div class="row">
+          <div class="nm_mpm col-md-6 col-xs-12">
             <% if (latestEvent) { %>
             <div class="mpm_content evtlist_container">
               <div class="evtlist_article_Photo">
@@ -61,6 +45,22 @@
               </a>
             </div>
             <% } %>
+          </div>
+          <div class="lrec_ad_wrapper col-md-3 hidden-xs">
+            <div class="lrec_ad_large">
+              <div id="lrec1">
+                <script>
+                  showWebAd("LREC1", "lrec1");
+                </script>
+              </div>
+            </div>
+            <div class="lrec_ad_large">
+              <div id="lrec2">
+                <script>
+                  showWebAd("LREC2", "lrec2");
+                </script>
+              </div>
+            </div>
           </div>
         </div>
 

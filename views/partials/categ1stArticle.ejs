@@ -1,5 +1,5 @@
 <% if (article) { %>
-<div class="pull-right nm_mpm col-xs-12">
+<div class="nm_mpm col-md-6 col-xs-12">
   <div class="mpm_content">
     <a ng-href="<%= article.linkURL %>">
       <%- include('imageHasVideo.ejs', {a: {hasVideo: article.hasVideo, image: article.image}}) %>

@@ -27,6 +27,10 @@ html {
   .nm_mpm {
     width: 100%!important;
   }
+  .nm_mpm .mpm_content {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
   .nm_home {
     position: relative;
     padding-top: 20px;
