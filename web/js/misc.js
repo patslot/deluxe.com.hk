@@ -52,6 +52,7 @@ $(document).ready(function() {
     }
   });
 
+/* Disable for later use
   $('#upcoming_events_content').endlessScroll({
     callback: function() {
       var $eventItem = $('#upcoming_events_content div.nm_section_content:nth-last-child('
@@ -59,4 +60,5 @@ $(document).ready(function() {
       $('#upcoming_events_content .endless_scroll_inner_wrap').append($eventItem);
     }
   });
+*/
 });

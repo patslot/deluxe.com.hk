@@ -84,6 +84,7 @@
 .mm_container .mn_third_menu {
   margin-top: 25px;
   margin-bottom: 20px;
+  padding-top: 10px;
   border-top: #DDD solid 1px;
   border-bottom: none;
 }

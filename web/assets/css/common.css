@@ -391,12 +391,13 @@ background: #ccc;
 
 .mm_container .close_btn {
   float: right;
-  margin: 15px;
-  width: 18px;
-  height: 18px;
+  margin: 20px;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
   background: url(/img/icon_close.png) no-repeat;
   background-size: cover;
+  margin-right: 40px
 }
 
 .privacy_block_checkbox,
@@ -559,16 +560,20 @@ a {
 }
 
 .footer-contact-item {
-  height: 16px;
-  width: 20px;
   padding-left: 25px;
-  margin-right: 10px;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
+@media (min-width: 768px) {
+  .footer-contact-item {
+    margin-right: 10px;
+  }
+}
+
 .footer-contact-item.tel {
   background-image: url(/img/tel.png);
+  background-position-x: 5px;
 }
 
 .footer-contact-item.fax {
@@ -577,6 +582,7 @@ a {
 
 .footer-contact-item.email {
   background-image: url(/img/email.png);
+  background-position-x: 2px;
 }
 
 .footer-contact-item.email span {
