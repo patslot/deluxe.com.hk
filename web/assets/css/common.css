@@ -451,6 +451,10 @@ a {
     margin-top: 50px;
 }
 
+.site-footer .row {
+  margin-bottom: 5px;
+}
+
 .nm_home.nav-panel-active,
 .nm_header.nav-panel-active {
     left: 320px;
@@ -552,4 +556,29 @@ a {
   font-style: italic;
   color: #C4063D;
   font-size: 11px;
+}
+
+.footer-contact-item {
+  height: 16px;
+  width: 20px;
+  padding-left: 25px;
+  margin-right: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.footer-contact-item.tel {
+  background-image: url(/img/tel.png);
+}
+
+.footer-contact-item.fax {
+  background-image: url(/img/fax.png);
+}
+
+.footer-contact-item.email {
+  background-image: url(/img/email.png);
+}
+
+.footer-contact-item.email span {
+  text-transform: none;
 }
