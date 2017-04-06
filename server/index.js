@@ -26,6 +26,7 @@ module.exports = function(options) {
   app.locals.LOGGING_PAGEVIEW_API = options.LOGGING_PAGEVIEW_API;
   app.locals.LOGGING_PARSELY_SITE_DOMAIN = options.LOGGING_PARSELY_SITE_DOMAIN;
   app.locals.SITE_NAME = options.SITE_NAME;
+  app.locals.SHOW_EDITOR_PICK_LINK = options.showEditorPickLink;
 
   app.use(minifyHTML({
     override:      true,

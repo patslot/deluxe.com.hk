@@ -105,7 +105,8 @@
             </div>
           </div>
           <add-carousel title-class="'nm_editor_pick'" carousel-items="editorPicks"
-            carousel-div="'editor-picks-carousel'"></add-carousel>
+            carousel-div="'editor-picks-carousel'"
+            show-link="<%= SHOW_EDITOR_PICK_LINK %>"></add-carousel>
           <div ng-repeat="articles in categArticles track by $index">
             <midbanner ng-if="$index % 3 === 0" midbanner-id="midbanner_categ_{{$index}}"></midbanner>
             <div class="row">

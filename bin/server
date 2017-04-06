@@ -4,6 +4,7 @@ var Server = require('../server');
 
 var server = Server({
   isTesting: process.env.IS_TESTING || "false",
+  showEditorPickLink: process.env.SHOW_EDITOR_PICK_LINK || "true",
   graphqlEndpoint: process.env.GRAPHQL_ENDPOINT || "http://localhost:4000/graphql",
   adPrefixTag: process.env.AD_PREFIX_TAG || "7350",
   adWebBaseTag: process.env.AD_WEB_BASE_TAG || "dev.ADD",

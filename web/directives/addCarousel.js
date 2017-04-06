@@ -16,7 +16,11 @@ const htmlTpl = `
           <% var _class = 'item'; if (idx === 0) { _class += ' active'; } %>
           <div class="<%= _class %>">
             <div class="col-xs-12 col-sm-5 col-md-3 item_block">
-              <a href="<%= i.linkURL %>" target="<%= i.linkTarget %>">
+              <% if (showLink) { %>
+                <a href="<%= i.linkURL %>" target="<%= i.linkTarget %>">
+              <% } else { %>
+                <a>
+              <% } %>
                 <div class="pos-relative">
                   <% if (i.hasVideo) { %>
                   <img class="play" src="/img/icon-play.png" />
@@ -29,7 +33,11 @@ const htmlTpl = `
                 <div class="nm_section_block_title_cat">[<%= i.label %>]</div>
                 <% } %>
                 <div class="nm_section_block_title">
-                  <a href="<%= i.linkURL %>" target="<%= i.linkTarget %>">
+                  <% if (showLink) { %>
+                    <a href="<%= i.linkURL %>" target="<%= i.linkTarget %>">
+                  <% } else { %>
+                    <a>
+                  <% } %>
                     <%- i.title %>
                   </a>
                 </div>
@@ -52,7 +60,8 @@ export default function() {
     scope: {
       titleClass: '=',
       carouselItems: '=',
-      carouselDiv: '='
+      carouselDiv: '=',
+      showLink: '='
     },
     link: function(scope, element) {
       var unwatch = scope.$watch(function(newVal) {
@@ -60,6 +69,8 @@ export default function() {
         var div = newVal.carouselDiv;
         var cDiv = '#' + div;
         var titleClass = newVal.titleClass;
+        var showLink = (titleClass === 'nm_editor_pick') && !newVal.showLink
+                       ? false : true;
         if (!carouselItems || !cDiv || !titleClass) {
           return;
         }
@@ -68,7 +79,8 @@ export default function() {
           return;
         }
         element.html(ejs.render(htmlTpl, {carouselItems: carouselItems,
-          div: div, cDiv: cDiv, titleClass: titleClass}));
+          div: div, cDiv: cDiv, titleClass: titleClass,
+          showLink: showLink}));
 
         $('.four_col_slide ' + cDiv + ' .item').each(function() {
           var itemToClone = $(this);
