@@ -40,12 +40,13 @@ Environment Variable | Description
 `AD_WEB_BASE_TAG` | the name level 1 in Ad tag for desktop site (default: `dev.ADD`)
 `AD_MOBILE_BASE_TAG` | the name level 1 in Ad tag for mobile site (default: `dev.ADD_Mobilesite`)
 `EDM_SUBSCRIPTION_ENDPOINT` | the *EDM Subscription Handler* URL
-`GA_CODE` | the code of Google Analytics
 `SITE_NAME` | the site name displayed in web page title (default: `Apple Daily Deluxe`)
+`GA_CODE` | the code of Google Analytics
 `LOGGING_GEO_API` | the GEO API URL
 `LOGGING_CRM_API` | the CRM API URL
 `LOGGING_PAGEVIEW_API` | the 1x1 library URL
 `LOGGING_PARSELY_SITE_DOMAIN` | the site domain name for Parse.ly logging
+`SHOW_EDITOR_PICK_LINK` | the flag indicating whether Editor's Picks in home page should be displayed as links (default: `true`)
 
 ```shell
 docker run \

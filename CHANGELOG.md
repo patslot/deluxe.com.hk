@@ -1,5 +1,10 @@
 ## Change Log
 
+### Upcoming
+- revise layout
+- resolve UAT issues
+- general improvements, bug fixes and refactoring
+
 ### v1.0.2
 - resolve UAT issues
 
