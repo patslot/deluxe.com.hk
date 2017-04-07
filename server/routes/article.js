@@ -22,6 +22,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
         .catch(function(err) {
           // use all available data if article detail is not null
           if (typeof err.rawData !== "undefined" && err.rawData.getNewsArticleDetail !== null) {
+            console.error(JSON.stringify(err));
             return err.rawData;
           } else {
             throw err;
@@ -58,6 +59,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
         .catch(function(err) {
           // use all available data if article detail is not null
           if (typeof err.rawData !== "undefined" && err.rawData.getCMSArticleDetail !== null) {
+            console.error(JSON.stringify(err));
             return err.rawData;
           } else {
             throw err;
@@ -86,6 +88,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
               .catch(function(err) {
                 // use all available data
                 if (typeof err.rawData !== "undefined") {
+                  console.error(JSON.stringify(err));
                   return err.rawData;
                 } else {
                   throw err;
@@ -140,6 +143,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
     query.catch(function(err) {
       // use all available data
       if (typeof err.rawData !== "undefined") {
+        console.error(JSON.stringify(err));
         return err.rawData;
       } else {
         throw err;

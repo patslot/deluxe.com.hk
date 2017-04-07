@@ -20,6 +20,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
         .catch(function(err) {
           // use all available data
           if (typeof err.rawData !== "undefined") {
+            console.error(JSON.stringify(err));
             return err.rawData;
           } else {
             throw err;
