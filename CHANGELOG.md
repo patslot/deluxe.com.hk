@@ -1,5 +1,11 @@
 ## Change Log
 
+### v1.0.5
+- refine error handling in data query
+- revise layout
+- general improvements, bug fixes and refactoring
+- update 500 error page to use 404 image
+
 ### v1.0.4
 - update icons
 - stringify error log
@@ -22,7 +28,7 @@
 - add videoview logging
 - add pageview logging
 - async load facebook fan page
-- add parse.ly logging
+- add Parse.ly logging
 - add CRM logging
 - add 1x1 Geo logging
 - integrate EDM subscription form
