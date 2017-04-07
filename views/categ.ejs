@@ -55,6 +55,7 @@
       </div>
     </div>
     <div class="main_content" lazy-scroll="loadCategArticles()"
+      style="min-height: 0px !important"
       lazy-no-scroll="noMoreArticles">
       <div class="nm_section" ng-repeat="articles in moreArticleGroups track by $index">
         <midbanner midbanner-id="midbanner_group_{{$index}}"></midbanner>
