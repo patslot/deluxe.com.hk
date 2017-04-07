@@ -1,5 +1,8 @@
 ## Change Log
 
+### v1.0.7
+- handle special characters in article title
+
 ### v1.0.6
 - revise layout
 - print error before handling available data in data query error
