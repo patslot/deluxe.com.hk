@@ -32,7 +32,9 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
 
   function updateCategIdx() {
     categIdx += articleCount;
-    $scope.loadingArticles = false;
+    $timeout(function() {
+      $scope.loadingArticles = false;
+    }, 100);
   };
 
   function loadCategArticles() {
