@@ -16,19 +16,28 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
 
   return {
     render: function(req, res, next) {
-      gQuery.homeQuery().then(function(result) {
-        var articles = (result.listHomeLatestArticle || []).slice(0, 4);
-        res.render('homepage', {
-          pageviewLog: categMapping.categPageviewLog('HOME'),
-          mpms: parseMpms(result.listMPM),
-          menu: queryHandler.parseMenu(result.listMenu),
-          articles: queryHandler.parseHomeArticles(articles),
-          campaigns: result.listCampaign || [],
-          showEDM: edm.showEDM(req.cookies.addEDM, result.listCampaign)
+      gQuery.homeQuery()
+        .catch(function(err) {
+          // use all available data
+          if (typeof err.rawData !== "undefined") {
+            return err.rawData;
+          } else {
+            throw err;
+          }
+        })
+        .then(function(result) {
+          var articles = (result.listHomeLatestArticle || []).slice(0, 4);
+          res.render('homepage', {
+            pageviewLog: categMapping.categPageviewLog('HOME'),
+            mpms: parseMpms(result.listMPM),
+            menu: queryHandler.parseMenu(result.listMenu),
+            articles: queryHandler.parseHomeArticles(articles),
+            campaigns: result.listCampaign || [],
+            showEDM: edm.showEDM(req.cookies.addEDM, result.listCampaign)
+          });
+        }, function(err) {
+          return next(err);
         });
-      }, function(err) {
-        return next(err);
-      });
     }
   };
 };

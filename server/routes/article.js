@@ -18,63 +18,92 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
     article.fullURL = req.protocol + "://" + req.get('host') + req.originalUrl;
 
     if (articleID && article.type === 'news') {
-      gQuery.newsArticleQuery(articleID).then(function(result) {
-        article = util._extend(article, result.getNewsArticleDetail);
-        article.ename = categMapping.nameToEname[article.categoryName];
-        article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
-        article.contributorName = '';
-        article.video = null;
-        var videos = article.mediaGroup.filter(function (item) {
-          return item.type === 'videos';
-        });
-        var numReg = /\d+/;
-        if (videos && videos.length > 0) {
-          videos.sort(function (v1, v2) {
-            return v1.quality.match(numReg) < v2.quality.match(numReg);
+      gQuery.newsArticleQuery(articleID)
+        .catch(function(err) {
+          // use all available data if article detail is not null
+          if (typeof err.rawData !== "undefined" && err.rawData.getNewsArticleDetail !== null) {
+            return err.rawData;
+          } else {
+            throw err;
+          }
+        })
+        .then(function(result) {
+          article = util._extend(article, result.getNewsArticleDetail);
+          article.ename = categMapping.nameToEname[article.categoryName];
+          article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
+          article.contributorName = '';
+          article.video = null;
+          var videos = article.mediaGroup.filter(function (item) {
+            return item.type === 'videos';
           });
-          article.video = videos[0];
-        }
-        article.pubDate = parsePubDate(article.pubDate);
-        article.menu = queryHandler.parseMenu(result.listMenu);
-        article.campaigns = result.listCampaign || [];
-        article.showEDM = edm.showEDM(req.cookies.addEDM, result.listCampaign);
-        article.pageviewLog = categMapping.articlePageviewLog(article.categoryName,
-          (article.logging || {}).pixelNews, article.id, article.issueId, article.title, '');
-        res.render('articleDetail', article);
-      }, function(err) {
-        return next(err);
-      });
-    } else if (article.type === 'cms') {
-      gQuery.cmsArticleQuery(articleID).then(function (result) {
-        article = util._extend(article, result.getCMSArticleDetail);
-        article.contributorName = article.contributorName ?
-          article.contributorName.replace(/\,/,'') : '';
-        article.ename = categMapping.nameToEname[article.categoryName];
-        article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
-        article.video = {
-          url: article.videoFile,
-          title: article.title,
-          videoId: article.id
-        };
-        article.publish = parsePubDate(article.publish);
-        article.menu = queryHandler.parseMenu(result.listMenu);
-        article.campaigns = result.listCampaign || [];
-        article.showEDM = edm.showEDM(req.cookies.addEDM, result.listCampaign);
-        var categoryName = article.categoryName === 'Contributor' ? columnist : article.categoryName
-        article.pageviewLog = categMapping.articlePageviewLog(categoryName,
-          cmsNewsType, article.id, article.issueId, article.title, article.contributorName);
-        if (article.categoryName === 'Event') {
-          gQuery.upcomingEventQuery().then(function (result) {
-            var upcomingEvents = (result.listUpcomingEvent || []).slice(0, maxUpcomingEvent);
-            article.upcomingEvents = queryHandler.parseUpcomingEvents(upcomingEvents);
-            res.render('articleDetail', article);
-          });
-        } else {
+          var numReg = /\d+/;
+          if (videos && videos.length > 0) {
+            videos.sort(function (v1, v2) {
+              return v1.quality.match(numReg) < v2.quality.match(numReg);
+            });
+            article.video = videos[0];
+          }
+          article.pubDate = parsePubDate(article.pubDate);
+          article.menu = queryHandler.parseMenu(result.listMenu);
+          article.campaigns = result.listCampaign || [];
+          article.showEDM = edm.showEDM(req.cookies.addEDM, result.listCampaign);
+          article.pageviewLog = categMapping.articlePageviewLog(article.categoryName,
+            (article.logging || {}).pixelNews, article.id, article.issueId, article.title, '');
           res.render('articleDetail', article);
-        }
-      }, function (err) {
-        return next(err);
-      });
+        }, function(err) {
+          return next(err);
+        });
+    } else if (article.type === 'cms') {
+      gQuery.cmsArticleQuery(articleID)
+        .catch(function(err) {
+          // use all available data if article detail is not null
+          if (typeof err.rawData !== "undefined" && err.rawData.getCMSArticleDetail !== null) {
+            return err.rawData;
+          } else {
+            throw err;
+          }
+        })
+        .then(function (result) {
+          article = util._extend(article, result.getCMSArticleDetail);
+          article.contributorName = article.contributorName ?
+            article.contributorName.replace(/\,/,'') : '';
+          article.ename = categMapping.nameToEname[article.categoryName];
+          article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
+          article.video = {
+            url: article.videoFile,
+            title: article.title,
+            videoId: article.id
+          };
+          article.publish = parsePubDate(article.publish);
+          article.menu = queryHandler.parseMenu(result.listMenu);
+          article.campaigns = result.listCampaign || [];
+          article.showEDM = edm.showEDM(req.cookies.addEDM, result.listCampaign);
+          var categoryName = article.categoryName === 'Contributor' ? columnist : article.categoryName
+          article.pageviewLog = categMapping.articlePageviewLog(categoryName,
+            cmsNewsType, article.id, article.issueId, article.title, article.contributorName);
+          if (article.categoryName === 'Event') {
+            gQuery.upcomingEventQuery()
+              .catch(function(err) {
+                // use all available data
+                if (typeof err.rawData !== "undefined") {
+                  return err.rawData;
+                } else {
+                  throw err;
+                }
+              })
+              .then(function (result) {
+                var upcomingEvents = (result.listUpcomingEvent || []).slice(0, maxUpcomingEvent);
+                article.upcomingEvents = queryHandler.parseUpcomingEvents(upcomingEvents);
+                res.render('articleDetail', article);
+              }, function(err) {
+                return next(err);
+              });
+          } else {
+            res.render('articleDetail', article);
+          }
+        }, function (err) {
+          return next(err);
+        });
     } else {
       return next();
     }
@@ -108,7 +137,15 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
       query = gQuery.categQuery(listCategAPI, offset, count);
       handleFunc = queryHandler.parseArticles;
     }
-    query.then(function(result) {
+    query.catch(function(err) {
+      // use all available data
+      if (typeof err.rawData !== "undefined") {
+        return err.rawData;
+      } else {
+        throw err;
+      }
+    })
+    .then(function(result) {
       var articles = handleFunc(categ, (result[listCategAPI] || []));
       var categs = result.listMenu || [];
       var currentCateg = getCurrentCateg(categs, categ);
