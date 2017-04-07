@@ -1,5 +1,10 @@
 ## Change Log
 
+### v1.0.6
+- revise layout
+- print error before handling available data in data query error
+- revise pagination for contributor articles
+
 ### v1.0.5
 - refine error handling in data query
 - revise layout
