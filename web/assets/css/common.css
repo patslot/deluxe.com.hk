@@ -379,14 +379,17 @@ background: #ccc;
 
 .nm_highlight {
   background-image: url(/img/icon07.png) !important;
+  background-size: 100% !important;
 }
 
 .nm_editor_pick {
   background-image: url(/img/icon10.png) !important;
+  background-size: 100% !important;
 }
 
 .nm_recommend {
   background-image: url(/img/icon12.png) !important;
+  background-size: 100% !important;
 }
 
 .mm_container .close_btn {
