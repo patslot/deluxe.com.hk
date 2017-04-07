@@ -1,5 +1,9 @@
 ## Change Log
 
+### v1.0.4
+- update icons
+- stringify error log
+
 ### v1.0.3
 - revise layout
 - resolve UAT issues
