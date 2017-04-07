@@ -1,9 +1,10 @@
 ## Change Log
 
-### Upcoming
+### v1.0.3
 - revise layout
 - resolve UAT issues
 - general improvements, bug fixes and refactoring
+- use GraphQL API v1.1.x
 
 ### v1.0.2
 - resolve UAT issues
