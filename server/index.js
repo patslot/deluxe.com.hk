@@ -56,7 +56,7 @@ module.exports = function(options) {
   app.get('/article/:articleID', article.renderArticle);
 
   app.use(function(err, req, res, next) {
-    console.error(err);
+    console.error(JSON.stringify(err));
     if (req.accepts(["text/html", "application/json"]) === "application/json") {
       return res.status(500).json({status: 500, message: err});
     }
