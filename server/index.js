@@ -1,7 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var minifyHTML = require('express-minify-html');
 
 var categMapping = require('./middleware/categoryMapping.js');
 var edm = require('./middleware/edm.js');
@@ -28,15 +27,6 @@ module.exports = function(options) {
   app.locals.SITE_NAME = options.SITE_NAME;
   app.locals.SHOW_EDITOR_PICK_LINK = options.showEditorPickLink;
 
-  app.use(minifyHTML({
-    override:      true,
-    exception_url: false,
-    htmlMinifier: {
-      removeComments:            true,
-      collapseWhitespace:        true,
-      minifyJS:                  true
-    }
-  }));
   app.use(express.static('public'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
