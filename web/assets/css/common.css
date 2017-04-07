@@ -378,15 +378,15 @@ background: #ccc;
 }
 
 .nm_highlight {
-  background-image: url(/img/icon07.jpg) !important;
+  background-image: url(/img/icon07.png) !important;
 }
 
 .nm_editor_pick {
-  background-image: url(/img/icon10.jpg) !important;
+  background-image: url(/img/icon10.png) !important;
 }
 
 .nm_recommend {
-  background-image: url(/img/icon12.jpg) !important;
+  background-image: url(/img/icon12.png) !important;
 }
 
 .mm_container .close_btn {
