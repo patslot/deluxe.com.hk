@@ -1,36 +1,30 @@
 export default function($timeout, $scope, gqModel, $attrs, queryHandler) {
   var articles = [];
   var articleCount = 4;
-  var isReady = false;
   var articleIdx = 4;
+  var contrName = $attrs.contrName;
 
   $scope.noMoreArticles = false;
   $scope.loadingArticles = false;
   $scope.moreArticleGroups = [];
 
-  gqModel.queryContributorArticles($attrs.contrName).then(function(res) {
-    $timeout(function() {
-      articles = res.listContributorArticle || [];
-      isReady = true;
-    });
-  });
-
   function updateCategIdx() {
     articleIdx += articleCount;
-    $scope.loadingArticles = false;
+    $timeout(function() {
+      $scope.loadingArticles = false;
+    }, 100);
   };
 
   $scope.loadArticles = function() {
-    if (!isReady || $scope.noMoreArticles) {
+    if ($scope.noMoreArticles) {
       return false;
     }
     if ($scope.loadingArticles) {
       return false;
     }
-    // TODO(wkchan): Max number of articles?
-    if (articleIdx < articles.length) {
-      $scope.loadingArticles = true;
-      var moreArticles = articles.slice(articleIdx, articleIdx + articleCount);
+    $scope.loadingArticles = true;
+    gqModel.queryContributorArticles(contrName, articleIdx, articleCount).then(function(res) {
+      var moreArticles = res.listContributorArticle || [];
       moreArticles.forEach(function(a) {
         queryHandler.parseCmsArticle('Contributor', a);
       });
@@ -41,6 +35,9 @@ export default function($timeout, $scope, gqModel, $attrs, queryHandler) {
         $scope.noMoreArticles = true;
       }
       updateCategIdx();
-    }
+    }, function(err) {
+      $scope.loadingArticles = false;
+      console.error(err);
+    });
   };
 };

@@ -210,7 +210,7 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     content
   }`;
 
-  const listContributorArticle = `listContributorArticle(name: $name) {
+  const listContributorArticle = `listContributorArticle(name: $name, offset: $offset, count: $count) {
     id
     categoryID
     publish
@@ -278,13 +278,13 @@ module.exports = function(GRAPHQL_ENDPOINT) {
         createCmsComponeFeedQuery('listContributor')
       ]));
     },
-    contributorArticlesQuery: function(contrName) {
-      return client.query(createQueryWithParams('$name: String',
+    contributorArticlesQuery: function(contrName, offset, count) {
+      return client.query(createQueryWithParams('$name: String, $offset: Int, $count: Int',
         [listMenu, listCampaign,
           createCmsComponeFeedQuery('listContributor'),
           listContributorArticle
         ]),
-        {name: contrName});
+        {name: contrName, offset: offset, count: count});
     },
     queryEditorPicks: function(offset, count) {
       return client.query(createQueryWithParams('$offset: Int, $count: Int',

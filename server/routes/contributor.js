@@ -6,7 +6,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
 
   function renderArticles(req, res, next) {
     var name = req.params.contrName;
-    gQuery.contributorArticlesQuery(name)
+    gQuery.contributorArticlesQuery(name, 0, articleCount)
       .catch(function(err) {
         // use all available data
         if (typeof err.rawData !== "undefined") {
@@ -22,7 +22,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
         if (contributors.length === 0) {
           return next();
         }
-        var articles = (r.listContributorArticle || []).slice(0, articleCount);
+        var articles = r.listContributorArticle || [];
         articles.forEach(function(a) {
           queryHandler.parseCmsArticle(categContr, a);
         });

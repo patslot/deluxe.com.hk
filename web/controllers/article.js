@@ -22,7 +22,7 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
       handleRes('listEditorPick', res, queryHandler.parseCmsArticles);
     });
   } else if (categEname === 'contributor') {
-    gqModel.queryContributorArticles(articleAuthor).then(function (res) {
+    gqModel.queryContributorArticlesInArticle(articleAuthor, offset, recommendCount + 1).then(function (res) {
       handleRes('listContributorArticle', res, queryHandler.parseCmsArticles);
     });
   } else if (categEname === 'event') {

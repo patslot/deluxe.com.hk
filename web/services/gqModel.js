@@ -96,7 +96,7 @@ export default function(c) {
   }`;
 
 
-  const listContributorArticle = `listContributorArticle(name: $name) {
+  const listContributorArticle = `listContributorArticle(name: $name, offset: $offset, count: $count) {
     id
     categoryID
     publish
@@ -198,9 +198,13 @@ export default function(c) {
         createCmsComponeFeedQuery('listContributor')
       ]));
     },
-    queryContributorArticles: function(contrName) {
-      return client.query(createQueryWithParams('$name: String',
-        [listContributorArticle, listInstagram]), {name: contrName});
+    queryContributorArticlesInArticle: function(contrName, offset, count) {
+      return client.query(createQueryWithParams('$name: String, $offset: Int, $count: Int',
+        [listContributorArticle, listInstagram]), {name: contrName, offset: offset, count: count});
+    },
+    queryContributorArticles: function(contrName, offset, count) {
+      return client.query(createQueryWithParams('$name: String, $offset: Int, $count: Int',
+        [listContributorArticle]), {name: contrName, offset: offset, count: count});
     },
     queryEvents: function(pagesize, page, start) {
       return client.query(createQueryWithParams('$pagesize: Int, $page: Int, $start: Int',
