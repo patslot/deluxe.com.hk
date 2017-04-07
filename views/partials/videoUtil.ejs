@@ -64,7 +64,7 @@ function liveStateChanged(stateMessage, anvatoData) {
         "content": "VIDEO",
         "cat": "<%= pageviewLog.category %>",
         "ch": "<%= pageviewLog.channel %>",
-        "title": encodeURIComponent("<%- pageviewLog.title %>"),
+        "title": "<%- encodeURIComponent(pageviewLog.title) %>",
         "cid": videoId,
         "news": "<%= pageviewLog.news %>",
         "edm": "",
