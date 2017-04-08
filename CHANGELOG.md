@@ -1,5 +1,8 @@
 ## Change Log
 
+### v1.0.8
+- refine splash Ad display logic
+
 ### v1.0.7
 - handle special characters in article title
 
