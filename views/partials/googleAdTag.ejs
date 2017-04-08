@@ -48,29 +48,41 @@ var mobileSlotSizes = {
   Fixedbanner4: [[320, 80], [320, 360], [300, 250]]
 };
 
+var webAdDisplayed = {};
+var webAdSlots = {};
+var webAdDivIds = [];
+var webAdCallback = [];
+
+var mobileAdDisplayed = {};
+var mobileAdSlots = {};
+var mobileAdDivIds = [];
+var mobileAdCallback = [];
+
 if (window.googletag && googletag.apiReady) {
   googletag.cmd.push(function() {
     googletag.pubads().collapseEmptyDivs();
     googletag.pubads().enableSingleRequest();
     googletag.pubads().disableInitialLoad();
+    googletag.pubads().addEventListener("slotRenderEnded", function(event) {
+      var divId = event.slot.getSlotElementId();
+      if (typeof webAdCallback[divId] !== "undefined") {
+        webAdCallback[divId](event.isEmpty);
+      }
+      if (typeof mobileAdCallback[divId] !== "undefined") {
+        mobileAdCallback[divId](event.isEmpty);
+      }
+    });
     googletag.enableServices();
   });
+
 }
-
-var webAdDisplayed = {};
-var webAdSlots = {};
-var webAdDivIds = [];
-
-var mobileAdDisplayed = {};
-var mobileAdSlots = {};
-var mobileAdDivIds = [];
 
 function displayAd(divId, slot) {
   googletag.display(divId);
   googletag.pubads().refresh([slot]);
 }
 
-function showWebAd(adType, divId) {
+function showWebAd(adType, divId, callback) {
   if (window.googletag && googletag.apiReady) {
     googletag.cmd.push(function() {
       var slot = googletag
@@ -81,6 +93,9 @@ function showWebAd(adType, divId) {
         .addService(googletag.pubads());
       webAdSlots[divId] = slot;
       webAdDivIds.push(divId);
+      if (typeof callback !== "undefined") {
+        webAdCallback[divId] = callback;
+      }
       if ($("#" + divId).is(":visible")) {
         displayAd(divId, slot);
         webAdDisplayed[divId] = true;
@@ -91,7 +106,7 @@ function showWebAd(adType, divId) {
   }
 }
 
-function showMobileAd(adType, divId) {
+function showMobileAd(adType, divId, callback) {
   if (window.googletag && googletag.apiReady) {
     googletag.cmd.push(function() {
       var slot = null;
@@ -114,6 +129,9 @@ function showMobileAd(adType, divId) {
       }
       mobileAdSlots[divId] = slot;
       mobileAdDivIds.push(divId);
+      if (typeof callback !== "undefined") {
+        mobileAdCallback[divId] = callback;
+      }
       if ($("#" + divId).is(":visible")) {
         displayAd(divId, slot);
         mobileAdDisplayed[divId] = true;
