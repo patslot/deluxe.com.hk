@@ -25,7 +25,7 @@ const htmlTpl = `
 </div>
 `;
 
-export default function($location) {
+export default function() {
   return {
     restrict: 'E',
     scope: {
@@ -39,8 +39,8 @@ export default function($location) {
         if (!title || !id) {
           return;
         }
-        scope.url = $location.protocol() + '://' + $location.host() + ':' +
-          $location.port() + '/article/' + scope.id;
+        scope.url = window.location.protocol + '//' + window.location.host +
+          '/article/' + scope.id;
         scope.css = css;
         element.html(ejs.render(htmlTpl, scope));
         unwatch();

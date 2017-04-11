@@ -63,7 +63,7 @@ module.exports = function(options) {
     .directive('fixedbanner', [dirs.fixedbanner])
     .directive('splashScreen', [dirs.splashScreen])
     .directive('homeArticle', [dirs.homeArticle])
-    .directive('shareBar', ['$location', dirs.shareBar])
+    .directive('shareBar', [dirs.shareBar])
     .directive('contributorBlock', [dirs.contributorBlock])
 
   angular
