@@ -1,5 +1,9 @@
 ## Change Log
 
+### v1.0.9
+- disable google translate suggestion
+- resolve UAT issues
+
 ### v1.0.8
 - refine splash Ad display logic
 
