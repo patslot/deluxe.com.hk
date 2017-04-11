@@ -32,6 +32,11 @@
 
 .evtlist_article_Text {
   overflow: hidden;
+  height: 40px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
 }
 
 .evtlist_container {
