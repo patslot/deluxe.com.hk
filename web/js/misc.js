@@ -6,10 +6,10 @@ $(document).ready(function() {
       var skinnerAD = $('.skinner_ad_wrapper');
       var scrollTop = $(document).scrollTop();
 
-      if (scrollTop > 95) {
+      if (scrollTop > 80) {
         nmHeader.addClass('fixed');
         stickyPlaceholder.addClass('fixed');
-        skinnerAD.css('top', 65);
+        skinnerAD.css('top', 80);
       } else {
         nmHeader.removeClass('fixed');
         stickyPlaceholder.removeClass('fixed');
