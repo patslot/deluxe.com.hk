@@ -562,6 +562,10 @@ a {
   font-size: 11px;
 }
 
+.footer-contact-row {
+  margin-bottom: 5px;
+}
+
 .footer-contact-item {
   padding-left: 25px;
   background-repeat: no-repeat;
