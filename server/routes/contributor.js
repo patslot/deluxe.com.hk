@@ -6,7 +6,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
 
   function renderArticles(req, res, next) {
     var name = req.params.contrName;
-    gQuery.contributorArticlesQuery(name, 0, articleCount)
+    gQuery.contributorArticlesQuery(name, 0, articleCount + 1)
       .catch(function(err) {
         // use all available data
         if (typeof err.rawData !== "undefined") {
@@ -23,7 +23,8 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
         if (contributors.length === 0) {
           return next();
         }
-        var articles = r.listContributorArticle || [];
+        var allArticles = r.listContributorArticle || [];
+        var articles = allArticles.slice(0, articleCount);
         articles.forEach(function(a) {
           queryHandler.parseCmsArticle(categContr, a);
         });
@@ -32,6 +33,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
           contributor: queryHandler.parseContributor(contributors[0]),
           menu: queryHandler.parseMenu(r.listMenu, categContr),
           articles: articles,
+          noMoreArticles: allArticles.length <= articleCount,
           campaigns: r.listCampaign || [],
           showEDM: edm.showEDM(req.cookies.addEDM, r.listCampaign)
         });

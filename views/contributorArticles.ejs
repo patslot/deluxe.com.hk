@@ -7,7 +7,8 @@
   <%- include('partials/googleAdTag.ejs', {adTag: 'Contributor_detail'}) %>
 </head>
 
-<body ng-app="addv2" ng-controller="ContributorArticlesController" contr-name="<%= contributor.catName %>">
+<body ng-app="addv2" ng-controller="ContributorArticlesController" contr-name="<%= contributor.catName %>"
+   no-more-articles="<%= noMoreArticles %>">
   <skinner-block></skinner-block>
   <splash-screen></splash-screen>
   <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
@@ -47,7 +48,7 @@
           </div>
           <div class="ctb_two_col_container"
             lazy-scroll="loadArticles()" lazy-no-scroll="noMoreArticles">
-            <div align="center" ng-show="loadingArticles" style="margin-top: 20px">
+            <div align="center" ng-show="loadingArticles" style="margin-top: 20px" ng-cloak>
               <img src="/img/loading.gif" />
             </div>
             <div ng-repeat="articles in moreArticleGroups track by $index">

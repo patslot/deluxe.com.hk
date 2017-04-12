@@ -4,7 +4,7 @@ export default function($timeout, $scope, gqModel, $attrs, queryHandler) {
   var articleIdx = 4;
   var contrName = $attrs.contrName;
 
-  $scope.noMoreArticles = false;
+  $scope.noMoreArticles = $attrs.noMoreArticles !== 'false';
   $scope.loadingArticles = false;
   $scope.moreArticleGroups = [];
 
