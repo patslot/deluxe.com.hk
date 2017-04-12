@@ -7,7 +7,7 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
   var latestArticles = [];
 
   $scope.loading = false;
-  $scope.loaded = false;
+  $scope.loadIdx = 0;
   $scope.categArticles = [];
 
   function createLoadCateg() {
@@ -36,31 +36,19 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
     });
   });
 
-  // Only lazy load one time in homepage
-  $scope.lazyLoadHomepage = function() {
-    if (!isReady) {
-      return false;
-    }
-    if ($scope.loading) {
-      return false;
-    }
-    if ($scope.loaded) {
-      return false;
-    }
-    $scope.loading = true;
+  function updateLoaded() {
+    $timeout(function() {
+      $scope.loading = false;
+      $scope.loadIdx = $scope.loadIdx + 1;
+    }, 100);
+  }
 
+  function loadHomeArticles() {
     var latestArticles5to8 = latestArticles.length > 4 ?
       latestArticles.slice(4, 8) : [];
     $scope.latestArticles5to8 = queryHandler.parseHomeArticles(latestArticles5to8);
-
-    //listInstagram, listHomeEditorPick
-    var categs = createLoadCateg();
-    gqModel.queryHomeLazy(categs).then(function(res) {
+    gqModel.queryHomeLazy().then(function(res) {
       $timeout(function() {
-        categs.forEach(function(categ) {
-          $scope.categArticles.push(queryHandler.parseHomeArticles(
-            (res[categ] || []).slice(0, maxCategArticles)));
-        });
         $scope.igMedias = queryHandler.parseInstagram(res.listInstagram);
         var editorPicks = res.listHomeEditorPick || [];
         // TODO(wkchan): Handle video thumbnail?
@@ -76,13 +64,48 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
         if (eBanners.length > 0) {
           $scope.eBanner = eBanners[0];
         }
-        $scope.loading = false;
-        $scope.loaded = true;
+        updateLoaded();
       });
     }, function(err) {
       $timeout(function() {
         $scope.loading = false;
       }, 1000);
     });
+  }
+
+  function loadCategArticles() {
+    var categs = createLoadCateg();
+    gqModel.queryHomeLazyCategs(categs).then(function(res) {
+      $timeout(function() {
+        categs.forEach(function(categ) {
+          $scope.categArticles.push(queryHandler.parseHomeArticles(
+            (res[categ] || []).slice(0, maxCategArticles)));
+        });
+        updateLoaded();
+      });
+    }, function(err) {
+      $timeout(function() {
+        $scope.loading = false;
+      }, 1000);
+    });
+  }
+
+  // Only lazy load one time in homepage
+  $scope.lazyLoadHomepage = function() {
+    if (!isReady) {
+      return false;
+    }
+    if ($scope.loading) {
+      return false;
+    }
+    if ($scope.loadIdx > 1) {
+      return false;
+    }
+    $scope.loading = true;
+    if ($scope.loadIdx === 0) {
+      loadHomeArticles();
+    } else if ($scope.loadIdx === 1) {
+      loadCategArticles();
+    }
   };
 };

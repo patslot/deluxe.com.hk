@@ -150,13 +150,14 @@ export default function(c) {
         lifeStyle: 'listHomeLifeStyleArticle'
       },
     },
-    queryHomeLazy: function(homeQueryNames) {
+    queryHomeLazy: function() {
+      return client.query(createQuery([listInstagram,
+        listHomeEditorPick, createCmsComponeFeedQuery('listBannerForEvent')]));
+    },
+    queryHomeLazyCategs: function(homeQueryNames) {
       var queries = homeQueryNames.map(function(name) {
         return createCmsComponeFeedQuery(name);
       });
-      queries.push(listInstagram);
-      queries.push(listHomeEditorPick);
-      queries.push(createCmsComponeFeedQuery('listBannerForEvent'));
       return client.query(createQuery(queries));
     },
     // TODO(wkchan): Menu sorting and display

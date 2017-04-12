@@ -74,12 +74,12 @@
             </div>
           </div>
           <add-carousel title-class="'nm_highlight'" carousel-items="highlights" carousel-div="'highlight-carousel'"></add-carousel>
-          <div class="nm_section" lazy-scroll="lazyLoadHomepage()" lazy-no-scroll="loaded">
-            <div align="center" ng-show="loading" style="margin-top: 20px">
+          <div class="nm_section" lazy-scroll="lazyLoadHomepage()" lazy-no-scroll="loadIdx > 1">
+            <div align="center" ng-show="loading" style="margin-top: 20px" ng-cloak>
               <img src="/img/loading.gif" />
             </div>
           </div>
-          <div ng-if="loaded">
+          <div ng-show="loadIdx > 0">
             <midbanner midbanner-id="midbanner_1"></midbanner>
             <div class="nm_section">
               <div class="row">
@@ -103,10 +103,10 @@
                 </div>
               </div>
             </div>
+            <add-carousel title-class="'nm_editor_pick'" carousel-items="editorPicks"
+              carousel-div="'editor-picks-carousel'"
+              show-link="<%= SHOW_EDITOR_PICK_LINK %>"></add-carousel>
           </div>
-          <add-carousel title-class="'nm_editor_pick'" carousel-items="editorPicks"
-            carousel-div="'editor-picks-carousel'"
-            show-link="<%= SHOW_EDITOR_PICK_LINK %>"></add-carousel>
           <div ng-repeat="articles in categArticles track by $index">
             <midbanner ng-if="$index % 3 === 0" midbanner-id="midbanner_categ_{{$index}}"></midbanner>
             <div class="row">
