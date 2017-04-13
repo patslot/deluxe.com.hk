@@ -35,7 +35,9 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
           articles: articles,
           noMoreArticles: allArticles.length <= articleCount,
           campaigns: r.listCampaign || [],
-          showEDM: edm.showEDM(req.cookies.addEDM, r.listCampaign)
+          showEDM: edm.showEDM(req.cookies.addEDM, r.listCampaign),
+          origin: req.protocol + "://" + req.get('host'),
+          fullURL: req.protocol + "://" + req.get('host') + req.originalUrl
         });
       }, function(err) {
         return next(err);
@@ -62,7 +64,9 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
           menu: queryHandler.parseMenu(r.listMenu, categContr),
           adTag: adTagMapping.list,
           campaigns: r.listCampaign || [],
-          showEDM: edm.showEDM(req.cookies.addEDM, r.listCampaign)
+          showEDM: edm.showEDM(req.cookies.addEDM, r.listCampaign),
+          origin: req.protocol + "://" + req.get('host'),
+          fullURL: req.protocol + "://" + req.get('host') + req.originalUrl
         });
       }, function(err) {
         return next(err);

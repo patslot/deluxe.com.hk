@@ -26,6 +26,16 @@ module.exports = function(options) {
   app.locals.LOGGING_PARSELY_SITE_DOMAIN = options.LOGGING_PARSELY_SITE_DOMAIN;
   app.locals.SITE_NAME = options.SITE_NAME;
   app.locals.SHOW_EDITOR_PICK_LINK = options.showEditorPickLink;
+  app.locals.escapeHtml = function(text) {
+    var map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+  };
 
   app.use(express.static('public'));
   app.use(bodyParser.json());
@@ -63,7 +73,9 @@ module.exports = function(options) {
     return res.status(500).render("500", {
       menu: {main: [], sub: []},
       campaigns: [],
-      showEDM: false
+      showEDM: false,
+      origin: req.protocol + '://' + req.get('host'),
+      fullURL: req.protocol + '://' + req.get('host') + req.originalUrl
     });
   });
 
@@ -74,7 +86,9 @@ module.exports = function(options) {
     return res.status(404).render("404", {
       menu: {main: [], sub: []},
       campaigns: [],
-      showEDM: false
+      showEDM: false,
+      origin: req.protocol + '://' + req.get('host'),
+      fullURL: req.protocol + '://' + req.get('host') + req.originalUrl
     });
   });
 

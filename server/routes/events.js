@@ -37,7 +37,9 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
           events: events.slice(1, totalEvents),
           menu: queryHandler.parseMenu(r.listMenu, categEvent),
           campaigns: r.listCampaign || [],
-          showEDM: edm.showEDM(req.cookies.addEDM, r.listCampaign)
+          showEDM: edm.showEDM(req.cookies.addEDM, r.listCampaign),
+          origin: req.protocol + "://" + req.get('host'),
+          fullURL: req.protocol + "://" + req.get('host') + req.originalUrl
         });
       }, function(err) {
         return next(err);

@@ -2,8 +2,13 @@
 <html>
 
 <head>
-  <%- include('partials/extHeader.ejs') %>
-  <title>Apple Daily Deluxe</title>
+  <%- include('partials/header.ejs', {
+    title: SITE_NAME,
+    ogTitle: SITE_NAME,
+    ogImage: null,
+    origin: origin,
+    fullURL: fullURL
+  }) %>
   <%- include('partials/googleAdTag.ejs', {adTag: 'Index'}) %>
 </head>
 

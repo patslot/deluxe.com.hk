@@ -2,8 +2,13 @@
 <html>
 
 <head>
-  <title><%= contributor.catName %> - <%= SITE_NAME %></title>
-  <%- include('partials/extHeader.ejs') %>
+  <%- include('partials/header.ejs', {
+    title: contributor.catName + " - " + SITE_NAME,
+    ogTitle: contributor.catName + " - Contributor - " + SITE_NAME,
+    ogImage: null,
+    origin: origin,
+    fullURL: fullURL
+  }) %>
   <%- include('partials/googleAdTag.ejs', {adTag: 'Contributor_detail'}) %>
 </head>
 

@@ -3,6 +3,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="google" content="notranslate" />
+<meta property="fb:admins" content="100002054879338" />
+<meta property="fb:app_id" content="1322322564516283" />
+<meta property="og:title" content="<%= escapeHtml(ogTitle) %>" />
+<meta property="og:type" content="website" />
+<% if (ogImage && ogImage !== "") { %>
+<meta property="og:image" content="<%= image %>" />
+<% } else { %>
+<meta property="og:image" content="<%= origin %>/img/Facebook_share_1200x630px.jpg" />
+<% } %>
+<meta property="og:url" content="<%= fullURL %>" />
+<meta property="og:site_name" content="<%= SITE_NAME %>" />
+<title><%= title %></title>
 <link rel="shortcut icon" href="/img/favicon.ico" />
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

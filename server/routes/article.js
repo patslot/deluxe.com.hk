@@ -15,6 +15,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
     var article = {};
     article.id = articleID;
     article.type = categMapping.getArticleType(articleID);
+    article.origin = req.protocol + "://" + req.get('host');
     article.fullURL = req.protocol + "://" + req.get('host') + req.originalUrl;
 
     if (articleID && article.type === 'news') {
@@ -33,6 +34,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
           article.ename = categMapping.nameToEname[article.categoryName];
           article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
           article.contributorName = '';
+          article.image = (article.mediaGroup && article.mediaGroup.length > 0) ? article.mediaGroup[0].largePath : "";
           article.video = null;
           var videos = article.mediaGroup.filter(function (item) {
             return item.type === 'videos';
@@ -72,12 +74,13 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
             article.contributorName.replace(/\,/,'') : '';
           article.ename = categMapping.nameToEname[article.categoryName];
           article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
+          article.image = article.videoThumbnail || (article.artBlock && article.artBlock.length > 0) ? article.artBlock[0].imgFile : "";
           article.video = {
             url: article.videoFile,
             title: article.title,
             videoId: article.id
           };
-          article.videoImage = article.videoThumbnail || (article.artBlock && article.artBlock.length > 0) ? article.artBlock[0].imgFile : "";
+          article.videoImage = article.image;
           article.publish = parsePubDate(article.publish);
           article.menu = queryHandler.parseMenu(result.listMenu);
           article.campaigns = result.listCampaign || [];
@@ -165,7 +168,9 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
         adTag: adTagMapping.list,
         categ: categ,
         campaigns: result.listCampaign || [],
-        showEDM: edm.showEDM(req.cookies.addEDM, result.listCampaign)
+        showEDM: edm.showEDM(req.cookies.addEDM, result.listCampaign),
+        origin: req.protocol + "://" + req.get('host'),
+        fullURL: req.protocol + "://" + req.get('host') + req.originalUrl
       });
     }, function(err) {
       return next(err);

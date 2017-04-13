@@ -2,8 +2,13 @@
 <html>
 
 <head>
-  <title><%= SITE_NAME %></title>
-  <%- include('partials/extHeader.ejs') %>
+  <%- include('partials/header.ejs', {
+    title: SITE_NAME,
+    ogTitle: SITE_NAME,
+    ogImage: null,
+    origin: origin,
+    fullURL: fullURL
+  }) %>
   <%- include('partials/googleAdTag.ejs', {adTag: 'Index'}) %>
 </head>
 

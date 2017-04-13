@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Contributor - <%= SITE_NAME %></title>
-    <%- include('partials/extHeader.ejs') %>
+    <%- include('partials/header.ejs', {
+      title: "Contributor - " + SITE_NAME,
+      ogTitle: "Contributor - " + SITE_NAME,
+      ogImage: null,
+      origin: origin,
+      fullURL: fullURL
+    }) %>
     <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
   </head>
   <body ng-app="addv2" ng-controller="ContributorController">

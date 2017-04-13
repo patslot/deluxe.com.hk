@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %> - <%= SITE_NAME %></title>
-    <%- include('partials/extHeader.ejs') %>
+    <%- include('partials/header.ejs', {
+      title: title + " - " + SITE_NAME,
+      ogTitle: title + " - " + categoryName + " - " + SITE_NAME,
+      ogImage: image,
+      origin: origin,
+      fullURL: fullURL
+    }) %>
     <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
   </head>
   <body ng-app="addv2" ng-controller="ArticleController"
