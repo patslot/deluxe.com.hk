@@ -43,6 +43,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
               return v1.quality.match(numReg) < v2.quality.match(numReg);
             });
             article.video = videos[0];
+            article.videoImage = videos[0].largePath;
           }
           article.pubDate = parsePubDate(article.pubDate);
           article.menu = queryHandler.parseMenu(result.listMenu);
@@ -76,6 +77,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
             title: article.title,
             videoId: article.id
           };
+          article.videoImage = article.videoThumbnail || (article.artBlock && article.artBlock.length > 0) ? article.artBlock[0].imgFile : "";
           article.publish = parsePubDate(article.publish);
           article.menu = queryHandler.parseMenu(result.listMenu);
           article.campaigns = result.listCampaign || [];

@@ -22,8 +22,12 @@ function renderVideo(video, elemId) {
     anvpInstance.setShareEnable(false);
     var videopAdTagURL = anvpInstance.generateDFPvideoTag(prerollTag, "640x360");
     anvpInstance.setVideoAdTagURL(videopAdTagURL);
-    anvpInstance.createInstance(elemId || "video_player"); // Div Id match
 
+    <% if (videoImage !== "") { %>
+    anvpInstance.setPoster("<%= videoImage %>");
+    <% } %>
+
+    anvpInstance.createInstance(elemId || "video_player"); // Div Id match
   }
 }
 
