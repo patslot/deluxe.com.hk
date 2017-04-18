@@ -1,5 +1,5 @@
 <div class="row">
-  <% articles.forEach(function(a) { %>
+  <% articles.forEach(function(a, idx) { %>
   <div class="col-xs-12 col-sm-6 col-md-6 nm_section_block">
     <a ng-href="<%= a.linkURL %>" target="<%= a.linkTarget %>">
       <%- include('imageHasVideo.ejs', {a: {hasVideo: a.hasVideo, image: a.imgName}}) %>
@@ -11,5 +11,8 @@
       </div>
     </div>
   </div>
+    <% if (idx % 2 === 1) { %>
+  <div class="clearboth"></div>
+    <% } %>
   <% }) %>
 </div>

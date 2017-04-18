@@ -595,3 +595,7 @@ a {
 .footer-contact-item.email span {
   text-transform: none;
 }
+
+.clearboth {
+  clear: both;
+}
