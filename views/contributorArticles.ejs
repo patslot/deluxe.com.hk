@@ -33,21 +33,22 @@
           </div>
 
           <div class="ctb_two_col_container">
-            <div class="ctb_detail_image col-md-6 col-xs-12">
-              <img src="<%= contributor.imgName %>" />
+            <div class="row">
+              <div class="ctb_detail_image col-sm-6 col-md-6 col-xs-12">
+                <img src="<%= contributor.imgName %>" />
+              </div>
+              <div class="ctb_detail_container col-sm-6 col-md-6 col-xs-12">
+                <div class="ctb_detail_name">
+                  <%= contributor.catName %>
+                </div>
+                <div class="ctb_detail_post">
+                  <%= contributor.post %>
+                </div>
+                <div class="ctb_detail_description">
+                  <%- contributor.desc %>
+                </div>
+              </div>
             </div>
-            <div class="ctb_detail_container col-md-6 col-xs-12">
-              <div class="ctb_detail_name">
-                <%= contributor.catName %>
-              </div>
-              <div class="ctb_detail_post">
-                <%= contributor.post %>
-              </div>
-              <div class="ctb_detail_description">
-                <%- contributor.desc %>
-              </div>
-            </div>
-            <div style="clear:both"></div>
             <fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner>
             <%- include('partials/contributorArticles.ejs', {articles: articles}) %>
           </div>
