@@ -8,12 +8,18 @@
 <meta property="og:title" content="<%= escapeHtml(ogTitle) %>" />
 <meta property="og:type" content="website" />
 <% if (ogImage && ogImage !== "") { %>
-<meta property="og:image" content="<%= image %>" />
+<meta property="og:image" content="<%= ogImage %>" />
 <% } else { %>
-<meta property="og:image" content="<%= origin %>/img/Facebook_share_1200x630px.jpg" />
+<meta property="og:image" content="<%= origin %>/img/FB_Share_1200x630px_02.jpg" />
+<% } %>
+<% if (ogDescription && ogDescription !== "") { %>
+<meta property="og:description" content="<%= ogDescription.replace(/<(?:.|\n)*?>/gm, '') %>" />
+<% } else { %>
+<meta property="og:description" content="" />
 <% } %>
 <meta property="og:url" content="<%= fullURL %>" />
 <meta property="og:site_name" content="<%= SITE_NAME %>" />
+<meta name="keywords" content="Deluxe, Fashion, Celebrity, Accessories, style, beauty, watch, lifestyle, travel, apple daily, blogger, Wedding, gift list, dining,  health, fitness, event, keep fit, diet, baselworld, SIHH,  trend, luxury, photography, women’s fashion, fashion designers, street style, tv channel, shopping, must have item , Fashion trend, fashion week, styling tips, gift idea, shoes & bags, gourmet, Fine jewelry, 蘋果, 時尚, 潮流, 名人, 美容, 鐘錶, 珠寶, 生活, 品味, 博客, 化妝, 護膚, 流行, 時裝, 扮靚, 結婚, 婚紗, 女性, 唇膏, 餐廳, 健康, 設計師, 活動, 身體護理, 頭髮護理, 減肥, 健身, 瘦身, 瘦面, 運動, 品牌, 名牌, 潮人, 飲食, 旅遊, 荷里活女星, 名媛, 購物, 好去處, 模特兒, 藝術" />
 <title><%= title %></title>
 <link rel="shortcut icon" href="/img/favicon.ico" />
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

@@ -15,6 +15,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
     var article = {};
     article.id = articleID;
     article.type = categMapping.getArticleType(articleID);
+    article.ogDescription = null;
     article.origin = req.protocol + "://" + req.get('host');
     article.fullURL = req.protocol + "://" + req.get('host') + "/article/" + articleID;
 
@@ -53,6 +54,9 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
           article.showEDM = edm.showEDM(req.cookies.addEDM, result.listCampaign);
           article.pageviewLog = categMapping.articlePageviewLog(article.categoryName,
             (article.logging || {}).pixelNews, article.id, article.issueId, article.title, '');
+          if (article.contentBlocks && article.contentBlocks.length > 0) {
+            article.ogDescription = article.contentBlocks[0].content;
+          }
           res.render('articleDetail', article);
         }, function(err) {
           return next(err);
@@ -88,6 +92,9 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
           var categoryName = article.categoryName === 'Contributor' ? columnist : article.categoryName
           article.pageviewLog = categMapping.articlePageviewLog(categoryName,
             cmsNewsType, article.id, article.issueId, article.title, article.contributorName);
+          if (article.artBlock && article.artBlock.length > 0) {
+            article.ogDescription = article.artBlock[0].content;
+          }
           if (article.categoryName === 'Event') {
             gQuery.upcomingEventQuery()
               .catch(function(err) {
