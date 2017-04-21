@@ -1,5 +1,13 @@
 ## Change Log
 
+### v1.0.10
+- add meta tag for SNS and keywords
+- show video thumbnail
+- fix pageview logging
+- general improvements and bug fixes
+- resolve UAT issues
+- revise article URL
+
 ### v1.0.9
 - disable google translate suggestion
 - resolve UAT issues
