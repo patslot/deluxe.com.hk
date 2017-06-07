@@ -41,15 +41,17 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
     if (categIdx < maxArticles) {
       $scope.loadingArticles = true;
       query(categIdx, articleCount).then(function(res) {
-        var moreArticles = res[listCategArticle];
-        moreArticles = queryHandleFunc(categName, moreArticles);
-        if (moreArticles.length > 0) {
-          $scope.moreArticleGroups.push(moreArticles);
-        }
-        if (moreArticles.length < articleCount) {
-          $scope.noMoreArticles = true;
-        }
-        updateCategIdx();
+        $timeout(function() {
+          var moreArticles = res[listCategArticle];
+          moreArticles = queryHandleFunc(categName, moreArticles);
+          if (moreArticles.length > 0) {
+            $scope.moreArticleGroups.push(moreArticles);
+          }
+          if (moreArticles.length < articleCount) {
+            $scope.noMoreArticles = true;
+          }
+          updateCategIdx();
+        });
       }, function(err) {
         $scope.loadingArticles = false;
       });

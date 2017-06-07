@@ -24,17 +24,19 @@ export default function($timeout, $scope, gqModel, $attrs, queryHandler) {
     }
     $scope.loadingArticles = true;
     gqModel.queryContributorArticles(contrName, articleIdx, articleCount).then(function(res) {
-      var moreArticles = res.listContributorArticle || [];
-      moreArticles.forEach(function(a) {
-        queryHandler.parseCmsArticle('Contributor', a);
-      });
-      if (moreArticles.length > 0) {
-        $scope.moreArticleGroups.push(moreArticles);
-      }
-      if (moreArticles.length < articleCount) {
-        $scope.noMoreArticles = true;
-      }
-      updateCategIdx();
+      $timeout(function() {
+        var moreArticles = res.listContributorArticle || [];
+        moreArticles.forEach(function(a) {
+          queryHandler.parseCmsArticle('Contributor', a);
+        });
+        if (moreArticles.length > 0) {
+          $scope.moreArticleGroups.push(moreArticles);
+        }
+        if (moreArticles.length < articleCount) {
+          $scope.noMoreArticles = true;
+        }
+        updateCategIdx();
+      })
     }, function(err) {
       $scope.loadingArticles = false;
       console.error(err);

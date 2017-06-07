@@ -1,10 +1,10 @@
 'use strict';
 
-module.exports = function(gQuery, categMapping, queryHandler, edm) {
+module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) {
   function parseMpms(origMpms) {
     var mpms = origMpms || [];
     mpms.forEach(function(m) {
-      var linkType = categMapping.getArticleType(m.linkURL);
+      var linkType = articleUtil.getArticleType(m.linkURL);
       if (linkType) {
         m.linkURL = '/' + m.catName + '/' + m.linkURL + '/' + m.content;
         m.linkTarget = '_self';

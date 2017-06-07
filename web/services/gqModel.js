@@ -5,6 +5,7 @@ export default function(c) {
   var client = new Lokka({
     transport: new Transport(c.GRAPHQL_ENDPOINT, { credentials: false })
   });
+  var gConst = require('../../server/middleware/graphqlConst.js')(client);
 
   const listInstagram = `listInstagram(limit: 6) {
     link
@@ -19,6 +20,10 @@ export default function(c) {
         url
       }
     }
+  }`;
+
+  const articleIDModel = ` (offset: $offset, count: $count) {
+    id
   }`;
 
   const articleModel = ` (offset: $offset, count: $count) {
@@ -182,6 +187,11 @@ export default function(c) {
         listInstagram]),
         {offset: offset, count: count});
     },
+    queryArticleIDs: function(listCategArticle, offset, count) {
+      return client.query(createQueryWithParams('$offset: Int, $count: Int',
+        [listCategArticle + ' ' + articleIDModel]),
+        {offset: offset, count: count});
+    },
     // queryEditorPicks used in editor pick articles page, it also query instagram
     queryEditorPicks: function(offset, count) {
       return client.query(createQueryWithParams('$offset: Int, $count: Int',
@@ -217,6 +227,14 @@ export default function(c) {
     queryPostEvents: function () {
       return client.query(createQuery([
         createCmsArticleQuery('listPostEvent')]));
+    },
+    queryCmsArticleDetail: function(articleID) {
+      return client.query(createQueryWithParams('$id: String',
+        [gConst.getCMSArticleDetail]), {id: articleID});
+    },
+    queryNewsArticleDetail: function(articleID) {
+      return client.query(createQueryWithParams('$id: String',
+        [gConst.getNewsArticleDetail]), {id: articleID});
     }
   };
 };

@@ -3,25 +3,22 @@
 var util = require('util');
 var moment = require('moment');
 
-module.exports = function(gQuery, categMapping, queryHandler, edm) {
+module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) {
   var maxUpcomingEvent = 10;
   var cmsNewsType = 'OTHER';
   var columnist = 'COLUMNIST';
-
-  function parsePubDate(pubDate) {
-    return moment(pubDate, moment.ISO_8601).utcOffset(8).format('MMM DD, YYYY h:mm A');
-  }
 
   function renderArticle(req, res, next) {
     var articleID = req.params.articleID;
     var article = {};
     article.id = articleID;
-    article.type = categMapping.getArticleType(articleID);
+    article.type = articleUtil.getArticleType(articleID);
     article.ogDescription = null;
     article.origin = req.protocol + "://" + req.get('host');
     article.fullURL = req.protocol + "://" + req.get('host') + "/article/" + articleID;
+    article.isSharedUrl = !req.params.title;
 
-    if (articleID && article.type === 'news') {
+    if (articleID && articleUtil.isNewsArticle(article.type)) {
       gQuery.newsArticleQuery(articleID)
         .catch(function(err) {
           // use all available data if article detail is not null
@@ -37,20 +34,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
           article.ename = categMapping.nameToEname[article.categoryName];
           article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
           article.contributorName = '';
-          article.image = (article.mediaGroup && article.mediaGroup.length > 0) ? article.mediaGroup[0].largePath : "";
-          article.video = null;
-          var videos = article.mediaGroup.filter(function (item) {
-            return item.type === 'videos';
-          });
-          var numReg = /\d+/;
-          if (videos && videos.length > 0) {
-            videos.sort(function (v1, v2) {
-              return v1.quality.match(numReg) < v2.quality.match(numReg);
-            });
-            article.video = videos[0];
-            article.videoImage = videos[0].largePath;
-          }
-          article.pubDate = parsePubDate(article.pubDate);
+          queryHandler.parseNewsArticleDetail(article);
           article.menu = queryHandler.parseMenu(result.listMenu);
           queryHandler.handleArticleDetailCateg(article);
           article.campaigns = result.listCampaign || [];
@@ -64,7 +48,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
         }, function(err) {
           return next(err);
         });
-    } else if (article.type === 'cms') {
+    } else if (articleUtil.isCMSArticle(article.type)) {
       gQuery.cmsArticleQuery(articleID)
         .catch(function(err) {
           // use all available data if article detail is not null
@@ -81,14 +65,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
             article.contributorName.replace(/\,/,'') : '';
           article.ename = categMapping.nameToEname[article.categoryName];
           article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
-          article.image = article.videoThumbnail || (article.artBlock && article.artBlock.length > 0) ? article.artBlock[0].imgFile : "";
-          article.video = {
-            url: article.videoFile,
-            title: article.title,
-            videoId: article.id
-          };
-          article.videoImage = article.image;
-          article.publish = parsePubDate(article.publish);
+          queryHandler.parseCmsArticleDetail(article);
           article.menu = queryHandler.parseMenu(result.listMenu);
           queryHandler.handleArticleDetailCateg(article);
           article.campaigns = result.listCampaign || [];

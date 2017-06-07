@@ -7,8 +7,8 @@ import angular from 'angular';
 import moment from 'moment/moment.js';
 import 'ejs/ejs.js';
 import 'bootpag/lib/jquery.bootpag.js';
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap";
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap';
 
 import './assets/css/topMenu.css';
 import './assets/css/mobileMenu.css';
@@ -44,6 +44,7 @@ module.exports = function(options) {
         'add_life': 'listLifeStyleArticle'
       },
       LOAD_CATEG_ARTICLES_COUNT: 4,
+      MAX_CATEG_ARTICLES: options.MAX_CATEG_ARTICLES || 200,
       GRAPHQL_ENDPOINT: options.GRAPHQL_ENDPOINT || 'http://localhost:4000/graphql'
     };
   };
@@ -51,6 +52,7 @@ module.exports = function(options) {
   angular.module('appServices', [])
     .factory('const', [constant])
     .factory('queryHandler', [services.queryHandler])
+    .factory('articleUtil', [services.articleUtil])
     .factory('gqModel', ['const', services.gqModel]);
 
   angular.module('appDirectives', [])
@@ -60,12 +62,15 @@ module.exports = function(options) {
     .directive('facebookBlock', [dirs.facebook])
     .directive('instagramMedias', [dirs.instagram])
     .directive('skinnerBlock', [dirs.skinner])
+    .directive('headbanner', [dirs.headbanner])
     .directive('midbanner', [dirs.midbanner])
     .directive('fixedbanner', [dirs.fixedbanner])
+    .directive('lrec', [dirs.lrec])
     .directive('splashScreen', [dirs.splashScreen])
     .directive('homeArticle', [dirs.homeArticle])
     .directive('shareBar', [dirs.shareBar])
     .directive('contributorBlock', [dirs.contributorBlock])
+    .directive('articleDetails', ['$compile', dirs.articleDetails])
 
   angular
     .module('addv2', ['lazy-scroll', 'appServices', 'appDirectives'])
@@ -79,7 +84,7 @@ module.exports = function(options) {
     .controller('CategController', ['$timeout', '$scope', '$attrs', 'gqModel',
       'const', 'queryHandler', controllers.category])
     .controller('ArticleController', ['$timeout', '$scope', '$attrs', 'gqModel',
-      'const', 'queryHandler', controllers.article])
+      'const', 'queryHandler', 'articleUtil', controllers.article])
     .controller('ContributorController', ['$timeout', '$scope', 'gqModel',
       'queryHandler', controllers.contributor])
     .controller('ContributorArticlesController', ['$timeout', '$scope',

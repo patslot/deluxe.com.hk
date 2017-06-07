@@ -80,6 +80,39 @@ module.exports = function() {
     parseArticleCommon(categName, a);
   }
 
+  function parsePubDate(pubDate) {
+    return moment(pubDate, moment.ISO_8601).utcOffset(8).format('MMM DD, YYYY h:mm A');
+  }
+
+  function parseNewsArticleDetail(article) {
+    article.image = (article.mediaGroup && article.mediaGroup.length > 0) ? article.mediaGroup[0].largePath : "";
+    article.video = null;
+    var videos = article.mediaGroup.filter(function (item) {
+      return item.type === 'videos';
+    });
+    var numReg = /\d+/;
+    if (videos && videos.length > 0) {
+      videos.sort(function (v1, v2) {
+        return v1.quality.match(numReg) < v2.quality.match(numReg);
+      });
+      article.video = videos[0];
+      article.videoImage = videos[0].largePath;
+    }
+    article.pubDate = parsePubDate(article.pubDate);
+  }
+
+  function parseCmsArticleDetail(article) {
+    var image = (article.artBlock || []).length > 0 ? article.artBlock[0].imgFile : "";
+    article.image = article.videoThumbnail || image;
+    article.video = {
+      url: article.videoFile,
+      title: article.title,
+      videoId: article.id
+    };
+    article.videoImage = article.image;
+    article.publish = parsePubDate(article.publish);
+  }
+
   function parseCmsArticle(categName, a) {
     a.image = a.videoThumbnail || a.articleThumbnail;
     a.hasVideo = a.videoFile !== '';
@@ -161,7 +194,10 @@ module.exports = function() {
     parseMenu: parseMenu,
     parseCmsArticle: parseCmsArticle,
     parseCmsArticles: parseCmsArticles,
+    parseCmsArticleDetail: parseCmsArticleDetail,
     parseNewsArticle: parseNewsArticle,
+    parseNewsArticleDetail: parseNewsArticleDetail,
+    parsePubDate: parsePubDate,
     parseArticles: parseArticles,
     parseEventDate: parseEventDate,
     parsePostEvents: parsePostEvents,

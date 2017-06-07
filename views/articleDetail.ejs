@@ -12,6 +12,7 @@
     <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
   </head>
   <body ng-app="addv2" ng-controller="ArticleController"
+    is-shared-url="<%= isSharedUrl %>"
     categ-ename="<%= ename %>" categ-name="<%= categoryName %>"
     article-id="<%= id %>", article-author="<%= contributorName %>">
     <skinner-block></skinner-block>
@@ -22,15 +23,7 @@
       <div class="row nm_row">
         <div class="main_content">
           <div class="nm_section">
-            <div class="head_banner_wrapper hidden-xs">
-              <div class="superhead_banner">
-                <div id="headBanner">
-                  <script>
-                    showWebAd("HeadBanner", "headBanner");
-                  </script>
-                </div>
-              </div>
-            </div>
+            <headbanner headbanner-id="headbanner1"></headbanner>
             <div class="row">
               <% if (type === "news") { %>
                 <script type="application/ld+json">
@@ -133,20 +126,8 @@
                 </div>
               <% } %>
               <div class="lrec_ad_wrapper col-md-3 col-xs-12">
-                <div class="lrec_ad_large hidden-xs">
-                  <div id="lrec1">
-                    <script>
-                      showWebAd("LREC1", "lrec1");
-                    </script>
-                  </div>
-                </div>
-                <div class="lrec_ad_large hidden-xs">
-                  <div id="lrec2">
-                    <script>
-                      showWebAd("LREC2", "lrec2");
-                    </script>
-                  </div>
-                </div>
+                <lrec lrec-id="lrec1" lrec-num="1"></lrec>
+                <lrec lrec-id="lrec2" lrec-num="2"></lrec>
                 <% if (categoryName !== "Event") { %>
                   <div class="artd_facebook_block hidden-xs">
                     <facebook-block></facebook-block>
@@ -167,9 +148,10 @@
             </div>
           </div>
 
-          <midbanner midbanner-id="midbanner_1"></midbanner>
+          <midbanner midbanner-id="midbanner1"></midbanner>
         </div>
 
+        <div id="article-end"></div>
         <add-carousel title-class="'nm_recommend'" carousel-items="latestArticles"
           carousel-div="'recommend-carousel'"></add-carousel>
 
@@ -183,6 +165,18 @@
             </div>
           </div>
         <% } %>
+
+        <div lazy-scroll="loadArticle()"
+          lazy-no-scroll="noMoreArticles">
+          <div ng-repeat="article in nextArticles">
+            <article-details article="article">
+            </article-details>
+          </div>
+        </div>
+        <div align="center" ng-show="loadingArticle" style="margin-top: 60px">
+          <img src="/img/loading.gif" />
+        </div>
+        <div id="loading-trigger" style="margin-bottom: 60px"></div>
       </div>
 
       <%- include('partials/footer.ejs') %>
@@ -200,6 +194,38 @@
       videoImage: (video) ? videoImage : ""
     }) %>
     <script type="text/javascript">
+      function isScrolledIntoView(elem) {
+        var $win = $(window);
+        var docViewTop = $win.scrollTop();
+        var docViewBottom = docViewTop + $win.height();
+        var $elem = $(elem);
+        var elemTop = $elem.offset().top;
+        var elemBottom = elemTop + $elem.height();
+        return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+      }
+
+      var scrollAnchors = [
+        {
+          id: '#article-end',
+          url: <% if (isSharedUrl) { %> '/article/<%- id %>' <% } else { %> '/<%- categoryName %>/<%- id %>/<%- title %>' <% } %>
+        }
+      ];
+
+      $(window).scroll(function() {
+        var i = scrollAnchors.length - 1;
+        var curPath = window.location.pathname;
+        for (; i >= 0; i--) {
+          var anchor = scrollAnchors[i];
+          if (isScrolledIntoView(anchor.id)) {
+            var path = encodeURI(anchor.url);
+            if (curPath !== path) {
+              window.history.pushState(null, null, path);
+            }
+            break;
+          }
+        }
+      });
+
       $(document).ready(function() {
         renderVideo(JSON.parse('<%- JSON.stringify(video).replace(/\\/g, "\\\\") %>'));
       });

@@ -10,13 +10,15 @@ var edm = require('./middleware/edm.js');
 module.exports = function(options) {
   var gQuery = require('./middleware/graphqlQuery.js')(options.graphqlEndpoint);
   var queryHandler = require('./middleware/queryHandler.js')();
-  var home = require('./routes/home.js')(gQuery, categMapping, queryHandler, edm);
-  var article = require('./routes/article.js')(gQuery, categMapping, queryHandler, edm);
+  var articleUtil = require('./middleware/articleUtil.js')();
+  var home = require('./routes/home.js')(gQuery, categMapping, queryHandler, edm, articleUtil);
+  var article = require('./routes/article.js')(gQuery, categMapping, queryHandler, edm, articleUtil);
   var contributor = require('./routes/contributor.js')(gQuery, categMapping, queryHandler, edm);
   var events = require('./routes/events.js')(gQuery, categMapping, queryHandler, edm)
   var api = require("./routes/api.js")(options.edmSubscriptionEndpoint);
 
   var app = express();
+  app.locals.MAX_CATEG_ARTICLES = options.MAX_CATEG_ARTICLES;
   app.locals.GRAPHQL_ENDPOINT = options.graphqlEndpoint;
   app.locals.AD_PREFIX_TAG = options.adPrefixTag;
   app.locals.AD_WEB_BASE_TAG = options.adWebBaseTag;

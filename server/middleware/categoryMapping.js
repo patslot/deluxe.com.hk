@@ -16,17 +16,6 @@ function createNameToAdTag() {
 
 var nameToAdTag = createNameToAdTag();
 
-function getArticleType(articleID) {
-  if (/^\d_(\d+)$/.test(articleID)) {
-    // Format for type news of article is like 1_8234.
-    return 'news';
-  } else if (/^(\d+)$/.test(articleID)) {
-    return 'cms';
-  } else {
-    return null;
-  }
-}
-
 // Return [category name, channel name] for a category
 function categChanelNameForLog(categ) {
   categ = categ.toUpperCase();
@@ -138,7 +127,6 @@ module.exports = {
     'add_life': 'listLifeStyleArticle',
     'editor_picks': 'listEditorPick',
   },
-  getArticleType: getArticleType,
   categPageviewLog: categPageviewLog,
   articlePageviewLog: articlePageviewLog
 };

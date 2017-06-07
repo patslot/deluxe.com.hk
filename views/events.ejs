@@ -23,15 +23,7 @@
     <div class="row nm_row">
       <div class="main_content evtlist_listing">
         <div class="nm_section">
-          <div class="head_banner_wrapper hidden-xs">
-            <div class="superhead_banner">
-              <div id="headBanner">
-                <script>
-                  showWebAd("HeadBanner", "headBanner");
-                </script>
-              </div>
-            </div>
-          </div>
+          <headbanner headbanner-id="headbanner1"></headbanner>
         </div>
         <div class="row">
           <div class="nm_mpm col-md-6 col-xs-12">
@@ -52,21 +44,9 @@
             </div>
             <% } %>
           </div>
-          <div class="lrec_ad_wrapper col-md-3 hidden-xs">
-            <div class="lrec_ad_large">
-              <div id="lrec1">
-                <script>
-                  showWebAd("LREC1", "lrec1");
-                </script>
-              </div>
-            </div>
-            <div class="lrec_ad_large">
-              <div id="lrec2">
-                <script>
-                  showWebAd("LREC2", "lrec2");
-                </script>
-              </div>
-            </div>
+          <div class="lrec_ad_wrapper col-md-3">
+            <lrec lrec-id="lrec1" lrec-num="1"></lrec>
+            <lrec lrec-id="lrec2" lrec-num="2"></lrec>
           </div>
         </div>
 
