@@ -9,7 +9,7 @@
         <ul>
           <% menu.main.forEach(function(m) { %>
           <li>
-            <a href="/<%= m.name %>" class="<%= m.activeClass %>">
+            <a href="/<%= (m.name === "Events") ? "Event" : m.name %>" class="<%= m.activeClass %>">
               <%= m.name %>
             </a>
           </li>
@@ -24,7 +24,7 @@
         <ul>
           <% menu.sub.forEach(function(m) { %>
           <li>
-            <a href="/<%= m.name %>" class="<%= m.activeClass %>">
+            <a href="/<%= (m.name === "Events") ? "Event" : m.name %>" class="<%= m.activeClass %>">
               <%= m.name %>
             </a>
           </li>
