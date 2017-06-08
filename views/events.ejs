@@ -43,7 +43,7 @@
                     {a: {hasVideo: latestEvent.hasVideo, image: latestEvent.image}}) %>
                 </a>
               </div>
-              <div class="evtlist_article_label">[<%= latestEvent.catName %>]</div>
+              <div class="evtlist_article_label">[<%= (latestEvent.catName === "event")? "events" : latestEvent.catName %>]</div>
               <a href="<%= latestEvent.linkURL %>" target="<%= latestEvent.linkTarget %>">
                 <div class="evtlist_article_title"><%= latestEvent.title %></div>
                 <div class="event_item_content_date"><%= latestEvent.lastUpdate %></div>
