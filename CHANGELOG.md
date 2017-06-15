@@ -1,5 +1,11 @@
 ## Change Log
 
+### v1.0.11
+- update cat of celebrity and lifestyle in logging
+- update logo
+- change Event to Events
+- change Wedding to Celebrity
+
 ### v1.0.10
 - add meta tag for SNS and keywords
 - show video thumbnail
