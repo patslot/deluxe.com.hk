@@ -6,7 +6,7 @@ const htmlTpl = `
       <% if (type === "news") { %>
         <div class="nm_mpm col-md-6 col-xs-12">
           <div class="mpm_content artd_container">
-            <div class="artd_article_label">[<%- categoryName.toLowerCase() %>]</div>
+            <div class="artd_article_label">[<%- disCategoryName %>]</div>
             <div class="artd_article_title"><%- title %></div>
             <div id="article-<%= idx %>" class="artd_article_publish_date">
               日期：<%- pubDate %>
@@ -51,7 +51,7 @@ const htmlTpl = `
       <% } else if (type === "cms") { %>
         <div class="nm_mpm col-md-6 col-xs-12">
           <div class="mpm_content artd_container">
-            <div class="artd_article_label">[<%- categoryName.toLowerCase() %>]</div>
+            <div class="artd_article_label">[<%- disCategoryName %>]</div>
             <div class="artd_article_title"><%- title %></div>
             <div class="artd_article_sub_title"><%- subTitle %></div>
             <div id="article-<%= idx %>" class="artd_article_publish_date">
@@ -96,14 +96,23 @@ const htmlTpl = `
   carousel-div="recommend-carousel-<%= idx %>"></add-carousel>
 
 <script>
-  scrollAnchors.push({
-    id: '#article-<%= idx %>',
-    url: <% if (isSharedUrl) { %> '/article/<%- id %>' <% } else { %> '/<%- categoryName %>/<%- id %>/<%- title %>' <% } %>
+  ['#article-<%= idx %>', '#article-end-<%= idx %>'].forEach(function(divID) {
+    scrollAnchors.push({
+      id: divID,
+      title: '<%- eTitle %>',
+      url: <% if (isSharedUrl) { %> '/article/<%- id %>' <% } else { %> '/<%- categoryName %>/<%- id %>/<%- eTitle %>' <% } %>,
+      nxmObj: {"region": "HK", "prod": "ADD", "site": "https://add.appledaily.com.hk",
+        "platform": "WEB", "section": "<%= pvLog.section %>", "media": "TEXT",
+        "content": "<%= pvLog.content %>", "issueid": "<%= pvLog.issueid %>",
+        "title": "<%= pvLog.title %>", "cid": "<%= pvLog.cid %>", "news": "<%= pvLog.news %>",
+        "edm": "", "action": "PAGEVIEW", "subsect": "<%= pvLog.subsect %>", "subsubsect": "",
+        "menu": "<%= pvLog.menu %>", "auth": "<%= pvLog.auth %>", "src": "AD", "L": "TC",
+        "ch": "<%= pvLog.channel %>", "cat": "<%= pvLog.category %>", "ky": "", "ngsid": "", "ref": ""
+      }
+    });
   });
-  scrollAnchors.push({
-    id: '#article-end-<%= idx %>',
-    url: <% if (isSharedUrl) { %> '/article/<%- id %>' <% } else { %> '/<%- categoryName %>/<%- id %>/<%- title %>' <% } %>
-  });
+
+  disableLogPageview(); // For 1st article
 </script>
 `;
 
@@ -119,6 +128,7 @@ export default function($compile) {
         if (!article) {
           return;
         }
+        article.eTitle = article.title.replace("'", "\\'");
         element.html($compile(ejs.render(htmlTpl, article))(scope));
         renderVideo(article.video, 'video_player-' + article.idx);
         unwatch();

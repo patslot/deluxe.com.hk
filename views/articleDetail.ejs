@@ -176,7 +176,7 @@
         <div align="center" ng-show="loadingArticle" style="margin-top: 60px">
           <img src="/img/loading.gif" />
         </div>
-        <div id="loading-trigger" style="margin-bottom: 60px"></div>
+        <div id="loading-trigger" style="margin-bottom: 60px; height: 20px"></div>
       </div>
 
       <%- include('partials/footer.ejs') %>
@@ -194,7 +194,7 @@
       videoImage: (video) ? videoImage : ""
     }) %>
     <script type="text/javascript">
-      function isScrolledIntoView(elem) {
+      function scrolledIntoView(elem) {
         var $win = $(window);
         var docViewTop = $win.scrollTop();
         var docViewBottom = docViewTop + $win.height();
@@ -207,19 +207,26 @@
       var scrollAnchors = [
         {
           id: '#article-end',
-          url: <% if (isSharedUrl) { %> '/article/<%- id %>' <% } else { %> '/<%- categoryName %>/<%- id %>/<%- title %>' <% } %>
+          title: '<%- title.replace("'", "\\'") %>',
+          url: <% if (isSharedUrl) { %> '/article/<%- id %>' <% } else { %> '/<%- categoryName %>/<%- id %>/<%- title.replace("'", "\\'") %>' <% } %>,
+          nxmObj: nxmObj1
         }
       ];
 
       $(window).scroll(function() {
         var i = scrollAnchors.length - 1;
+        if (i === 0) {
+          return;
+        }
         var curPath = window.location.pathname;
         for (; i >= 0; i--) {
           var anchor = scrollAnchors[i];
-          if (isScrolledIntoView(anchor.id)) {
+          if (scrolledIntoView(anchor.id)) {
             var path = encodeURI(anchor.url);
             if (curPath !== path) {
               window.history.pushState(null, null, path);
+              document.title = anchor.title;
+              sendPageview(anchor.nxmObj);
             }
             break;
           }

@@ -102,7 +102,7 @@ module.exports = function() {
   }
 
   function parseCmsArticleDetail(article) {
-    var image = (article.artBlock || []).length > 0 ? article.artBlock[0].imgFile : "";
+    var image = (article.artBlock || []).length > 0 ? article.artBlock[0].imgFile : '';
     article.image = article.videoThumbnail || image;
     article.video = {
       url: article.videoFile,

@@ -1,4 +1,6 @@
 module.exports = function() {
+  var categMapping = require('./categoryMapping.js');
+
   function getArticleType(articleID) {
     if (/^\d_(\d+)$/.test(articleID)) {
       // Format for type news of article is like 1_8234.
@@ -19,6 +21,7 @@ module.exports = function() {
   }
 
   return {
+    articlePageviewLog: categMapping.articlePageviewLog,
     getArticleType: getArticleType,
     isNewsArticle: isNewsArticle,
     isCMSArticle: isCMSArticle

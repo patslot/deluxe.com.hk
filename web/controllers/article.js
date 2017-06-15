@@ -9,6 +9,7 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler,
   var offset = 0;
   var recommendCount = 12;
   var recommendArticles = [];
+  var cmsNewsType = 'OTHER';
 
   var isReady = false;
   var curArticleID = articleId;
@@ -106,9 +107,16 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler,
             queryHandler.parseArticles);
         if (articleUtil.isNewsArticle(articleType)) {
           queryHandler.parseNewsArticleDetail(nextArticle);
+          nextArticle.pvLog = articleUtil.articlePageviewLog(
+            nextArticle.categoryName, (nextArticle.logging || {}).pixelNews,
+            nextArticle.id, nextArticle.issueId, nextArticle.title, '');
         } else if (articleUtil.isCMSArticle(articleType)) {
           queryHandler.parseCmsArticleDetail(nextArticle);
+          nextArticle.pvLog = articleUtil.articlePageviewLog(
+            nextArticle.categoryName, cmsNewsType,
+            nextArticle.id, nextArticle.issueId, nextArticle.title, '');
         }
+        queryHandler.handleArticleDetailCateg(nextArticle);
         $scope.nextArticles.push(nextArticle);
         curArticleID = nextArticleID;
         updateLoading();
@@ -116,6 +124,16 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler,
     }, function(err) {
       $scope.loadingArticle = false;
     });
+  }
+
+  function isScrolledIntoView(elem) {
+    var $win = angular.element(window);
+    var docViewTop = $win.scrollTop();
+    var docViewBottom = docViewTop + $win.height();
+    var $elem = angular.element(elem);
+    var elemTop = $elem.offset().top;
+    var elemBottom = elemTop + $elem.height();
+    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
   }
 
   $scope.loadArticle = function() {
