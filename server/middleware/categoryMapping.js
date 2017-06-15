@@ -23,14 +23,21 @@ function getArticleType(articleID) {
   } else {
     return null;
   }
-};
+}
 
-function categNameForLog(categ) {
+// Return [category name, channel name] for a category
+function categChanelNameForLog(categ) {
   categ = categ.toUpperCase();
   if (categ === 'LUXE') {
     categ = 'LUXURY';
   }
-  return categ;
+  if (categ === 'LIFESTYLE') {
+    return {ch: categ, cat: 'LIFE'};
+  }
+  if (categ === 'CELEBRITY') {
+    return {ch: categ, cat: 'CELEB'};
+  }
+  return {ch: categ, cat: categ};
 }
 
 const BEAUTY = 'BEAUTY';
@@ -62,7 +69,7 @@ function handleLogMapping(log, categ, mapping) {
 }
 
 function categPageviewLog(categ, content, author) {
-  categ = categNameForLog(categ);
+  var catCh = categChanelNameForLog(categ);
   var log = {
     section: HOME,
     subsect: '',
@@ -72,8 +79,8 @@ function categPageviewLog(categ, content, author) {
     issueid: '',
     title: '',
     auth: '',
-    channel: categ,
-    category: categ
+    channel: catCh.ch,
+    category: catCh.cat
   };
   handleLogMapping(log, categ, categLogMapping);
   if (categ === COLUMNIST && content === 'INDEX') {
@@ -83,7 +90,7 @@ function categPageviewLog(categ, content, author) {
 }
 
 function articlePageviewLog(categ, newsType, articleID, issueDate, title, author) {
-  categ = categNameForLog(categ);
+  var catCh = categChanelNameForLog(categ);
   var log = {
     section: categ,
     subsect: categ === 'COLUMNIST' ? author : '',
@@ -93,8 +100,8 @@ function articlePageviewLog(categ, newsType, articleID, issueDate, title, author
     issueid: issueDate,
     title: title,
     auth: author,
-    channel: categ,
-    category: categ
+    channel: catCh.ch,
+    category: catCh.cat
   };
   return handleLogMapping(log, categ, articleLogMapping);
 }
