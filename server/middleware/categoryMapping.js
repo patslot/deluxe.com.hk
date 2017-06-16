@@ -50,14 +50,15 @@ const COMBINE = 'COMBINE';
 
 var categLogMapping = {
   HOME: {channel: BEAUTY, category: FASHION},
-  EVENT: {channel: BEAUTY, category: FASHION, section: EVENT, subsect: HOME},
-  COLUMNIST: {channel: BEAUTY, category: FASHION, section: COLUMNIST, subsect: HOME},
-  'EDITOR PICKS': {channel: BEAUTY, category: FASHION, section: 'EDITORPICK', content: ARTICLE}
+  EVENT: {channel: BEAUTY, category: FASHION, section: EVENT, subsect: HOME, menu: 'EVENTS'},
+  COLUMNIST: {channel: BEAUTY, category: FASHION, section: COLUMNIST, subsect: HOME, menu: 'CONTRIBUTOR'},
+  'EDITOR PICKS': {channel: BEAUTY, category: FASHION, section: 'EDITORPICK', content: ARTICLE, menu: 'EDITORPICK'}
 };
 
 var articleLogMapping = {
-  EVENT: {channel: BEAUTY, category: FASHION, news: COMBINE, subsect: EVENT},
-  COLUMNIST: {channel: BEAUTY, category: FASHION, section: COLUMNIST, news: COMBINE}
+  'LUXE': {section: 'LUXURY'},
+  EVENT: {channel: BEAUTY, category: FASHION, news: COMBINE, subsect: EVENT, menu: 'EVENTS'},
+  COLUMNIST: {channel: BEAUTY, category: FASHION, section: COLUMNIST, news: COMBINE, menu: 'CONTRIBUTOR'}
 }
 
 function handleLogMapping(log, categ, mapping) {
@@ -70,7 +71,9 @@ function handleLogMapping(log, categ, mapping) {
 
 function categPageviewLog(categ, content, author) {
   var catCh = categChanelNameForLog(categ);
+  categ = categ.toUpperCase();
   var log = {
+    menu: categ,
     section: HOME,
     subsect: '',
     content: content ? content : HOME,
@@ -91,7 +94,9 @@ function categPageviewLog(categ, content, author) {
 
 function articlePageviewLog(categ, newsType, articleID, issueDate, title, author) {
   var catCh = categChanelNameForLog(categ);
+  categ = categ.toUpperCase();
   var log = {
+    menu: categ,
     section: categ,
     subsect: categ === 'COLUMNIST' ? author : '',
     content: ARTICLE,
