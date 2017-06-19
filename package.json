@@ -1,6 +1,6 @@
 {
   "name": "addv2-website",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "",
   "scripts": {
     "build": "webpack",

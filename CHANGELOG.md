@@ -1,5 +1,8 @@
 ## Change Log
 
+### v1.0.12
+- fix menu logging
+
 ### v1.0.11
 - update cat of celebrity and lifestyle in logging
 - update logo
