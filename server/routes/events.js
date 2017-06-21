@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(gQuery, categMapping, queryHandler, edm) {
   var eventCount = 7;
   var maxUpcomingEvents = 10;

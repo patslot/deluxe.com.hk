@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(gQuery, categMapping, queryHandler, edm) {
   function parseMpms(origMpms) {
     var mpms = origMpms || [];

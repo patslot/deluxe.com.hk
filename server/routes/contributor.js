@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(gQuery, categMapping, queryHandler, edm) {
   var articleCount = 4;
   var contributorBlockCount = 6;

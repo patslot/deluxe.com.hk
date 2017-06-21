@@ -1,3 +1,5 @@
+'use strict';
+
 function createNameToAdTag() {
   var nameToAdTag = {};
   ['Fashion', 'Beauty', 'Luxe', 'Celebrity', 'Lifestyle', 'Event',

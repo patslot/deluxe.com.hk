@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   showEDM: function(edmCookie, campaigns) {
     var edmSubscribed = false;

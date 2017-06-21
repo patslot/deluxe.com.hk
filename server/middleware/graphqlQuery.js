@@ -1,3 +1,5 @@
+'use strict';
+
 var Lokka = require('lokka').Lokka;
 var Transport = require('lokka-transport-http').Transport;
 
