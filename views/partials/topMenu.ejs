@@ -15,8 +15,8 @@
           <ul class="text">
             <% menu.main.forEach(function(m) { %>
             <li>
-              <a href="/<%= (m.name === "Events") ? "Event" : m.name %>" class="<%= m.activeClass %>">
-                <%= (m.name === "Event") ? "Events" : m.name %>
+              <a href="/<%= m.name %>" class="<%= m.activeClass %>">
+                <%= m.disName %>
               </a>
             </li>
             <% }) %>
@@ -26,8 +26,8 @@
               <div class="menu_dropdown_content">
                 <% menu.sub.forEach(function(m) { %>
                   <div>
-                    <a href="/<%= (m.name === "Events") ? "Event" : m.name %>" class="<%= m.activeClass %>">
-                      <%= (m.name === "Event") ? "Events" : m.name %>
+                    <a href="/<%= m.name %>" class="<%= m.activeClass %>">
+                      <%= m.disName %>
                     </a>
                   </div>
                   <% }) %>

@@ -8,7 +8,7 @@ const htmlTpl = `
   </div>
 </a>
 <div class="text-left">
-  <div class="nm_section_block_title_cat">[<%= a.catName %>]</div>
+  <div class="nm_section_block_title_cat">[<%= a.disCatName %>]</div>
   <div class="nm_section_block_title">
     <a href="<%= a.linkURL %>" target=<%= a.linkTarget %>><%= a.content %></a>
   </div>

@@ -5,7 +5,7 @@ const htmlTpl = `
   <% if (!isEven) { %>
   <div class="row">
     <div class="al_two_content col-sm-5 col-md-6 col-xs-12">
-      <div class="al_two_content_label">[<%= a.catName %>]</div>
+      <div class="al_two_content_label">[<%= a.disCatName %>]</div>
       <a href="<%= a.linkURL %>">
         <div class="other_article al_two_content_title">
           <%= a.title %>
@@ -39,7 +39,7 @@ const htmlTpl = `
       </a>
     </div>
     <div class="al_two_content col-sm-5 col-md-6 col-xs-12">
-      <div class="al_two_content_label">[<%= a.catName %>]</div>
+      <div class="al_two_content_label">[<%= a.disCatName %>]</div>
       <a href="<%= a.linkURL %>">
         <div class="other_article al_two_content_title">
           <%= a.title %>
@@ -67,7 +67,7 @@ const htmlTpl = `
       </a>
     </div>
     <div class="al_two_content col-sm-5 col-md-6 col-xs-12">
-      <div class="al_two_content_label">[<%= a.catName %>]</div>
+      <div class="al_two_content_label">[<%= a.disCatName %>]</div>
       <a href="<%= a.linkURL %>">
         <div class="other_article al_two_content_title">
           <%= a.title %>

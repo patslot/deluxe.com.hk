@@ -12,6 +12,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
         m.linkTarget = '_blank';
       }
       m.catName = m.catName.toLowerCase();
+      queryHandler.handleArticleCateg(m);
     });
     return mpms;
   }

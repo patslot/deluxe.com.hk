@@ -20,8 +20,28 @@ module.exports = function() {
     articles.forEach(function (a) {
       parseLinkURL(a);
       a.catName = a.catName.toLowerCase();
+      handleArticleCateg(a);
     });
     return articles;
+  }
+
+  var categDisplayName = {
+    'event': 'events',
+    'celebrity': 'celebrities',
+    'contributor': 'contributors'
+  };
+
+  function handleMenuCateg(menu) {
+    menu.disName = categDisplayName[menu.name.toLowerCase()] || menu.name;
+  }
+
+  function handleArticleDetailCateg(article) {
+    article.disCategoryName = categDisplayName[article.categoryName.toLowerCase()] ||
+      article.categoryName;
+  }
+
+  function handleArticleCateg(article) {
+    article.disCatName = categDisplayName[article.catName] || article.catName;
   }
 
   // Parse menu to create 'MORE' sub-menu
@@ -32,6 +52,7 @@ module.exports = function() {
     categName = categName || '';
     for (var i = 0; i < menu.length; i++) {
       var m = menu[i];
+      handleMenuCateg(m);
       m.activeClass = m.name === categName ? 'active' : '';
       if (m.sort < 100) {
         mainMenu.push(m);
@@ -46,7 +67,8 @@ module.exports = function() {
     a.linkURL = '/' + categName + '/' + a.id + '/' + a.title;
     a.linkTarget = '_self';
     a.catName = categName.toLowerCase();
-    a.label = a.catName;
+    handleArticleCateg(a);
+    a.label = a.disCatName;
   }
 
   function parseNewsArticle(categName, a) {
@@ -80,7 +102,7 @@ module.exports = function() {
   function parseCmsArticles(categName, origArticles) {
     var articles = origArticles || [];
     articles.forEach(function(a) {
-      parseCmsArticle(categName, a)
+      parseCmsArticle(categName, a);
     });
     return articles;
   }
@@ -145,6 +167,8 @@ module.exports = function() {
     parsePostEvents: parsePostEvents,
     parseUpcomingEvents: parseUpcomingEvents,
     parseContributor: parseContributor,
-    parseContributors: parseContributors
+    parseContributors: parseContributors,
+    handleArticleCateg: handleArticleCateg,
+    handleArticleDetailCateg: handleArticleDetailCateg
   }
 };

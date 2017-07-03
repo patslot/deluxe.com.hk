@@ -24,7 +24,9 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
       highlights.forEach(function(h) {
         queryHandler.parseLinkURL(h);
         h.image = h.imgName;
-        h.label = h.catName.toLowerCase();
+        h.catName = h.catName.toLowerCase();
+        queryHandler.handleArticleCateg(h);
+        h.label = h.disCatName;
         h.title = h.content;
       });
       $scope.highlights = highlights;

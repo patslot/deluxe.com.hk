@@ -52,6 +52,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
           }
           article.pubDate = parsePubDate(article.pubDate);
           article.menu = queryHandler.parseMenu(result.listMenu);
+          queryHandler.handleArticleDetailCateg(article);
           article.campaigns = result.listCampaign || [];
           article.showEDM = edm.showEDM(req.cookies.addEDM, result.listCampaign);
           article.pageviewLog = categMapping.articlePageviewLog(article.categoryName,
@@ -89,6 +90,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
           article.videoImage = article.image;
           article.publish = parsePubDate(article.publish);
           article.menu = queryHandler.parseMenu(result.listMenu);
+          queryHandler.handleArticleDetailCateg(article);
           article.campaigns = result.listCampaign || [];
           article.showEDM = edm.showEDM(req.cookies.addEDM, result.listCampaign);
           var categoryName = article.categoryName === 'Contributor' ? columnist : article.categoryName
