@@ -13,7 +13,7 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
   function createLoadCateg() {
     var listArticles = gqModel.consts.listHomeArticles;
     return [listArticles.fashion, listArticles.beauty, listArticles.luxe,
-      listArticles.wedding, listArticles.lifeStyle];
+      listArticles.celebrity, listArticles.lifeStyle];
   }
 
   gqModel.queryHome().then(function(res) {

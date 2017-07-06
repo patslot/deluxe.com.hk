@@ -2,7 +2,7 @@
 
 function createNameToAdTag() {
   var nameToAdTag = {};
-  ['Fashion', 'Beauty', 'Luxe', 'Celebrity', 'Lifestyle', 'Event',
+  ['Fashion', 'Beauty', 'Luxe', 'Wedding', 'Celebrity', 'Lifestyle', 'Event',
     'Contributor', 'Editorpicks'].forEach(function(categ) {
     nameToAdTag[categ] = {
       list: categ + '_list',
@@ -120,7 +120,8 @@ module.exports = {
     'Fashion': 'add_fash',
     'Beauty': 'add_beau',
     'Luxe': 'add_luxe',
-    'Celebrity': 'add_wedd',
+    'Wedding': 'add_wedd',
+    'Celebrity': 'add_cele',
     'Lifestyle': 'add_life',
     // Different content API for editor picks and events: not using Ename
     'Editor picks': 'editor_picks',
@@ -133,6 +134,7 @@ module.exports = {
     'add_beau': 'listBeautyArticle',
     'add_luxe': 'listLuxeArticle',
     'add_wedd': 'listWeddingArticle',
+    'add_cele': 'listCelebrityArticle',
     'add_life': 'listLifeStyleArticle',
     'editor_picks': 'listEditorPick',
   },

@@ -147,6 +147,7 @@ export default function(c) {
         beauty: 'listHomeBeautyArticle',
         luxe: 'listHomeLuxeArticle',
         wedding: 'listHomeWeddingArticle',
+        celebrity: 'listHomeCelebrityArticle',
         lifeStyle: 'listHomeLifeStyleArticle'
       },
     },

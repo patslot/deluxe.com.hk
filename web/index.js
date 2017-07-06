@@ -40,6 +40,7 @@ module.exports = function(options) {
         'add_beau': 'listBeautyArticle',
         'add_luxe': 'listLuxeArticle',
         'add_wedd': 'listWeddingArticle',
+        'add_cele': 'listCelebrityArticle',
         'add_life': 'listLifeStyleArticle'
       },
       LOAD_CATEG_ARTICLES_COUNT: 4,
