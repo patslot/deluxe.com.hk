@@ -73,7 +73,6 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
           article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
           article.video = {
             url: article.videoFile,
-            title: article.title,
             videoId: article.id
           };
           article.publish = parsePubDate(article.publish);

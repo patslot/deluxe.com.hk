@@ -16,7 +16,7 @@ function renderVideo(video, elemId) {
     var anvpInstance = new AnvatoPlayer(anvpId);
     anvpInstance.setVideoUrl(video.url);
     anvpInstance.setPlayerSize("100%", "100%");
-    anvpInstance.setTitle(video.title);
+    anvpInstance.setTitle("<%- pageviewLog.title.replace(/'/g, '’').replace(/"/g, '＂') %>");
     anvpInstance.setDescription("");
     anvpInstance.setVolume(0.5); // Value between 0 - 1
     anvpInstance.setShareEnable(false);
