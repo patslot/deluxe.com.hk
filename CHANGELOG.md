@@ -1,5 +1,8 @@
 ## Change Log
 
+### v1.0.8-1
+- fix video for articles with title containing special characters
+
 ### v1.0.8
 - refine splash Ad display logic
 
