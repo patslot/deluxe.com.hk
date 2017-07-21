@@ -15,12 +15,12 @@
 
 <body ng-app="addv2" ng-controller="CategController" categ-ename="<%= ename %>"
   categ-name="<%= categ %>">
-  <skinner-block></skinner-block>
   <splash-screen></splash-screen>
   <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
   <%- include('partials/topMenu.ejs', {menu: menu}) %>
+  <div class="ls_banner" style="background: url('<%= categImg %>') center repeat-x; background-size: cover;"></div>
   <div class="container nm_home">
-    <div class="ls_banner" style="background: url('<%= categImg %>') center repeat-x; background-size: cover;"></div>
+    <skinner-block></skinner-block>
     <div class="row nm_row">
       <div class="main_content">
         <div class="nm_section">

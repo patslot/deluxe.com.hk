@@ -138,11 +138,11 @@ html {
   height: 600px;
   display: block;
   margin: 0 13px;
-  position: absolute;
+  position: fixed;
 }
 
 .skinner_ad[skinner_ad_left] {
-  left: 0;
+  left: calc(50% - 671px);
 }
 
 .skinner_ad[skinner_ad_left] div {
@@ -150,14 +150,14 @@ html {
 }
 
 .skinner_ad[skinner_ad_right] {
-  right: 0;
+  right: calc(50% - 671px);
 }
 
 .skinner_ad[skinner_ad_right] div {
   float: left;
 }
 
-.main_content+.skinner_ad {
+.skinner_ad {
   left: auto;
   right: 0px;
 }
