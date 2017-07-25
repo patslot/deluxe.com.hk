@@ -222,9 +222,8 @@
         for (; i >= 0; i--) {
           var anchor = scrollAnchors[i];
           if (scrolledIntoView(anchor.id)) {
-            var path = encodeURI(anchor.url);
-            if (curPath !== path) {
-              window.history.pushState(null, null, path);
+            if (document.title !== anchor.title) {
+              window.history.pushState(null, null, encodeURI(anchor.url));
               document.title = anchor.title;
               sendPageview(anchor.nxmObj);
             }
