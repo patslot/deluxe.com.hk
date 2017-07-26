@@ -106,7 +106,6 @@ module.exports = function() {
     article.image = article.videoThumbnail || image;
     article.video = {
       url: article.videoFile,
-      title: article.title,
       videoId: article.id
     };
     article.videoImage = article.image;

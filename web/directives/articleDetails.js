@@ -130,7 +130,7 @@ export default function($compile) {
         }
         article.eTitle = article.title.replace("'", "\\'");
         element.html($compile(ejs.render(htmlTpl, article))(scope));
-        renderVideo(article.video, 'video_player-' + article.idx);
+        renderVideo(article.video, article.title, 'video_player-' + article.idx);
         unwatch();
       });
     }

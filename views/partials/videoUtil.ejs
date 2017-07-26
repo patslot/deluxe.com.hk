@@ -1,6 +1,6 @@
 <script src="http://hk.adx.nextmedia.com/uvp2/js/anvp.common.lib-v1.0.2.js"></script>
 <script>
-function renderVideo(video, elemId) {
+function renderVideo(video, title, elemId) {
   if (video && video.url) {
     var videoAdTags = [];
     if (window.matchMedia('(min-width: 768px)').matches) {
@@ -16,7 +16,7 @@ function renderVideo(video, elemId) {
     var anvpInstance = new AnvatoPlayer(anvpId);
     anvpInstance.setVideoUrl(video.url);
     anvpInstance.setPlayerSize("100%", "100%");
-    anvpInstance.setTitle(video.title);
+    anvpInstance.setTitle(title.replace(/'/g, '’').replace(/"/g, '＂'));
     anvpInstance.setDescription("");
     anvpInstance.setVolume(0.5); // Value between 0 - 1
     anvpInstance.setShareEnable(false);

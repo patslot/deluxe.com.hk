@@ -233,7 +233,7 @@
       });
 
       $(document).ready(function() {
-        renderVideo(JSON.parse('<%- JSON.stringify(video).replace(/\\/g, "\\\\") %>'));
+        renderVideo(JSON.parse('<%- JSON.stringify(video).replace(/\\/g, "\\\\") %>'), '<%- title.replace("'", "\\'") %>');
       });
     </script>
   </body>
