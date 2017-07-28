@@ -232,6 +232,10 @@
         }
       });
 
+      $(window).on('beforeunload', function() {
+        $(window).scrollTop(0);
+      });
+
       $(document).ready(function() {
         renderVideo(JSON.parse('<%- JSON.stringify(video).replace(/\\/g, "\\\\") %>'), '<%- title.replace("'", "\\'") %>');
       });

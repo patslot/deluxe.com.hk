@@ -18,7 +18,11 @@
   <splash-screen></splash-screen>
   <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
   <%- include('partials/topMenu.ejs', {menu: menu}) %>
-  <div class="ls_banner" style="background: url('<%= categImg %>') center repeat-x; background-size: cover;"></div>
+  <% if (categImg) { %>
+  <div class="ls_banner" style="background: url('<%= categImg %>') center repeat-x;">
+    <img src="<%= categImg %>" style="visibility: hidden">
+  </div>
+  <% } %>
   <div class="container nm_home">
     <skinner-block></skinner-block>
     <div class="row nm_row">
