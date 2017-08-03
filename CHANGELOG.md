@@ -1,5 +1,14 @@
 ## Change Log
 
+### Upcoming
+- auto-load next article with URL change during scrolling
+- revise pageview logging
+- resume wedding
+- change display name for celebrity, contributor and event to plural
+- update data API of celebrity
+- change fixedbanner Ad display logic in article detail pages
+- resolve UAT issues
+
 ### v1.0.12
 - fix menu logging
 

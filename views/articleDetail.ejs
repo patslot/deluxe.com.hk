@@ -71,10 +71,19 @@
                             <%- include('partials/imageWithCaption.ejs', {image: photo.imagePathZoom, caption: photo.caption}) %>
                           <% }) %>
                         <% } %>
-                        <div class="artd_article_Text">
-                          <%- content.content %>
-                        </div>
-                        <fixedbanner fixedbanner-id="fixedbanner1_<%= index %>"></fixedbanner>
+                        <% if (content.content === "<p>FIXBANNER1</p>") { %>
+                          <fixedbanner fixedbanner-id="fixedbanner1_<%= index %>"></fixedbanner>
+                        <% } else if (content.content === "<p>FIXBANNER2</p>") { %>
+                          <fixedbanner fixedbanner-id="fixedbanner2_<%= index %>" fixedbanner-num="2"></fixedbanner>
+                        <% } else if (content.content === "<p>FIXBANNER3</p>") { %>
+                          <fixedbanner fixedbanner-id="fixedbanner3_<%= index %>" fixedbanner-num="3"></fixedbanner>
+                        <% } else if (content.content === "<p>FIXBANNER4</p>") { %>
+                          <fixedbanner fixedbanner-id="fixedbanner4_<%= index %>" fixedbanner-num="4"></fixedbanner>
+                        <% } else { %>
+                          <div class="artd_article_Text">
+                            <%- content.content %>
+                          </div>
+                        <% } %>
                       <% }) %>
                     <% } %>
                   </div>
@@ -116,10 +125,19 @@
                           <%- content.subTitle %>
                         </div>
                         <%- include('partials/imageWithCaption.ejs', {image: content.imgFile, caption: content.caption}) %>
-                        <div class="artd_article_Text">
-                          <%- content.content %>
-                        </div>
-                        <fixedbanner fixedbanner-id="fixedbanner1_<%= index %>"></fixedbanner>
+                        <% if (content.content === "<p>FIXBANNER1</p>") { %>
+                          <fixedbanner fixedbanner-id="fixedbanner1_<%= index %>"></fixedbanner>
+                        <% } else if (content.content === "<p>FIXBANNER2</p>") { %>
+                          <fixedbanner fixedbanner-id="fixedbanner2_<%= index %>" fixedbanner-num="2"></fixedbanner>
+                        <% } else if (content.content === "<p>FIXBANNER3</p>") { %>
+                          <fixedbanner fixedbanner-id="fixedbanner3_<%= index %>" fixedbanner-num="3"></fixedbanner>
+                        <% } else if (content.content === "<p>FIXBANNER4</p>") { %>
+                          <fixedbanner fixedbanner-id="fixedbanner4_<%= index %>" fixedbanner-num="4"></fixedbanner>
+                        <% } else { %>
+                          <div class="artd_article_Text">
+                            <%- content.content %>
+                          </div>
+                        <% } %>
                       <% }) %>
                     <% } %>
                   </div>

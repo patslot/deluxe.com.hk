@@ -40,10 +40,19 @@ const htmlTpl = `
                     </div>
                   <% }) %>
                 <% } %>
-                <div class="artd_article_Text">
-                  <%- content.content %>
-                </div>
-                <fixedbanner fixedbanner-id="fixedbanner_<%= idx %>_<%= index %>"></fixedbanner>
+                <% if (content.content === "<p>FIXBANNER1</p>") { %>
+                  <fixedbanner fixedbanner-id="fixedbanner1_<%= idx %>_<%= index %>"></fixedbanner>
+                <% } else if (content.content === "<p>FIXBANNER2</p>") { %>
+                  <fixedbanner fixedbanner-id="fixedbanner2_<%= idx %>_<%= index %>" fixedbanner-num="2"></fixedbanner>
+                <% } else if (content.content === "<p>FIXBANNER3</p>") { %>
+                  <fixedbanner fixedbanner-id="fixedbanner3_<%= idx %>_<%= index %>" fixedbanner-num="3"></fixedbanner>
+                <% } else if (content.content === "<p>FIXBANNER4</p>") { %>
+                  <fixedbanner fixedbanner-id="fixedbanner4_<%= idx %>_<%= index %>" fixedbanner-num="4"></fixedbanner>
+                <% } else { %>
+                  <div class="artd_article_Text">
+                    <%- content.content %>
+                  </div>
+                <% } %>
               <% }) %>
             <% } %>
           </div>
@@ -71,10 +80,19 @@ const htmlTpl = `
                   <img src="<%- content.imgFile %>"></div>
                   <div class="artd_article_caption"><%- content.caption %></div>
                 </div>
-                <div class="artd_article_Text">
-                  <%- content.content %>
-                </div>
-                <fixedbanner fixedbanner-id="fixedbanner_<%= idx %>_<%= index %>"></fixedbanner>
+                <% if (content.content === "<p>FIXBANNER1</p>") { %>
+                  <fixedbanner fixedbanner-id="fixedbanner1_<%= idx %>_<%= index %>"></fixedbanner>
+                <% } else if (content.content === "<p>FIXBANNER2</p>") { %>
+                  <fixedbanner fixedbanner-id="fixedbanner2_<%= idx %>_<%= index %>" fixedbanner-num="2"></fixedbanner>
+                <% } else if (content.content === "<p>FIXBANNER3</p>") { %>
+                  <fixedbanner fixedbanner-id="fixedbanner3_<%= idx %>_<%= index %>" fixedbanner-num="3"></fixedbanner>
+                <% } else if (content.content === "<p>FIXBANNER4</p>") { %>
+                  <fixedbanner fixedbanner-id="fixedbanner4_<%= idx %>_<%= index %>" fixedbanner-num="4"></fixedbanner>
+                <% } else { %>
+                  <div class="artd_article_Text">
+                    <%- content.content %>
+                  </div>
+                <% } %>
               <% }) %>
             <% } %>
           </div>
