@@ -46,8 +46,14 @@ $(document).ready(function() {
 
   $('[vmenu="trigger"]').on('click', toggleMenu);
   $('[vmenu="menu_close_trigger"]').on('click', toggleMenu);
+
+  var isLargeScreen = window.matchMedia('(min-width: 768px)').matches;
   $(window).resize(function() {
     if (window.matchMedia('(min-width: 768px)').matches) {
+      if (!isLargeScreen) {
+        updateSticky();
+      }
+      isLargeScreen = true;
       var $mobilePanel = $('.nm_v_menu');
       if ($mobilePanel.hasClass('nav-panel-active')) {
         var $nmHome = $('.nm_home');
@@ -56,6 +62,8 @@ $(document).ready(function() {
         $nmHeader.removeClass('nav-panel-active');
         $mobilePanel.removeClass('nav-panel-active')
       }
+    } else {
+      isLargeScreen = false;
     }
   });
 

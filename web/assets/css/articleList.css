@@ -28,11 +28,6 @@
 }
 
 @media (max-width: 767px) {
-  .ls_banner {
-    margin: 0 15px 0 15px;
-    height: 45px;
-  }
-
   .al_two_content,
   .al_two_image {
     float: left;
