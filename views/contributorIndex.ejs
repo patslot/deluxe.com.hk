@@ -33,7 +33,7 @@
                 </div>
                 <div ng-repeat="contributors in moreContributorGroups track by $index">
                   <midbanner midbanner-id="midbanner_group_{{$index}}"></midbanner>
-                  <fixedbanner fixedbanner-id="fixedbanner{{$index + 2}}"
+                  <fixedbanner ng-if="$index < 3" fixedbanner-id="fixedbanner{{$index + 2}}"
                     fixedbanner-num="{{$index + 2}}"></fixedbanner>
                   <div class="row nm_row">
                     <div class="ctb_listing">

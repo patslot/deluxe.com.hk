@@ -51,7 +51,7 @@
       lazy-no-scroll="noMoreArticles">
       <div class="nm_section" ng-repeat="articles in moreArticleGroups track by $index">
         <midbanner midbanner-id="midbanner_group_{{$index}}"></midbanner>
-        <fixedbanner fixedbanner-id="fixedbanner{{$index + 2}}"
+        <fixedbanner ng-if="$index < 3" fixedbanner-id="fixedbanner{{$index + 2}}"
           fixedbanner-num="{{$index + 2}}"></fixedbanner>
         <articles-in-categ add-articles="articles"></articles-in-categ>
       </div>

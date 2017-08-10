@@ -24,12 +24,12 @@ export default function() {
         } else {
           fixedbannerNum = 1;
         }
-        // Only show fixedbanner up to number 4
-        if (fixedbannerNum > 4) {
+        // Only show fixedbanner up to number 8
+        if (fixedbannerNum > 8) {
           unwatch();
           return;
         }
-        fixedbannerNum = Math.min(fixedbannerNum, 4);
+        fixedbannerNum = Math.min(fixedbannerNum, 8);
         element.html(ejs.render(htmlTpl, {divId: divId}));
         showMobileAd("Fixedbanner" + fixedbannerNum, divId);
         unwatch();
