@@ -1,6 +1,6 @@
 ## Change Log
 
-### Upcoming
+### v1.1.0
 - auto-load next article with URL change during scrolling
 - revise pageview logging
 - resume wedding
