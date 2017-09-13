@@ -6,7 +6,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
     mpms.forEach(function(m) {
       var linkType = articleUtil.getArticleType(m.linkURL);
       if (linkType) {
-        m.linkURL = '/' + m.catName + '/' + m.linkURL + '/' + m.content;
+        m.linkURL = '/' + m.catName + '/' + m.linkURL + '/' + encodeURIComponent(m.content);
         m.linkTarget = '_self';
       } else {
         m.linkTarget = '_blank';

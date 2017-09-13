@@ -8,7 +8,7 @@ module.exports = function() {
   function parseLinkURL(article) {
     if (articleReg.test(article.linkURL)) {
       article.linkURL = '/' + article.catName + '/' + article.linkURL + '/' +
-        article.content;
+        encodeURIComponent(article.content);
       article.linkTarget = '_self';
     } else {
       article.linkTarget = '_blank';
@@ -64,7 +64,7 @@ module.exports = function() {
   }
 
   function parseArticleCommon(categName, a) {
-    a.linkURL = '/' + categName + '/' + a.id + '/' + a.title;
+    a.linkURL = '/' + categName + '/' + a.id + '/' + encodeURIComponent(a.title);
     a.linkTarget = '_self';
     a.catName = categName.toLowerCase();
     handleArticleCateg(a);
