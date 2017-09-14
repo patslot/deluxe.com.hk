@@ -1,5 +1,8 @@
 ## Change Log
 
+### v1.1.1
+- fix title with special characters in URL
+
 ### v1.1.0
 - auto-load next article with URL change during scrolling
 - revise pageview logging
