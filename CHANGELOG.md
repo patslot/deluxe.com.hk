@@ -1,5 +1,8 @@
 ## Change Log
 
+### v1.1.2
+- change logo, use the customer offered new logo size 190x59
+
 ### v1.1.1
 - fix title with special characters in URL
 
