@@ -14,7 +14,7 @@ const TEMPLATE = `
 
 <div>
   <div class="nm_img_wrapper" style="border: 1px #DDD solid; width: 300px; height: 350px; margin: auto;">
-    <div class="fb-page" data-href="https://www.facebook.com/appledailydeluxe" data-tabs="timeline" data-width="300" data-height="350" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/appledailydeluxe" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/appledailydeluxe">Apple Daily Deluxe</a></blockquote></div>
+    <div class="fb-page" data-href="https://www.facebook.com/deluxehongkong" data-tabs="timeline" data-width="300" data-height="350" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/deluxehongkong" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/deluxehongkong">Apple Daily Deluxe</a></blockquote></div>
   </div>
 </div>
 `;
