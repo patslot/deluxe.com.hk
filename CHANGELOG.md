@@ -1,4 +1,8 @@
 ## Change Log
+### v1.1.3
+- Update link to Facebook page in topmenu,mobile menu and facebook directives 
+- Update link to Instagram in topmenu & mobile menu
+
 
 ### v1.1.2
 - change logo, use the customer offered new logo size 190x59
