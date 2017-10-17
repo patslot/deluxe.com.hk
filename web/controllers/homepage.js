@@ -1,7 +1,7 @@
 /**
  * HomepageController for homepage
  */
-export default function($timeout, $scope, gqModel, c, queryHandler) {
+export default function($timeout, $scope, $window, gqModel, c, queryHandler) {
   var maxCategArticles = 3;
   var isReady = false;
   var latestArticles = [];
@@ -9,7 +9,13 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
   $scope.loading = false;
   $scope.loadIdx = 0;
   $scope.categArticles = [];
-
+    $scope.screenHeight = $window.innerHeight;
+    $scope.scrollYPosition =  $window.pageYOffset;
+    angular.element($window).bind("scroll", function(e) {
+        $scope.scrollYPosition =  $window.pageYOffset;
+        $scope.$apply();
+    })
+    
   function createLoadCateg() {
     var listArticles = gqModel.consts.listHomeArticles;
     return [listArticles.fashion, listArticles.beauty, listArticles.luxe,
@@ -110,4 +116,12 @@ export default function($timeout, $scope, gqModel, c, queryHandler) {
       loadCategArticles();
     }
   };
+    
+     function scrolltotop (){
+       $("html, body").animate({ scrollTop: 0 }, "slow");
+
+    }
+    $scope.scrolltotop = function() {
+        scrolltotop() ;
+    };   
 };

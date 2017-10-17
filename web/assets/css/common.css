@@ -599,3 +599,19 @@ a {
 .clearboth {
   clear: both;
 }
+
+
+
+.btn_scrolltotop{
+    position: fixed; 
+    bottom: 1vh; 
+    right: 1vh; 
+}
+.btn_scrolltotop img {
+        width: 60px;
+}
+@media (max-width: 767px) {
+    .btn_scrolltotop img {
+        width: 10vw;
+    }
+}

@@ -65,6 +65,9 @@
   </div>
   <%- include('partials/logging.ejs', {pageviewLog: pageviewLog}) %>
   <%- include('partials/google-analytics.ejs') %>
+    <div class="btn_scrolltotop" ng-show="scrollYPosition > screenHeight">
+             <a ng-click="scrolltotop()"><img src="/img/scrolltotop.png"></a>
+    </div>
 </body>
 
 </html>

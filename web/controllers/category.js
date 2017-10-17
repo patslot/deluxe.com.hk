@@ -1,4 +1,4 @@
-export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
+export default function($timeout, $scope, $attrs, $window, gqModel, c, queryHandler) {
   var categEname = $attrs.categEname;
   var categName = $attrs.categName;
   var isReady = false;
@@ -6,7 +6,12 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
   var articleCount = c.LOAD_CATEG_ARTICLES_COUNT;
   var articles = [];
   var maxArticles = 200;
-
+    $scope.screenHeight = $window.innerHeight;
+    $scope.scrollYPosition =  $window.pageYOffset;
+    angular.element($window).bind("scroll", function(e) {
+        $scope.scrollYPosition =  $window.pageYOffset;
+        $scope.$apply();
+    })
   $scope.noMoreArticles = false;
   $scope.loadingArticles = false;
   $scope.moreArticleGroups = [];
@@ -66,7 +71,15 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler) {
       return false;
     }
     if (query) {
-      loadCategArticles();
+      loadCategArticles(); 
     }
   };
+    
+    function scrolltotop (){
+       $("html, body").animate({ scrollTop: 0 }, "slow");
+
+    }
+    $scope.scrolltotop = function() {
+       scrolltotop() ;
+    };   
 };

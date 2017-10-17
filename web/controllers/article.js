@@ -1,4 +1,4 @@
-export default function($timeout, $scope, $attrs, gqModel, c, queryHandler,
+export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHandler,
   articleUtil) {
   var categEname = $attrs.categEname;
   var categName = $attrs.categName;
@@ -18,7 +18,15 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler,
   $scope.nextArticles = [];
   $scope.noMoreArticles = false;
   $scope.loadingArticle = false;
-
+      
+    // Get Scroll Y postion for Back to top button 
+    $scope.screenHeight = $window.innerHeight;
+    $scope.scrollYPosition =  $window.pageYOffset;
+    angular.element($window).bind("scroll", function(e) {
+        $scope.scrollYPosition =  $window.pageYOffset;
+        $scope.$apply();
+    })
+    
   function parseRecommendArticles(articleId, parseFunc) {
     var articles = recommendArticles.filter(function (item) {
       return item.id !== articleId;
@@ -118,14 +126,28 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler,
         }
         queryHandler.handleArticleDetailCateg(nextArticle);
         $scope.nextArticles.push(nextArticle);
+        
         curArticleID = nextArticleID;
         updateLoading();
+          gaPageview(nextArticle);  
       });
     }, function(err) {
       $scope.loadingArticle = false;
     });
   }
-
+    
+//lazy load article GA pageview     
+  function gaPageview(nextArticle){
+      var url = '';
+      if(nextArticle.isSharedUrl){
+          url = '/article/' + nextArticle.id;
+      }
+      else{
+          url =nextArticle.categoryName +'/'+ nextArticle.id +'/'+ nextArticle.title.replace("'", "\\'") ;
+      }
+      console.log(url);
+       ga('send', 'pageview', url);   
+  }
   function isScrolledIntoView(elem) {
     var $win = angular.element(window);
     var docViewTop = $win.scrollTop();
@@ -145,6 +167,17 @@ export default function($timeout, $scope, $attrs, gqModel, c, queryHandler,
     }
     if (isScrolledIntoView('#loading-trigger')) {
       loadArticle();
+       
     }
   };
+    
+    //Scroll to top function 
+     function scrolltotop (){
+       $("html, body").animate({ scrollTop: 0 }, "slow");
+
+    }
+    $scope.scrolltotop = function() {
+       
+       scrolltotop() ;
+    };   
 };

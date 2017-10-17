@@ -79,11 +79,11 @@ module.exports = function(options) {
         return $sce.trustAsHtml(htmlCode);
       }
     }])
-    .controller('HomepageController', ['$timeout', '$scope', 'gqModel', 'const',
+    .controller('HomepageController', ['$timeout', '$scope', '$window', 'gqModel', 'const',
       'queryHandler', controllers.homepage])
-    .controller('CategController', ['$timeout', '$scope', '$attrs', 'gqModel',
+    .controller('CategController', ['$timeout', '$scope', '$attrs', '$window', 'gqModel',
       'const', 'queryHandler', controllers.category])
-    .controller('ArticleController', ['$timeout', '$scope', '$attrs', 'gqModel',
+    .controller('ArticleController', ['$timeout', '$scope', '$attrs','$window', 'gqModel',
       'const', 'queryHandler', 'articleUtil', controllers.article])
     .controller('ContributorController', ['$timeout', '$scope', 'gqModel',
       'queryHandler', controllers.contributor])

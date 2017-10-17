@@ -38,21 +38,8 @@
     sendPageview(nxmObj1);
     //Scroll Depth tracking
     var trackRecords = [];
-    $(window).scroll(function() {
-      if (!logPageview) {
-        return;
-      }
-      var scrollPercent = getPageScrollPercent();
-      if (scrollPercent >= 25 && trackRecords.indexOf("25") === -1) {
-        sendPageDepth(25);
-      } else if (scrollPercent >= 50 && trackRecords.indexOf("50") === -1) {
-        sendPageDepth(50);
-      } else if (scrollPercent >= 75 && trackRecords.indexOf("75") === -1) {
-        sendPageDepth(75);
-      } else if (scrollPercent == 100 && trackRecords.indexOf("100") === -1) {
-        sendPageDepth(100);
-      }
-    });
+     
+
 
     function getPageScrollPercent() {
       var bottom = $(window).height() + $(window).scrollTop();
