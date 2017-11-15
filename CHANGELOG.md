@@ -1,4 +1,9 @@
 ## Change Log
+
+
+### v1.1.4
+- Add GA pageview when lazy load    
+
 ### v1.1.3
 - Update link to Facebook page in topmenu,mobile menu and facebook directives 
 - Update link to Instagram in topmenu & mobile menu
