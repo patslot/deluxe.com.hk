@@ -1,5 +1,6 @@
 ## Change Log
-
+### v1.1.5
+- Add Facebook Pixel    
 
 ### v1.1.4
 - Add GA pageview when lazy load    
