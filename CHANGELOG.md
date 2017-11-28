@@ -1,4 +1,8 @@
 ## Change Log
+
+### v1.1.6
+- Update Email address in footer    
+
 ### v1.1.5
 - Add Facebook Pixel    
 
