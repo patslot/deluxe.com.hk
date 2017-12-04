@@ -1,4 +1,9 @@
 ## Change Log
+### v1.1.8
+- Update logo 
+
+### v1.1.7
+- Update Email address in mobile site menu  
 
 ### v1.1.6
 - Update Email address in footer    
