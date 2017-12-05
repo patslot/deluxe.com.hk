@@ -18,6 +18,7 @@
 .artd_article_Text {
   margin-top: 15px;
   margin-bottom: 15px;
+  font-size: 16px; 
 }
 
 .artd_article_caption {
@@ -37,4 +38,11 @@
   margin-top: 15px;
   font-size: 18px;
   font-weight: bold;
+}
+
+
+@media all and (max-width: 767px) {
+    .artd_article_Text {
+        font-size: 18px;
+    }
 }

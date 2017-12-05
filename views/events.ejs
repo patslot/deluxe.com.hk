@@ -19,6 +19,13 @@
   <splash-screen></splash-screen>
   <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
   <%- include('partials/topMenu.ejs', {menu: menu}) %>
+  
+  <div class="ls_banner hidden-xs" style="background: url('/img/event.jpg') center repeat-x;">
+    <img src="/img/event.jpg" style="visibility: hidden">
+  </div>
+  <div class="ls_banner visible-xs" style="height: 40px; background: url('/img/event.jpg') center repeat-x; background-size: auto 100%">
+  </div>    
+    
   <div class="container nm_home">
     <div class="row nm_row">
       <div class="main_content evtlist_listing">

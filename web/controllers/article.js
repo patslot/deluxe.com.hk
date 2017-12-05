@@ -60,8 +60,9 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
       handleRes('listEditorPick', res, queryHandler.parseCmsArticles);
     });
   } else if (categEname === 'contributor') {
-    gqModel.queryContributorArticlesInArticle(articleAuthor, offset, recommendCount + 1).then(function (res) {
-      handleRes('listContributorArticle', res, queryHandler.parseCmsArticles);
+    gqModel.queryContributorArticlesAll(offset, recommendCount + 1).then(function (res) {
+        console.log(res);
+      handleRes('listContributorArticleAll', res, queryHandler.parseCmsArticles);
     });
   } else if (categEname === 'event') {
     gqModel.queryPostEvents().then(function (res) {
@@ -172,12 +173,13 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
   };
     
     //Scroll to top function 
-     function scrolltotop (){
-       $("html, body").animate({ scrollTop: 0 }, "slow");
+     function readMoreButton (){
+       var docheight = $('#loading-trigger').position().top ;
+        $("html, body").animate({ scrollTop: docheight }, "slow");
 
     }
-    $scope.scrolltotop = function() {
+    $scope.readMoreButton = function() {
        
-       scrolltotop() ;
+       readMoreButton() ;
     };   
 };

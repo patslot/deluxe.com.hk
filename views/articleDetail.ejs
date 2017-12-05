@@ -114,6 +114,9 @@
                     "keywords": <%- JSON.stringify([tag]) %>
                   }
                 </script>
+                
+               
+                
                 <div class="nm_mpm col-md-6 col-xs-12">
                   <div class="mpm_content artd_container">
                     <div class="artd_article_label">[<%- disCategoryName %>]</div>
@@ -181,10 +184,12 @@
               </div>
             </div>
           </div>
-
-          <midbanner midbanner-id="midbanner1"></midbanner>
+            
+          <midbanner midbanner-id="midbanner1"></midbanner> 
+           
+         
         </div>
-
+        
         <div id="article-end"></div>
         <add-carousel title-class="'nm_recommend'" carousel-items="latestArticles"
           carousel-div="'recommend-carousel'"></add-carousel>
@@ -276,8 +281,8 @@
       });
     </script>
      
-       <div class="btn_scrolltotop" ng-show="scrollYPosition > screenHeight">
-             <a ng-click="scrolltotop()"><img src="/img/scrolltotop.png"></a>
+       <div class="btn_readmore" ng-show="scrollYPosition > screenHeight">
+             <a ng-click="readMoreButton()"><img src="/img/readmorebutton.png"></a>
       </div>
   </body>
 </html>

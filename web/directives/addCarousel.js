@@ -1,7 +1,7 @@
 const htmlTpl = `
 <div class="nm_section">
   <div class="row nm_row front">
-    <div class="col-sm-4 col-sm-offset-4">
+    <div class="col-sm-12">
       <div class="nm_section_header_ball <%= titleClass %>">
       </div>
     </div>
@@ -14,8 +14,8 @@ const htmlTpl = `
         <div class="carousel-inner">
         <% carouselItems.forEach(function(i, idx) { %>
           <% var _class = 'item'; if (idx === 0) { _class += ' active'; } %>
-          <div class="<%= _class %>">
-            <div class="col-xs-12 col-sm-5 col-md-3 item_block">
+          <div class="<%= _class %> ">
+            <div class="col-xs-12 col-sm-6 col-md-3 item_block">
               <% if (showLink) { %>
                 <a href="<%= i.linkURL %>" target="<%= i.linkTarget %>">
               <% } else { %>

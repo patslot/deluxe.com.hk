@@ -7,7 +7,7 @@ export default function(c) {
   });
   var gConst = require('../../server/middleware/graphqlConst.js')(client);
 
-  const listInstagram = `listInstagram(limit: 6) {
+  const listInstagram = `listInstagram(limit: 9) {
     link
     type
     videos {
@@ -99,7 +99,20 @@ export default function(c) {
     youtube
     intro
   }`;
-
+    
+const listContributorArticleAll = `listContributorArticleAll(offset: $offset, count: $count) {
+    id
+    categoryID
+    publish
+    lastUpdate
+    title
+    articleThumbnail
+    videoThumbnail
+    videoFile
+    anvato
+    youtube
+    intro
+  }`;
 
   const listContributorArticle = `listContributorArticle(name: $name, offset: $offset, count: $count) {
     id
@@ -120,6 +133,7 @@ export default function(c) {
   };
 
   var createQuery = function(queries) {
+      
     return 'query { ' + queries.join(' ') + ' }';
   };
 
@@ -209,6 +223,10 @@ export default function(c) {
       return client.query(createQuery([
         createCmsComponeFeedQuery('listContributor')
       ]));
+    },
+    queryContributorArticlesAll: function(offset, count) {
+      return client.query(createQueryWithParams('$offset: Int, $count: Int',
+        [listContributorArticleAll, listInstagram]), {offset: offset, count: count});
     },
     queryContributorArticlesInArticle: function(contrName, offset, count) {
       return client.query(createQueryWithParams('$name: String, $offset: Int, $count: Int',

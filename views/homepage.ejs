@@ -41,7 +41,7 @@
                 <%- include('partials/homeArticles.ejs', {articles: articles}) %>
               </div>
               <div class="col-xs-12 col-sm-4 col-md-4 nm_section">
-                <div class="nm_section_block">
+                <div class="nm_section_block hidden-xs">
                   <div class="homepage_facebook_block">
                     <facebook-block></facebook-block>
                   </div>
@@ -51,7 +51,7 @@
                   <fixedbanner fixedbanner-id="fixedbanner2"
                     fixedbanner-num="2"></fixedbanner>
                 </div>
-                <div class="nm_section">
+                <div class="nm_section hidden-xs">
                   <a href="/Contributor">
                     <img ng-src="{{::cBanner.imgName}}" />
                   </a>
@@ -81,7 +81,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-xs-12 col-sm-4 col-md-4 nm_section">
+                <div class="col-xs-12 col-sm-4 col-md-4 nm_section hidden-xs">
                   <div class="nm_section_block homepage_instagram_block">
                     <instagram-medias ig-medias="igMedias"></instagram-medias>
                   </div>
@@ -115,8 +115,8 @@
 <%- include('partials/logging.ejs', {pageviewLog: pageviewLog}) %>
 <%- include('partials/google-analytics.ejs') %>
     
-     <div class="btn_scrolltotop" ng-show="scrollYPosition > screenHeight">
-             <a ng-click="scrolltotop()"><img src="/img/scrolltotop.png"></a>
+     <div class="btn_readmore" ng-show="scrollYPosition > screenHeight">
+             <a ng-click="readMoreButton()"><img src="/img/readmorebutton.png"></a>
     </div>
 </body>
 
