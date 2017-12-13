@@ -134,7 +134,7 @@ function handleTouchMove(evt,div) {
 };  
     var xDown = null;                                      
     var yDown = null; 
-    if($('#home-slidesshow-block').length){
+    if($('#home-slideshow-block').length){
           var targetMPM = $('#home-slideshow-block') ;
          document.addEventListener('touchstart', function(e){handleTouchStart(e,targetMPM);}, false);    
          document.addEventListener('touchmove',  function(e){handleTouchMove(e,targetMPM);}, false); 
