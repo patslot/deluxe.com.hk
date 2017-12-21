@@ -35,6 +35,10 @@ html {
     position: relative;
     padding-top: 20px;
   }
+    .item_block{
+        padding-left: 0px;
+        padding-right: 0px;
+    }    
 }
 
 @media only screen and (min-width: 768px) {
@@ -66,9 +70,16 @@ html {
     margin-left: 20px;
     margin-top: 9px;
   }
+  
 }
 
 @media (max-width: 767px) {
+  body>.container {
+        margin-left: 0px;
+      margin-right: 0px;
+      padding-right: 0px;
+    padding-left: 0px;
+  }
   .nm_header.fixed #sticky-wrap .nav--menu .logo {
     margin-left: 0;
   }
@@ -387,6 +398,7 @@ background: #ccc;
   background-image: url(/img/recommended_d.png) !important;
   background-size: 100% !important;
 }
+
 @media (max-width: 767px) {
     .nm_highlight {
       background-image: url(/img/highlight_m.png) !important;
@@ -402,6 +414,7 @@ background: #ccc;
       background-image: url(/img/recommended_m.png) !important;
       background-size: 100% !important;
     }
+ 
 }
 .mm_container .close_btn {
   float: right;

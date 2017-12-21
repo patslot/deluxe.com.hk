@@ -7,7 +7,8 @@ const htmlTpl = `
     </div>
   </div>
   <div class="row nm_row nm_section_border">
-    <div class="col-xs-12 col-sm-10 col-md-12 four_col_slide">
+    <div class="col-xs-12 col-sm-10 col-md-12 four_col_slide ">
+    <div class="row">
       <!-- Compile html with ejs in this div -->
       <div class="carousel carousel-showmanymoveone slide"
         id="<%= div %>" style="display: none">
@@ -49,6 +50,7 @@ const htmlTpl = `
         <a class="left carousel-control" href="<%= cDiv %>" data-slide="prev"></a>
         <a class="right carousel-control" href="<%= cDiv %>" data-slide="next"></a>
       </div>
+        </div>
     </div>
   </div>
 </div>
