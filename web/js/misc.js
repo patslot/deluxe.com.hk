@@ -66,7 +66,81 @@ $(document).ready(function() {
       isLargeScreen = false;
     }
   });
+    
+       
+function touchWithinElement(tx,ty,element){
+     var mpm = {
+        mpm_x : element.position().left ,
+        mpm_y : element.position().top ,
+        mpm_x2 : element.position().left + element.width() ,
+        mpm_y2 : element.position().top  + element.height(),
+    } 
+     if (
+            ( (tx>mpm.mpm_x) && (tx < mpm.mpm_x2)) && 
+            ( (ty>mpm.mpm_y) && (ty < mpm.mpm_y2))    
+        ){
+         return true ;
+     }else{
+         return false;
+     }
+} 
+function handleTouchStart(evt,div) {                                         
+     xDown = evt.touches[0].clientX;                                      
+     yDown = evt.touches[0].clientY;   
+    
+    if (touchWithinElement(xDown,yDown, div) ){
+        return true ;
+    }else {
+         xDown = null;                                                        
+         yDown = null;  
+        return false ;
+    }
+};       
 
+function handleTouchMove(evt,div) {
+  
+    if (touchWithinElement(xDown,yDown, div) ){    
+        
+        
+        var xUp = evt.touches[0].clientX;                                    
+        var yUp = evt.touches[0].clientY;
+
+        var xDiff = xDown - xUp;
+        var yDiff = yDown - yUp;
+        if(Math.abs( xDiff )+Math.abs( yDiff )>150){ //to deal with to short swipes
+
+            if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+                if ( xDiff > 0 ) {/* left swipe */ 
+                   
+                   div.carousel('next');
+                } else {/* right swipe */
+                  
+                   div.carousel('prev');
+                }                       
+            } else {
+                if ( yDiff > 0 ) {/* up swipe */
+                    //alert('Up!'); 
+                } else { /* down swipe */
+                    //alert('Down!');
+                }                                                                 
+            }
+            /* reset values */
+            xDown = null;
+            yDown = null;
+        }
+    }else{
+        return false ;
+    }
+};  
+    var xDown = null;                                      
+    var yDown = null; 
+    if($('#home-slideshow-block').length){
+          var targetMPM = $('#home-slideshow-block') ;
+         document.addEventListener('touchstart', function(e){handleTouchStart(e,targetMPM);}, false);    
+         document.addEventListener('touchmove',  function(e){handleTouchMove(e,targetMPM);}, false); 
+    }
+  
+        
 /* Disable for later use
   $('#upcoming_events_content').endlessScroll({
     callback: function() {

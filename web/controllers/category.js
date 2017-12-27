@@ -75,11 +75,12 @@ export default function($timeout, $scope, $attrs, $window, gqModel, c, queryHand
     }
   };
     
-    function scrolltotop (){
-       $("html, body").animate({ scrollTop: 0 }, "slow");
+   function readMoreButton (){
+         var docheight = $(document).height() ;
+       $("html, body").animate({ scrollTop: docheight }, "slow");
 
     }
-    $scope.scrolltotop = function() {
-       scrolltotop() ;
-    };   
+     $scope.readMoreButton = function() {
+        readMoreButton() ;
+    };      
 };

@@ -35,6 +35,10 @@ html {
     position: relative;
     padding-top: 20px;
   }
+    .item_block{
+        padding-left: 0px;
+        padding-right: 0px;
+    }    
 }
 
 @media only screen and (min-width: 768px) {
@@ -66,9 +70,16 @@ html {
     margin-left: 20px;
     margin-top: 9px;
   }
+  
 }
 
 @media (max-width: 767px) {
+  body>.container {
+        margin-left: 0px;
+      margin-right: 0px;
+      padding-right: 0px;
+    padding-left: 0px;
+  }
   .nm_header.fixed #sticky-wrap .nav--menu .logo {
     margin-left: 0;
   }
@@ -184,20 +195,16 @@ html {
 }
 
 .nm_section .nm_section_border {
-  border: solid 2px black;
-  padding-top: 80px;
+  border: none;
+  padding-top: 0px;
   padding-bottom: 30px;
 }
 
 .nm_section .nm_section_header_ball {
-  height: 140px;
-  width: 140px;
-  margin: 0 auto;
-  padding: 50px 0;
-  background: black;
-  color: white;
-  border-radius: 70px;
-  margin-bottom: -70px;
+    height: 69px;
+    width: 100%;
+    background-repeat: no-repeat;
+    color: white;
 }
 
 .nm_section .nm_section_header {
@@ -378,20 +385,37 @@ background: #ccc;
 }
 
 .nm_highlight {
-  background-image: url(/img/icon07.png) !important;
+  background-image: url(/img/highlight_d.png) !important;
   background-size: 100% !important;
 }
 
 .nm_editor_pick {
-  background-image: url(/img/icon10.png) !important;
+  background-image: url(/img/editor_d.png) !important;
   background-size: 100% !important;
 }
 
 .nm_recommend {
-  background-image: url(/img/icon12.png) !important;
+  background-image: url(/img/recommended_d.png) !important;
   background-size: 100% !important;
 }
 
+@media (max-width: 767px) {
+    .nm_highlight {
+      background-image: url(/img/highlight_m.png) !important;
+      background-size: 100% !important;
+    }
+
+    .nm_editor_pick {
+      background-image: url(/img/editor_m.png) !important;
+      background-size: 100% !important;
+    }
+
+    .nm_recommend {
+      background-image: url(/img/recommended_m.png) !important;
+      background-size: 100% !important;
+    }
+ 
+}
 .mm_container .close_btn {
   float: right;
   margin: 20px;
@@ -603,7 +627,6 @@ a {
 
 
 .btn_scrolltotop{
-    display: none;
     position: fixed; 
     bottom: 1vh; 
     right: 1vh; 
@@ -613,6 +636,20 @@ a {
 }
 @media (max-width: 767px) {
     .btn_scrolltotop img {
+        width: 10vw;
+    }
+}
+
+.btn_readmore{
+    position: fixed; 
+    bottom: 1vh; 
+    right: 1vh; 
+}
+.btn_readmore img {
+        width: 60px;
+}
+@media (max-width: 767px) {
+    .btn_readmore img {
         width: 10vw;
     }
 }

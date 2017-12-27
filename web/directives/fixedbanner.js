@@ -3,8 +3,7 @@ const htmlTpl = `
   <div class="fix_banner_wrapper">
     <div id="<%= divId %>"></div>
   </div>
-</div>
-`;
+</div>`;
 
 export default function() {
   return {

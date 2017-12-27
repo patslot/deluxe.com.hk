@@ -1,21 +1,22 @@
 const htmlTpl = `
 <div class="nm_section">
   <div class="row nm_row front">
-    <div class="col-sm-4 col-sm-offset-4">
+    <div class="col-sm-12">
       <div class="nm_section_header_ball <%= titleClass %>">
       </div>
     </div>
   </div>
   <div class="row nm_row nm_section_border">
-    <div class="col-xs-12 col-sm-10 col-md-12 four_col_slide">
+    <div class="col-xs-12 col-sm-10 col-md-12 four_col_slide ">
+    <div class="row">
       <!-- Compile html with ejs in this div -->
       <div class="carousel carousel-showmanymoveone slide"
         id="<%= div %>" style="display: none">
         <div class="carousel-inner">
         <% carouselItems.forEach(function(i, idx) { %>
           <% var _class = 'item'; if (idx === 0) { _class += ' active'; } %>
-          <div class="<%= _class %>">
-            <div class="col-xs-12 col-sm-5 col-md-3 item_block">
+          <div class="<%= _class %> ">
+            <div class="col-xs-12 col-sm-6 col-md-3 item_block">
               <% if (showLink) { %>
                 <a href="<%= i.linkURL %>" target="<%= i.linkTarget %>">
               <% } else { %>
@@ -49,6 +50,7 @@ const htmlTpl = `
         <a class="left carousel-control" href="<%= cDiv %>" data-slide="prev"></a>
         <a class="right carousel-control" href="<%= cDiv %>" data-slide="next"></a>
       </div>
+        </div>
     </div>
   </div>
 </div>
