@@ -10,6 +10,9 @@
       fullURL: fullURL
     }) %>
     <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
+
+
+</script>
   </head>
   <body ng-app="addv2" ng-controller="ArticleController"
     is-shared-url="<%= isSharedUrl %>"
@@ -43,6 +46,7 @@
                 </script>
                 <div class="nm_mpm col-md-6 col-xs-12">
                   <div class="mpm_content artd_container">
+                    <fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner>
                     <div class="artd_article_label">[<%- disCategoryName %>]</div>
                     <div class="artd_article_title"><%- title %></div>
                     <div class="artd_article_publish_date" ng-cloak>
@@ -119,11 +123,12 @@
                 
                 <div class="nm_mpm col-md-6 col-xs-12">
                   <div class="mpm_content artd_container">
+                      <fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner>
                     <div class="artd_article_label">[<%- disCategoryName %>]</div>
                     <div class="artd_article_title"><%- title %></div>
                     <div class="artd_article_sub_title"><%- subTitle %></div>
                     <div class="artd_article_publish_date">
-                      日期：<%- publish %>
+                      日期：<%- publish %> 
                     </div>
                     <share-bar post-id="<%- id %>"
                       post-title="<%- title %>"></share-bar>
@@ -134,29 +139,34 @@
                       <% artBlock.forEach(function (content, index) { %>
                         <div class="artd_article_subHead">
                           <%- content.subTitle %>
-                        </div>
+                        </div> 
                         <%- include('partials/imageWithCaption.ejs', {image: content.imgFile, caption: content.caption}) %>
-                        <% if (content.content === "<p>FIXBANNER1</p>") { %>
-                          <fixedbanner fixedbanner-id="fixedbanner1_<%= index %>"></fixedbanner>
-                        <% } else if (content.content === "<p>FIXBANNER2</p>") { %>
-                          <fixedbanner fixedbanner-id="fixedbanner2_<%= index %>" fixedbanner-num="2"></fixedbanner>
-                        <% } else if (content.content === "<p>FIXBANNER3</p>") { %>
-                          <fixedbanner fixedbanner-id="fixedbanner3_<%= index %>" fixedbanner-num="3"></fixedbanner>
-                        <% } else if (content.content === "<p>FIXBANNER4</p>") { %>
-                          <fixedbanner fixedbanner-id="fixedbanner4_<%= index %>" fixedbanner-num="4"></fixedbanner>
-                        <% } else if (content.content === "<p>FIXBANNER5</p>") { %>
-                          <fixedbanner fixedbanner-id="fixedbanner5_<%= index %>" fixedbanner-num="5"></fixedbanner>
-                        <% } else if (content.content === "<p>FIXBANNER6</p>") { %>
-                          <fixedbanner fixedbanner-id="fixedbanner6_<%= index %>" fixedbanner-num="6"></fixedbanner>
-                        <% } else if (content.content === "<p>FIXBANNER7</p>") { %>
-                          <fixedbanner fixedbanner-id="fixedbanner7_<%= index %>" fixedbanner-num="7"></fixedbanner>
-                        <% } else if (content.content === "<p>FIXBANNER8</p>") { %>
-                          <fixedbanner fixedbanner-id="fixedbanner8_<%= index %>" fixedbanner-num="8"></fixedbanner>
-                        <% } else { %>
+                        
                           <div class="artd_article_Text">
                             <%- content.content %>
+                              
+                            <% if (index == 3) { %>
+                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner2_<%= index %>"></fixedbanner>
+                            <% } %>
+                              <% if (index == 7) { %>
+                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner3_<%= index %>"></fixedbanner>
+                            <% } %>
+                              <% if (index == 11) { %>
+                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner4_<%= index %>"></fixedbanner>
+                            <% } %>
+                              <% if (index == 15) { %>
+                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner5_<%= index %>"></fixedbanner>
+                            <% } %>
+                              <% if (index == 19) { %>
+                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner6_<%= index %>"></fixedbanner>
+                            <% } %>
+                              <% if (index == 23) { %>
+                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner7_<%= index %>"></fixedbanner>
+                            <% } %>
+                              <% if (index == 27) { %>
+                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner8_<%= index %>"></fixedbanner>
+                            <% } %>
                           </div>
-                        <% } %>
                       <% }) %>
                     <% } %>
                   </div>
@@ -184,7 +194,6 @@
               </div>
             </div>
           </div>
-            
           <midbanner midbanner-id="midbanner1"></midbanner> 
            
          
@@ -223,7 +232,7 @@
       <%- include('partials/campaign.ejs') %>
     </div>
 
-    <%- include('partials/logging.ejs', {pageviewLog: pageviewLog}) %>
+    <%- include('partials/logging.ejs', {pageviewLog: pageviewLog }) %>
     <%- include('partials/google-analytics.ejs') %>
     <%- include('partials/videoUtil.ejs', {
       adTag: adTag,

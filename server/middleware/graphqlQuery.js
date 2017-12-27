@@ -77,7 +77,37 @@ module.exports = function(GRAPHQL_ENDPOINT) {
       youtube
     }
   }`;
-
+    
+  const articleModelByTag = ` (tag: $tag, offset: $offset, count: $count) {
+    __typename
+    id
+    title
+    lastUpdate
+    ... on NewsArticle {
+      mediaGroup {
+        type
+        largePath
+      }
+      firstContentBlock {
+        subHead
+        content
+      }
+    }
+    ... on CmsArticle {
+      anvato
+      articleThumbnail
+      categoryID
+      intro
+      lastUpdate
+      publish
+      title
+      videoFile
+      videoThumbnail
+      youtube
+      tag
+    }
+  }`;
+    
   const listMenu = `listMenu {
     categoryID
     campaignID
@@ -131,11 +161,13 @@ module.exports = function(GRAPHQL_ENDPOINT) {
   };
 
   var createQuery = function(queries) {
+       console.log( 'query { ' + queries.join(' ') + ' }');
     return 'query { ' + queries.join(' ') + ' }';
   };
 
   var createQueryWithParams = function(paramStr, queries) {
-    return 'query (' + paramStr + ') { ' + queries.join(' ') + ' }';
+     console.log( 'query (' + paramStr + ') { ' + queries.join(' ') + ' }');
+       return 'query (' + paramStr + ') { ' + queries.join(' ') + ' }';
   };
 
   return {
@@ -160,6 +192,12 @@ module.exports = function(GRAPHQL_ENDPOINT) {
         [listCategArticle + ' ' + articleModel,
         listMenu, listCampaign]),
         {offset: offset, count: count});
+    },
+    subCategQuery: function(listCategArticle, tag, offset, count) {
+      return client.query(createQueryWithParams('$tag: String, $offset: Int, $count: Int',
+        [listCategArticle + ' ' + articleModelByTag,
+        listMenu, listCampaign]),
+        {tag: tag, offset: offset, count: count});
     },
     contributorIndexQuery: function() {
       return client.query(createQuery([listMenu, listCampaign,

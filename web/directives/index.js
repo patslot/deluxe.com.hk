@@ -7,6 +7,7 @@ export { default as skinner } from './skinner';
 export { default as headbanner } from "./headbanner";
 export { default as midbanner } from "./midbanner";
 export { default as fixedbanner } from "./fixedbanner";
+export { default as flyingcarpetfixedbanner } from "./flyingcarpetfixedbanner";
 export { default as lrec } from "./lrec";
 export { default as splashScreen } from "./splashScreen";
 export { default as homeArticle } from './homeArticle';

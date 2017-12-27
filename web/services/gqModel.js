@@ -54,7 +54,37 @@ export default function(c) {
       youtube
     }
   }`;
-
+    
+const articleByTagModel = ` (tag: $tag, offset: $offset, count: $count) {
+    __typename
+    id
+    title
+    lastUpdate
+    ... on NewsArticle {
+      mediaGroup {
+        type
+        largePath
+      }
+      firstContentBlock {
+        subHead
+        content
+      }
+    }
+    ... on CmsArticle {
+      anvato
+      articleThumbnail
+      categoryID
+      intro
+      lastUpdate
+      publish
+      title
+      videoFile
+      videoThumbnail
+      youtube
+      tag
+    }
+  }`;
+    
   const listHomeEditorPick = `listHomeEditorPick {
     id
     expire
@@ -138,6 +168,7 @@ const listContributorArticleAll = `listContributorArticleAll(offset: $offset, co
   };
 
   var createQueryWithParams = function(paramStr, queries) {
+    // console.log('query (' + paramStr + ') { ' + queries.join(' ') + ' }') ;
     return 'query (' + paramStr + ') { ' + queries.join(' ') + ' }';
   };
 
@@ -195,6 +226,12 @@ const listContributorArticleAll = `listContributorArticleAll(offset: $offset, co
         [listCategArticle + ' ' + articleModel]),
         {offset: offset, count: count});
     },
+    querySubCateg: function(listCategArticle, tag, offset, count) {
+      // Query list<Categ=Fashion|...>Article
+      return client.query(createQueryWithParams('$tag: String, $offset: Int, $count: Int',
+        [listCategArticle + ' ' + articleByTagModel]),
+        {tag: tag, offset: offset, count: count});
+    },
     queryArticle: function(listCategArticle, offset, count) {
       return client.query(createQueryWithParams('$offset: Int, $count: Int',
         [listCategArticle + ' ' + articleModel,
@@ -238,7 +275,7 @@ const listContributorArticleAll = `listContributorArticleAll(offset: $offset, co
     },
     queryEvents: function(pagesize, page, start) {
       return client.query(createQueryWithParams('$pagesize: Int, $page: Int, $start: Int',
-        ['listPostEvent (pagesize: $pagesize, page: $page, start: $start) ' +
+        ['totalPostEvent ' + 'listPostEvent (pagesize: $pagesize, page: $page, start: $start) ' +
           cmsArticleModel]),
         {pagesize: pagesize, page: page, start: start});
     },
@@ -246,6 +283,10 @@ const listContributorArticleAll = `listContributorArticleAll(offset: $offset, co
       return client.query(createQuery([
         createCmsArticleQuery('listPostEvent')]));
     },
+    queryNumOfEvents: function (){
+        return client.query(createQuery([
+        'totalPostEvent ']));  
+    },  
     queryCmsArticleDetail: function(articleID) {
       return client.query(createQueryWithParams('$id: String',
         [gConst.getCMSArticleDetail]), {id: articleID});

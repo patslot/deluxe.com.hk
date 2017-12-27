@@ -73,6 +73,7 @@ function categPageviewLog(categ, content, author) {
     issueid: '',
     title: '',
     auth: '',
+      ky:'',
     channel: catCh.ch,
     category: catCh.cat
   };
@@ -83,7 +84,7 @@ function categPageviewLog(categ, content, author) {
   return log;
 }
 
-function articlePageviewLog(categ, newsType, articleID, issueDate, title, author) {
+function articlePageviewLog(categ, newsType, articleID, issueDate, title, author,ky) {
   var catCh = categChanelNameForLog(categ);
   categ = categ.toUpperCase();
   var log = {
@@ -97,7 +98,8 @@ function articlePageviewLog(categ, newsType, articleID, issueDate, title, author
     title: title,
     auth: author,
     channel: catCh.ch,
-    category: catCh.cat
+    category: catCh.cat,
+      ky: ky
   };
   return handleLogMapping(log, categ, articleLogMapping);
 }

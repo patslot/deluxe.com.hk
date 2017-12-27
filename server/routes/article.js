@@ -36,6 +36,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
           article.contributorName = '';
           queryHandler.parseNewsArticleDetail(article);
           article.menu = queryHandler.parseMenu(result.listMenu);
+          article.ky ='';
           queryHandler.handleArticleDetailCateg(article);
           article.campaigns = result.listCampaign || [];
           article.showEDM = edm.showEDM(req.cookies.addEDM, result.listCampaign);
@@ -67,12 +68,24 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
           article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
           queryHandler.parseCmsArticleDetail(article);
           article.menu = queryHandler.parseMenu(result.listMenu);
+          
+          // Assign 1x1 master tag from API tag field with mt_ 
+          var ky = []; 
+          var regexp = /^mt_/;
+          article.tag.split(",").forEach(function(element) {
+              if (element.match(regexp)){
+                  console.log('match');
+                  ky.push(element.substring(3))
+              }
+          });
+          article.ky = ky;
+          
           queryHandler.handleArticleDetailCateg(article);
           article.campaigns = result.listCampaign || [];
           article.showEDM = edm.showEDM(req.cookies.addEDM, result.listCampaign);
           var categoryName = article.categoryName === 'Contributor' ? columnist : article.categoryName
           article.pageviewLog = categMapping.articlePageviewLog(categoryName,
-            cmsNewsType, article.id, article.issueId, article.title, article.contributorName);
+            cmsNewsType, article.id, article.issueId, article.title, article.contributorName, article.ky);
           if (article.artBlock && article.artBlock.length > 0) {
             article.ogDescription = article.artBlock[0].content;
           }
@@ -164,9 +177,56 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
       return next(err);
     });
   }
-
+    function renderSubcatArticles(req, res, next){
+        var categ = req.params.categ;
+        var subCateg = req.params.subCateg;
+        var ename = categMapping.nameToEname[categ];
+        var adTagMapping = categMapping.nameToAdTag[categ];
+        var listCategAPI = categMapping.enameToListCategAPI[ename || ''] + "ByTag";
+        
+        var query, handleFunc;
+        var offset = 0;
+        var count = 5;
+         query = gQuery.subCategQuery(listCategAPI, subCateg, offset, count);
+        handleFunc = queryHandler.parseArticles;
+        
+         query.catch(function(err) {
+          // use all available data
+          if (typeof err.rawData !== "undefined") {
+            console.error(JSON.stringify(err));
+            return err.rawData;
+          } else {
+            throw err;
+          }
+        })
+        .then(function(result) {
+            
+              var articles = handleFunc(categ, (result[listCategAPI] || []));
+              var categs = result.listMenu || [];
+              var currentCateg = getCurrentCateg(categs, categ);
+              
+                res.render('subcateg', {
+                    pageviewLog: categMapping.categPageviewLog(categ),
+                    menu: queryHandler.parseMenu(categs, categ),
+                    subcateg: subCateg,
+                    categImg: currentCateg ? currentCateg.img : '',
+                    article1: articles.length > 0 ? articles[0] : null,
+                    articles: articles.length > 1 ? articles.slice(1) : [],
+                    ename: ename,
+                    adTag: adTagMapping.list,
+                    categ: categ,
+                    campaigns: result.listCampaign || [],
+                    showEDM: edm.showEDM(req.cookies.addEDM, result.listCampaign),
+                    origin: req.protocol + "://" + req.get('host'),
+                    fullURL: req.protocol + "://" + req.get('host') + req.originalUrl
+                  });
+            }, function(err) {
+              return next(err);
+            });
+    }
   return {
     renderArticle: renderArticle,
-    renderArticles: renderArticles
+    renderArticles: renderArticles,
+    renderSubcatArticles: renderSubcatArticles
   };
 };

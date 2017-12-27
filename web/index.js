@@ -10,6 +10,7 @@ import 'bootpag/lib/jquery.bootpag.js';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap';
 
+
 import './assets/css/topMenu.css';
 import './assets/css/mobileMenu.css';
 import './assets/css/articleDetail.css';
@@ -23,9 +24,14 @@ import './assets/css/campaign.css';
 import './assets/css/mpm.css';
 import './assets/css/newsletter.css';
 import './assets/css/upcomingEvents.css';
+import './assets/css/featherlight.css';
+import './assets/css/slick.css';
 
 import './js/lazy-scroll.js';
 import './js/jquery.endless-scroll.js';
+import './js/featherlight.js';
+import './js/slick.min.js';
+
 import './js/misc.js';
 
 var controllers = require('./controllers');
@@ -65,6 +71,7 @@ module.exports = function(options) {
     .directive('headbanner', [dirs.headbanner])
     .directive('midbanner', [dirs.midbanner])
     .directive('fixedbanner', [dirs.fixedbanner])
+    .directive('flyingcarpetfixedbanner', [dirs.flyingcarpetfixedbanner])
     .directive('lrec', [dirs.lrec])
     .directive('splashScreen', [dirs.splashScreen])
     .directive('homeArticle', [dirs.homeArticle])
@@ -82,7 +89,9 @@ module.exports = function(options) {
     .controller('HomepageController', ['$timeout', '$scope', '$window', 'gqModel', 'const',
       'queryHandler', controllers.homepage])
     .controller('CategController', ['$timeout', '$scope', '$attrs', '$window', 'gqModel',
-      'const', 'queryHandler', controllers.category])
+      'const', 'queryHandler', controllers.category]) 
+    .controller('subCategController', ['$timeout', '$scope', '$attrs', '$window', 'gqModel',
+      'const', 'queryHandler', controllers.subcategory])
     .controller('ArticleController', ['$timeout', '$scope', '$attrs','$window', 'gqModel',
       'const', 'queryHandler', 'articleUtil', controllers.article])
     .controller('ContributorController', ['$timeout', '$scope', 'gqModel',
