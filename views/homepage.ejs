@@ -97,18 +97,8 @@
               carousel-div="'editor-picks-carousel'"
               show-link="<%= SHOW_EDITOR_PICK_LINK %>"></add-carousel>
           </div>
-            <div class="testslid">
-                <div>your content</div>
-                <div>your content</div>
-                <div>your content</div>
-            </div>
-              <script type="text/javascript">
-                $(document).ready(function(){
-                  $('.testslid').slick({
-                    
-                  });
-                });
-              </script>
+   
+             
           <div ng-repeat="articles in categArticles track by $index">
             <midbanner ng-if="$index % 3 === 0" midbanner-id="midbanner_categ_{{$index}}"></midbanner>
             <div class="row">
