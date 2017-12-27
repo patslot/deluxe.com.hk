@@ -400,6 +400,9 @@ background: #ccc;
 }
 
 @media (max-width: 767px) {
+    .nm_section .nm_section_header_ball{
+        height: 10vw; 
+    }
     .nm_highlight {
       background-image: url(/img/highlight_m.png) !important;
       background-size: 100% !important;
