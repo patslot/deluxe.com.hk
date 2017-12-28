@@ -161,12 +161,12 @@ module.exports = function(GRAPHQL_ENDPOINT) {
   };
 
   var createQuery = function(queries) {
-       console.log( 'query { ' + queries.join(' ') + ' }');
+     //  console.log( 'query { ' + queries.join(' ') + ' }');
     return 'query { ' + queries.join(' ') + ' }';
   };
 
   var createQueryWithParams = function(paramStr, queries) {
-     console.log( 'query (' + paramStr + ') { ' + queries.join(' ') + ' }');
+     //console.log( 'query (' + paramStr + ') { ' + queries.join(' ') + ' }');
        return 'query (' + paramStr + ') { ' + queries.join(' ') + ' }';
   };
 

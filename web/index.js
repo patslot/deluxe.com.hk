@@ -31,6 +31,7 @@ import './js/lazy-scroll.js';
 import './js/jquery.endless-scroll.js';
 import './js/featherlight.js';
 import './js/slick.min.js';
+import './assets/css/slick/slick-theme.css';
 
 import './js/misc.js';
 
