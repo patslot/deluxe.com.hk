@@ -85,9 +85,11 @@ const htmlTpl = `
                 <div class="artd_article_subHead">
                   <%- content.subTitle %>
                 </div>
-                <div align="center" class="artd_intro_photo"><div class="artd_article_Photo">
-                  <img src="<%- content.imgFile %>"></div>
-                  <div class="artd_article_caption"><%- content.caption %></div>
+                <div align="center" class="artd_intro_photo">
+                   <a href="#" data-featherlight="<%- content.imgFile %>">
+                        <div class="artd_article_Photo"><img src="<%- content.imgFile %>"></div>
+                        <div class="artd_article_caption"><%- content.caption %></div>
+                    </a>
                 </div>
                   <div class="artd_article_Text">
                     <%- content.content %>
