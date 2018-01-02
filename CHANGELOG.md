@@ -1,12 +1,32 @@
 ## Change Log
+
+### v1.1.10
+- Add youtube link in mobile site nav
+
+### v1.1.9
+- Website & Mobile
+    1. Added small floating icon at bottom right corner to lead readers to next article.
+    2. Added Join Deluxe Club button.
+    3. Updated Instagram widget appearance and logo.
+    4. Added opener photo to event & contributors page.
+    5. Updated Facebook, Instagram and Youtube icon.
+    6. Update the recommended for you of Contributors' article by time of entry.
+    7. New design of recommended for you, highlight and editor's pick.
+
+-   Mobile site
+    1. Fonts enlarged from 14px to 18px .
+    2. Swipe left or right function at MPM session.
+    3. Moving panel photos in full width at home & channel pages.
+    4. Hide Facebook, Instagram, Events & Contributors widgets
+
 ### v1.1.8
-- Update logo 
+- Update Logo with Christmas theme
 
 ### v1.1.7
-- Update Email address in mobile site menu  
+- Change Email address in mobile site menu 
 
 ### v1.1.6
-- Update Email address in footer    
+- Change Email Address in footer 
 
 ### v1.1.5
 - Add Facebook Pixel    
