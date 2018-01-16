@@ -110,6 +110,7 @@ export default function($timeout, $scope, $window, gqModel, c, queryHandler) {
       return false;
     }
     $scope.loading = true;
+    $('#editor-picks-carouselslick').slick('setPosition');
     if ($scope.loadIdx === 0) {
       loadHomeArticles();
     } else if ($scope.loadIdx === 1) {

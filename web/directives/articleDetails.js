@@ -147,7 +147,7 @@ const htmlTpl = `
         "title": "<%= pvLog.title %>", "cid": "<%= pvLog.cid %>", "news": "<%= pvLog.news %>",
         "edm": "", "action": "PAGEVIEW", "subsect": "<%= pvLog.subsect %>", "subsubsect": "",
         "menu": "<%= pvLog.menu %>", "auth": "<%= pvLog.auth %>", "src": "AD", "L": "TC",
-        "ch": "<%= pvLog.channel %>", "cat": "<%= pvLog.category %>", "ky": "", "ngsid": "", "ref": ""
+        "ch": "<%= pvLog.channel %>", "cat": "<%= pvLog.category %>", "ky": "<%= pvLog.ky %>", "ngsid": "", "ref": ""
       }
     });
   });

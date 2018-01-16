@@ -581,7 +581,11 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+.four_col_slide_content .nm_section_block_title_cat {
+  font-style: italic;
+  color: #C4063D;
+  font-size: 11px;
+}
 .artd_article_label, .evtlist_article_label, .al_two_content_label,
 .four_col_slide .nm_section_block_title_cat {
   font-style: italic;

@@ -74,7 +74,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
           var regexp = /^mt_/;
           article.tag.split(",").forEach(function(element) {
               if (element.match(regexp)){
-                  console.log('match');
+                  //console.log('match');
                   ky.push(element.substring(3))
               }
           });
