@@ -82,6 +82,8 @@ export default function() {
                       speed: 300,
                       slidesToShow: 4,
                       slidesToScroll: 4,
+            nextArrow: '<a class="right carousel-control"></a>',
+  prevArrow: '<a class="left carousel-control" style="z-index:300;"></a>',
                       responsive: [
                         {
                           breakpoint: 991,
