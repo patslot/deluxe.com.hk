@@ -8,11 +8,15 @@
       <div class="mn_major_menu">
         <ul>
           <% menu.main.forEach(function(m) { %>
-          <li>
-            <a href="/<%= m.name %>" class="<%= m.activeClass %>">
-              <%= m.disName %>
-            </a>
-          </li>
+          <% if(m.disName != 'celebrities'){ %>
+                    <li>
+                      <a href="/<%= m.name %>" class="<%= m.activeClass %>">
+                        <%= m.disName %>
+                      </a>
+                    </li>
+                <% } else { %>
+                    <li><a href="/Celebrity"><img src="/img/beautifullife_logo.gif"</a></li>
+                <% } %>
           <% }) %>
              <li><a href="https://event-deluxe.nextdigital.com.hk/subscription.php" target="_blank">JOIN DELUXE CLUB</a></li>
         </ul>

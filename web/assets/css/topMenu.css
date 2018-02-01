@@ -156,3 +156,13 @@
     display: block;
   }
 }
+
+.navBeautifulLife{
+    text-indent: -9999px;
+    width: 70px;
+    height: 55px;
+    background-image: url(/img/beautifullife_logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+}
