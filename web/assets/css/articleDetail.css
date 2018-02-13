@@ -13,11 +13,7 @@
     overflow: hidden;
     width: 100%;
 }
-.artd_article_Photo:hover img{
-  -moz-transform: scale(1.1);
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
+
 .artd_article_Photo img {
   width: 100%;
   height: auto;

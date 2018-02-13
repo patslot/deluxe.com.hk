@@ -1,22 +1,14 @@
 <div id="home-slideshow-block" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-<% mpms.forEach(function(mpm, idx) { %>
-  <% var active = ""; if (idx === 0) { active = "active" } %>
-    <li data-target="#home-slideshow-block" data-slide-to="<%= idx %>" class="<%= active %>"></li>
-<% }) %>
-  </ol>
-
   <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
+  <div class="carousel-inner" id="homempm">
 <% mpms.forEach(function(mpm, idx) { %>
   <% var active = ""; if (idx === 0) { active = "active" } %>
     <div class="item <%= active %>">
       <a href="<%= mpm.linkURL %>" target="<%= mpm.linkTarget %>">
         <%- include('imageHasVideo.ejs', {a: {hasVideo: mpm.hasVideo, image: mpm.imgName}}) %>
       </a>
-      <div class="text-left">
-        <div class="nm_section_block_title_cat">[<%= mpm.disCatName %>]</div>
+      <div class="text-center mpm_title">
+        <div class="nm_section_block_title_cat"></div>
         <div class="nm_section_block_title">
           <a href="<%= mpm.linkURL %>" target="<%= mpm.linkTarget %>">
             <%- mpm.content %></a>
@@ -25,12 +17,4 @@
     </div>
 <% }) %>
   </div>
-
-  <!-- Left and right controls -->
-  <a class="left carousel-control" href="#home-slideshow-block" role="button" data-slide="prev">
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#home-slideshow-block" role="button" data-slide="next">
-    <span class="sr-only">Next</span>
-  </a>
 </div>

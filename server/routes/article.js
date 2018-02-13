@@ -9,6 +9,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
   var columnist = 'COLUMNIST';
 
   function renderArticle(req, res, next) {
+      
     var articleID = req.params.articleID;
     var article = {};
     article.id = articleID;
@@ -50,6 +51,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
           return next(err);
         });
     } else if (articleUtil.isCMSArticle(article.type)) {
+        
       gQuery.cmsArticleQuery(articleID)
         .catch(function(err) {
           // use all available data if article detail is not null
@@ -63,29 +65,22 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
         .then(function (result) {
           article = util._extend(article, result.getCMSArticleDetail);
           article.contributorName = article.contributorName ?
-            article.contributorName.replace(/\,/,'') : '';
+          article.contributorName.replace(/\,/,'') : '';
           article.ename = categMapping.nameToEname[article.categoryName];
           article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
           queryHandler.parseCmsArticleDetail(article);
           article.menu = queryHandler.parseMenu(result.listMenu);
           
-          // Assign 1x1 master tag from API tag field with mt_ 
-          var ky = []; 
-          var regexp = /^mt_/;
-          article.tag.split(",").forEach(function(element) {
-              if (element.match(regexp)){
-                  //console.log('match');
-                  ky.push(element.substring(3))
-              }
-          });
-          article.ky = ky;
-          
+          article.contributor = result.listContributor.find(function(x){
+              return x.catName = article.subCategory
+          })
+          console.log(article);
           queryHandler.handleArticleDetailCateg(article);
           article.campaigns = result.listCampaign || [];
           article.showEDM = edm.showEDM(req.cookies.addEDM, result.listCampaign);
           var categoryName = article.categoryName === 'Contributor' ? columnist : article.categoryName
           article.pageviewLog = categMapping.articlePageviewLog(categoryName,
-            cmsNewsType, article.id, article.issueId, article.title, article.contributorName, article.ky);
+            cmsNewsType, article.id, article.issueId, article.title, article.contributorName, article.masterTag);
           if (article.artBlock && article.artBlock.length > 0) {
             article.ogDescription = article.artBlock[0].content;
           }

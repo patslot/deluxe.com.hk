@@ -111,6 +111,8 @@ module.exports = function (client) {
       tag
       restricted
       categoryName
+      subCategory
+      masterTag
     }
   `;
 
