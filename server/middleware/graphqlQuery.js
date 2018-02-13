@@ -7,6 +7,20 @@ module.exports = function(GRAPHQL_ENDPOINT) {
   var client = new Lokka({transport: new Transport(GRAPHQL_ENDPOINT)});
   var gConst = require('./graphqlConst.js')(client);
 
+  const getLatestArticle = `
+  
+      getLatestArticle (offset: 0, count: 1) {
+        id
+        __typename
+        ... on CmsArticle {
+              cmsArticleDetail {
+                categoryName
+               }
+        }
+      }
+        
+    `;  
+    
   const getContributorName = `
     getCMSArticleDetail(articleID: $id) {
       ... on ContributorArticleDetail {
@@ -161,7 +175,7 @@ module.exports = function(GRAPHQL_ENDPOINT) {
   };
 
   var createQuery = function(queries) {
-       console.log( 'query { ' + queries.join(' ') + ' }');
+    //console.log( 'query { ' + queries.join(' ') + ' }');
     return 'query { ' + queries.join(' ') + ' }';
   };
 
@@ -181,12 +195,27 @@ module.exports = function(GRAPHQL_ENDPOINT) {
       return client.query(createQueryWithParams('$id: String',
         [listMenu, listCampaign, createCmsComponeFeedQuery('listContributor'), gConst.getCMSArticleDetail, getContributorName]), {id: articleID});
     },
-    homeQuery: function() {
-      return client.query(createQuery(['listMPM ' + cmsComponeFeedModel,
+    newHomeQuery: function(listCategArticle, offset, count) {
+      return client.query(
+          createQueryWithParams('$offset: Int, $count: Int',
+                                [ 'listFashionMPM ' + cmsComponeFeedModel,
+                                       'listBeautyMPM ' + cmsComponeFeedModel,
+                                       'listLuxeMPM ' + cmsComponeFeedModel,
+                                       'listLifeStyleMPM ' + cmsComponeFeedModel,
         listMenu,
-        listCampaign,
-        createCmsComponeFeedQuery('listHomeLatestArticle')
-      ]));
+        listCampaign,getLatestArticle,
+        listCategArticle + ' ' + articleModel
+      ]),{offset: offset, count: count});
+    },
+    homeQuery: function() {
+       return client.query(createQuery(['listMPM ' + cmsComponeFeedModel,
+                listMenu,
+                listCampaign,
+                createCmsComponeFeedQuery('listHomeLatestArticle')
+           ]));
+    },
+    getLatestArticle: function(){
+      return client.query(createQuery([getLatestArticle]))  ;
     },
     categQuery: function(listCategArticle, offset, count) {
       return client.query(createQueryWithParams('$offset: Int, $count: Int',

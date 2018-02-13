@@ -5,7 +5,7 @@
   <% var active = ""; if (idx === 0) { active = "active" } %>
     <div class="item <%= active %>">
       <a href="<%= mpm.linkURL %>" target="<%= mpm.linkTarget %>">
-        <%- include('imageHasVideo.ejs', {a: {hasVideo: mpm.hasVideo, image: mpm.imgName}}) %>
+        <%- include('mpmImageHasVideo.ejs', {a: {hasVideo: mpm.hasVideo, image: mpm.imgName}}) %>
       </a>
       <div class="text-center mpm_title">
         <div class="nm_section_block_title_cat"></div>
