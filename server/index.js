@@ -68,7 +68,11 @@ module.exports = function(options) {
   app.get('/:categ/:articleID/:title', article.renderArticle);
   app.get('/:categ/:articleID', article.renderArticle);
   app.get('/:categ', article.renderArticles);
-
+    
+app.get('/google48dda8f13ef3ab4c.html', function (req, res) {
+  res.send('/web/google48dda8f13ef3ab4c.html')
+})   
+    
   app.use(function(err, req, res, next) {
     console.error(JSON.stringify(err));
     if (req.accepts(["text/html", "application/json"]) === "application/json") {
