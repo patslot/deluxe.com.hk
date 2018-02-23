@@ -380,7 +380,15 @@ background: #ccc;
   font-weight: bold;
   text-align: center;
 }
-
+.artd_instagram_large_image {
+  float: left;
+  width: 25%;
+  height: 220px;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  position: relative;
+}
 .artd_instagram_small_image {
   float: left;
   width: 33%;

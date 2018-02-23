@@ -180,7 +180,7 @@ module.exports = function(GRAPHQL_ENDPOINT) {
   };
 
   var createQueryWithParams = function(paramStr, queries) {
-   //  console.log( 'query (' + paramStr + ') { ' + queries.join(' ') + ' }');
+        console.log( 'query (' + paramStr + ') { ' + queries.join(' ') + ' }');
        return 'query (' + paramStr + ') { ' + queries.join(' ') + ' }';
   };
 
@@ -215,11 +215,12 @@ module.exports = function(GRAPHQL_ENDPOINT) {
            ]));
     },
     getLatestArticle: function(){
-      return client.query(createQuery([getLatestArticle]))  ;
+      return client.query(' query { ' + getLatestArticle + ' }')  ;
     },
-    categQuery: function(listCategArticle, offset, count) {
+    categQuery: function(listCategArticle, listCategMPMAPI, offset, count) {
       return client.query(createQueryWithParams('$offset: Int, $count: Int',
         [listCategArticle + ' ' + articleModel,
+         listCategMPMAPI  + ' ' + cmsComponeFeedModel,
         listMenu, listCampaign]),
         {offset: offset, count: count});
     },

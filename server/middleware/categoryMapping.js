@@ -129,6 +129,14 @@ module.exports = {
     'add_life': 'listLifeStyleArticle',
     'editor_picks': 'listEditorPick',
   },
+  enameToMPMCategAPI: {
+    'add_fash': 'listFashionMPM',
+    'add_beau': 'listBeautyMPM',
+    'add_luxe': 'listLuxeMPM',
+    'add_life': 'listLifeStyleMPM',
+    'add_wedd': 'listWeddingMPM',
+    'add_cele': 'listCelebMPM',
+  },
   categPageviewLog: categPageviewLog,
   articlePageviewLog: articlePageviewLog
 };

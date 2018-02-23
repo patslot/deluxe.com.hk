@@ -128,6 +128,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
     var ename = categMapping.nameToEname[categ];
     var adTagMapping = categMapping.nameToAdTag[categ];
     var listCategAPI = categMapping.enameToListCategAPI[ename || ''];
+    var listCategMPMAPI = categMapping.enameToMPMCategAPI[ename || ''];
     if (!ename || !adTagMapping || !listCategAPI) {
       return next();
     }
@@ -138,7 +139,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
       query = gQuery.queryEditorPicks(offset, count);
       handleFunc = queryHandler.parseCmsArticles;
     } else {
-      query = gQuery.categQuery(listCategAPI, offset, count);
+      query = gQuery.categQuery(listCategAPI,listCategMPMAPI, offset, count);
       handleFunc = queryHandler.parseArticles;
     }
     query.catch(function(err) {

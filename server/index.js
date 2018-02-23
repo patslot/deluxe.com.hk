@@ -51,7 +51,37 @@ module.exports = function(options) {
 
   app.use("/api", api);
 
-  app.get('/', home.render);
+  //app.get('/', home.render);
+    app.get('/', function(req, res) {
+        gQuery.getLatestArticle()
+        .catch(function(err) {
+          // use all available data
+          if (typeof err.rawData !== "undefined") {
+            console.error(JSON.stringify(err));
+            return err.rawData;
+          } else {
+            throw err;
+          }
+        })
+        .then(function(result){
+            var latestCategory = result.getLatestArticle[0].cmsArticleDetail.categoryName ;
+            if (latestCategory =="Fashion")  {
+                res.redirect('/Fashion');
+            }
+            if (latestCategory =="Beauty")  {
+                res.redirect('/Beauty');
+            }
+            if (latestCategory =="Luxe")  {
+                res.redirect('/Luxe');
+            }
+            if (latestCategory =="Lifestyle")  {
+                res.redirect('/Lifestyle');
+            }
+        }, function(err) {
+                      return next(err);
+        });
+              
+    });
   // TODO: Add favicon.ico?
   app.get('/favicon.ico', function(req, res) {
     res.sendStatus(204);
