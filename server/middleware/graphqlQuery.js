@@ -217,10 +217,16 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     getLatestArticle: function(){
       return client.query(' query { ' + getLatestArticle + ' }')  ;
     },
-    categQuery: function(listCategArticle, listCategMPMAPI, offset, count) {
+    NewcategQuery: function(listCategArticle, listCategMPMAPI, offset, count) {
       return client.query(createQueryWithParams('$offset: Int, $count: Int',
         [listCategArticle + ' ' + articleModel,
          listCategMPMAPI  + ' ' + cmsComponeFeedModel,
+        listMenu, listCampaign]),
+        {offset: offset, count: count});
+    },
+    categQuery: function(listCategArticle, offset, count) {
+      return client.query(createQueryWithParams('$offset: Int, $count: Int',
+        [listCategArticle + ' ' + articleModel,
         listMenu, listCampaign]),
         {offset: offset, count: count});
     },
