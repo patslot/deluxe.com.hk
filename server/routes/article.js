@@ -72,7 +72,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
           queryHandler.parseCmsArticleDetail(article);
           article.menu = queryHandler.parseMenu(result.listMenu);
           article.contributor = result.listContributor.find(function(x){
-              return x.catName = article.subCategory
+              return x.catName == article.subCategory
           })
           if (article.categoryName==='Contributor'){
               if (article.contributor !=undefined){
