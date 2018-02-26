@@ -180,7 +180,7 @@ module.exports = function(GRAPHQL_ENDPOINT) {
   };
 
   var createQueryWithParams = function(paramStr, queries) {
-        console.log( 'query (' + paramStr + ') { ' + queries.join(' ') + ' }');
+        //console.log( 'query (' + paramStr + ') { ' + queries.join(' ') + ' }');
        return 'query (' + paramStr + ') { ' + queries.join(' ') + ' }';
   };
 

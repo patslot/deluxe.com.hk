@@ -131,16 +131,15 @@
                     <div class="artd_article_publish_date">
                       日期：<%- publish %> 
                     </div>
+                     <% if(ename ==="contributor") { %>
+                          <div class="col-xs-12 contributorblock">
+                                 <%- include('partials/contributorsBlockInArticle.ejs', {contributor: contributor}) %>
+                          </div>
+                      <% } %>
                     <share-bar post-id="<%- id %>"
                       post-title="<%- title %>"></share-bar>
                       
-                       <% if(ename ==="contributor") { %>
-                          <div class="contributorblock">
-                                <div class="contributorName"><%- contributor.catName %></div>
-                                <div class="contributorImg"><%- contributor.imgName %></div>
-                                <div class="contributorContent"><%- contributor.content %></div>
-                          </div>
-                      <% } %>
+                      
                     <div class="artd_article_video">
                       <div id="video_player"></div>
                     </div>

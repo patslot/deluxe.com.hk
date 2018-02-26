@@ -63,6 +63,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
           }
         })
         .then(function (result) {
+          
           article = util._extend(article, result.getCMSArticleDetail);
           article.contributorName = article.contributorName ?
           article.contributorName.replace(/\,/,'') : '';
@@ -70,11 +71,25 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
           article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
           queryHandler.parseCmsArticleDetail(article);
           article.menu = queryHandler.parseMenu(result.listMenu);
-          
           article.contributor = result.listContributor.find(function(x){
               return x.catName = article.subCategory
           })
-          console.log(article);
+          if (article.categoryName==='Contributor'){
+              if (article.contributor !=undefined){
+                    article.contributor = queryHandler.parseContributor(article.contributor);
+              }
+              else{
+                  article.contributor = {
+                                            catName : "",
+                                            imgName: "",
+                                            post: "",
+                                            desc: "",
+                                        } ;
+                  
+              }
+              
+          }
+          
           queryHandler.handleArticleDetailCateg(article);
           article.campaigns = result.listCampaign || [];
           article.showEDM = edm.showEDM(req.cookies.addEDM, result.listCampaign);
