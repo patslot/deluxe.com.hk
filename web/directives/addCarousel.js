@@ -50,7 +50,8 @@ export default function() {
       titleClass: '=',
       carouselItems: '=',
       carouselDiv: '=',
-      showLink: '='
+      showLink: '=',
+      numCarousel: '='
     },
     link: function(scope, element) {
       var unwatch = scope.$watch(function(newVal) {
@@ -58,10 +59,14 @@ export default function() {
         var div = newVal.carouselDiv;
         var cDiv = '#' + div;
         var titleClass = newVal.titleClass;
+        var numCarousel = newVal.numCarousel; 
         var showLink = (titleClass === 'nm_editor_pick') && !newVal.showLink
                        ? false : true;
         if (!carouselItems || !cDiv || !titleClass) {
           return;
+        }
+        if (!numCarousel){
+            numCarousel =4; 
         }
         if (carouselItems.length === 0) {
           unwatch();
@@ -80,8 +85,8 @@ export default function() {
                         dots: false,
                       infinite: true,
                       speed: 300,
-                      slidesToShow: 4,
-                      slidesToScroll: 4,
+                      slidesToShow: numCarousel,
+                      slidesToScroll: numCarousel,
             nextArrow: '<a class="right carousel-control"></a>',
   prevArrow: '<a class="left carousel-control" style="z-index:300;"></a>',
                       responsive: [

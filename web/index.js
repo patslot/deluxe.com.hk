@@ -50,7 +50,7 @@ module.exports = function(options) {
         'add_cele': 'listCelebrityArticle',
         'add_life': 'listLifeStyleArticle'
       },
-      LOAD_CATEG_ARTICLES_COUNT: 4,
+      LOAD_CATEG_ARTICLES_COUNT: 6,
       MAX_CATEG_ARTICLES: options.MAX_CATEG_ARTICLES || 200,
       GRAPHQL_ENDPOINT: options.GRAPHQL_ENDPOINT || 'http://localhost:4000/graphql'
     };
@@ -68,6 +68,7 @@ module.exports = function(options) {
     .directive('addCarousel', ['$timeout', dirs.addCarousel])
     .directive('facebookBlock', [dirs.facebook])
     .directive('instagramMedias', [dirs.instagram])
+    .directive('instagramMedias4', [dirs.instagram4])
     .directive('skinnerBlock', [dirs.skinner])
     .directive('headbanner', [dirs.headbanner])
     .directive('midbanner', [dirs.midbanner])

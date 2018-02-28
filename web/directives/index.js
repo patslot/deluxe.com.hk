@@ -1,4 +1,5 @@
 export { default as instagram } from './instagram';
+export { default as instagram4 } from './instagram4';
 export { default as facebook } from './facebook';
 export { default as latestArticles } from './latestArticles';
 export { default as addCarousel } from './addCarousel';

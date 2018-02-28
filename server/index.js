@@ -51,8 +51,8 @@ module.exports = function(options) {
 
   app.use("/api", api);
 
-  app.get('/', home.render);
-/*    app.get('/', function(req, res) {
+//  app.get('/', home.render);
+    app.get('/', function(req, res) {
         gQuery.getLatestArticle()
         .catch(function(err) {
           // use all available data
@@ -81,7 +81,7 @@ module.exports = function(options) {
                       return next(err);
         });
               
-    });*/
+    });
   // TODO: Add favicon.ico?
   app.get('/favicon.ico', function(req, res) {
     res.sendStatus(204);

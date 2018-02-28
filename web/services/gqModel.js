@@ -21,7 +21,22 @@ export default function(c) {
       }
     }
   }`;
-
+    
+  const listInstagram4 = `listInstagram(limit: 4) {
+    link
+    type
+    videos {
+      standard_resolution {
+        url
+      }
+    }
+    images {
+      thumbnail {
+        url
+      }
+    }
+  }`;
+    
   const articleIDModel = ` (offset: $offset, count: $count) {
     id
   }`;
@@ -168,7 +183,7 @@ const listContributorArticleAll = `listContributorArticleAll(offset: $offset, co
   };
 
   var createQueryWithParams = function(paramStr, queries) {
-    // console.log('query (' + paramStr + ') { ' + queries.join(' ') + ' }') ;
+//     console.log('query (' + paramStr + ') { ' + queries.join(' ') + ' }') ;
     return 'query (' + paramStr + ') { ' + queries.join(' ') + ' }';
   };
 
@@ -223,7 +238,10 @@ const listContributorArticleAll = `listContributorArticleAll(offset: $offset, co
     queryCateg: function(listCategArticle, offset, count) {
       // Query list<Categ=Fashion|...>Article
       return client.query(createQueryWithParams('$offset: Int, $count: Int',
-        [listCategArticle + ' ' + articleModel]),
+        [listCategArticle + ' ' + articleModel,
+             listHomeEditorPick,
+        createCmsComponeFeedQuery('listHomeHighlight'),
+         listInstagram4]),
         {offset: offset, count: count});
     },
     querySubCateg: function(listCategArticle, tag, offset, count) {

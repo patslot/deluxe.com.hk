@@ -33,7 +33,12 @@
           <!-- div inc='inc/sub_menu.html'></div -->
           <headbanner headbanner-id="headbanner1"></headbanner>
           <div class="row">
-            <%- include('partials/categ1stArticle.ejs', {article: article1}) %>
+           <div class="nm_mpm col-md-6 col-xs-12">
+                <div class="mpm_content">
+                  <%- include('partials/mpms.ejs', {mpms: mpms}) %>
+                </div>
+              </div>
+          
             <div class="lrec_ad_wrapper col-md-3">
               <lrec lrec-id="lrec1" lrec-num="1"></lrec>
               <lrec lrec-id="lrec2" lrec-num="2"></lrec>
@@ -41,18 +46,38 @@
           </div>
         </div>
         <div class="nm_section">
-          <fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner>
-          <%- include('partials/categArticles.ejs', {articles: articles2to5}) %>
+          <%- include('partials/categArticles.ejs', {articles: article1to2}) %>
         </div>
       </div>
     </div>
+      <div class="row">
+              <div class="col-xs-12 col-sm-6 nm_section">
+          <add-carousel title-class="'nm_highlight'" carousel-items="highlights" carousel-div="'highlight-carousel'" num-carousel="2"></add-carousel>
+               </div>
+               <div class="col-xs-12 col-sm-6 nm_section">
+           <add-carousel title-class="'nm_editor_pick'" carousel-items="editorPicks"
+              carousel-div="'editor-picks-carousel'"  num-carousel="2"
+              show-link="<%= SHOW_EDITOR_PICK_LINK %>"></add-carousel>
+               </div>
+       </div>
+     <div class="row">
+         <div class="nm_section">
+          <%- include('partials/categArticles.ejs', {articles: articles3to4}) %>
+        </div>
+    </div>
+     <div class="nm_section">
+                  <div class="nm_section_block homepage_instagram_block">
+                    <instagram-medias4 ig-medias="igMedias"></instagram-medias4>
+                  </div>
+      </div>                      
+
     <div class="main_content" lazy-scroll="loadCategArticles()"
       style="min-height: 0px !important"
       lazy-no-scroll="noMoreArticles">
       <div class="nm_section" ng-repeat="articles in moreArticleGroups track by $index">
-        <midbanner midbanner-id="midbanner_group_{{$index}}"></midbanner>
-        <fixedbanner ng-if="$index < 3" fixedbanner-id="fixedbanner{{$index + 2}}"
-          fixedbanner-num="{{$index + 2}}"></fixedbanner>
+        <midbanner  ng-if="$index < 4" midbanner-id="midbanner_group_{{$index}}" midbanner-num="{{$index + 1}}"></midbanner>
+        <fixedbanner ng-if="$index < 4" fixedbanner-id="fixedbanner{{$index + 1}}"
+          fixedbanner-num="{{$index + 1}}"></fixedbanner>
         <articles-in-categ add-articles="articles"></articles-in-categ>
       </div>
       <div align="center" ng-show="loadingArticles" style="margin-top: 20px">

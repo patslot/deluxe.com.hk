@@ -4,6 +4,23 @@ var util = require('util');
 var moment = require('moment');
 
 module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) {
+    
+function parseMpms(origMpms) {
+    var mpms = origMpms || [];
+    mpms.forEach(function(m) {
+      var linkType = articleUtil.getArticleType(m.linkURL);
+      if (linkType) {
+        m.linkURL = '/' + m.catName + '/' + m.linkURL + '/' + encodeURIComponent(m.content);
+        m.linkTarget = '_self';
+      } else {
+        m.linkTarget = '_blank';
+      }
+      m.catName = m.catName.toLowerCase();
+      queryHandler.handleArticleCateg(m);
+    });
+    return mpms;
+}
+    
   var maxUpcomingEvent = 10;
   var cmsNewsType = 'OTHER';
   var columnist = 'COLUMNIST';
@@ -154,7 +171,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
       query = gQuery.queryEditorPicks(offset, count);
       handleFunc = queryHandler.parseCmsArticles;
     } else {
-      query = gQuery.categQuery(listCategAPI, offset, count);
+      query = gQuery.newCategQuery(listCategAPI,listCategMPMAPI, offset, count);
       handleFunc = queryHandler.parseArticles;
     }
     query.catch(function(err) {
@@ -170,12 +187,14 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
       var articles = handleFunc(categ, (result[listCategAPI] || []));
       var categs = result.listMenu || [];
       var currentCateg = getCurrentCateg(categs, categ);
+      var mpm = result[listCategMPMAPI];
       res.render('categ', {
         pageviewLog: categMapping.categPageviewLog(categ),
         menu: queryHandler.parseMenu(categs, categ),
+        mpms: parseMpms(mpm),
         categImg: currentCateg ? currentCateg.img : '',
-        article1: articles.length > 0 ? articles[0] : null,
-        articles2to5: articles.length > 1 ? articles.slice(1) : [],
+        article1to2: articles.length > 0 ? articles.slice(0,2) : [],
+        articles3to4: articles.length > 1 ? articles.slice(2,4) : [],
         ename: ename,
         adTag: adTagMapping.list,
         categ: categ,

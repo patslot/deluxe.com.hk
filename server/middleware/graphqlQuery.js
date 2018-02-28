@@ -28,7 +28,21 @@ module.exports = function(GRAPHQL_ENDPOINT) {
       }
     }
   `;
-
+    
+  const cmsSpecialFeedItem = `{
+    id
+    expire
+    lastUpdate
+    title
+    videoFile
+    videoThumbnail
+    youtube
+    imgFile
+    oldCatName
+    oldSecName
+    intro
+  }`;
+    
   const cmsComponeFeedModel = `{
     homeGalleryID
     apID
@@ -180,7 +194,7 @@ module.exports = function(GRAPHQL_ENDPOINT) {
   };
 
   var createQueryWithParams = function(paramStr, queries) {
-        //console.log( 'query (' + paramStr + ') { ' + queries.join(' ') + ' }');
+//        console.log( 'query (' + paramStr + ') { ' + queries.join(' ') + ' }');
        return 'query (' + paramStr + ') { ' + queries.join(' ') + ' }';
   };
 
@@ -217,17 +231,19 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     getLatestArticle: function(){
       return client.query(' query { ' + getLatestArticle + ' }')  ;
     },
-    NewcategQuery: function(listCategArticle, listCategMPMAPI, offset, count) {
+    newCategQuery: function(listCategArticle, listCategMPMAPI, offset, count) {
       return client.query(createQueryWithParams('$offset: Int, $count: Int',
         [listCategArticle + ' ' + articleModel,
          listCategMPMAPI  + ' ' + cmsComponeFeedModel,
+         'listHomeHighlight' + ' ' + cmsComponeFeedModel, 
+         'listHomeEditorPick' + ' ' + cmsSpecialFeedItem, 
         listMenu, listCampaign]),
         {offset: offset, count: count});
     },
     categQuery: function(listCategArticle, offset, count) {
       return client.query(createQueryWithParams('$offset: Int, $count: Int',
-        [listCategArticle + ' ' + articleModel,
-        listMenu, listCampaign]),
+        [   listCategArticle + ' ' + articleModel,
+            listMenu, listCampaign]),
         {offset: offset, count: count});
     },
     subCategQuery: function(listCategArticle, tag, offset, count) {

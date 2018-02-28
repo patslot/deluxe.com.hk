@@ -383,12 +383,17 @@ background: #ccc;
 .artd_instagram_large_image {
   float: left;
   width: 25%;
-  height: 220px;
   text-align: center;
   margin-top: 5px;
   margin-bottom: 5px;
   position: relative;
+  padding: 10px;
 }
+.artd_instagram_large_image img {
+  height: 100%;
+  width: 100%;
+}
+
 .artd_instagram_small_image {
   float: left;
   width: 33%;
@@ -568,12 +573,12 @@ a {
 }
 
 .instagram_block, .homepage_instagram_block {
-  width: 300px;
+/*  width: 300px;*/
   margin-left: auto;
   margin-right: auto;
 }
 .homepage_instagram_block {
-  height: 375px;
+/*  height: 375px;*/
 }
 
 @media (max-width: 767px) {
