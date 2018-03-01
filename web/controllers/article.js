@@ -161,13 +161,33 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
               }
           });
         nextArticle.ky = ky;
-        console.log(ky);
         nextArticle.type = articleType;
         nextArticle.id = nextArticleID;
         nextArticle.idx = $scope.nextArticles.length.toString();
         nextArticle.isSharedUrl = isSharedUrl;
         nextArticle.latestArticles = parseRecommendArticles(nextArticleID,
             queryHandler.parseArticles);
+       
+          
+        if( nextArticle.categoryName === "Contributor" )  {
+             nextArticle.contributor = res.listContributor.find(function(x){
+              return x.catName === nextArticle.contributorName
+            })
+            if (nextArticle.contributor !=undefined){
+                    nextArticle.contributor = queryHandler.parseContributor(nextArticle.contributor);
+              }
+              else{
+                  nextArticle.contributor = {
+                                            catName : "",
+                                            imgName: "",
+                                            post: "",
+                                            desc: "",
+                                        } ;
+                  
+              }
+            console.log( nextArticle.contributor);
+        }
+          
         if (articleUtil.isNewsArticle(articleType)) {
           queryHandler.parseNewsArticleDetail(nextArticle);
           nextArticle.pvLog = articleUtil.articlePageviewLog(
@@ -180,6 +200,7 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
             nextArticle.id, nextArticle.issueId, nextArticle.title, '', nextArticle.ky);
         }
         queryHandler.handleArticleDetailCateg(nextArticle);
+          
         $scope.nextArticles.push(nextArticle);
         
         curArticleID = nextArticleID;
