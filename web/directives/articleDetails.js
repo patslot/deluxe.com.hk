@@ -75,6 +75,28 @@ const htmlTpl = `
             <div id="article-<%= idx %>" class="artd_article_publish_date">
               日期：<%- publish %>
             </div>
+            <% if (disCategoryName === "contributors") { %>
+                          <div class="col-xs-12 contributorblock">
+                                  <div class="col-xs-12">
+                                       <div class="row">
+                                        <a ng-href="/Contributor/<%= contributor.catName %>">
+                                          <div class="col-xs-4 col-sm-2 contributorImg">
+                                            <img src="<%= contributor.imgName %>" />
+                                          </div>
+                                          <div class="col-xs-8  col-sm-10 ctb_item_container">
+                                            <div class="contributorName">
+                                              <%= contributor.catName %> <%= contributor.post %> 
+                                            </div>
+                                            <div class="contributorDesc">
+                                              <%- contributor.desc %>
+                                            </div>
+                                          </div>
+                                        </a>
+                                      </div>
+
+                                    </div>
+                          </div>
+            <% } %>
             <share-bar post-id="<%- id %>"
               post-title="<%- title %>"></share-bar>
             <div class="artd_article_video">

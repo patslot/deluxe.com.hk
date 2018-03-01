@@ -22,6 +22,7 @@ export default function(c) {
     }
   }`;
     
+<<<<<<< HEAD
   const listInstagram4 = `listInstagram(limit: 4) {
     link
     type
@@ -37,6 +38,17 @@ export default function(c) {
     }
   }`;
     
+=======
+  const getContributorName = `
+    getCMSArticleDetail(articleID: $id) {
+      ... on ContributorArticleDetail {
+        contributorName
+      }
+    }
+  `;
+    
+
+>>>>>>> dev-v1.2.0
   const articleIDModel = ` (offset: $offset, count: $count) {
     id
   }`;
@@ -183,7 +195,9 @@ const listContributorArticleAll = `listContributorArticleAll(offset: $offset, co
   };
 
   var createQueryWithParams = function(paramStr, queries) {
+
 //     console.log('query (' + paramStr + ') { ' + queries.join(' ') + ' }') ;
+
     return 'query (' + paramStr + ') { ' + queries.join(' ') + ' }';
   };
 
@@ -307,7 +321,7 @@ const listContributorArticleAll = `listContributorArticleAll(offset: $offset, co
     },  
     queryCmsArticleDetail: function(articleID) {
       return client.query(createQueryWithParams('$id: String',
-        [gConst.getCMSArticleDetail]), {id: articleID});
+        [gConst.getCMSArticleDetail, createCmsComponeFeedQuery('listContributor')]), {id: articleID});
     },
     queryNewsArticleDetail: function(articleID) {
       return client.query(createQueryWithParams('$id: String',
