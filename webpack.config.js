@@ -16,6 +16,7 @@ module.exports = {
     libraryTarget: "var",
     library: "AddApp"
   },
+     watch: true,
   module: {
     loaders: [
       {

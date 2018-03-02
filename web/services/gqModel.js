@@ -22,7 +22,7 @@ export default function(c) {
     }
   }`;
     
-<<<<<<< HEAD
+
   const listInstagram4 = `listInstagram(limit: 4) {
     link
     type
@@ -38,7 +38,7 @@ export default function(c) {
     }
   }`;
     
-=======
+
   const getContributorName = `
     getCMSArticleDetail(articleID: $id) {
       ... on ContributorArticleDetail {
@@ -48,7 +48,6 @@ export default function(c) {
   `;
     
 
->>>>>>> dev-v1.2.0
   const articleIDModel = ` (offset: $offset, count: $count) {
     id
   }`;

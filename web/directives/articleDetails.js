@@ -80,10 +80,10 @@ const htmlTpl = `
                                   <div class="col-xs-12">
                                        <div class="row">
                                         <a ng-href="/Contributor/<%= contributor.catName %>">
-                                          <div class="col-xs-4 col-sm-2 contributorImg">
+                                          <div class="col-xs-2 col-sm-2 contributorImg">
                                             <img src="<%= contributor.imgName %>" />
                                           </div>
-                                          <div class="col-xs-8  col-sm-10 ctb_item_container">
+                                          <div class="col-xs-10  col-sm-10 ctb_item_container">
                                             <div class="contributorName">
                                               <%= contributor.catName %> <%= contributor.post %> 
                                             </div>
