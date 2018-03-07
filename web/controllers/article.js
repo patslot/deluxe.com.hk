@@ -197,7 +197,7 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
           queryHandler.parseCmsArticleDetail(nextArticle);
           nextArticle.pvLog = articleUtil.articlePageviewLog(
             nextArticle.categoryName, cmsNewsType,
-            nextArticle.id, nextArticle.issueId, nextArticle.title, '', nextArticle.ky);
+            nextArticle.id, nextArticle.issueId, nextArticle.title, '', nextArticle.masterTag);
         }
         queryHandler.handleArticleDetailCateg(nextArticle);
           
