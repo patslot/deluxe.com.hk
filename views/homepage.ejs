@@ -11,9 +11,11 @@
     fullURL: fullURL
   }) %>
   <%- include('partials/googleAdTag.ejs', {adTag: 'Index'}) %>
+</script>
 </head>
 
 <body ng-app="addv2" ng-controller="HomepageController">
+  
     <skinner-block></skinner-block>
     <splash-screen></splash-screen>
     <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
@@ -95,6 +97,8 @@
               carousel-div="'editor-picks-carousel'"
               show-link="<%= SHOW_EDITOR_PICK_LINK %>"></add-carousel>
           </div>
+   
+             
           <div ng-repeat="articles in categArticles track by $index">
             <midbanner ng-if="$index % 3 === 0" midbanner-id="midbanner_categ_{{$index}}"></midbanner>
             <div class="row">

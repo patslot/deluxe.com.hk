@@ -73,6 +73,7 @@ function categPageviewLog(categ, content, author) {
     issueid: '',
     title: '',
     auth: '',
+      ky:'',
     channel: catCh.ch,
     category: catCh.cat
   };
@@ -83,7 +84,7 @@ function categPageviewLog(categ, content, author) {
   return log;
 }
 
-function articlePageviewLog(categ, newsType, articleID, issueDate, title, author) {
+function articlePageviewLog(categ, newsType, articleID, issueDate, title, author,ky) {
   var catCh = categChanelNameForLog(categ);
   categ = categ.toUpperCase();
   var log = {
@@ -97,7 +98,8 @@ function articlePageviewLog(categ, newsType, articleID, issueDate, title, author
     title: title,
     auth: author,
     channel: catCh.ch,
-    category: catCh.cat
+    category: catCh.cat,
+      ky: ky
   };
   return handleLogMapping(log, categ, articleLogMapping);
 }
@@ -126,6 +128,14 @@ module.exports = {
     'add_cele': 'listCelebrityArticle',
     'add_life': 'listLifeStyleArticle',
     'editor_picks': 'listEditorPick',
+  },
+  enameToMPMCategAPI: {
+    'add_fash': 'listFashionMPM',
+    'add_beau': 'listBeautyMPM',
+    'add_luxe': 'listLuxeMPM',
+    'add_life': 'listLifeStyleMPM',
+    'add_wedd': 'listWeddingMPM',
+    'add_cele': 'listCelebMPM',
   },
   categPageviewLog: categPageviewLog,
   articlePageviewLog: articlePageviewLog

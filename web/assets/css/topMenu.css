@@ -166,3 +166,13 @@
     background-size: contain;
     display: inline-block;
 }
+
+.navJoinDeluxeClub{
+    display: inline-block;
+    text-indent: -1000px;
+    width: 132px;
+    height: 33px;
+    overflow: hidden;
+    background: url(/img/iconJoinDeluxeClub.png) no-repeat;
+    background-size: cover; 
+}

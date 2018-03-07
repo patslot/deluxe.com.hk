@@ -4,22 +4,19 @@
 }
 
 .up_coming_ball {
-  height: 100px;
-  width: 100px;
+  height: 32px;
+  width: 100%;
   margin: 0px auto;
   padding: 0px 0px;
   color: white;
-  border-radius: 69px;
-  margin-bottom: -53px;
 }
 
 .up_coming_section .nm_section_border {
-  padding-top: 60px;
+  padding-top: 10px;
   height: 450px;
 }
 .up_coming_section .nm_section_scroll {
-  height: 380px;
-  overflow-y: scroll;
+  height: auto;
 }
 
 @media (max-width: 767px) {
@@ -42,8 +39,10 @@
 }
 
 .nm_up_coming {
-  background-image: url(/img/icon13.png) !important;
+  background-image: url(/img/upcomigevent.png) !important;
   background-size: 100%;
+  background-repeat: no-repeat;
+    
 }
 
 .uce_title {

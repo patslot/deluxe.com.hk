@@ -16,7 +16,8 @@ module.exports = function(options) {
   var contributor = require('./routes/contributor.js')(gQuery, categMapping, queryHandler, edm);
   var events = require('./routes/events.js')(gQuery, categMapping, queryHandler, edm)
   var api = require("./routes/api.js")(options.edmSubscriptionEndpoint);
-
+  // var search = require("./routes/search.js")(gQuery, categMapping, queryHandler, edm);
+    
   var app = express();
   app.locals.MAX_CATEG_ARTICLES = options.MAX_CATEG_ARTICLES;
   app.locals.GRAPHQL_ENDPOINT = options.graphqlEndpoint;
@@ -71,8 +72,8 @@ module.exports = function(options) {
     
 app.get('/google48dda8f13ef3ab4c.html', function (req, res) {
   res.send('/web/google48dda8f13ef3ab4c.html')
-})   
-    
+})
+   
   app.use(function(err, req, res, next) {
     console.error(JSON.stringify(err));
     if (req.accepts(["text/html", "application/json"]) === "application/json") {

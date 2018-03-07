@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('partials/header.ejs', {
+    title: categ + " - " + SITE_NAME,
+    ogTitle: categ + " - Apple Daily Deluxe 潮流資訊平台",
+    ogImage: null,
+    ogDescription: null,
+    origin: origin,
+    fullURL: fullURL
+  }) %>
+  <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
+</head>
+
+<body ng-app="addv2" ng-controller="subCategController" categ-ename="<%= ename %>"
+  categ-name="<%= categ %>" sub-categ="<%= subcateg %>">
+  <splash-screen></splash-screen>
+  <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
+  <%- include('partials/topMenu.ejs', {menu: menu}) %>
+  <% if (categImg) { %>
+  <div class="ls_banner hidden-xs" style="background: url('<%= categImg %>') center repeat-x;">
+    <img src="<%= categImg %>" style="visibility: hidden">
+  </div>
+  <div class="ls_banner visible-xs" style="height: 40px; background: url('<%= categImg %>') center repeat-x; background-size: auto 100%">
+  </div>
+  <% } %>
+  <div class="container nm_home">
+    <skinner-block></skinner-block>
+    <div class="row nm_row">
+      <div class="main_content">
+        
+        <div class="nm_section">
+          <!-- div inc='inc/sub_menu.html'></div -->
+          <headbanner headbanner-id="headbanner1"></headbanner>
+          <div class="row">
+            <%- include('partials/categ1stArticle.ejs', {article: article1}) %>
+            <div class="lrec_ad_wrapper col-md-3">
+              <lrec lrec-id="lrec1" lrec-num="1"></lrec>
+              <lrec lrec-id="lrec2" lrec-num="2"></lrec>
+            </div>
+          </div>
+        </div>
+        <div class="nm_section">
+          <fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner>
+          <%- include('partials/categArticles.ejs', {articles: articles}) %>
+        </div>
+      </div>
+    </div>
+    <div class="main_content" lazy-scroll="loadCategArticles()"
+      style="min-height: 0px !important"
+      lazy-no-scroll="noMoreArticles">
+      <div class="nm_section" ng-repeat="articles in moreArticleGroups track by $index">
+        <midbanner midbanner-id="midbanner_group_{{$index}}"></midbanner>
+        <fixedbanner ng-if="$index < 3" fixedbanner-id="fixedbanner{{$index + 2}}"
+          fixedbanner-num="{{$index + 2}}"></fixedbanner>
+        <articles-in-categ add-articles="articles"></articles-in-categ>
+      </div>
+      <div align="center" ng-show="loadingArticles" style="margin-top: 20px">
+        <img src="/img/loading.gif" />
+      </div>
+    </div>
+    <%- include('partials/footer.ejs') %>
+    <%- include('partials/newsletter.ejs') %>
+    <%- include('partials/campaign.ejs') %>
+  </div>
+  <%- include('partials/logging.ejs', {pageviewLog: pageviewLog}) %>
+  <%- include('partials/google-analytics.ejs') %>
+   <div class="btn_readmore" ng-show="scrollYPosition > screenHeight">
+             <a ng-click="readMoreButton()"><img src="/img/readmorebutton.png"></a>
+    </div>
+</body>
+
+</html>

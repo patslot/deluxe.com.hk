@@ -25,15 +25,14 @@
     nxmTrack.nxmAddSeg('NGSID=' + ngs_id);
     nxmTrack.nxmSendPageDepth(0, new Date().getTime());
   }
-
-  var nxmObj1 = {"region": "HK", "prod": "ADD", "site": "https://add.appledaily.com.hk",
+    var nxmObj1 = {"region": "HK", "prod": "ADD", "site": "https://add.appledaily.com.hk",
     "platform": "WEB", "section": "<%= section %>", "media": "TEXT",
     "content": "<%= content %>", "issueid": "<%= issueid %>", "title": "<%= title %>",
     "cid": "<%= cid %>", "news": "<%= news %>",
     "edm": "", "action": "PAGEVIEW", "subsect": "<%= subsect %>", "subsubsect": "",
     "menu": "<%= menu %>", "auth": "<%= auth %>", "src": "AD", "L": "TC",
-    "ch": "<%= channel %>", "cat": "<%= category %>", "ky": "", "ngsid": "", "ref": ""};
-
+    "ch": "<%= channel %>", "cat": "<%= category %>", "ky": "<%= ky %>", "ngsid": "", "ref": ""};
+   
   (function() {
     sendPageview(nxmObj1);
     //Scroll Depth tracking

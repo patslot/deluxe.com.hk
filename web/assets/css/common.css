@@ -179,7 +179,19 @@ html {
 .nm_section {
   margin-bottom: 15px;
 }
+.artsListImg{
+   overflow: hidden; 
+}
 
+.artsListImg img{
+     transition: all .2s ease-in-out; 
+}
+.artsListImg:hover img{
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+
+}
 .nm_section img,
 .nm_section_block img {
   max-width: 100%;
@@ -368,7 +380,15 @@ background: #ccc;
   font-weight: bold;
   text-align: center;
 }
-
+.artd_instagram_large_image {
+  float: left;
+  width: 25%;
+  height: 220px;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  position: relative;
+}
 .artd_instagram_small_image {
   float: left;
   width: 33%;
@@ -581,7 +601,11 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+.four_col_slide_content .nm_section_block_title_cat {
+  font-style: italic;
+  color: #C4063D;
+  font-size: 11px;
+}
 .artd_article_label, .evtlist_article_label, .al_two_content_label,
 .four_col_slide .nm_section_block_title_cat {
   font-style: italic;

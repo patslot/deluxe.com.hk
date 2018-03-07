@@ -14,7 +14,7 @@
 </head>
 
 <body id="eventBody" ng-app="addv2" ng-controller="EventsController"
-  categ-name="<%= categName %>" num-of-pages="<%= numOfPages %>">
+  categ-name="<%= categName %>" num-of-pages="<%= numOfPages %>" num-of-events="<%= numOfEvents %>">
   <skinner-block></skinner-block>
   <splash-screen></splash-screen>
   <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
@@ -65,6 +65,7 @@
             </div>
           </div>
           <div class="pull-right nm_mpm col-xs-12" id="firstPage">
+           
             <% events.forEach(function(e) { %>
             <div class="event_item">
               <a href="<%= e.linkURL %>" target="<%= e.linkTarget %>">
@@ -106,33 +107,34 @@
           </div>
         </div>
         <div style="clear:both"></div>
-        <% if (numOfPages > 1) { %>
-        <div class="pagination_block">
-          <div id="page-selection" class="pagination"></div>
-          <script>
-            $('#page-selection').bootpag({
-              total: <%= numOfPages %>,
-              page: 1,
-              maxVisible: 5,
-              leaps: true,
-              firstLastUse: true,
-              first: '|<',
-              last: '>|',
-              prev: '<',
-              next: '>'
-            }).on('page', function(event, num) {
-              if (num === 1) {
-                $('#firstPage').show();
-                $('#anotherPage').hide();
-              } else {
-                $('#firstPage').hide();
-                angular.element(document.getElementById("eventBody")).scope()
-                  .loadEvents(num, $('#anotherPage'));
-              }
-            });
-          </script>
-        </div>
-        <% } %>
+          
+      <div class="main_content" lazy-scroll="lazyLoadEvents()"
+      style="min-height: 0px !important"
+      lazy-no-scroll="noMoreEvent">
+          <div class="event_item" ng-repeat="e in moreEvents track by $index">
+              <a ng-href="{{e.linkURL}}" target="{{e.linkTarget}}">
+                <div class="event_item_media">
+                  <div class="pos-relative">
+                    <img ng-if="e.hasVideo" class="play36px" src="/img/icon-play.png" />
+                    <img ng-src="{{e.image}}" />
+                  </div>
+                </div>
+                <div class="event_item_content">
+                  <div class="event_item_content_title">
+                    {{e.title}}
+                  </div>
+                  <div class="event_item_content_date">
+                    {{e.lastUpdate}}
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div style="clear:both"></div>
+              <div align="center" ng-show="loadingArticles" style="margin-top: 20px">
+                <img src="/img/loading.gif" />
+              </div>
+    </div>
+      
       </div>
       <%- include('partials/footer.ejs') %>
       <%- include('partials/newsletter.ejs') %>

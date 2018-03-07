@@ -111,6 +111,11 @@ module.exports = function (client) {
       tag
       restricted
       categoryName
+      subCategory
+      masterTag
+        ... on ContributorArticleDetail {
+        contributorName
+      }
     }
   `;
 

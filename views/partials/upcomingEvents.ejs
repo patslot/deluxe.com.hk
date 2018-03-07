@@ -9,6 +9,7 @@
   <div class="nm_section_border">
   <div class="row nm_row nm_section_scroll" id="upcoming_events_content">
     <% events.forEach(function(e) { %>
+      <a class="uce_link" href="<%- e.linkURL %>" target="_blank">
     <div class="text-left nm_section_content">
       <div class="uce_title">
         <%= e.catName %>
@@ -16,7 +17,10 @@
       <div class="uce_content">
         <%- e.content %>
       </div>
-    </div>
+        
+        
+        
+    </div></a>
     <% }) %>
   </div>
   </div>

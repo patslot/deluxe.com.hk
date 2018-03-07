@@ -17,7 +17,7 @@ const htmlTpl = `
     </div>
     <div class="al_two_image col-sm-5 col-md-6 col-xs-12">
       <a href="<%= a.linkURL %>">
-        <div class="pos-relative">
+        <div class="pos-relative artsListImg">
           <% if (a.hasVideo) { %>
           <img class="play" src="/img/icon-play.png" />
           <% } %>
@@ -30,7 +30,7 @@ const htmlTpl = `
   <div class="row">
     <div class="al_two_image col-sm-5 col-md-6 col-xs-12">
       <a href="<%= a.linkURL %>">
-        <div class="pos-relative">
+        <div class="pos-relative artsListImg">
           <% if (a.hasVideo) { %>
           <img class="play" src="/img/icon-play.png" />
           <% } %>
@@ -58,7 +58,7 @@ const htmlTpl = `
   <div class="row">
     <div class="al_two_image col-sm-5 col-md-6 col-xs-12">
       <a href="<%= a.linkURL %>">
-        <div class="pos-relative">
+        <div class="pos-relative artsListImg">
           <% if (a.hasVideo) { %>
           <img class="play" src="/img/icon-play.png" />
           <% } %>

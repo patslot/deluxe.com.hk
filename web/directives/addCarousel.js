@@ -7,15 +7,8 @@ const htmlTpl = `
     </div>
   </div>
   <div class="row nm_row nm_section_border">
-    <div class="col-xs-12 col-sm-10 col-md-12 four_col_slide ">
-    <div class="row">
-      <!-- Compile html with ejs in this div -->
-      <div class="carousel carousel-showmanymoveone slide"
-        id="<%= div %>" style="display: none">
-        <div class="carousel-inner">
-        <% carouselItems.forEach(function(i, idx) { %>
-          <% var _class = 'item'; if (idx === 0) { _class += ' active'; } %>
-          <div class="<%= _class %> ">
+    <div class="slide" id="<%= div %>slick">
+     <% carouselItems.forEach(function(i, idx) { %>
             <div class="col-xs-12 col-sm-6 col-md-3 item_block">
               <% if (showLink) { %>
                 <a href="<%= i.linkURL %>" target="<%= i.linkTarget %>">
@@ -24,9 +17,9 @@ const htmlTpl = `
               <% } %>
                 <div class="pos-relative">
                   <% if (i.hasVideo) { %>
-                  <img class="play" src="/img/icon-play.png" />
+                  <img class="play" style="width: 100%;" src="/img/icon-play.png" />
                   <% } %>
-                  <img src="<%= i.image %>" alt="">
+                  <img src="<%= i.image %>" style="width: 100%;" alt="">
                 </div>
               </a>
               <div class="four_col_slide_content">
@@ -44,13 +37,7 @@ const htmlTpl = `
                 </div>
               </div>
             </div>
-          </div>
-        <% }) %>
-        </div>
-        <a class="left carousel-control" href="<%= cDiv %>" data-slide="prev"></a>
-        <a class="right carousel-control" href="<%= cDiv %>" data-slide="next"></a>
-      </div>
-        </div>
+         <% }) %>
     </div>
   </div>
 </div>
@@ -80,26 +67,47 @@ export default function() {
           unwatch();
           return;
         }
+        
+          
+          
         element.html(ejs.render(htmlTpl, {carouselItems: carouselItems,
           div: div, cDiv: cDiv, titleClass: titleClass,
           showLink: showLink}));
-
-        $('.four_col_slide ' + cDiv + ' .item').each(function() {
-          var itemToClone = $(this);
-          for (var i = 1; i < 4; i++) {
-            itemToClone = itemToClone.next();
-            // wrap around if at end of item collection
-            if (!itemToClone.length) {
-              itemToClone = $(this).siblings(':first');
-            }
-            // grab item, clone, add marker class, add to collection
-            itemToClone.children(':first-child').clone()
-              .addClass("cloneditem-" + (i))
-              .appendTo($(this));
-          }
-        });
-        (angular.element)(cDiv).carousel({interval: 5000})
-          .show();
+       
+       
+          
+        (angular.element)(cDiv+'slick').slick({
+                        dots: false,
+                      infinite: true,
+                      speed: 300,
+                      slidesToShow: 4,
+                      slidesToScroll: 4,
+            nextArrow: '<a class="right carousel-control"></a>',
+  prevArrow: '<a class="left carousel-control" style="z-index:300;"></a>',
+                      responsive: [
+                        {
+                          breakpoint: 991,
+                          settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2,
+                            infinite: true,
+                            dots: true
+                          }
+                        },
+                        {
+                          breakpoint: 767,
+                          settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                          }
+                        }
+                        // You can unslick at a given breakpoint now by adding:
+                        // settings: "unslick"
+                        // instead of a settings object
+                      ]
+            }).show(); 
+          
+        $(cDiv+'slick').slick('setPosition');
         unwatch();
       });
     }

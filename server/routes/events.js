@@ -34,6 +34,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
           categName: categEvent,
           adTag: categMapping.nameToAdTag[categEvent].list,
           numOfPages: getNumOfPages(r.totalPostEvent),
+          numOfEvents: r.totalPostEvent,
           latestEvent: events.length > 0 ? events[0] : null,
           upcomingEvents: queryHandler.parseUpcomingEvents(upcomingEvents),
           events: events.slice(1, totalEvents),

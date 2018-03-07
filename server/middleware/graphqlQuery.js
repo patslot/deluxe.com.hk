@@ -7,6 +7,20 @@ module.exports = function(GRAPHQL_ENDPOINT) {
   var client = new Lokka({transport: new Transport(GRAPHQL_ENDPOINT)});
   var gConst = require('./graphqlConst.js')(client);
 
+  const getLatestArticle = `
+  
+      getLatestArticle (offset: 0, count: 1) {
+        id
+        __typename
+        ... on CmsArticle {
+              cmsArticleDetail {
+                categoryName
+               }
+        }
+      }
+        
+    `;  
+    
   const getContributorName = `
     getCMSArticleDetail(articleID: $id) {
       ... on ContributorArticleDetail {
@@ -77,7 +91,37 @@ module.exports = function(GRAPHQL_ENDPOINT) {
       youtube
     }
   }`;
-
+    
+  const articleModelByTag = ` (tag: $tag, offset: $offset, count: $count) {
+    __typename
+    id
+    title
+    lastUpdate
+    ... on NewsArticle {
+      mediaGroup {
+        type
+        largePath
+      }
+      firstContentBlock {
+        subHead
+        content
+      }
+    }
+    ... on CmsArticle {
+      anvato
+      articleThumbnail
+      categoryID
+      intro
+      lastUpdate
+      publish
+      title
+      videoFile
+      videoThumbnail
+      youtube
+      tag
+    }
+  }`;
+    
   const listMenu = `listMenu {
     categoryID
     campaignID
@@ -131,11 +175,13 @@ module.exports = function(GRAPHQL_ENDPOINT) {
   };
 
   var createQuery = function(queries) {
+    //console.log( 'query { ' + queries.join(' ') + ' }');
     return 'query { ' + queries.join(' ') + ' }';
   };
 
   var createQueryWithParams = function(paramStr, queries) {
-    return 'query (' + paramStr + ') { ' + queries.join(' ') + ' }';
+        //console.log( 'query (' + paramStr + ') { ' + queries.join(' ') + ' }');
+       return 'query (' + paramStr + ') { ' + queries.join(' ') + ' }';
   };
 
   return {
@@ -145,21 +191,50 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     },
     // For CMS article or editor pick article
     cmsArticleQuery: function(articleID) {
+      
       return client.query(createQueryWithParams('$id: String',
-        [listMenu, listCampaign, gConst.getCMSArticleDetail, getContributorName]), {id: articleID});
+        [listMenu, listCampaign, createCmsComponeFeedQuery('listContributor'), gConst.getCMSArticleDetail, getContributorName]), {id: articleID});
+    },
+    newHomeQuery: function(listCategArticle, offset, count) {
+      return client.query(
+          createQueryWithParams('$offset: Int, $count: Int',
+                                [ 'listFashionMPM ' + cmsComponeFeedModel,
+                                       'listBeautyMPM ' + cmsComponeFeedModel,
+                                       'listLuxeMPM ' + cmsComponeFeedModel,
+                                       'listLifeStyleMPM ' + cmsComponeFeedModel,
+        listMenu,
+        listCampaign,getLatestArticle,
+        listCategArticle + ' ' + articleModel
+      ]),{offset: offset, count: count});
     },
     homeQuery: function() {
-      return client.query(createQuery(['listMPM ' + cmsComponeFeedModel,
-        listMenu,
-        listCampaign,
-        createCmsComponeFeedQuery('listHomeLatestArticle')
-      ]));
+       return client.query(createQuery(['listMPM ' + cmsComponeFeedModel,
+                listMenu,
+                listCampaign,
+                createCmsComponeFeedQuery('listHomeLatestArticle')
+           ]));
+    },
+    getLatestArticle: function(){
+      return client.query(' query { ' + getLatestArticle + ' }')  ;
+    },
+    NewcategQuery: function(listCategArticle, listCategMPMAPI, offset, count) {
+      return client.query(createQueryWithParams('$offset: Int, $count: Int',
+        [listCategArticle + ' ' + articleModel,
+         listCategMPMAPI  + ' ' + cmsComponeFeedModel,
+        listMenu, listCampaign]),
+        {offset: offset, count: count});
     },
     categQuery: function(listCategArticle, offset, count) {
       return client.query(createQueryWithParams('$offset: Int, $count: Int',
         [listCategArticle + ' ' + articleModel,
         listMenu, listCampaign]),
         {offset: offset, count: count});
+    },
+    subCategQuery: function(listCategArticle, tag, offset, count) {
+      return client.query(createQueryWithParams('$tag: String, $offset: Int, $count: Int',
+        [listCategArticle + ' ' + articleModelByTag,
+        listMenu, listCampaign]),
+        {tag: tag, offset: offset, count: count});
     },
     contributorIndexQuery: function() {
       return client.query(createQuery([listMenu, listCampaign,

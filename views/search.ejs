@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('partials/header.ejs', {
+    title: SITE_NAME,
+    ogTitle: "Apple Daily Deluxe 潮流資訊平台",
+    ogImage: null,
+    ogDescription: null,
+    origin: origin,
+    fullURL: fullURL
+  }) %>
+    <style>
+        .gsc-adBlock{
+            display: none !important ;
+        }
+    </style>
+</head>
+
+<body ng-app="addv2" ng-controller="HomepageController">
+
+    <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
+    <%- include('partials/topMenu.ejs', {menu: menu}) %>
+    <div class="container nm_home">
+      <div class="row nm_row">
+        <div class="main_content" style="text-align: center;">
+          <div>
+            <script>
+  (function() {
+    var cx = '012205431372817423899:0bdk4ikxarc';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:searchresults-only></gcse:searchresults-only>
+             </div>
+        </div>
+        <%- include('partials/footer.ejs') %>
+      </div>
+    </div>
+
+</body>
+
+</html>
