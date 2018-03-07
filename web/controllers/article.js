@@ -152,15 +152,15 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
     queryFunc(nextArticleID).then(function(res) {
       $timeout(function() {
         var nextArticle = res[queryResName];
-          var ky = []; 
-          var regexp = /^mt_/;
-          nextArticle.tag.split(",").forEach(function(element) {
-              if (element.match(regexp)){
-                  console.log('match');
-                  ky.push(element.substring(3))
-              }
-          });
-        nextArticle.ky = ky;
+        //   var ky = []; 
+        //   var regexp = /^mt_/;
+        //   nextArticle.tag.split(",").forEach(function(element) {
+        //       if (element.match(regexp)){
+        //           console.log('match');
+        //           ky.push(element.substring(3))
+        //       }
+        //   });
+        // nextArticle.ky = ky;
         nextArticle.type = articleType;
         nextArticle.id = nextArticleID;
         nextArticle.idx = $scope.nextArticles.length.toString();
@@ -197,7 +197,7 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
           queryHandler.parseCmsArticleDetail(nextArticle);
           nextArticle.pvLog = articleUtil.articlePageviewLog(
             nextArticle.categoryName, cmsNewsType,
-            nextArticle.id, nextArticle.issueId, nextArticle.title, '', nextArticle.masterTag);
+            nextArticle.id, nextArticle.issueId, nextArticle.title, nextArticle.contributorName, nextArticle.masterTag);
         }
         queryHandler.handleArticleDetailCateg(nextArticle);
           
