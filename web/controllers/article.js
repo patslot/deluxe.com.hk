@@ -185,7 +185,7 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
                                         } ;
                   
               }
-            console.log( nextArticle.contributor);
+           // console.log( nextArticle.contributor);
         }
           
         if (articleUtil.isNewsArticle(articleType)) {
