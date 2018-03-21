@@ -85,6 +85,7 @@ export default function() {
                         dots: false,
                       infinite: true,
                       speed: 300,
+                      autoplay: true,
                       slidesToShow: numCarousel,
                       slidesToScroll: numCarousel,
             nextArrow: '<a class="right carousel-control"></a>',
