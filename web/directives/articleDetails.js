@@ -116,7 +116,7 @@ const htmlTpl = `
                   <div class="artd_article_Text">
                     <%- content.content %>
                             <% if (index == 3) { %>
-                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner2_<%= index %>" fixedbanner-num="2"></fixedbanner>
+                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner2" fixedbanner-num="2"></fixedbanner>
                             <% } %>
                               <% if (index == 7) { %>
                               <flyingcarpetfixedbanner fixedbanner-id="fixedbanner3_<%= index %>" fixedbanner-num="3"></fixedbanner>

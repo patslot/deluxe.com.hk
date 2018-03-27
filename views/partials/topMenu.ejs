@@ -14,15 +14,11 @@
           <% if (menu.main.length > 0 || menu.sub.length > 0) { %>
           <ul class="text">
             <% menu.main.forEach(function(m) { %>
-                <% if(m.disName != 'celebrities'){ %>
-                    <li>
-                      <a href="/<%= m.name %>" class="<%= m.activeClass %>">
-                        <%= m.disName %>
-                      </a>
-                    </li>
-                <% } else { %>
-                    <li><a href="/Celebrity"><img src="/img/beautifullife_logo.gif"</a></li>
-                <% } %>
+                <li>
+                <a href="/<%= m.name %>" class="<%= m.activeClass %>">
+                  <%= m.disName %>
+                </a>
+              </li>
             <% }) %>
             <% if (menu.sub.length > 0) { %>
             <li class="menu_dropdown">

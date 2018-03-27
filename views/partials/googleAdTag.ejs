@@ -78,7 +78,14 @@ if (window.googletag && googletag.apiReady) {
     });
     googletag.enableServices();
   });
-
+  googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+    if (event.isEmpty){
+      console.log(event.slot.getSlotElementId());
+      if ($('#'+event.slot.getSlotElementId()).parent().parent().parent().parent().parent().prop('nodeName') == "FLYINGCARPETFIXEDBANNER"){
+       $('#'+event.slot.getSlotElementId()).parent().parent().parent().parent().parent().css('display','none');
+      }
+    }
+  });
 }
 
 function displayAd(divId, slot) {
