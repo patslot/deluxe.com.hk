@@ -68,7 +68,6 @@ const htmlTpl = `
       <% } else if (type === "cms") { %>
         <div class="nm_mpm col-md-6 col-xs-12">
           <div class="mpm_content artd_container">
-            <fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner>
             <div class="artd_article_label">[<%- disCategoryName %>]</div>
             <div class="artd_article_title"><%- title %></div>
             <div class="artd_article_sub_title"><%- subTitle %></div>
@@ -104,6 +103,27 @@ const htmlTpl = `
             </div>
             <% if (artBlock && artBlock.length > 0) { %>
               <% artBlock.forEach(function (content, index) { %>
+                  <% if (content.subTitle == "video") { %>
+                        <div class="artd_article_video">
+                        <div id="video_player_<%- content.blockID %>"></div>
+                      </div>
+                      <script type="text/javascript">
+                        $(document).ready(function() {
+                          var videoId = "_<%- content.blockID %>" || "";
+                          var anvpId = "anvp" + videoId; // Unique player id
+                          var anvpInstance = new AnvatoPlayer(anvpId);
+                          var videourl = "<%- content.content %>" ;
+                          
+                          videourl = videourl.replace('<p>','') ;
+                          videourl = videourl.replace('</p>','') ;
+                          anvpInstance.setVideoUrl(videourl);
+                          anvpInstance.setPlayerSize("100%", "100%");
+                          anvpInstance.setVolume(0.5); // Value between 0 - 1
+                          anvpInstance.setShareEnable(false);
+                          anvpInstance.createInstance("video_player_<%- content.blockID %>"); // Div Id match
+                        });
+                      </script>
+                <% }else { %>
                 <div class="artd_article_subHead">
                   <%- content.subTitle %>
                 </div>
@@ -116,7 +136,7 @@ const htmlTpl = `
                   <div class="artd_article_Text">
                     <%- content.content %>
                             <% if (index == 3) { %>
-                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner2" fixedbanner-num="2"></fixedbanner>
+                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner2_<%= index %>" fixedbanner-num="2"></fixedbanner>
                             <% } %>
                               <% if (index == 7) { %>
                               <flyingcarpetfixedbanner fixedbanner-id="fixedbanner3_<%= index %>" fixedbanner-num="3"></fixedbanner>
@@ -127,16 +147,17 @@ const htmlTpl = `
                               <% if (index == 15) { %>
                               <flyingcarpetfixedbanner fixedbanner-id="fixedbanner5_<%= index %>" fixedbanner-num="5"></fixedbanner>
                             <% } %>
-                              <% if (index == 19) { %>
-                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner6_<%= index %>" fixedbanner-num="6"></fixedbanner>
+                              <% if (content.content === "<p>FIXBANNER6</p>") { %>
+                                <fixedbanner fixedbanner-id="fixedbanner6_<%= index %>" fixedbanner-num="6"></fixedbanner>
                             <% } %>
-                              <% if (index == 23) { %>
-                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner7_<%= index %>" fixedbanner-num="7"></fixedbanner>
+                            <% if (content.content === "<p>FIXBANNER7</p>") { %>
+                              <fixedbanner fixedbanner-id="fixedbanner7_<%= index %>" fixedbanner-num="7"></fixedbanner>
                             <% } %>
-                              <% if (index == 27) { %>
-                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner8_<%= index %>" fixedbanner-num="8"></fixedbanner>
+                            <% if (content.content === "<p>FIXBANNER8</p>") { %>
+                              <fixedbanner fixedbanner-id="fixedbanner8_<%= index %>" fixedbanner-num="8"></fixedbanner>
                             <% } %>
                     </div>
+                    <% } %>
               <% }) %>
             <% } %>
           </div>
