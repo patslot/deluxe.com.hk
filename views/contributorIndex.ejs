@@ -10,6 +10,7 @@
       fullURL: fullURL
     }) %>
     <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
+    <%- include('partials/google-analytics.ejs') %>
   </head>
   <body ng-app="addv2" ng-controller="ContributorController">
     <skinner-block></skinner-block>
@@ -58,7 +59,6 @@
       </div>
     </div>
   <%- include('partials/logging.ejs', {pageviewLog: pageviewLog}) %>
-  <%- include('partials/google-analytics.ejs') %>
   </body>
 
 </html>

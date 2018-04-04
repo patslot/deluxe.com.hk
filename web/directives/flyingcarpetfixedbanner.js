@@ -27,8 +27,8 @@ export default function() {
         if (!divId) {
           return;
         }
-        var rand = new Date().valueOf();
-        divId = divId + "-" + rand ;
+         var rand = new Date().valueOf();
+         divId = divId + "-" + rand ;
         var fixedbannerNum = attrs.fixedbannerNum;
         if (fixedbannerNum) {
           fixedbannerNum = +fixedbannerNum;

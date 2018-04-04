@@ -11,6 +11,7 @@
     fullURL: fullURL
   }) %>
   <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
+  <%- include('partials/google-analytics.ejs') %>
 </head>
 
 <body ng-app="addv2" ng-controller="CategController" categ-ename="<%= ename %>"
@@ -89,7 +90,6 @@
     <%- include('partials/campaign.ejs') %>
   </div>
   <%- include('partials/logging.ejs', {pageviewLog: pageviewLog}) %>
-  <%- include('partials/google-analytics.ejs') %>
    <div class="btn_readmore" ng-show="scrollYPosition > screenHeight">
              <a ng-click="readMoreButton()"><img src="/img/readmorebutton.png"></a>
     </div>

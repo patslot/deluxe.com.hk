@@ -8,15 +8,11 @@
       <div class="mn_major_menu">
         <ul>
           <% menu.main.forEach(function(m) { %>
-          <% if(m.disName != 'celebrities'){ %>
-                    <li>
+              <li>
                       <a href="/<%= m.name %>" class="<%= m.activeClass %>">
                         <%= m.disName %>
                       </a>
-                    </li>
-                <% } else { %>
-                    <li><a href="/Celebrity">閃耀人生女人心</li>
-                <% } %>
+              </li>
           <% }) %>
              <li><a href="https://event-deluxe.nextdigital.com.hk/subscription.php" target="_blank" class="navJoinDeluxeClub">JOIN DELUXE CLUB</a></li>
         </ul>
@@ -49,11 +45,11 @@
             <img src="/img/igicons.png">
           </a>
         </span>
-         <span class="menu_youtube_icon">
+          <span class="menu_youtube_icon">
               <a href="https://www.youtube.com/user/memaghk" target="_blank">
                 <img src="/img/youtubeIcon.png">
               </a>
-            </span> 
+        </span>
       </div>
 
       <% if (showEDM) { %>
