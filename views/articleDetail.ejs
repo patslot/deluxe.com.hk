@@ -10,7 +10,7 @@
       fullURL: fullURL
     }) %>
     <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
-
+    <%- include('partials/google-analytics.ejs') %>
 
 </script>
   </head>
@@ -263,7 +263,6 @@
     </div>
 
     <%- include('partials/logging.ejs', {pageviewLog: pageviewLog }) %>
-    <%- include('partials/google-analytics.ejs') %>
     <%- include('partials/videoUtil.ejs', {
       adTag: adTag,
       pageviewLog: pageviewLog,

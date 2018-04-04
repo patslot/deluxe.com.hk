@@ -11,6 +11,7 @@
     fullURL: fullURL
   }) %>
   <%- include('partials/googleAdTag.ejs', {adTag: 'Contributor_detail'}) %>
+  <%- include('partials/google-analytics.ejs') %>
 </head>
 
 <body ng-app="addv2" ng-controller="ContributorArticlesController" contr-name="<%= contributor.catName %>"
@@ -65,7 +66,6 @@
     <%- include('partials/newsletter.ejs') %>
     <%- include('partials/campaign.ejs') %>
     <%- include('partials/logging.ejs', {pageviewLog: pageviewLog}) %>
-    <%- include('partials/google-analytics.ejs') %>
   </div>
 </body>
 
