@@ -23,8 +23,8 @@ const htmlTpl = `
                 </div>
               </a>
               <div class="four_col_slide_content">
-              <% if (i.label) { %>
-                <div class="nm_section_block_title_cat">[<%= i.label %>]</div>
+              <% if (i.cmsArticleDetail.categoryName) { %>
+                <div class="nm_section_block_title_cat">[<%= i.cmsArticleDetail.categoryName %>]</div>
                <% } %>
                 <div class="nm_section_block_title">
                   <% if (showLink) { %>
@@ -72,13 +72,13 @@ export default function() {
           unwatch();
           return;
         }
-       
-          
+        
         element.html(ejs.render(htmlTpl, {carouselItems: carouselItems,
           div: div, cDiv: cDiv, titleClass: titleClass,
           showLink: showLink}));
        
-                  
+       
+          
         (angular.element)(cDiv+'slick').slick({
                         dots: false,
                       infinite: true,

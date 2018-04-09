@@ -66,6 +66,7 @@ module.exports = function(options) {
     .directive('latestArticles', [dirs.latestArticles])
     .directive('articlesInCateg', [dirs.articlesInCateg])
     .directive('addCarousel', ['$timeout', dirs.addCarousel])
+    .directive('addCarouselRecommend', ['$timeout', dirs.addCarouselRecommend])
     .directive('facebookBlock', [dirs.facebook])
     .directive('instagramMedias', [dirs.instagram])
     .directive('instagramMedias4', [dirs.instagram4])

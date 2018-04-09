@@ -26,7 +26,7 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
         $scope.scrollYPosition =  $window.pageYOffset;
         $scope.$apply();
     })
-    
+
   function parseRecommendArticles(articleId, parseFunc) {
     var articles = recommendArticles.filter(function (item) {
       return item.id !== articleId;
@@ -37,7 +37,14 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
   var handleRes = function (articleKey, res, parseFunc, listCategArticle) {
     $timeout(function () {
       $scope.igMedias = queryHandler.parseInstagram(res.listInstagram);
-      recommendArticles = res[articleKey] || [];
+      recommendArticles = res['getLatestArticle'] || [];
+      if (articleKey == "listContributorArticleAll"){
+        recommendArticles = res[articleKey] || [];
+      }
+      // if (articleKey == "listPostEvent"){
+      //   recommendArticles = res[articleKey].concat(res['getLatestArticle']);
+      //   recommendArticles.sort(function(a,b) {return (Date.parse(a.publish) < Date.parse(b.publish)) ? 1 : ((Date.parse(b.publish) < Date.parse(a.publish)) ? -1 : 0);} );
+      // }
       $scope.latestArticles = parseRecommendArticles(recommendArticles, parseFunc);
       if (listCategArticle) {
         gqModel.queryArticleIDs(listCategArticle, 0, c.MAX_CATEG_ARTICLES).then(function(res) {
@@ -69,6 +76,8 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
               });
             });
       }else if (articleKey == "listContributorArticleAll"){
+         recommendArticles = res[articleKey] || [];
+          $scope.latestArticles = parseRecommendArticles(recommendArticles, parseFunc);
           gqModel.queryContributorArticlesAll(0, 10).then(function(res) {
               $timeout(function() {
                 var articleIDs = res["listContributorArticleAll"];
@@ -167,7 +176,7 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
         nextArticle.isSharedUrl = isSharedUrl;
         nextArticle.latestArticles = parseRecommendArticles(nextArticleID,
             queryHandler.parseArticles);
-       
+ 
           
         if( nextArticle.categoryName === "Contributor" )  {
              nextArticle.contributor = res.listContributor.find(function(x){

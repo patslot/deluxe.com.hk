@@ -230,10 +230,17 @@
         </div>
         
         <div id="article-end"></div>
+        <% if ((categoryName != "Contributor") || (categoryName != "Events")) { %>
+          <add-carousel-recommend title-class="'nm_recommend'" carousel-items="latestArticles"
+            carousel-div="'recommend-carousel'"></add-carousel-recommend>
+        <% } %>
+        <% if  (categoryName === "Events") { %>
+        <add-carousel title-class="'nm_recommend'" carousel-items="latestArticles"
+        carousel-div="'recommend-carousel'"></add-carousel>
+      <% } %>
+        <% if (categoryName === "Contributor" || categoryName === "Editor picks") { %>
         <add-carousel title-class="'nm_recommend'" carousel-items="latestArticles"
           carousel-div="'recommend-carousel'"></add-carousel>
-
-        <% if (categoryName === "Contributor" || categoryName === "Editor picks") { %>
           <div class="nm_section visible-xs">
             <div class="nm_section_block">
               <facebook-block></facebook-block>

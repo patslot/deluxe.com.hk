@@ -78,6 +78,10 @@ export default function(c) {
       videoFile
       videoThumbnail
       youtube
+      cmsArticleDetail {
+        categoryName
+       }
+
     }
   }`;
     
@@ -153,7 +157,9 @@ const articleByTagModel = ` (tag: $tag, offset: $offset, count: $count) {
     videoFile
     anvato
     youtube
-    intro
+    intro  cmsArticleDetail {
+        categoryName
+       }
   }`;
     
 const listContributorArticleAll = `listContributorArticleAll(offset: $offset, count: $count) {
@@ -264,6 +270,7 @@ const listContributorArticleAll = `listContributorArticleAll(offset: $offset, co
     queryArticle: function(listCategArticle, offset, count) {
       return client.query(createQueryWithParams('$offset: Int, $count: Int',
         [listCategArticle + ' ' + articleModel,
+        'getLatestArticle ' + articleModel,
         listInstagram]),
         {offset: offset, count: count});
     },
@@ -308,9 +315,12 @@ const listContributorArticleAll = `listContributorArticleAll(offset: $offset, co
           cmsArticleModel]),
         {pagesize: pagesize, page: page, start: start});
     },
-    queryPostEvents: function () {
-      return client.query(createQuery([
-        createCmsArticleQuery('listPostEvent')]));
+    queryPostEvents: function (offset, count) {
+      return client.query(createQueryWithParams('$offset: Int, $count: Int',
+      ['listPostEvent ' + CmsArticle,
+      'getLatestArticle ' + articleModel]),
+      {offset: offset, count: count});
+
     },
     queryNumOfEvents: function (){
         return client.query(createQuery([
@@ -318,7 +328,9 @@ const listContributorArticleAll = `listContributorArticleAll(offset: $offset, co
     },  
     queryCmsArticleDetail: function(articleID) {
       return client.query(createQueryWithParams('$id: String',
-        [gConst.getCMSArticleDetail, createCmsComponeFeedQuery('listContributor')]), {id: articleID});
+        [gConst.getCMSArticleDetail, 
+          createCmsComponeFeedQuery('listContributor')]),
+           {id: articleID});
     },
     queryNewsArticleDetail: function(articleID) {
       return client.query(createQueryWithParams('$id: String',

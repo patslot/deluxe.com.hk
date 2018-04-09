@@ -3,6 +3,7 @@ export { default as instagram4 } from './instagram4';
 export { default as facebook } from './facebook';
 export { default as latestArticles } from './latestArticles';
 export { default as addCarousel } from './addCarousel';
+export { default as addCarouselRecommend } from './addCarouselRecommend';
 export { default as articlesInCateg } from './articlesInCateg';
 export { default as skinner } from './skinner';
 export { default as headbanner } from "./headbanner";

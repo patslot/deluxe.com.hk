@@ -77,6 +77,12 @@ module.exports = function(options) {
             if (latestCategory =="Lifestyle")  {
                 res.redirect('/Lifestyle');
             }
+            if (latestCategory =="Wedding")  {
+              res.redirect('/Wedding');
+            }
+            if (latestCategory =="Celebrity")  {
+              res.redirect('/Celebrity');
+            }
         }, function(err) {
                       return next(err);
         });

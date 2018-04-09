@@ -134,7 +134,7 @@ module.exports = {
     'add_beau': 'listBeautyMPM',
     'add_luxe': 'listLuxeMPM',
     'add_life': 'listLifeStyleMPM',
-    'add_wedd': 'listWeddingMPM',
+    'add_wedd': 'listMPM',
     'add_cele': 'listCelebMPM',
   },
   categPageviewLog: categPageviewLog,

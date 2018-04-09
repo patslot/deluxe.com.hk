@@ -174,10 +174,16 @@ const htmlTpl = `
 </div>
 
 <div id="article-end-<%= idx %>"></div>
-<add-carousel title-class="'nm_recommend'"
-  carousel-items="article.latestArticles"
-  carousel-div="recommend-carousel-<%= idx %>"></add-carousel>
 
+<% if (categoryName != "Contributor") { %>
+  <add-carousel-recommend title-class="'nm_recommend'" carousel-items="article.latestArticles"
+  carousel-div="'recommend-carousel-<%= idx %>'"></add-carousel-recommend>
+<% } %>
+
+<% if (categoryName === "Contributor") { %>
+  <add-carousel title-class="'nm_recommend'" carousel-items="article.latestArticles"
+  carousel-div="'recommend-carousel-<%= idx %>'"></add-carousel>
+<% } %>
 <script>
   ['#article-<%= idx %>', '#article-end-<%= idx %>'].forEach(function(divID) {
     scrollAnchors.push({
