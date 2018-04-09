@@ -230,11 +230,11 @@
         </div>
         
         <div id="article-end"></div>
-        <% if ((categoryName != "Contributor") || (categoryName != "Events")) { %>
+        <% if ((categoryName != "Contributor") && (categoryName != "Event")) { %>
           <add-carousel-recommend title-class="'nm_recommend'" carousel-items="latestArticles"
             carousel-div="'recommend-carousel'"></add-carousel-recommend>
         <% } %>
-        <% if  (categoryName === "Events") { %>
+        <% if  (categoryName === "Event") { %>
         <add-carousel title-class="'nm_recommend'" carousel-items="latestArticles"
         carousel-div="'recommend-carousel'"></add-carousel>
       <% } %>

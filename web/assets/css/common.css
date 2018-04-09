@@ -390,10 +390,15 @@ background: #ccc;
   padding: 10px;
 }
 .artd_instagram_large_image img {
-  height: 100%;
-  width: 100%;
+  height: 150px;
+  width: 150px;
 }
-
+@media (max-width: 767px) {
+  .artd_instagram_large_image img {
+    height: 100%;
+    width: 100%;
+  }
+}
 .artd_instagram_small_image {
   float: left;
   width: 33%;
