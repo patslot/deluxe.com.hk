@@ -162,7 +162,10 @@
                               anvpInstance.setPlayerSize("100%", "100%");
                               anvpInstance.setVolume(0.5); // Value between 0 - 1
                               anvpInstance.setShareEnable(false);
+                              anvpInstance.setAutoPlay(false);
+                              anvpInstance.setPoster("<%- content.imgFile %>");
                               anvpInstance.createInstance("video_player_<%- content.blockID %>"); // Div Id match
+                              
                             });
                           </script>
                       <% }else{ %>

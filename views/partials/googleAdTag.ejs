@@ -42,7 +42,7 @@ var webSlotSizes = {
 
 var mobilePrefix = "/" + mobileTags.join("/") + "/";
 var mobileSlotSizes = {
-  Fixedbanner1: [[320, 80], [320, 360], [300, 250]],
+  Fixedbanner1: [[1, 1], [320, 361]],
   Fixedbanner2: [[320, 80], [320, 360], [300, 250]],
   Fixedbanner3: [[320, 80], [320, 360], [300, 250]],
   Fixedbanner4: [[320, 80], [320, 360], [300, 250]],
@@ -64,9 +64,7 @@ var mobileAdCallback = [];
 
 if (window.googletag && googletag.apiReady) {
   googletag.cmd.push(function() {
-    googletag.pubads().collapseEmptyDivs();
-    googletag.pubads().enableSingleRequest();
-    googletag.pubads().disableInitialLoad();
+    
     googletag.pubads().addEventListener("slotRenderEnded", function(event) {
       var divId = event.slot.getSlotElementId();
       if (typeof webAdCallback[divId] !== "undefined") {
@@ -75,16 +73,19 @@ if (window.googletag && googletag.apiReady) {
       if (typeof mobileAdCallback[divId] !== "undefined") {
         mobileAdCallback[divId](event.isEmpty);
       }
+      if (event.isEmpty){
+        if ($('#'+event.slot.getSlotElementId()).parent().parent().parent().parent().parent().prop('nodeName') == "FLYINGCARPETFIXEDBANNER"){
+        $('#'+event.slot.getSlotElementId()).parent().parent().parent().parent().parent().css('display','none');
+        }
+      }
+      
+      googletag.pubads().collapseEmptyDivs();
+      googletag.pubads().enableSingleRequest();
+      googletag.companionAds().setRefreshUnfilledSlots(false);
+      googletag.pubads().disableInitialLoad();
+      // console.log('slot Render Ended -' + event.slot.getResponseInformation().creativeId);
     });
     googletag.enableServices();
-  });
-  googletag.pubads().addEventListener('slotRenderEnded', function(event) {
-    if (event.isEmpty){
-      console.log(event.slot.getSlotElementId());
-      if ($('#'+event.slot.getSlotElementId()).parent().parent().parent().parent().parent().prop('nodeName') == "FLYINGCARPETFIXEDBANNER"){
-       $('#'+event.slot.getSlotElementId()).parent().parent().parent().parent().parent().css('display','none');
-      }
-    }
   });
 }
 
@@ -102,6 +103,8 @@ function showWebAd(adType, divId, callback) {
           webSlotSizes[adType],
           divId)
         .addService(googletag.pubads());
+
+      console.log(slot.getSlotElementId());
       webAdSlots[divId] = slot;
       webAdDivIds.push(divId);
       if (typeof callback !== "undefined") {
@@ -136,14 +139,17 @@ function showMobileAd(adType, divId, callback) {
             mobilePrefix + adType,
             mobileSlotSizes[adType],
             divId)
+            .addService(googletag.companionAds())  
           .addService(googletag.pubads());
       }
+      console.log(slot.getSlotElementId());
       mobileAdSlots[divId] = slot;
       mobileAdDivIds.push(divId);
       if (typeof callback !== "undefined") {
         mobileAdCallback[divId] = callback;
       }
       if ($("#" + divId).is(":visible")) {
+
         displayAd(divId, slot);
         mobileAdDisplayed[divId] = true;
       } else {
