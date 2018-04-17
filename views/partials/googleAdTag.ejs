@@ -142,7 +142,7 @@ function showMobileAd(adType, divId, callback) {
             .addService(googletag.companionAds())  
           .addService(googletag.pubads());
       }
-      console.log(slot.getSlotElementId());
+      // console.log(slot.getSlotElementId());
       mobileAdSlots[divId] = slot;
       mobileAdDivIds.push(divId);
       if (typeof callback !== "undefined") {
