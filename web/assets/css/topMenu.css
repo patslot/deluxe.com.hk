@@ -101,8 +101,8 @@
 .nm_header .nav--menu {
   display: block;
   position: relative;
+  background-color: #fff;
   width: 100%;
-  height: 55px;
   vertical-align: middle;
   text-align: center;
 }

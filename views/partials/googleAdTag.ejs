@@ -64,7 +64,10 @@ var mobileAdCallback = [];
 
 if (window.googletag && googletag.apiReady) {
   googletag.cmd.push(function() {
-    
+    googletag.pubads().collapseEmptyDivs();
+    googletag.pubads().enableSingleRequest();
+    googletag.companionAds().setRefreshUnfilledSlots(false);
+    googletag.pubads().disableInitialLoad();
     googletag.pubads().addEventListener("slotRenderEnded", function(event) {
       var divId = event.slot.getSlotElementId();
       if (typeof webAdCallback[divId] !== "undefined") {
@@ -78,11 +81,6 @@ if (window.googletag && googletag.apiReady) {
         $('#'+event.slot.getSlotElementId()).parent().parent().parent().parent().parent().css('display','none');
         }
       }
-      
-      googletag.pubads().collapseEmptyDivs();
-      googletag.pubads().enableSingleRequest();
-      googletag.companionAds().setRefreshUnfilledSlots(false);
-      googletag.pubads().disableInitialLoad();
       // console.log('slot Render Ended -' + event.slot.getResponseInformation().creativeId);
     });
     googletag.enableServices();
