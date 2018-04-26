@@ -93,6 +93,8 @@ module.exports = function(options) {
       'queryHandler', controllers.homepage])
     .controller('CategController', ['$timeout', '$scope', '$attrs', '$window', 'gqModel',
       'const', 'queryHandler', controllers.category]) 
+    .controller('KeywordController', ['$timeout', '$scope', '$attrs', '$window', 'gqModel',
+      'const', 'queryHandler', controllers.keyword]) 
     .controller('subCategController', ['$timeout', '$scope', '$attrs', '$window', 'gqModel',
       'const', 'queryHandler', controllers.subcategory])
     .controller('ArticleController', ['$timeout', '$scope', '$attrs','$window', 'gqModel',

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('partials/header.ejs', {
+    title: categ + " - " + SITE_NAME,
+    ogTitle: categ + " - Apple Daily Deluxe 潮流資訊平台",
+    ogImage: null,
+    ogDescription: null,
+    origin: origin,
+    fullURL: fullURL
+  }) %>
+
+  <%- include('partials/googleAdTag.ejs', {adTag: adTag}) %>
+  <%- include('partials/google-analytics.ejs') %>
+</head>
+
+<body ng-app="addv2" ng-controller="KeywordController" categ-ename="<%= ename %>"
+  categ-name="<%= categ %>">
+  <splash-screen></splash-screen>
+  <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
+  <%- include('partials/topMenu.ejs', {menu: menu}) %>
+  <div class="hashtagTitle"> <%= hashTag %> </div>
+  <div class="container nm_home">
+  <% articles.forEach(function(a, idx) { %>
+
+      <div class="row">
+      <div class="al_two_content col-sm-5 col-md-6 col-xs-12">
+        <div class="al_two_content_label">[<%= a.disCatName %>]</div>
+        <a href="<%= a.linkURL %>">
+          <div class="other_article al_two_content_title">
+            <%= a.title %>
+          </div>
+          <div class="other_article al_two_content_content">
+            <%- a.content %>
+          </div>
+        </a>
+      </div>
+      <div class="al_two_image col-sm-5 col-md-6 col-xs-12">
+        <a href="#">
+            <div class="pos-relative artsListImg">
+              <% if (a.hasVideo) { %>
+                <% var playClass = a.playClass ? a.playClass : "play"; %>
+              <img class="<%= playClass %>" src="/img/icon-play.png" />
+              <% } %>
+              <img src="<%= a.image %>" />
+            </div>
+        </a>
+      </div>
+    </div>
+  <% }) %>
+  </div>
+  
+</body>
+
+</html>

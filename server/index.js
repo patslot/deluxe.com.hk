@@ -13,6 +13,7 @@ module.exports = function(options) {
   var articleUtil = require('./middleware/articleUtil.js')();
   var home = require('./routes/home.js')(gQuery, categMapping, queryHandler, edm, articleUtil);
   var article = require('./routes/article.js')(gQuery, categMapping, queryHandler, edm, articleUtil);
+  var keyword = require('./routes/keyword.js')(gQuery, categMapping, queryHandler, edm, articleUtil);
   var contributor = require('./routes/contributor.js')(gQuery, categMapping, queryHandler, edm);
   var events = require('./routes/events.js')(gQuery, categMapping, queryHandler, edm)
   var api = require("./routes/api.js")(options.edmSubscriptionEndpoint);
@@ -105,6 +106,8 @@ module.exports = function(options) {
   app.get('/:categ/:articleID/:title', article.renderArticle);
   app.get('/:categ/:articleID', article.renderArticle);
   app.get('/:categ', article.renderArticles);
+
+  app.get('/Keyword/:hashtag', keyword.renderArticles);
     
 app.get('/google48dda8f13ef3ab4c.html', function (req, res) {
   res.send('/web/google48dda8f13ef3ab4c.html')

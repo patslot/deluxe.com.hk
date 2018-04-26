@@ -186,6 +186,21 @@ module.exports = function() {
     return igs;
   }
 
+  function parseKeywordArticle(hashTag, origArticles){
+    var articles = origArticles || [];
+    var categName = 'keyword'; 
+    articles.forEach(function(a) {
+      a.linkURL = '/' + categName + '/' + a.id + '/' + encodeURIComponent(a.title);
+      a.linkTarget = '_self';
+      a.catName = categName.toLowerCase();
+      a.image = a.videoThumbnail || a.articleThumbnail;
+      a.hasVideo = a.videoFile !== '';
+      a.content = a.intro;
+    });
+    return articles;
+  }
+
+
   return {
     parseInstagram: parseInstagram,
     parseLinkURL: parseLinkURL,
@@ -204,6 +219,7 @@ module.exports = function() {
     parseContributor: parseContributor,
     parseContributors: parseContributors,
     handleArticleCateg: handleArticleCateg,
-    handleArticleDetailCateg: handleArticleDetailCateg
+    handleArticleDetailCateg: handleArticleDetailCateg,
+    parseKeywordArticle: parseKeywordArticle
   }
 };
