@@ -113,6 +113,7 @@ module.exports = function (client) {
       categoryName
       subCategory
       masterTag
+      keyword
         ... on ContributorArticleDetail {
         contributorName
       }

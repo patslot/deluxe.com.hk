@@ -17,7 +17,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
     var count = 5;
     var adTagMapping = categMapping.nameToAdTag[categ];
     
-    query = gQuery.keywordQuery(hashTag);
+    query = gQuery.keywordQuery(hashTag, offset,  count);
     handleFunc = queryHandler.parseKeywordArticle;
   
     query.catch(function(err) {
@@ -32,7 +32,8 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
     .then(function(result) {
       var articles = handleFunc(hashTag, (result['listByKeyword'] || []));
       var categs = result['listMenu'] || [];
-      // console.log(queryHandler.parseMenu(categs, categ));
+
+      // console.log(articles[0].categoryName);
       res.render('keyword', {
         pageviewLog: categMapping.categPageviewLog(categ),
         menu: queryHandler.parseMenu(categs, categ),

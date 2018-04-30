@@ -1,0 +1,31 @@
+.hashtagTitle{
+    font-size: 20px;
+    color: #C4063D; 
+    text-align: center;
+}
+
+.keyword_image{
+    width: 50%; 
+}
+.keyword_content{
+    width: 50%; 
+}
+
+.keyword_content .al_two_content_label{
+    margin-top: 0px;
+}
+
+.hashtagLink{
+    display: inline-block; 
+    color: #C4063D; 
+    border: 1px solid #C4063D ;
+    padding: 5px 20px;
+    border-radius: 1em;
+    margin: 5px;
+}
+
+.hashtagLink:hover{
+    color: #fff; 
+    background-color:#C4063D ;
+
+}

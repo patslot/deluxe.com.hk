@@ -26,6 +26,7 @@ import './assets/css/newsletter.css';
 import './assets/css/upcomingEvents.css';
 import './assets/css/featherlight.css';
 import './assets/css/slick.css';
+import './assets/css/keyword.css';
 
 import './js/lazy-scroll.js';
 import './js/jquery.endless-scroll.js';

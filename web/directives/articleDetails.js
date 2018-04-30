@@ -68,6 +68,9 @@ const htmlTpl = `
       <% } else if (type === "cms") { %>
         <div class="nm_mpm col-md-6 col-xs-12">
           <div class="mpm_content artd_container">
+
+          
+
             <div class="artd_article_label">[<%- disCategoryName %>]</div>
             <div class="artd_article_title"><%- title %></div>
             <div class="artd_article_sub_title"><%- subTitle %></div>

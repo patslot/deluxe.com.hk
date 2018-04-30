@@ -5,6 +5,7 @@
  */
 export { default as homepage } from './homepage';
 export { default as category } from './category';
+export { default as keyword } from './keyword';
 export { default as subcategory } from './subcategory';
 export { default as article } from './article';
 export { default as contributor } from './contributor';

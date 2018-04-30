@@ -190,9 +190,9 @@ module.exports = function() {
     var articles = origArticles || [];
     var categName = 'keyword'; 
     articles.forEach(function(a) {
-      a.linkURL = '/' + categName + '/' + a.id + '/' + encodeURIComponent(a.title);
+      a.linkURL = '/' + a.categoryName + '/' + a.id + '/' + encodeURIComponent(a.title);
       a.linkTarget = '_self';
-      a.catName = categName.toLowerCase();
+      a.catName = a.categoryName.toLowerCase();
       a.image = a.videoThumbnail || a.articleThumbnail;
       a.hasVideo = a.videoFile !== '';
       a.content = a.intro;

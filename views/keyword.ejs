@@ -16,39 +16,74 @@
 </head>
 
 <body ng-app="addv2" ng-controller="KeywordController" categ-ename="<%= ename %>"
-  categ-name="<%= categ %>">
+  categ-name="<%= categ %>" hash-tag="<%= hashTag %>">
   <splash-screen></splash-screen>
   <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
   <%- include('partials/topMenu.ejs', {menu: menu}) %>
-  <div class="hashtagTitle"> <%= hashTag %> </div>
   <div class="container nm_home">
-  <% articles.forEach(function(a, idx) { %>
+    <div class="row nm_row">
+      <div class="main_content">
+        <div class="nm_section">
+          <headbanner headbanner-id="headbanner1"></headbanner>
+          <div class="row">
 
-      <div class="row">
-      <div class="al_two_content col-sm-5 col-md-6 col-xs-12">
-        <div class="al_two_content_label">[<%= a.disCatName %>]</div>
-        <a href="<%= a.linkURL %>">
-          <div class="other_article al_two_content_title">
-            <%= a.title %>
-          </div>
-          <div class="other_article al_two_content_content">
-            <%- a.content %>
-          </div>
-        </a>
-      </div>
-      <div class="al_two_image col-sm-5 col-md-6 col-xs-12">
-        <a href="#">
-            <div class="pos-relative artsListImg">
-              <% if (a.hasVideo) { %>
-                <% var playClass = a.playClass ? a.playClass : "play"; %>
-              <img class="<%= playClass %>" src="/img/icon-play.png" />
-              <% } %>
-              <img src="<%= a.image %>" />
+            <div class="hashtagTitle col-xs-12"> <%= hashTag %> </div>
+            <div class="nm_mpm col-md-6 col-xs-12">
+                  <% articles.forEach(function(a, idx) { %>
+                        <div class="keyword_image al_two_image col-sm-5 col-md-6 col-xs-12">
+                          <a href="#">
+                              <div class="pos-relative artsListImg">
+                                <% if (a.hasVideo) { %>
+                                  <% var playClass = a.playClass ? a.playClass : "play"; %>
+                                <img class="<%= playClass %>" src="/img/icon-play.png" />
+                                <% } %>
+                                <img src="<%= a.image %>" />
+                              </div>
+                          </a>
+                        </div>
+                        <div class="keyword_content al_two_content col-sm-5 col-md-6 col-xs-12">
+                          <div class="al_two_content_label">[<%= a.categoryName %>]</div>
+                          <a href="<%= a.linkURL %>">
+                            <div class="other_article al_two_content_title">
+                              <%= a.title %>
+                            </div>
+                            <div class="other_article al_two_content_content">
+                              <%- a.content %>
+                            </div>
+                          </a>
+                        </div>
+                        
+                    <% }) %>
+
+                  <div class="main_content" lazy-scroll="loadCategArticles()"
+                  style="min-height: 0px !important"
+                  lazy-no-scroll="noMoreArticles">
+                  <div class="nm_section" ng-repeat="articles in moreArticleGroups track by $index">
+                    <midbanner  ng-if="$index < 4" midbanner-id="midbanner_group_{{$index}}" midbanner-num="{{$index + 1}}"></midbanner>
+                    <fixedbanner ng-if="$index < 4" fixedbanner-id="fixedbanner{{$index + 1}}"
+                      fixedbanner-num="{{$index + 1}}"></fixedbanner>
+                    <articles-in-categ add-articles="articles"></articles-in-categ>
+                  </div>
+                  <div align="center" ng-show="loadingArticles" style="margin-top: 20px">
+                    <img src="/img/loading.gif" />
+                  </div>
+                </div>
+                
+              </div>
+          
+            <div class="lrec_ad_wrapper col-md-3">
+              <lrec lrec-id="lrec1" lrec-num="1"></lrec>
+              <lrec lrec-id="lrec2" lrec-num="2"></lrec>
             </div>
-        </a>
+          </div>
+        </div>
+        <div class="nm_section">
+        </div>
       </div>
     </div>
-  <% }) %>
+
+
+  
   </div>
   
 </body>

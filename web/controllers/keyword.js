@@ -1,6 +1,7 @@
 export default function($timeout, $scope, $attrs, $window, gqModel, c, queryHandler) {
   var categEname = $attrs.categEname;
   var categName = $attrs.categName;
+  var hashTag = $attrs.hashTag;
   var isReady = false;
   var categIdx = 4; // Start article offset of lazy load articles in category
   var articleCount = c.LOAD_CATEG_ARTICLES_COUNT;
@@ -17,20 +18,9 @@ export default function($timeout, $scope, $attrs, $window, gqModel, c, queryHand
   $scope.moreArticleGroups = [];
 
   var listCategArticle = c.TAG_TO_LIST_ARTICLE_API[categEname];
-  var query = null;
-  var queryHandleFunc = null;
-  if (categName === 'Editor picks') {
-    query = function(offset, count) {
-      return gqModel.queryEditorPickArticles(offset, count);
-    }
-    queryHandleFunc = queryHandler.parseCmsArticles;
-    listCategArticle = 'listEditorPick';
-  } else if (listCategArticle) {
-    query = function(offset, count) {
-      return gqModel.queryCateg(listCategArticle, offset, count);
-    };
-    queryHandleFunc = queryHandler.parseArticles;
-  }
+  var query = gqModel.keywordQuery(hashTag);
+  var queryHandleFunc = queryHandler.parseKeywordArticle;
+  
   if (query) {
     isReady = true;
   }
@@ -45,30 +35,10 @@ export default function($timeout, $scope, $attrs, $window, gqModel, c, queryHand
   function loadCategArticles() {
     if (categIdx < maxArticles) {
       $scope.loadingArticles = true;
-      query(categIdx, articleCount).then(function(res) {
+      query(hashTag).then(function(res) {
         $timeout(function() {
-          var moreArticles = res[listCategArticle];
-          var highlights = res.listHomeHighlight || [];
-            highlights.forEach(function(h) {
-                queryHandler.parseLinkURL(h);
-                h.image = h.imgName;
-                h.catName = h.catName.toLowerCase();
-                queryHandler.handleArticleCateg(h);
-                h.label = h.disCatName;
-                h.title = h.content;
-            });
-            $scope.highlights = highlights;
-          var editorPicks = res.listHomeEditorPick || [];
-            editorPicks.forEach(function(p) {
-                  p.image = p.videoThumbnail || p.imgFile;
-                  p.title = p.title;
-                  p.hasVideo = p.videoFile !== '';
-                  p.linkURL = '/Editor picks/' + p.id + '/' + encodeURIComponent(p.title);
-                  p.linkTarget = '_self';
-                });
-            $scope.editorPicks = editorPicks;
-            $scope.igMedias = queryHandler.parseInstagram(res.listInstagram);
-          moreArticles = queryHandleFunc(categName, moreArticles);
+          var moreArticles = res['listByKeyword'];
+          moreArticles = queryHandleFunc(hashTag, moreArticles);
           if (moreArticles.length > 0) {
             $scope.moreArticleGroups.push(moreArticles);
           }
@@ -78,11 +48,11 @@ export default function($timeout, $scope, $attrs, $window, gqModel, c, queryHand
           updateCategIdx();
         });
       }, function(err) {
-        $scope.loadingArticles = false;
+          $scope.loadingArticles = false;
       });
     }
   }
-loadCategArticles(); 
+// loadCategArticles(); 
   $scope.loadCategArticles = function() {
     if (!isReady || $scope.noMoreArticles || !queryHandleFunc) {
       return false;
@@ -91,7 +61,7 @@ loadCategArticles();
       return false;
     }
     if (query) {
-      loadCategArticles(); 
+      // loadCategArticles(); 
     }
   };
     

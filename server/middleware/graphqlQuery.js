@@ -296,11 +296,11 @@ module.exports = function(GRAPHQL_ENDPOINT) {
         createCmsComponeFeedQuery('listUpcomingEvent')
       ]));
     },
-    keywordQuery: function (c) {
+    keywordQuery: function (c, offset, count) {
       var keyword = c;
-      return client.query(createQueryWithParams('$keyword: String',
-          [listMenu, listCampaign, 'listByKeyword (keyword:$keyword) ' +  getKeywordArticles]),
-        {keyword: keyword});
+      return client.query(createQueryWithParams('$keyword: String, $offset: Int, $count: Int',
+          [listMenu, listCampaign, 'listByKeyword (keyword:$keyword, offset: $offset, count: $count) ' +  getKeywordArticles]),
+        {keyword: keyword, offset: offset, count: count});
     } 
   };
 };

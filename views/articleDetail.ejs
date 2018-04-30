@@ -124,7 +124,15 @@
                 
                 <div class="nm_mpm col-md-6 col-xs-12">
                   <div class="mpm_content artd_container">
-                      <fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner>
+                      <fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner> 
+                    <% if(keywords.length > 0){ %>
+                      <% keywords.forEach(function (a, idx){ %>
+                        <a class="hashtagLink" href="<%= origin %>/Keyword/<%= a %>">
+                          #<%= a %>
+                        </a>
+                      <% }) %>      
+                    <% }%>      
+                   
                     <div class="artd_article_label">[<%- disCategoryName %>]</div>
                     <div class="artd_article_title"><%- title %></div>
                     <div class="artd_article_sub_title"><%- subTitle %></div>
