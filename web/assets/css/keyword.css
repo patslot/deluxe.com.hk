@@ -2,6 +2,7 @@
     font-size: 20px;
     color: #C4063D; 
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .keyword_image{
@@ -28,4 +29,24 @@
     color: #fff; 
     background-color:#C4063D ;
 
+}
+
+.underline{
+    display: inline-block; 
+}
+.underline h2{
+    color: #C4063D; 
+    position: relative;
+    letter-spacing: 0.2em;
+    font-size: 29px;
+}
+.underline h2::after{
+    content: ' ';
+    border-bottom: solid 1px #C4063D;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 80%;
 }

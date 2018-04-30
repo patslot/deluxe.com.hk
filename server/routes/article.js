@@ -86,7 +86,11 @@ function parseMpms(origMpms) {
           article.contributorName.replace(/\,/,'') : '';
           article.ename = categMapping.nameToEname[article.categoryName];
           article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
-          article.keywords = article.keyword.split(",");
+          article.keywords = [] ; 
+          if (article.keyword){
+            article.keywords = article.keyword.split(",");
+          }
+         
           queryHandler.parseCmsArticleDetail(article);
           article.menu = queryHandler.parseMenu(result.listMenu);
           article.contributor = result.listContributor.find(function(x){
