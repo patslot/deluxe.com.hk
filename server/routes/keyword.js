@@ -40,7 +40,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
         articles: articles.length > 0 ? articles : null,
         ename: ename,
         adTag: adTagMapping.list,
-        hashTag: hashTag, 
+        hashTag: hashTag.toUpperCase(),
         categ: categ,
         campaigns: result['listCampaign'] || [],
         showEDM: edm.showEDM(req.cookies.addEDM, result['listCampaign']),

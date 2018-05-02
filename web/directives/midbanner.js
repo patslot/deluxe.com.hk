@@ -12,17 +12,19 @@ export default function() {
   return {
     restrict: 'E',
     scope: {
-      divId: '@midbannerId'
+      divId: '@midbannerId',
+      articleId: '@articleId'
     },
     link: function (scope, element, attrs) {
       var unwatch = scope.$watch(function(newVal) {
         var divId = newVal.divId;
+        var articleId = newVal.articleId || "";
         if (!divId) {
           return;
         }
         var midbannerNum = attrs.midbannerNum;
         element.html(ejs.render(htmlTpl, {divId: divId}));
-        showWebAd("Midbanner" , divId);
+        showWebAd("Midbanner" , divId, articleId);
         unwatch();
       });
     }

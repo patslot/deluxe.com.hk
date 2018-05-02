@@ -37,12 +37,12 @@
 .underline h2{
     color: #C4063D; 
     position: relative;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     font-size: 29px;
 }
 .underline h2::after{
     content: ' ';
-    border-bottom: solid 1px #C4063D;
+    border-bottom: solid 2px #000;
     position: absolute;
     bottom: -10px;
     left: 0;

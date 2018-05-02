@@ -8,11 +8,13 @@ export default function() {
   return {
     restrict: 'E',
     scope: {
-      divId: '@lrecId'
+      divId: '@lrecId',
+      articleId: '@articleId'
     },
     link: function (scope, element, attrs) {
       var unwatch = scope.$watch(function(newVal) {
         var divId = newVal.divId;
+        var articleId = newVal.articleId || "";
         if (!divId) {
           return;
         }
@@ -29,7 +31,7 @@ export default function() {
           return;
         }
         element.html(ejs.render(htmlTpl, {divId: divId}));
-        showWebAd("LREC" + lrecNum, divId);
+        showWebAd("LREC" + lrecNum, divId, articleId);
         unwatch();
       });
     }
