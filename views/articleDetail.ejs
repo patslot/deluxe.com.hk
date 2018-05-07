@@ -19,7 +19,7 @@
     categ-ename="<%= ename %>" categ-name="<%= categoryName %>"
     article-id="<%= id %>", article-author="<%= contributorName %>">
     <skinner-block></skinner-block>
-    <splash-screen></splash-screen>
+    <splash-screen article-id="<%- id %>"></splash-screen>
     <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
     <%- include('partials/topMenu.ejs', {menu: menu}) %>
     <div class="container nm_home">
