@@ -3,8 +3,8 @@ export default function($timeout, $scope, $attrs, $window, gqModel, c, queryHand
   var categName = $attrs.categName;
   var hashTag = $attrs.hashTag;
   var isReady = false;
-  var categIdx = 4; // Start article offset of lazy load articles in category
-  var articleCount = c.LOAD_CATEG_ARTICLES_COUNT;
+  var categIdx = 1; // Start article offset of lazy load articles in category
+  var articleCount = 10;
   var articles = [];
   var maxArticles = 200;
     $scope.screenHeight = $window.innerHeight;
@@ -18,7 +18,9 @@ export default function($timeout, $scope, $attrs, $window, gqModel, c, queryHand
   $scope.moreArticleGroups = [];
 
   var listCategArticle = c.TAG_TO_LIST_ARTICLE_API[categEname];
-  var query = gqModel.keywordQuery(hashTag);
+  var query = function(hashTag, offset,  count) {
+    return  gqModel.keywordQuery(hashTag, offset,  count);
+  }
   var queryHandleFunc = queryHandler.parseKeywordArticle;
   
   if (query) {
@@ -35,7 +37,7 @@ export default function($timeout, $scope, $attrs, $window, gqModel, c, queryHand
   function loadCategArticles() {
     if (categIdx < maxArticles) {
       $scope.loadingArticles = true;
-      query(hashTag).then(function(res) {
+      query(hashTag, categIdx,  articleCount).then(function(res) {
         $timeout(function() {
           var moreArticles = res['listByKeyword'];
           moreArticles = queryHandleFunc(hashTag, moreArticles);
@@ -61,7 +63,7 @@ export default function($timeout, $scope, $attrs, $window, gqModel, c, queryHand
       return false;
     }
     if (query) {
-      // loadCategArticles(); 
+      loadCategArticles(); 
     }
   };
     

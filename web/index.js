@@ -66,6 +66,7 @@ module.exports = function(options) {
   angular.module('appDirectives', [])
     .directive('latestArticles', [dirs.latestArticles])
     .directive('articlesInCateg', [dirs.articlesInCateg])
+    .directive('articlesInKeyword', [dirs.articlesInKeyword])
     .directive('addCarousel', ['$timeout', dirs.addCarousel])
     .directive('addCarouselRecommend', ['$timeout', dirs.addCarouselRecommend])
     .directive('facebookBlock', [dirs.facebook])
