@@ -128,7 +128,7 @@
                     <% if(keywords.length > 0){ %>
                       <% keywords.forEach(function (a, idx){ %>
                         <a class="hashtagLink" href="<%= origin %>/Keyword/<%= a %>">
-                          #<%= a %>
+                          #<%= a.toUpperCase() %>
                         </a>
                       <% }) %>      
                     <% }%>      
