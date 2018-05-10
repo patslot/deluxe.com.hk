@@ -11,7 +11,7 @@ var server = Server({
   adMobileBaseTag: process.env.AD_MOBILE_BASE_TAG || "dev.ADD_Mobilesite",
   edmSubscriptionEndpoint: process.env.EDM_SUBSCRIPTION_ENDPOINT,
   GA_CODE: process.env.GA_CODE || "UA-38219220-39",
-  SITE_NAME: process.env.SITE_NAME || "Apple Daily Deluxe",
+  SITE_NAME: process.env.SITE_NAME || "Deluxe Hong Kong",
   LOGGING_GEO_API: process.env.LOGGING_GEO_API || "http://dev.geodds.api.nextmedia.com/geo_api",
   LOGGING_CRM_API: process.env.LOGGING_CRM_API || "https://dev-useg.nextdigital.com.hk",
   LOGGING_PAGEVIEW_API: process.env.LOGGING_PAGEVIEW_API || "http://dev.imp.nextmedia.com/js/nxm_tr_v18_dev.js?t=20161115",
