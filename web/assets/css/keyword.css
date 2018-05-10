@@ -5,15 +5,21 @@
     margin-bottom: 20px;
 }
 
-.keyword_image{
-    width: 50%; 
-}
-.keyword_content{
-    width: 50%; 
+.keyword_content{ 
+    margin-bottom: 20px;
 }
 
 .keyword_content .al_two_content_label{
     margin-top: 0px;
+}
+.al_two_content, .al_two_image {
+    float: left;
+    margin-bottom: 15px;
+}
+@media (min-width: 992px){
+    .al_two_content, .al_two_image {
+        width: 50%; 
+    }
 }
 
 .hashtagLink{
