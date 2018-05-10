@@ -166,6 +166,7 @@ function parseMpms(origMpms) {
     var adTagMapping = categMapping.nameToAdTag[categ];
     var listCategAPI = categMapping.enameToListCategAPI[ename || ''];
     var listCategMPMAPI = categMapping.enameToMPMCategAPI[ename || ''];
+   
     if (!ename || !adTagMapping || !listCategAPI) {
       return next();
     }
