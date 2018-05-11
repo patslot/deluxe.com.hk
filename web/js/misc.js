@@ -74,7 +74,7 @@ $(document).ready(function() {
                       speed: 300,
                       autoplay: true,
      nextArrow: '<a class="right carousel-control"></a>',
-  prevArrow: '<a class="left carousel-control" style="z-index:300;"></a>'
+  prevArrow: '<a class="left carousel-control" style="z-index:99;"></a>'
             }).show();  
 
   
