@@ -72,7 +72,7 @@ const htmlTpl = `
           
 
             <div class="artd_article_label">[<%- disCategoryName %>]</div>
-            <div class="artd_article_title"><%- title %></div>
+            <div class="artd_article_title"><h1><%- title %></h1></div>
             <div class="artd_article_sub_title"><%- subTitle %></div>
             <div id="article-<%= idx %>" class="artd_article_publish_date">
               日期：<%- publish %>
