@@ -86,6 +86,7 @@ function parseMpms(origMpms) {
           article.contributorName.replace(/\,/,'') : '';
           article.ename = categMapping.nameToEname[article.categoryName];
           article.adTag = categMapping.nameToAdTag[article.categoryName].detail;
+          article.metaKeyword = categMapping.categoryKeywordMapping[article.categoryName] ;
           article.keywords = [] ; 
           if (article.keyword){
             article.keywords = article.keyword.split(",");
@@ -166,7 +167,7 @@ function parseMpms(origMpms) {
     var adTagMapping = categMapping.nameToAdTag[categ];
     var listCategAPI = categMapping.enameToListCategAPI[ename || ''];
     var listCategMPMAPI = categMapping.enameToMPMCategAPI[ename || ''];
-   
+    var metaKeyword = categMapping.categoryKeywordMapping[categ] ;
     if (!ename || !adTagMapping || !listCategAPI) {
       return next();
     }
@@ -196,6 +197,7 @@ function parseMpms(origMpms) {
       var mpm = result[listCategMPMAPI];
       res.render('categ', {
         pageviewLog: categMapping.categPageviewLog(categ),
+        metaKeyword: metaKeyword,
         menu: queryHandler.parseMenu(categs, categ),
         mpms: parseMpms(mpm),
         categImg: currentCateg ? currentCateg.img : '',

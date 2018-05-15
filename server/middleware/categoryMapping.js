@@ -52,6 +52,8 @@ var articleLogMapping = {
   COLUMNIST: {channel: BEAUTY, category: FASHION, section: COLUMNIST, news: COMBINE, menu: 'CONTRIBUTOR'}
 }
 
+
+
 function handleLogMapping(log, categ, mapping) {
   var logMapping = mapping[categ] || {};
   for (var k in logMapping) {
@@ -138,5 +140,15 @@ module.exports = {
     'add_cele': 'listCelebMPM',
   },
   categPageviewLog: categPageviewLog,
-  articlePageviewLog: articlePageviewLog
+  articlePageviewLog: articlePageviewLog,
+  categoryKeywordMapping: {
+        'Fashion': 'Deluxe,穿搭,鞋履,手袋,裙子,皮革,上衣,褲子,配飾,復古,歐美風,日系,韓風,波鞋,內衣,運動裝,高跟鞋,太陽眼鏡,帽子,明星穿搭,時裝週,絲巾,泳衣,紅地氈造型',
+        'Beauty': 'Deluxe,減肥,美白,防曬,底妝,面膜,潔面,補濕,控油,彩妝,美甲,髮型,面部療程,香水,身體護理,運動,瑜伽,歐美風,日系,韓風,唇膏,眉妝,暗瘡,紅地氈妝髮',
+        'Luxe': 'Deluxe,首飾,珠寶,水晶,戒指,耳環,手錶,頸鏈,鑽石,手鏈,寶石,金飾,珍珠,髮飾',
+        'Wedding': 'Deluxe,婚嫁首飾,婚紗,晚裝,金器,籌備婚禮,婚宴,婚攝,渡月蜜,過大禮,姊妹裙,婚戒,婚鞋,新娘妝髮,新娘美容,花球,婚禮布置,明星結婚',
+        'Celebrity':'Deluxe,電影,動畫,電視劇,影展,Marvel,Netflix,英國王室,專訪,韓星,荷里活,音樂,金像奬,奧斯卡', 
+        'Lifestyle': 'Deluxe,好去處,下午茶,家品,旅行,早午餐,咖啡,Cafe,打卡,日本,韓國,泰國,台灣,澳門,手信,甜品,自助餐,素食,郊遊,藝術,職場,情性,愛情,閨蜜,廚師發辦,Fine dine,火鍋,中式,西式,泰國菜,曲奇',
+        'Event': 'Deluxe, Fashion, Celebrity, Accessories, style, beauty, watch, lifestyle, travel, apple daily, blogger, Wedding, gift list, dining,  health, fitness, event, keep fit, diet, baselworld, SIHH,  trend, luxury, photography, women’s fashion, fashion designers, street style, tv channel, shopping, must have item , Fashion trend, fashion week, styling tips, gift idea, shoes & bags, gourmet, Fine jewelry, 蘋果, 時尚, 潮流, 名人, 美容, 鐘錶, 珠寶, 生活, 品味, 博客, 化妝, 護膚, 流行, 時裝, 扮靚, 結婚, 婚紗, 女性, 唇膏, 餐廳, 健康, 設計師, 活動, 身體護理, 頭髮護理, 減肥, 健身, 瘦身, 瘦面, 運動, 品牌, 名牌, 潮人, 飲食, 旅遊, 荷里活女星, 名媛, 購物, 好去處, 模特兒, 藝術',
+        'Contributor': 'Deluxe, Fashion, Celebrity, Accessories, style, beauty, watch, lifestyle, travel, apple daily, blogger, Wedding, gift list, dining,  health, fitness, event, keep fit, diet, baselworld, SIHH,  trend, luxury, photography, women’s fashion, fashion designers, street style, tv channel, shopping, must have item , Fashion trend, fashion week, styling tips, gift idea, shoes & bags, gourmet, Fine jewelry, 蘋果, 時尚, 潮流, 名人, 美容, 鐘錶, 珠寶, 生活, 品味, 博客, 化妝, 護膚, 流行, 時裝, 扮靚, 結婚, 婚紗, 女性, 唇膏, 餐廳, 健康, 設計師, 活動, 身體護理, 頭髮護理, 減肥, 健身, 瘦身, 瘦面, 運動, 品牌, 名牌, 潮人, 飲食, 旅遊, 荷里活女星, 名媛, 購物, 好去處, 模特兒, 藝術'
+  }
 };

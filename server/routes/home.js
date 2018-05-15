@@ -19,6 +19,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
 
   return {
     render: function(req, res, next) {
+        var metaKeyword = categMapping.categoryKeywordMapping['Contributor'] ;
         gQuery.homeQuery()
            .catch(function(err) {
                       // use all available data
@@ -34,6 +35,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
               res.render('homepage', {
                 pageviewLog: categMapping.categPageviewLog('HOME'),
                 mpms: parseMpms(result.listMPM),
+                metaKeyword: metaKeyword,
                 menu: queryHandler.parseMenu(result.listMenu),
                 articles: queryHandler.parseHomeArticles(articles),
                 campaigns: result.listCampaign || [],

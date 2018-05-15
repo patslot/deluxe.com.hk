@@ -16,6 +16,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
 
   function renderEvents(req, res, next) {
     var totalEvents = eventCount + 1;
+    var metaKeyword = categMapping.categoryKeywordMapping['Event'] ;
     gQuery.eventsQuery(totalEvents, 1)
       .catch(function(err) {
         // use all available data
@@ -31,6 +32,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
         var upcomingEvents = (r.listUpcomingEvent || []).slice(0, maxUpcomingEvents);
         res.render('events', {
           pageviewLog: categMapping.categPageviewLog(categEvent),
+          metaKeyword: metaKeyword,
           categName: categEvent,
           adTag: categMapping.nameToAdTag[categEvent].list,
           numOfPages: getNumOfPages(r.totalPostEvent),

@@ -20,7 +20,13 @@
 <% } %>
 <meta property="og:url" content="<%= fullURL %>" />
 <meta property="og:site_name" content="<%= SITE_NAME %>" />
-<meta name="keywords" content="Deluxe, Fashion, Celebrity, Accessories, style, beauty, watch, lifestyle, travel, apple daily, blogger, Wedding, gift list, dining,  health, fitness, event, keep fit, diet, baselworld, SIHH,  trend, luxury, photography, women’s fashion, fashion designers, street style, tv channel, shopping, must have item , Fashion trend, fashion week, styling tips, gift idea, shoes & bags, gourmet, Fine jewelry, 蘋果, 時尚, 潮流, 名人, 美容, 鐘錶, 珠寶, 生活, 品味, 博客, 化妝, 護膚, 流行, 時裝, 扮靚, 結婚, 婚紗, 女性, 唇膏, 餐廳, 健康, 設計師, 活動, 身體護理, 頭髮護理, 減肥, 健身, 瘦身, 瘦面, 運動, 品牌, 名牌, 潮人, 飲食, 旅遊, 荷里活女星, 名媛, 購物, 好去處, 模特兒, 藝術" />
+<meta name="description" content="集時裝、美容、珠寶、生活品味、婚禮指南於一身的潮流資訊平台，每天為你提供既實用又全面的流行情報。" />
+
+<% if (metaKeyword && metaKeyword !== "") { %>
+  <meta name="keywords" content="<%= metaKeyword %>" />
+<% } else { %>
+  <meta name="keywords" content="Deluxe, Fashion, Celebrity, Accessories, style, beauty, watch, lifestyle, travel, apple daily, blogger, Wedding, gift list, dining,  health, fitness, event, keep fit, diet, baselworld, SIHH,  trend, luxury, photography, women’s fashion, fashion designers, street style, tv channel, shopping, must have item , Fashion trend, fashion week, styling tips, gift idea, shoes & bags, gourmet, Fine jewelry, 蘋果, 時尚, 潮流, 名人, 美容, 鐘錶, 珠寶, 生活, 品味, 博客, 化妝, 護膚, 流行, 時裝, 扮靚, 結婚, 婚紗, 女性, 唇膏, 餐廳, 健康, 設計師, 活動, 身體護理, 頭髮護理, 減肥, 健身, 瘦身, 瘦面, 運動, 品牌, 名牌, 潮人, 飲食, 旅遊, 荷里活女星, 名媛, 購物, 好去處, 模特兒, 藝術" />
+<% } %>
 <title><%= title %></title>
 <link rel="shortcut icon" href="/img/favicon.ico" />
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
