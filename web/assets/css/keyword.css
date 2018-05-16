@@ -31,7 +31,7 @@
     margin: 5px;
 }
 
-.hashtagLink:hover, .hashtagLink:active{
+.hashtagLink:hover, .hashtagLink:active,  .hashtagLink:focus{
     color: #fff; 
     background-color:#C4063D ;
 
