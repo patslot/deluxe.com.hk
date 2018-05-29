@@ -114,6 +114,7 @@ app.get('/google48dda8f13ef3ab4c.html', function (req, res) {
 })
    
   app.use(function(err, req, res, next) {
+    var metaKeyword = categMapping.categoryKeywordMapping['Contributor'] ;
     console.error(JSON.stringify(err));
     if (req.accepts(["text/html", "application/json"]) === "application/json") {
       return res.status(500).json({status: 500, message: err});
@@ -122,12 +123,15 @@ app.get('/google48dda8f13ef3ab4c.html', function (req, res) {
       menu: {main: [], sub: []},
       campaigns: [],
       showEDM: false,
+      metaKeyword: metaKeyword,
       origin: req.protocol + '://' + req.get('host'),
       fullURL: req.protocol + '://' + req.get('host') + req.originalUrl
     });
   });
 
   app.use(function(req, res) {
+
+    var metaKeyword = categMapping.categoryKeywordMapping['Contributor'] ;
     if (req.accepts(["text/html", "application/json"]) === "application/json") {
       return res.status(404).json({status: 404, message: "not found"});
     }
@@ -135,6 +139,7 @@ app.get('/google48dda8f13ef3ab4c.html', function (req, res) {
       menu: {main: [], sub: []},
       campaigns: [],
       showEDM: false,
+      metaKeyword: metaKeyword,
       origin: req.protocol + '://' + req.get('host'),
       fullURL: req.protocol + '://' + req.get('host') + req.originalUrl
     });
