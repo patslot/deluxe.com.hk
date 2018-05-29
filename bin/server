@@ -14,7 +14,7 @@ var server = Server({
   SITE_NAME: process.env.SITE_NAME || "Deluxe Hong Kong",
   LOGGING_GEO_API: process.env.LOGGING_GEO_API || "http://dev.geodds.api.nextmedia.com/geo_api",
   LOGGING_CRM_API: process.env.LOGGING_CRM_API || "https://dev-useg.nextdigital.com.hk",
-  LOGGING_PAGEVIEW_API: process.env.LOGGING_PAGEVIEW_API || "http://dev.imp.nextmedia.com/js/nxm_tr_v18_dev.js?t=20161115",
+  LOGGING_PAGEVIEW_API: process.env.LOGGING_PAGEVIEW_API || "https://dev-imp.appledaily.com/js/nxm_tr_v20s_dev.js?t=20180529",
   LOGGING_PARSELY_SITE_DOMAIN: process.env.LOGGING_PARSELY_SITE_DOMAIN,
   MAX_CATEG_ARTICLES: process.env.MAX_CATEG_ARTICLES
 });
