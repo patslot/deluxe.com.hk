@@ -190,7 +190,7 @@ const htmlTpl = `
       id: divID,
       title: '<%- eTitle %>',
       url: <% if (isSharedUrl) { %> '/article/<%- id %>' <% } else { %> '/<%- categoryName %>/<%- id %>/<%- eTitle %>' <% } %>,
-      nxmObj: {"region": "HK", "prod": "ADD", "site": "https://add.appledaily.com.hk",
+      nxmObj: {"region": "HK", "prod": "ADD", "site": "deluxe.com.hk",
         "platform": "WEB", "section": "<%= pvLog.section %>", "media": "TEXT",
         "content": "<%= pvLog.content %>", "issueid": "<%= pvLog.issueid %>",
         "title": "<%= pvLog.title %>", "cid": "<%= pvLog.cid %>", "news": "<%= pvLog.news %>",
