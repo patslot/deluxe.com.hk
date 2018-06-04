@@ -5,7 +5,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
   var contributorBlockCount = 6;
   var categContr = 'Contributor';
   var columnist = 'COLUMNIST';
-
+  var metaKeyword = categMapping.categoryKeywordMapping['Contributor'] ;
   function renderArticles(req, res, next) {
     var name = req.params.contrName;
     gQuery.contributorArticlesQuery(name, 0, articleCount + 1)
@@ -33,6 +33,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
         res.render('contributorArticles', {
           pageviewLog: categMapping.categPageviewLog(columnist, 'INDEX', name),
           contributor: queryHandler.parseContributor(contributors[0]),
+          metaKeyword: metaKeyword,
           menu: queryHandler.parseMenu(r.listMenu, categContr),
           articles: articles,
           noMoreArticles: allArticles.length <= articleCount,
@@ -48,6 +49,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
 
   function renderIndex(req, res, next) {
     var adTagMapping = categMapping.nameToAdTag[categContr];
+    var metaKeyword = categMapping.categoryKeywordMapping['Contributor'] ;
     gQuery.contributorIndexQuery()
       .catch(function(err) {
         // use all available data
@@ -61,6 +63,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
       .then(function(r) {
         res.render('contributorIndex', {
           pageviewLog: categMapping.categPageviewLog(columnist),
+          metaKeyword: metaKeyword,
           contributors: queryHandler.parseContributors(
             (r.listContributor || []).slice(0, contributorBlockCount)),
           menu: queryHandler.parseMenu(r.listMenu, categContr),

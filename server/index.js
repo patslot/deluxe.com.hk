@@ -13,6 +13,7 @@ module.exports = function(options) {
   var articleUtil = require('./middleware/articleUtil.js')();
   var home = require('./routes/home.js')(gQuery, categMapping, queryHandler, edm, articleUtil);
   var article = require('./routes/article.js')(gQuery, categMapping, queryHandler, edm, articleUtil);
+  var keyword = require('./routes/keyword.js')(gQuery, categMapping, queryHandler, edm, articleUtil);
   var contributor = require('./routes/contributor.js')(gQuery, categMapping, queryHandler, edm);
   var events = require('./routes/events.js')(gQuery, categMapping, queryHandler, edm)
   var api = require("./routes/api.js")(options.edmSubscriptionEndpoint);
@@ -105,12 +106,15 @@ module.exports = function(options) {
   app.get('/:categ/:articleID/:title', article.renderArticle);
   app.get('/:categ/:articleID', article.renderArticle);
   app.get('/:categ', article.renderArticles);
+
+  app.get('/Keyword/:hashtag', keyword.renderArticles);
     
 app.get('/google48dda8f13ef3ab4c.html', function (req, res) {
   res.send('/web/google48dda8f13ef3ab4c.html')
 })
    
   app.use(function(err, req, res, next) {
+    var metaKeyword = categMapping.categoryKeywordMapping['Contributor'] ;
     console.error(JSON.stringify(err));
     if (req.accepts(["text/html", "application/json"]) === "application/json") {
       return res.status(500).json({status: 500, message: err});
@@ -119,12 +123,15 @@ app.get('/google48dda8f13ef3ab4c.html', function (req, res) {
       menu: {main: [], sub: []},
       campaigns: [],
       showEDM: false,
+      metaKeyword: metaKeyword,
       origin: req.protocol + '://' + req.get('host'),
       fullURL: req.protocol + '://' + req.get('host') + req.originalUrl
     });
   });
 
   app.use(function(req, res) {
+
+    var metaKeyword = categMapping.categoryKeywordMapping['Contributor'] ;
     if (req.accepts(["text/html", "application/json"]) === "application/json") {
       return res.status(404).json({status: 404, message: "not found"});
     }
@@ -132,6 +139,7 @@ app.get('/google48dda8f13ef3ab4c.html', function (req, res) {
       menu: {main: [], sub: []},
       campaigns: [],
       showEDM: false,
+      metaKeyword: metaKeyword,
       origin: req.protocol + '://' + req.get('host'),
       fullURL: req.protocol + '://' + req.get('host') + req.originalUrl
     });

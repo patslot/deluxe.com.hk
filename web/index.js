@@ -26,6 +26,7 @@ import './assets/css/newsletter.css';
 import './assets/css/upcomingEvents.css';
 import './assets/css/featherlight.css';
 import './assets/css/slick.css';
+import './assets/css/keyword.css';
 
 import './js/lazy-scroll.js';
 import './js/jquery.endless-scroll.js';
@@ -65,6 +66,7 @@ module.exports = function(options) {
   angular.module('appDirectives', [])
     .directive('latestArticles', [dirs.latestArticles])
     .directive('articlesInCateg', [dirs.articlesInCateg])
+    .directive('articlesInKeyword', [dirs.articlesInKeyword])
     .directive('addCarousel', ['$timeout', dirs.addCarousel])
     .directive('addCarouselRecommend', ['$timeout', dirs.addCarouselRecommend])
     .directive('facebookBlock', [dirs.facebook])
@@ -93,6 +95,8 @@ module.exports = function(options) {
       'queryHandler', controllers.homepage])
     .controller('CategController', ['$timeout', '$scope', '$attrs', '$window', 'gqModel',
       'const', 'queryHandler', controllers.category]) 
+    .controller('KeywordController', ['$timeout', '$scope', '$attrs', '$window', 'gqModel',
+      'const', 'queryHandler', controllers.keyword]) 
     .controller('subCategController', ['$timeout', '$scope', '$attrs', '$window', 'gqModel',
       'const', 'queryHandler', controllers.subcategory])
     .controller('ArticleController', ['$timeout', '$scope', '$attrs','$window', 'gqModel',

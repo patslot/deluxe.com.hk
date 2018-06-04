@@ -92,7 +92,8 @@ function displayAd(divId, slot) {
   googletag.pubads().refresh([slot]);
 }
 
-function showWebAd(adType, divId, callback) {
+function showWebAd(adType, divId, a, callback) {
+  var acticleId = a || ''; 
   if (window.googletag && googletag.apiReady) {
     googletag.cmd.push(function() {
       var slot = googletag
@@ -100,9 +101,10 @@ function showWebAd(adType, divId, callback) {
           webPrefix + adType,
           webSlotSizes[adType],
           divId)
-        .addService(googletag.pubads());
+        .addService(googletag.pubads())
+        .setTargeting("article", acticleId);
 
-      console.log(slot.getSlotElementId());
+        // console.log(slot);
       webAdSlots[divId] = slot;
       webAdDivIds.push(divId);
       if (typeof callback !== "undefined") {
@@ -118,7 +120,8 @@ function showWebAd(adType, divId, callback) {
   }
 }
 
-function showMobileAd(adType, divId, callback) {
+function showMobileAd(adType, divId, a, callback) {
+  var acticleId = a || ''; 
   if (window.googletag && googletag.apiReady) {
     googletag.cmd.push(function() {
       var slot = null;
@@ -130,7 +133,8 @@ function showMobileAd(adType, divId, callback) {
             mobileSplashPrefix + adType,
             slotSize,
             divId)
-          .addService(googletag.pubads());
+          .addService(googletag.pubads())
+          .setTargeting("article", acticleId);
       } else {
         slot = googletag
           .defineSlot(
@@ -138,9 +142,9 @@ function showMobileAd(adType, divId, callback) {
             mobileSlotSizes[adType],
             divId)
             .addService(googletag.companionAds())  
-          .addService(googletag.pubads());
+          .addService(googletag.pubads())
+          .setTargeting("article", acticleId);
       }
-      // console.log(slot.getSlotElementId());
       mobileAdSlots[divId] = slot;
       mobileAdDivIds.push(divId);
       if (typeof callback !== "undefined") {

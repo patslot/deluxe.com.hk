@@ -21,7 +21,18 @@ export default function(c) {
       }
     }
   }`;
-    
+   
+  const getKeywordArticles = `{
+    id
+    title
+      ... on KeywordArticles{
+        intro
+        articleThumbnail
+        categoryID
+        categoryName
+      }
+    }  
+  `;
 
   const listInstagram4 = `listInstagram(limit: 4) {
     link
@@ -335,6 +346,12 @@ const listContributorArticleAll = `listContributorArticleAll(offset: $offset, co
     queryNewsArticleDetail: function(articleID) {
       return client.query(createQueryWithParams('$id: String',
         [gConst.getNewsArticleDetail]), {id: articleID});
+    },
+    keywordQuery: function(hashtag, offset, count) {
+        var keyword = hashtag;
+      return client.query(createQueryWithParams('$keyword: String, $offset: Int, $count: Int',
+        ['listByKeyword (keyword:$keyword, offset: $offset, count: $count) ' +  getKeywordArticles]),
+         {keyword: keyword, offset: offset, count: count});
     }
   };
 };

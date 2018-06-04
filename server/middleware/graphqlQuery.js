@@ -28,7 +28,19 @@ module.exports = function(GRAPHQL_ENDPOINT) {
       }
     }
   `;
-    
+   
+  const getKeywordArticles = `{
+    id
+    title
+      ... on KeywordArticles{
+        intro
+        articleThumbnail
+        categoryID
+        categoryName
+      }
+    }  
+  `;
+
   const cmsSpecialFeedItem = `{
     id
     expire
@@ -194,7 +206,7 @@ module.exports = function(GRAPHQL_ENDPOINT) {
   };
 
   var createQueryWithParams = function(paramStr, queries) {
-//        console.log( 'query (' + paramStr + ') { ' + queries.join(' ') + ' }');
+      //  console.log( 'query (' + paramStr + ') { ' + queries.join(' ') + ' }');
        return 'query (' + paramStr + ') { ' + queries.join(' ') + ' }';
   };
 
@@ -283,6 +295,12 @@ module.exports = function(GRAPHQL_ENDPOINT) {
       return client.query(createQuery([
         createCmsComponeFeedQuery('listUpcomingEvent')
       ]));
-    }
+    },
+    keywordQuery: function (c, offset, count) {
+      var keyword = c;
+      return client.query(createQueryWithParams('$keyword: String, $offset: Int, $count: Int',
+          [listMenu, listCampaign, 'listByKeyword (keyword:$keyword, offset: $offset, count: $count) ' +  getKeywordArticles]),
+        {keyword: keyword, offset: offset, count: count});
+    } 
   };
 };

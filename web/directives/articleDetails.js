@@ -1,7 +1,7 @@
 const htmlTpl = `
 <div class="main_content" style="margin-top: 50px">
   <div class="nm_section">
-    <headbanner headbanner-id="headbanner_<%= idx %>"></headbanner>
+    <headbanner headbanner-id="headbanner_<%= idx %>" article-id="<%- id %>"></headbanner>
     <div class="row">
       <% if (type === "news") { %>
         <div class="nm_mpm col-md-6 col-xs-12">
@@ -68,8 +68,11 @@ const htmlTpl = `
       <% } else if (type === "cms") { %>
         <div class="nm_mpm col-md-6 col-xs-12">
           <div class="mpm_content artd_container">
+
+          
+
             <div class="artd_article_label">[<%- disCategoryName %>]</div>
-            <div class="artd_article_title"><%- title %></div>
+            <div class="artd_article_title"><h1><%- title %></h1></div>
             <div class="artd_article_sub_title"><%- subTitle %></div>
             <div id="article-<%= idx %>" class="artd_article_publish_date">
               日期：<%- publish %>
@@ -136,25 +139,25 @@ const htmlTpl = `
                   <div class="artd_article_Text">
                     <%- content.content %>
                             <% if (index == 3) { %>
-                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner2_<%= index %>" fixedbanner-num="2"></fixedbanner>
+                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner2_<%= index %>" fixedbanner-num="2" article-id="<%- id %>"></fixedbanner>
                             <% } %>
                               <% if (index == 7) { %>
-                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner3_<%= index %>" fixedbanner-num="3"></fixedbanner>
+                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner3_<%= index %>" fixedbanner-num="3" article-id="<%- id %>"></fixedbanner>
                             <% } %>
                               <% if (index == 11) { %>
-                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner4_<%= index %>" fixedbanner-num="4" ></fixedbanner>
+                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner4_<%= index %>" fixedbanner-num="4"  article-id="<%- id %>"></fixedbanner>
                             <% } %>
                               <% if (index == 15) { %>
-                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner5_<%= index %>" fixedbanner-num="5"></fixedbanner>
+                              <flyingcarpetfixedbanner fixedbanner-id="fixedbanner5_<%= index %>" fixedbanner-num="5" article-id="<%- id %>"></fixedbanner>
                             <% } %>
                               <% if (content.content === "<p>FIXBANNER6</p>") { %>
-                                <fixedbanner fixedbanner-id="fixedbanner6_<%= index %>" fixedbanner-num="6"></fixedbanner>
+                                <fixedbanner fixedbanner-id="fixedbanner6_<%= index %>" fixedbanner-num="6" article-id="<%- id %>"></fixedbanner>
                             <% } %>
                             <% if (content.content === "<p>FIXBANNER7</p>") { %>
-                              <fixedbanner fixedbanner-id="fixedbanner7_<%= index %>" fixedbanner-num="7"></fixedbanner>
+                              <fixedbanner fixedbanner-id="fixedbanner7_<%= index %>" fixedbanner-num="7" article-id="<%- id %>"></fixedbanner>
                             <% } %>
                             <% if (content.content === "<p>FIXBANNER8</p>") { %>
-                              <fixedbanner fixedbanner-id="fixedbanner8_<%= index %>" fixedbanner-num="8"></fixedbanner>
+                              <fixedbanner fixedbanner-id="fixedbanner8_<%= index %>" fixedbanner-num="8" article-id="<%- id %>"></fixedbanner>
                             <% } %>
                     </div>
                     <% } %>
@@ -164,8 +167,8 @@ const htmlTpl = `
         </div>
       <% } %>
       <div class="lrec_ad_wrapper col-md-3 col-xs-12">
-        <lrec lrec-id="lrec1_<%= idx %>" lrec-num="1"></lrec>
-        <lrec lrec-id="lrec2_<%= idx %>" lrec-num="2"></lrec>
+        <lrec lrec-id="lrec1_<%= idx %>" lrec-num="1" article-id="<%- id %>"></lrec>
+        <lrec lrec-id="lrec2_<%= idx %>" lrec-num="2" article-id="<%- id %>"></lrec>
       </div>
     </div>
   </div>

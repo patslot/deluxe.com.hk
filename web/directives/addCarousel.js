@@ -87,7 +87,7 @@ export default function() {
                       slidesToShow: numCarousel,
                       slidesToScroll: numCarousel,
             nextArrow: '<a class="right carousel-control"></a>',
-  prevArrow: '<a class="left carousel-control" style="z-index:300;"></a>',
+  prevArrow: '<a class="left carousel-control" style="z-index:99;"></a>',
                       responsive: [
                         {
                           breakpoint: 991,

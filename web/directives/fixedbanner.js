@@ -10,11 +10,13 @@ export default function() {
   return {
     restrict: 'E',
     scope: {
-      divId: '@fixedbannerId'
+      divId: '@fixedbannerId',
+      articleId: '@articleId'
     },
     link: function (scope, element, attrs) {
       var unwatch = scope.$watch(function(newVal) {
         var divId = newVal.divId;
+        var articleId = newVal.articleId || "";
         if (!divId) {
           return;
         }
@@ -31,7 +33,7 @@ export default function() {
         }
         fixedbannerNum = Math.min(fixedbannerNum, 8);
         element.html(ejs.render(htmlTpl, {divId: divId}));
-        showMobileAd("Fixedbanner" + fixedbannerNum, divId);
+        showMobileAd("Fixedbanner" + fixedbannerNum, divId, articleId);
         unwatch();
       });
     }
