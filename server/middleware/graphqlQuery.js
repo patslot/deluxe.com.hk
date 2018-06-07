@@ -30,6 +30,14 @@ module.exports = function(GRAPHQL_ENDPOINT) {
   `;
    
   const getKeywordArticles = `{
+      title
+      link
+      snippet
+      image
+    }  
+  `;
+
+  const getGoogleSearchResult = `{
     id
     title
       ... on KeywordArticles{
@@ -301,6 +309,11 @@ module.exports = function(GRAPHQL_ENDPOINT) {
       return client.query(createQueryWithParams('$keyword: String, $offset: Int, $count: Int',
           [listMenu, listCampaign, 'listByKeyword (keyword:$keyword, offset: $offset, count: $count) ' +  getKeywordArticles]),
         {keyword: keyword, offset: offset, count: count});
+    },
+    searchQuery: function(query) {
+      return client.query(createQueryWithParams('$query: String',
+        [listMenu, listCampaign, 'getGoogleSearchResult(query:$query)' + getKeywordArticles]),
+        {query: query});
     } 
   };
 };
