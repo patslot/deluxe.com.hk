@@ -26,7 +26,7 @@
     nxmTrack.nxmAddSeg('NGSID=' + ngs_id);
     nxmTrack.nxmSendPageDepth(0, new Date().getTime());
   }
-    var nxmObj1 = {"region": "HK", "prod": "ADD", "site": "https://add.appledaily.com.hk",
+    var nxmObj1 = {"region": "HK", "prod": "ADD", "site": "deluxe.com.hk",
     "platform": "WEB", "section": "<%= section %>", "media": "TEXT",
     "content": "<%= content %>", "issueid": "<%= issueid %>", "title": "<%= title %>",
     "cid": "<%= cid %>", "news": "<%= news %>",
@@ -34,8 +34,7 @@
     "menu": "<%= menu %>", "auth": "<%= auth %>", "src": "AD", "L": "TC",
     "ch": "<%= channel %>", "cat": "<%= category %>", "ky": "<%= ky %>", "ngsid": "", "ref": ""};
    
-    var gdprObj = {} ;
-    
+      
 
   (function() {
     sendPageview(nxmObj1);
