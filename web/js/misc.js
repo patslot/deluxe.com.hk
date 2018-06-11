@@ -8,18 +8,38 @@ $(document).ready(function() {
       var skinnerTrigerTop = $('.ls_banner').outerHeight(true) ? 160 + $('.ls_banner').outerHeight(true) : 160;
       skinnerTrigerTop = $('.sub-categories').outerHeight(true) ? skinnerTrigerTop + $('.sub-categories').outerHeight(true) : skinnerTrigerTop;
 
-      if (scrollTop > 80) {
-        nmHeader.addClass('fixed');
-        stickyPlaceholder.addClass('fixed');
-      } else {
-        nmHeader.removeClass('fixed');
-        stickyPlaceholder.removeClass('fixed');
+     
+      if ($('#div-GDPR-message').css('display') != "none") {
+        if (scrollTop > 80) {
+          nmHeader.addClass('fixed');
+          stickyPlaceholder.addClass('fixed');
+          $('.nm_header.fixed #sticky-wrap .nav').css('top','65px');
+        } else {
+          nmHeader.removeClass('fixed');
+          stickyPlaceholder.removeClass('fixed');
+          $('.nm_header #sticky-wrap .nav').css('top','auto');
+        }
+        if (scrollTop > skinnerTrigerTop - 160) {
+          skinnerAD.css('top', 160);
+        } else {
+          skinnerAD.css('top', skinnerTrigerTop - scrollTop + 70);
+        }
       }
-
-      if (scrollTop > skinnerTrigerTop - 80) {
-        skinnerAD.css('top', 80);
-      } else {
-        skinnerAD.css('top', skinnerTrigerTop - scrollTop);
+      else{
+        if (scrollTop > 80) {
+          nmHeader.addClass('fixed');
+          stickyPlaceholder.addClass('fixed');
+          $('.nm_header.fixed #sticky-wrap .nav').css('top','0px');
+        } else {
+          nmHeader.removeClass('fixed');
+          stickyPlaceholder.removeClass('fixed');
+          $('.nm_header #sticky-wrap .nav').css('top','auto');
+        }
+        if (scrollTop > skinnerTrigerTop - 80) {
+          skinnerAD.css('top', 80);
+        } else {
+          skinnerAD.css('top', skinnerTrigerTop - scrollTop);
+        }
       }
     }
   };
