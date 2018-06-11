@@ -9,7 +9,7 @@ $(document).ready(function() {
       skinnerTrigerTop = $('.sub-categories').outerHeight(true) ? skinnerTrigerTop + $('.sub-categories').outerHeight(true) : skinnerTrigerTop;
 
      
-      if ($('#div-GDPR-message').css('display') != "none") {
+      if (($('#div-GDPR-message').css('display') != "none") || ($('#div-GDPR-message').length > 0 )) {
         if (scrollTop > 80) {
           nmHeader.addClass('fixed');
           stickyPlaceholder.addClass('fixed');
