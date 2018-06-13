@@ -9,7 +9,7 @@ $(document).ready(function() {
       skinnerTrigerTop = $('.sub-categories').outerHeight(true) ? skinnerTrigerTop + $('.sub-categories').outerHeight(true) : skinnerTrigerTop;
 
      
-      if (($('#div-GDPR-message').css('display') != "none") || ($('#div-GDPR-message').length > 0 )) {
+      if ( $('#div-GDPR-message').css('display') != "none" && $('#div-GDPR-message').length > 0 ) {
         if (scrollTop > 80) {
           nmHeader.addClass('fixed');
           stickyPlaceholder.addClass('fixed');
@@ -43,6 +43,13 @@ $(document).ready(function() {
       }
     }
   };
+  var GDPRcheck = setInterval(function(){
+    updateSticky();
+  }, 100);
+  
+  setTimeout(function(){
+    window.clearInterval(GDPRcheck);
+  },5000);
 
 	updateSticky();
   $(document).scroll(updateSticky);
