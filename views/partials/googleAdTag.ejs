@@ -93,8 +93,11 @@ function displayAd(divId, slot) {
 }
 
 function showWebAd(adType, divId, a, callback) {
-  
-  var kyEncoded = encodeURIComponent('<%= ky %>'); 
+  <% if (ky) { %>
+      var kyEncoded = encodeURIComponent('<%= ky %>'); 
+  <% }else { %>
+      var kyEncoded = ""; 
+  <% } %>
   var crmData = JSON.parse(localStorage.getItem("1x1_CRM"));
   if(crmData.data.SEG == ""){
     var seg = "";
@@ -132,7 +135,11 @@ function showWebAd(adType, divId, a, callback) {
 }
 
 function showMobileAd(adType, divId, a, callback) {
-  var kyEncoded = encodeURIComponent('<%= ky %>'); 
+  <% if (ky) { %>
+    var kyEncoded = encodeURIComponent('<%= ky %>'); 
+  <% }else { %>
+    var kyEncoded = ""; 
+  <% } %> 
   var crmData = JSON.parse(localStorage.getItem("1x1_CRM"));
   console.log(crmData.data);
   if(crmData.data.SEG == ""){
