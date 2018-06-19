@@ -15,15 +15,16 @@
         .map(c => c.charCodeAt(0).toString(16))
         .join("");
 
+      
       var nxtu = (document.cookie || "")
         .split(";")
         .map(function(d) { return d.trim().split("="); })
-        .filter(function(d) { return d.length === 2 && d[0] === "NXTU"; })
+        .filter(function(d) { return d.length === 2 && d[0] === "nxtu"; })
         .reduce(function(acc, val) { return val; }, "");
-
+      
       $.ajax({
-        url: "<%= LOGGING_CRM_API %>",
-        data: { NXTU: nxtu, k: hexed, format: "dfp" },
+        url: "<%= LOGGING_CRM_API %>/get",
+        data: { NXTU: nxtu[1], k: hexed, format: "dfp" },
         timeout: 5000
       }).done(function(data) {
         localStorage.setItem(

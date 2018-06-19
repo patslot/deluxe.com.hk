@@ -93,6 +93,15 @@ function displayAd(divId, slot) {
 }
 
 function showWebAd(adType, divId, a, callback) {
+  
+  var kyEncoded = encodeURIComponent('<%= ky %>'); 
+  var crmData = JSON.parse(localStorage.getItem("1x1_CRM"));
+  if(crmData.data.SEG == ""){
+    var seg = "";
+  }
+  else{
+    var seg = crmData.data.SEG ; 
+  }
   var acticleId = a || ''; 
   if (window.googletag && googletag.apiReady) {
     googletag.cmd.push(function() {
@@ -102,7 +111,9 @@ function showWebAd(adType, divId, a, callback) {
           webSlotSizes[adType],
           divId)
         .addService(googletag.pubads())
-        .setTargeting("article", acticleId);
+        .setTargeting("article", acticleId)
+        .setTargeting("SEG", seg)
+        .setTargeting("KY", kyEncoded);
 
         // console.log(slot);
       webAdSlots[divId] = slot;
@@ -121,6 +132,15 @@ function showWebAd(adType, divId, a, callback) {
 }
 
 function showMobileAd(adType, divId, a, callback) {
+  var kyEncoded = encodeURIComponent('<%= ky %>'); 
+  var crmData = JSON.parse(localStorage.getItem("1x1_CRM"));
+  console.log(crmData.data);
+  if(crmData.data.SEG == ""){
+    var seg = "";
+  }
+  else{
+    var seg = crmData.data.SEG ; 
+  }
   var acticleId = a || ''; 
   if (window.googletag && googletag.apiReady) {
     googletag.cmd.push(function() {
@@ -134,7 +154,9 @@ function showMobileAd(adType, divId, a, callback) {
             slotSize,
             divId)
           .addService(googletag.pubads())
-          .setTargeting("article", acticleId);
+          .setTargeting("article", acticleId)
+          .setTargeting("SEG", seg)
+          .setTargeting("KY", kyEncoded);
       } else {
         slot = googletag
           .defineSlot(
@@ -143,7 +165,9 @@ function showMobileAd(adType, divId, a, callback) {
             divId)
             .addService(googletag.companionAds())  
           .addService(googletag.pubads())
-          .setTargeting("article", acticleId);
+          .setTargeting("article", acticleId)
+          .setTargeting("SEG", seg)
+          .setTargeting("KY", kyEncoded);
       }
       mobileAdSlots[divId] = slot;
       mobileAdDivIds.push(divId);

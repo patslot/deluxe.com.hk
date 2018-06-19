@@ -9,7 +9,6 @@ $(document).ready(function() {
     skinnerTrigerTop = $('.sub-categories').outerHeight(true) ? skinnerTrigerTop + $('.sub-categories').outerHeight(true) : skinnerTrigerTop;
   if (window.matchMedia('(min-width: 768px)').matches) {
     if ( $('#div-GDPR-message').css('display') != "none" && $('#div-GDPR-message').length > 0 ) {
-      $('.nm_header').css('margin-top','65px');
       var GDPR_height = $('#div-GDPR-message').outerHeight(true);
       if (scrollTop > 80) {
         nmHeader.addClass('fixed');
@@ -45,12 +44,14 @@ $(document).ready(function() {
   }
   else{
     if ( $('#div-GDPR-message').css('display') != "none" && $('#div-GDPR-message').length > 0 ) {
-      $('.nm_header').css('margin-top','140px');
+     
       if (scrollTop > 80) {
+        $('.nm_header').css('margin-top','140px');
         nmHeader.addClass('fixed');
         stickyPlaceholder.addClass('fixed');
         $('.nm_header.fixed #sticky-wrap .nav').css('top','140px');
       } else {
+        $('.nm_header').css('margin-top','0px');
         nmHeader.removeClass('fixed');
         stickyPlaceholder.removeClass('fixed');
         $('.nm_header #sticky-wrap .nav').css('top','auto');
