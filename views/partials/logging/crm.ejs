@@ -14,8 +14,9 @@
         .split("")
         .map(c => c.charCodeAt(0).toString(16))
         .join("");
-
       
+      console.log(hexed);
+
       var nxtu = (document.cookie || "")
         .split(";")
         .map(function(d) { return d.trim().split("="); })

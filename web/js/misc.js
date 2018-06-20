@@ -56,11 +56,9 @@ $(document).ready(function() {
         stickyPlaceholder.removeClass('fixed');
         $('.nm_header #sticky-wrap .nav').css('top','auto');
       }
-      if (scrollTop > skinnerTrigerTop - 80) {
-        skinnerAD.css('top', 145);
-      } else {
-        skinnerAD.css('top', skinnerTrigerTop - scrollTop + 60);
-      }
+    }else{
+      $('.nm_header').css('margin-top','0px');
+      $('.nm_header #sticky-wrap .nav').css('top','auto');
     }
   }
 };

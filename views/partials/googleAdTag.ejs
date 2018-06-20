@@ -93,20 +93,24 @@ function displayAd(divId, slot) {
 }
 
 function showWebAd(adType, divId, a, callback) {
+
+  var crmDataResult = {data:{SEG:'', A:'', GG:''}}; 
   <% if (ky) { %>
       var kyEncoded = encodeURIComponent('<%= ky %>'); 
   <% }else { %>
       var kyEncoded = ""; 
   <% } %>
+
   var crmData = localStorage.getItem("1x1_CRM");
   if (crmData){
-    var crmDataResult = JSON.parse(localStorage.getItem("1x1_CRM"));
-  }
-  else {
-    var crmDataResult = {data:{SEG:'', A:'', GG:''}}; 
+    var data = JSON.parse(crmData);
+    if (data.error){
+      console.log('crm error');
+    }else{
+      var crmDataResult = data;
+    }
   }
  
- console.log(divId + " " +a);
   var acticleId = a || ''; 
   if (window.googletag && googletag.apiReady) {
 
@@ -140,17 +144,23 @@ function showWebAd(adType, divId, a, callback) {
 }
 
 function showMobileAd(adType, divId, a, callback) {
+
+  var crmDataResult = {data:{SEG:'', A:'', GG:''}}; 
+  
   <% if (ky) { %>
     var kyEncoded = encodeURIComponent('<%= ky %>'); 
   <% }else { %>
     var kyEncoded = ""; 
   <% } %> 
-  var crmData = localStorage.getItem("1x1_CRM");
+
+    var crmData = localStorage.getItem("1x1_CRM");
   if (crmData){
-    var crmDataResult = JSON.parse(localStorage.getItem("1x1_CRM"));
-  }
-  else {
-    var crmDataResult = {data:{SEG:'', A:'', GG:''}}; 
+    var data = JSON.parse(crmData);
+    if (data.error){
+      console.log('crm error');
+    }else{
+      var crmDataResult = data;
+    }
   }
 
   var acticleId = a || ''; 
