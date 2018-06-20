@@ -19,7 +19,7 @@
     is-shared-url="<%= isSharedUrl %>"
     categ-ename="<%= ename %>" categ-name="<%= categoryName %>"
     article-id="<%= id %>", article-author="<%= contributorName %>">
-    <skinner-block></skinner-block>
+    <skinner-block article-id="<%- id %>"></skinner-block>
     <splash-screen article-id="<%- id %>"></splash-screen>
     <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
     <%- include('partials/topMenu.ejs', {menu: menu}) %>

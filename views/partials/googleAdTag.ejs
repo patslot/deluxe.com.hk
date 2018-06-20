@@ -98,15 +98,18 @@ function showWebAd(adType, divId, a, callback) {
   <% }else { %>
       var kyEncoded = ""; 
   <% } %>
-  var crmData = JSON.parse(localStorage.getItem("1x1_CRM"));
-  if(crmData.data.SEG == ""){
-    var seg = "";
+  var crmData = localStorage.getItem("1x1_CRM");
+  if (crmData){
+    var crmDataResult = JSON.parse(localStorage.getItem("1x1_CRM"));
   }
-  else{
-    var seg = crmData.data.SEG ; 
+  else {
+    var crmDataResult = {data:{SEG:'', A:'', GG:''}}; 
   }
+ 
+ console.log(divId + " " +a);
   var acticleId = a || ''; 
   if (window.googletag && googletag.apiReady) {
+
     googletag.cmd.push(function() {
       var slot = googletag
         .defineSlot(
@@ -115,7 +118,9 @@ function showWebAd(adType, divId, a, callback) {
           divId)
         .addService(googletag.pubads())
         .setTargeting("article", acticleId)
-        .setTargeting("SEG", seg)
+        .setTargeting("SEG", crmDataResult.data.SEG)
+        .setTargeting("A", crmDataResult.data.A)
+        .setTargeting("GG", crmDataResult.data.GG)
         .setTargeting("KY", kyEncoded);
 
         // console.log(slot);
@@ -140,14 +145,14 @@ function showMobileAd(adType, divId, a, callback) {
   <% }else { %>
     var kyEncoded = ""; 
   <% } %> 
-  var crmData = JSON.parse(localStorage.getItem("1x1_CRM"));
-  console.log(crmData.data);
-  if(crmData.data.SEG == ""){
-    var seg = "";
+  var crmData = localStorage.getItem("1x1_CRM");
+  if (crmData){
+    var crmDataResult = JSON.parse(localStorage.getItem("1x1_CRM"));
   }
-  else{
-    var seg = crmData.data.SEG ; 
+  else {
+    var crmDataResult = {data:{SEG:'', A:'', GG:''}}; 
   }
+
   var acticleId = a || ''; 
   if (window.googletag && googletag.apiReady) {
     googletag.cmd.push(function() {
@@ -162,7 +167,9 @@ function showMobileAd(adType, divId, a, callback) {
             divId)
           .addService(googletag.pubads())
           .setTargeting("article", acticleId)
-          .setTargeting("SEG", seg)
+        .setTargeting("SEG", crmDataResult.data.SEG)
+        .setTargeting("A", crmDataResult.data.A)
+        .setTargeting("GG", crmDataResult.data.GG)
           .setTargeting("KY", kyEncoded);
       } else {
         slot = googletag
@@ -173,7 +180,9 @@ function showMobileAd(adType, divId, a, callback) {
             .addService(googletag.companionAds())  
           .addService(googletag.pubads())
           .setTargeting("article", acticleId)
-          .setTargeting("SEG", seg)
+          .setTargeting("SEG", crmDataResult.data.SEG)
+          .setTargeting("A", crmDataResult.data.A)
+          .setTargeting("GG", crmDataResult.data.GG)
           .setTargeting("KY", kyEncoded);
       }
       mobileAdSlots[divId] = slot;
