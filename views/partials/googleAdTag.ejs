@@ -93,10 +93,14 @@ function displayAd(divId, slot) {
 }
 
 function showWebAd(adType, divId, a, callback) {
-
+  var ky = '<%= ky %>';
   var crmDataResult = {data:{SEG:'', A:'', GG:''}}; 
   <% if (ky) { %>
-      var kyEncoded = encodeURIComponent('<%= ky %>'); 
+      var arr_ky = ky.split(",");
+      $.each( arr_ky, function( key, value ) {
+          arr_ky[key] = encodeURIComponent(value)
+      });
+      var kyEncoded = arr_ky; 
   <% }else { %>
       var kyEncoded = ""; 
   <% } %>
@@ -144,14 +148,18 @@ function showWebAd(adType, divId, a, callback) {
 }
 
 function showMobileAd(adType, divId, a, callback) {
-
+  var ky = '<%= ky %>';
   var crmDataResult = {data:{SEG:'', A:'', GG:''}}; 
-  
+
   <% if (ky) { %>
-    var kyEncoded = encodeURIComponent('<%= ky %>'); 
+      var arr_ky = ky.split(",");
+      $.each( arr_ky, function( key, value ) {
+          arr_ky[key] = encodeURIComponent(value)
+      });
+      var kyEncoded = arr_ky; 
   <% }else { %>
-    var kyEncoded = ""; 
-  <% } %> 
+      var kyEncoded = ""; 
+  <% } %>
 
     var crmData = localStorage.getItem("1x1_CRM");
   if (crmData){
