@@ -15,19 +15,23 @@
         .map(c => c.charCodeAt(0).toString(16))
         .join("");
       
-      console.log(hexed);
 
       var nxtu = (document.cookie || "")
         .split(";")
         .map(function(d) { return d.trim().split("="); })
         .filter(function(d) { return d.length === 2 && d[0] === "nxtu"; })
         .reduce(function(acc, val) { return val; }, "");
+
+      // console.log("<%= LOGGING_CRM_API %>/get?nxtu=" + nxtu[1] +"&k=" + hexed )
       
       $.ajax({
         url: "<%= LOGGING_CRM_API %>/get",
-        data: { NXTU: nxtu[1], k: hexed, format: "dfp" },
+        data: { nxtu: nxtu[1], k: hexed, format: "dfp" },
         timeout: 5000
       }).done(function(data) {
+        if ('error' in data) {
+          console.log('Logging CRM API return error');
+        }
         localStorage.setItem(
           "1x1_CRM",
           JSON.stringify(
