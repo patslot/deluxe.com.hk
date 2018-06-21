@@ -98,7 +98,7 @@ function showWebAd(adType, divId, a, callback) {
   <% if (ky) { %>
       var arr_ky = ky.split(",");
       $.each( arr_ky, function( key, value ) {
-          arr_ky[key] = encodeURIComponent(value)
+          arr_ky[key] = value;
       });
       var kyEncoded = arr_ky; 
   <% }else { %>
