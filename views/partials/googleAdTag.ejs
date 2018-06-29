@@ -96,7 +96,7 @@ function showWebAd(adType, divId, a, callback) {
   var ky = '<%= ky %>';
   var crmDataResult = {data:{SEG:'', A:'', GG:''}}; 
   <% if (ky) { %>
-      var arr_ky = ky.split(",");
+      var arr_ky = ky.split("|");
       $.each( arr_ky, function( key, value ) {
           arr_ky[key] = value;
       });
@@ -152,7 +152,7 @@ function showMobileAd(adType, divId, a, callback) {
   var crmDataResult = {data:{SEG:'', A:'', GG:''}}; 
 
   <% if (ky) { %>
-      var arr_ky = ky.split(",");
+      var arr_ky = ky.split("|");
       $.each( arr_ky, function( key, value ) {
            arr_ky[key] = value;
       });
