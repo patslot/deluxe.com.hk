@@ -128,8 +128,68 @@ setTimeout(function(){
   prevArrow: '<a class="left carousel-control" style="z-index:99;"></a>'
             }).show();  
 
+$('#searchdropdown').on( "click", function() {
+    $('#search-dropdown').css('display','flex');
+    $('#search-dropdown').removeClass("fadeOutRight");
+    $('#search-dropdown').toggleClass("fadeInRight");
+    $('#search-dropdown').css('animation-delay','0ms');
+    setTimeout(
+      function() 
+      {
+        $('#search-dropdown').css('display','flex');
+      }, 1000);
+});
+$('#searchclose').on( "click", function() {
+  $('#search-dropdown').removeClass("fadeInRight");
+    $('#search-dropdown').toggleClass("fadeOutRight");
+    $('#search-dropdown').css('animation-delay','0ms');
+    setTimeout(
+      function() 
+      {
+        $('#search-dropdown').css('display','');
+      }, 500);
+    
+}); 
+
+$('#mobilesearchdropdown').on( "click", function() {
+  $('#mobile-search-dropdown').css('display','flex');
+  $('#mobile-search-dropdown').removeClass("fadeOutRight");
+  $('#mobile-search-dropdown').toggleClass("fadeInRight");
+  $('#mobile-search-dropdown').css('animation-delay','0ms');
+  setTimeout(
+    function() 
+    {
+      $('#mobile-search-dropdown').css('display','flex');
+    }, 1000);
+});
+$('#mobilesearchclose').on( "click", function() {
+$('#mobile-search-dropdown').removeClass("fadeInRight");
+  $('#mobile-search-dropdown').toggleClass("fadeOutRight");
+  $('#mobile-search-dropdown').css('animation-delay','0ms');
+  setTimeout(
+    function() 
+    {
+      $('#mobile-search-dropdown').css('display','');
+    }, 500);
   
-        
+}); 
+$('.mobilesearchform').submit(function( event ) {
+  var pathname = $(location).attr('host');;
+  event.preventDefault();
+  if ( $( "input[name='mobilequery']" ).val() != "" ) {
+    window.location.href = "http://" + pathname + "/Search/" + $( "input[name='mobilequery']" ).val() ;
+    return;
+  }
+});
+
+$('.searchform').submit(function( event ) {
+  var pathname = $(location).attr('host');;
+  event.preventDefault();
+  if ( $( "input[name='query']" ).val() != "" ) {
+    window.location.href = "http://" + pathname + "/Search/" + $( "input[name='query']" ).val() ;
+    return;
+  }
+});
 /* Disable for later use
   $('#upcoming_events_content').endlessScroll({
     callback: function() {
