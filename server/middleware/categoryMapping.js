@@ -3,7 +3,7 @@
 function createNameToAdTag() {
   var nameToAdTag = {};
   ['Fashion', 'Beauty', 'Luxe', 'Wedding', 'Celebrity', 'Lifestyle', 'Event',
-    'Contributor', 'Editorpicks'].forEach(function(categ) {
+    'Contributor', 'Editorpicks', 'Hashtag'].forEach(function(categ) {
     nameToAdTag[categ] = {
       list: categ + '_list',
       detail: categ + (categ === 'Contributor'? '_art' : '_detail')

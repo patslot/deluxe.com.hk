@@ -7,7 +7,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
 
   function renderArticles(req, res, next) {
     var hashTag = req.params.hashtag;
-    var categ = 'Fashion'; 
+    var categ = 'Hashtag'; 
     var ename = 'add_fash';
     if (!hashTag ) {
       return next();
