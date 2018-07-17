@@ -14,7 +14,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
     }
     var query, handleFunc;
     var offset = 0;
-    var count = 10;
+    var count = 5;
     var adTagMapping = categMapping.nameToAdTag[categ];
     
     query = gQuery.keywordQuery(hashTag, offset,  count);
