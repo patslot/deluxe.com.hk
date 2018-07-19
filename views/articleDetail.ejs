@@ -125,7 +125,7 @@
                 
                 <div class="nm_mpm col-md-6 col-xs-12">
                   <div class="mpm_content artd_container">
-                      <fixedbanner fixedbanner-id="fixedbanner1" article-id="<%- id %>"></fixedbanner> 
+                      <fixedbanner fixedbanner-id="fixedbanner1" fixedbanner-num="1" article-id="<%- id %>"></fixedbanner> 
                     <% if(keywords.length > 0){ %>
                       <% keywords.forEach(function (a, idx){ %>
                         <a class="hashtagLink" href="<%= origin %>/Keyword/<%= a %>">
@@ -178,6 +178,7 @@
                             });
                           </script>
                       <% }else{ %>
+                      
                               <div class="artd_article_subHead">
                                 <%- content.subTitle %>
                               </div> 
@@ -185,18 +186,17 @@
                               
                                 <div class="artd_article_Text">
                                   <%- content.content %>
-                                    
                                   <% if (index == 3) { %>
-                                    <flyingcarpetfixedbanner fixedbanner-id="fixedbanner2_<%= index %>" fixedbanner-num="2" article-id="<%- id %>" ></fixedbanner>
+                                    <flyingcarpetfixedbanner fixedbanner-id="fixedbanner2_<%= index %>" fixedbanner-num="2" article-id="<%- id %>" ></flyingcarpetfixedbanner>
                                   <% } %>
                                     <% if (index == 7) { %>
-                                    <flyingcarpetfixedbanner fixedbanner-id="fixedbanner3_<%= index %>" fixedbanner-num="3"  article-id="<%- id %>"></fixedbanner>
+                                    <flyingcarpetfixedbanner fixedbanner-id="fixedbanner3_<%= index %>" fixedbanner-num="3"  article-id="<%- id %>"></flyingcarpetfixedbanner>
                                   <% } %>
                                     <% if (index == 11) { %>
-                                    <flyingcarpetfixedbanner fixedbanner-id="fixedbanner4_<%= index %>" fixedbanner-num="4"  article-id="<%- id %>"></fixedbanner>
+                                    <flyingcarpetfixedbanner fixedbanner-id="fixedbanner4_<%= index %>" fixedbanner-num="4"  article-id="<%- id %>"></flyingcarpetfixedbanner>
                                   <% } %>
                                     <% if (index == 15) { %>
-                                    <flyingcarpetfixedbanner fixedbanner-id="fixedbanner5_<%= index %>" fixedbanner-num="5"  article-id="<%- id %>"></fixedbanner>
+                                    <flyingcarpetfixedbanner fixedbanner-id="fixedbanner5_<%= index %>" fixedbanner-num="5"  article-id="<%- id %>"></flyingcarpetfixedbanner>
                                   <% } %>
                                     <% if (content.content === "<p>FIXBANNER6</p>") { %>
                                     <fixedbanner fixedbanner-id="fixedbanner6_<%= index %>" fixedbanner-num="6" article-id="<%- id %>"></fixedbanner>
