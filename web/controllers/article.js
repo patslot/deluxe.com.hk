@@ -214,7 +214,8 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
         
         curArticleID = nextArticleID;
         updateLoading();
-          gaPageview(nextArticle);  
+          gaPageview(nextArticle); 
+          // refreshAdsSlot() ; 
       });
     }, function(err) {
       $scope.loadingArticle = false;
@@ -252,7 +253,6 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
     }
     if (isScrolledIntoView('#loading-trigger')) {
       loadArticle();
-       
     }
   };
     

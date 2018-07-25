@@ -89,7 +89,23 @@ function parseMpms(origMpms) {
           article.metaKeyword = categMapping.categoryKeywordMapping[article.categoryName] ;
           article.keywords = [] ; 
           if (article.keyword){
+            var regex1 = RegExp('^_mt_');
             article.keywords = article.keyword.split(",");
+            article.keywords = article.keywords.map(x =>{
+              var resultKeywords = {}; 
+              var temp = x.trim() ;
+              if(regex1.test(temp)){
+                resultKeywords["display"] = temp.substring(4) ;
+                resultKeywords["link"] = temp ;
+                return resultKeywords; 
+              }
+              else{
+                resultKeywords["display"] = temp ;
+                resultKeywords["link"] = temp ;
+                return resultKeywords;  
+              }
+            });
+            console.log(article.keywords);
           }
          
           queryHandler.parseCmsArticleDetail(article);

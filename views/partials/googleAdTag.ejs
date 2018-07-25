@@ -42,7 +42,7 @@ var webSlotSizes = {
 
 var mobilePrefix = "/" + mobileTags.join("/") + "/";
 var mobileSlotSizes = {
-  Fixedbanner1: [[320, 80], [320, 360], [300, 250]],
+  Fixedbanner1: [[1, 1],[320, 361],[320, 80], [320, 360], [300, 250]],
   Fixedbanner2: [[320, 80], [320, 360], [300, 250]],
   Fixedbanner3: [[320, 80], [320, 360], [300, 250]],
   Fixedbanner4: [[320, 80], [320, 360], [300, 250]],
@@ -77,17 +77,23 @@ if (window.googletag && googletag.apiReady) {
         mobileAdCallback[divId](event.isEmpty);
       }
       if (event.isEmpty){
+        console.log('Empty slot Ended -' + event.slot.getSlotElementId());
         if ($('#'+event.slot.getSlotElementId()).parent().parent().parent().parent().parent().prop('nodeName') == "FLYINGCARPETFIXEDBANNER"){
         $('#'+event.slot.getSlotElementId()).parent().parent().parent().parent().parent().css('display','none');
         }
       }
-      // console.log('slot Render Ended -' + event.slot.getResponseInformation().creativeId);
+      else{
+        console.log('slot display -' + event.slot.getSlotElementId());
+      }
+      
+
     });
     googletag.enableServices();
   });
 }
 
 function displayAd(divId, slot) {
+  //  console.log(divId + " " + slot.getSlotElementId());
   googletag.display(divId);
   googletag.pubads().refresh([slot]);
 }
@@ -138,7 +144,7 @@ function showWebAd(adType, divId, a, callback) {
         webAdCallback[divId] = callback;
       }
       if ($("#" + divId).is(":visible")) {
-        displayAd(divId, slot);
+        // displayAd(divId, slot);
         webAdDisplayed[divId] = true;
       } else {
         webAdDisplayed[divId] = false;
@@ -195,7 +201,7 @@ function showMobileAd(adType, divId, a, callback) {
             mobilePrefix + adType,
             mobileSlotSizes[adType],
             divId)
-            .addService(googletag.companionAds())  
+          .addService(googletag.companionAds())  
           .addService(googletag.pubads())
           .setTargeting("article", acticleId)
           .setTargeting("SEG", crmDataResult.data.SEG)
@@ -209,8 +215,7 @@ function showMobileAd(adType, divId, a, callback) {
         mobileAdCallback[divId] = callback;
       }
       if ($("#" + divId).is(":visible")) {
-
-        displayAd(divId, slot);
+        // displayAd(divId, slot);
         mobileAdDisplayed[divId] = true;
       } else {
         mobileAdDisplayed[divId] = false;
@@ -218,8 +223,23 @@ function showMobileAd(adType, divId, a, callback) {
     });
   }
 }
+function refreshAdsSlot(){
+  var webADArray = $.map(webAdSlots,function(value, index){
+    return [value];
+  });
+  var mobileADArray = $.map(mobileAdSlots,function(value, index){
+    return [value];
+  });
+  if (window.matchMedia('(min-width: 768px)').matches) {
+    googletag.pubads().refresh(webADArray);
+  }else{
+    googletag.pubads().refresh(mobileADArray);
+  }
+}
 
 $(document).ready(function() {
+  refreshAdsSlot() ;
+
   $(window).on("resize", function() {
     for (var i = 0; i < webAdDivIds.length; i++) {
       if ($("#" + webAdDivIds[i]).is(":visible") && !webAdDisplayed[webAdDivIds[i]]) {

@@ -47,10 +47,10 @@ $(document).ready(function() {
      
       $('.nm_v_menu').css('top','auto');
       if (scrollTop > 80) {
-        $('.nm_header').css('margin-top','140px');
+        $('.nm_header').css('margin-top','130px');
         nmHeader.addClass('fixed');
         stickyPlaceholder.addClass('fixed');
-        $('.nm_header.fixed #sticky-wrap .nav').css('top','140px');
+        $('.nm_header.fixed #sticky-wrap .nav').css('top','130px');
       } else {
         $('.nm_header').css('margin-top','0px');
         nmHeader.removeClass('fixed');
