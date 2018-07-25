@@ -132,6 +132,7 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
   function updateLoading() {
     $timeout(function() {
       $scope.loadingArticle = false;
+      refreshAdsSlot() ; 
     }, 100);
   }
 
@@ -213,9 +214,8 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
         $scope.nextArticles.push(nextArticle);
         
         curArticleID = nextArticleID;
-        updateLoading();
+          updateLoading();
           gaPageview(nextArticle); 
-          // refreshAdsSlot() ; 
       });
     }, function(err) {
       $scope.loadingArticle = false;

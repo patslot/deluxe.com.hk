@@ -105,7 +105,7 @@ function parseMpms(origMpms) {
                 return resultKeywords;  
               }
             });
-            console.log(article.keywords);
+            // console.log(article.keywords);
           }
          
           queryHandler.parseCmsArticleDetail(article);
