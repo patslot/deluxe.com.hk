@@ -68,8 +68,14 @@ const htmlTpl = `
       <% } else if (type === "cms") { %>
         <div class="nm_mpm col-md-6 col-xs-12">
           <div class="mpm_content artd_container">
-
           
+          <% if(keywords.length > 0){ %>
+            <% keywords.forEach(function (a, idx){ %>
+              <a class="hashtagLink" href="<%= origin %>/Keyword/<%= a.link %>">
+                #<%= a.display.toUpperCase() %>
+              </a>
+            <% }) %>      
+          <% }%>  
 
             <div class="artd_article_label">[<%- disCategoryName %>]</div>
             <div class="artd_article_title"><h1><%- title %></h1></div>
