@@ -34,6 +34,7 @@ module.exports = function(GRAPHQL_ENDPOINT) {
       link
       snippet
       image
+      ogimage
     }  
   `;
 
