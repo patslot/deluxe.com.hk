@@ -38,10 +38,14 @@
                     "url": "<%- fullURL.replace(/\//g, "\\/") %>",
                     <% if (introPhotos && introPhotos.length > 0) { %>
                       "thumbnailUrl": "<%- (introPhotos[0].imagePathZoom || "").replace(/\//g, "\\/") %>",
+                      "image": "<%- (introPhotos[0].imagePathZoom || "").replace(/\//g, "\\/") %>",
                     <% } %>
                     "dateCreated": "<%- pubDate %>",
+                    "datePublished": "<%- pubDate %>",
                     "articleSection": "<%- categoryName %>",
+                    "author": ["Deluxe Editor"],
                     "creator": ["Next Mobile Limited"],
+                    "publisher": ["Next Mobile Limited"],
                     "keywords": <%- JSON.stringify(themeTags) %>
                   }
                 </script>
@@ -113,10 +117,14 @@
                         "thumbnailUrl": "<%- videoThumbnail.replace(/\//g, "\\/") %>",
                     <% } else if (artBlock && artBlock.length > 0) { %>
                         "thumbnailUrl": "<%- (artBlock[0].imgFile || "").replace(/\//g, "\\/") %>",
+                        "image": "<%- (introPhotos[0].imagePathZoom || "").replace(/\//g, "\\/") %>",
                     <% } %>
                     "dateCreated": "<%- publish %>",
+                    "datePublished": "<%- pubDate %>",
                     "articleSection": "<%- categoryName %>",
+                    "author": ["Deluxe Editor"],
                     "creator": ["Next Mobile Limited"],
+                    "publisher": ["Next Mobile Limited"],
                     "keywords": <%- JSON.stringify([tag]) %>
                   }
                 </script>
