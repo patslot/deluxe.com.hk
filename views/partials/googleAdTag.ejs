@@ -42,7 +42,7 @@ var webSlotSizes = {
 
 var mobilePrefix = "/" + mobileTags.join("/") + "/";
 var mobileSlotSizes = {
-  Fixedbanner1: [[1, 1],[320, 361],[320, 80], [320, 360], [300, 250]],
+  Fixedbanner1: [[320, 80], [320, 360], [300, 250]],
   Fixedbanner2: [[320, 80], [320, 360], [300, 250]],
   Fixedbanner3: [[320, 80], [320, 360], [300, 250]],
   Fixedbanner4: [[320, 80], [320, 360], [300, 250]],
@@ -144,7 +144,7 @@ function showWebAd(adType, divId, a, callback) {
         webAdCallback[divId] = callback;
       }
       if ($("#" + divId).is(":visible")) {
-        // displayAd(divId, slot);
+        displayAd(divId, slot);
         webAdDisplayed[divId] = true;
       } else {
         webAdDisplayed[divId] = false;
@@ -215,7 +215,7 @@ function showMobileAd(adType, divId, a, callback) {
         mobileAdCallback[divId] = callback;
       }
       if ($("#" + divId).is(":visible")) {
-        // displayAd(divId, slot);
+        displayAd(divId, slot);
         mobileAdDisplayed[divId] = true;
       } else {
         mobileAdDisplayed[divId] = false;
