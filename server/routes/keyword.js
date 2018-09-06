@@ -7,7 +7,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
 
   function renderArticles(req, res, next) {
     var hashTag = req.params.hashtag;
-    var categ = 'Fashion'; 
+    var categ = 'Hashtag'; 
     var ename = 'add_fash';
     if (!hashTag ) {
       return next();
@@ -31,6 +31,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
     })
     .then(function(result) {
       var articles = handleFunc(hashTag, (result['listByKeyword'] || []));
+      articles.ky = hashTag ; 
       var categs = result['listMenu'] || [];
       var metaKeyword = categMapping.categoryKeywordMapping['Contributor'] ;
       // console.log(articles[0].categoryName);
