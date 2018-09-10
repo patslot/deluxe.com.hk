@@ -29,16 +29,16 @@ module.exports = function(GRAPHQL_ENDPOINT) {
     }
   `;
    
-  const getKeywordArticles = `{
-      title
-      link
-      snippet
-      image
-      ogimage
-    }  
-  `;
 
   const getGoogleSearchResult = `{
+    title
+    link
+    snippet
+    image
+    ogimage
+  }  
+`;
+  const getKeywordArticles = `{
     id
     title
       ... on KeywordArticles{
@@ -311,10 +311,10 @@ module.exports = function(GRAPHQL_ENDPOINT) {
           [listMenu, listCampaign, 'listByKeyword (keyword:$keyword, offset: $offset, count: $count) ' +  getKeywordArticles]),
         {keyword: keyword, offset: offset, count: count});
     },
-    searchQuery: function(query) {
-      return client.query(createQueryWithParams('$query: String',
-        [listMenu, listCampaign, 'getGoogleSearchResult(query:$query)' + getKeywordArticles]),
-        {query: query});
+    searchQuery: function(query,offset, excludeterms) {
+      return client.query(createQueryWithParams('$query: String, $offset: Int, $excludeterms: String',
+        [listMenu, listCampaign, 'getGoogleSearchResult(query:$query, offset: $offset, excludeterms: $excludeterms)' + getGoogleSearchResult]),
+        {query: query, offset: offset, excludeterms: excludeterms});
     } 
   };
 };

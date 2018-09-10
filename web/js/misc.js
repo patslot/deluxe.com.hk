@@ -181,7 +181,14 @@ $('.mobilesearchform').submit(function( event ) {
     return;
   }
 });
-
+$('.mobilesearchform2').submit(function( event ) {
+  var pathname = $(location).attr('host');;
+  event.preventDefault();
+  if ( $( "input[name='mobilequery2']" ).val() != "" ) {
+    window.location.href = "http://" + pathname + "/Search/" + $( "input[name='mobilequery2']" ).val() ;
+    return;
+  }
+});
 $('.searchform').submit(function( event ) {
   var pathname = $(location).attr('host');;
   event.preventDefault();

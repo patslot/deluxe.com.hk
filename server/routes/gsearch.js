@@ -5,6 +5,8 @@ var express = require("express");
 
 module.exports = function(gQuery, categMapping, queryHandler, edm) {
         var categ = 'Search';
+        var ename = 'add_fash';
+        var adTagMapping = categMapping.nameToAdTag['Hashtag'];
         var metaKeyword = categMapping.categoryKeywordMapping['Contributor'] ;
      
 
@@ -14,8 +16,9 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
                   return query.q 
               }
               var query = req.params.query;
-              
-           gQuery.searchQuery(query)
+              var offset = 1;
+              var excludeterms = "keyword"; 
+           gQuery.searchQuery(query,offset,excludeterms)
             .catch(function(err) {
                   // use all available data
                   if (typeof err.rawData !== "undefined") {
@@ -26,11 +29,22 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
               }
             })
            .then(function(result) {
-                console.log(result.getGoogleSearchResult);
+                //  console.log(result.getGoogleSearchResult[0]);
+                 var reformedResult = result.getGoogleSearchResult.map(function(x){
+                  var rResult = x; 
+                  var link = x.link ; 
+                  var temp = link.split('/');
+                  rResult['displayCategory'] = temp[3];
+                  return rResult ;
+                 });
+
                 res.render('search', {
                     query: query,
                     metaKeyword: metaKeyword,
-                    results: result.getGoogleSearchResult,
+                    ename: ename,
+                    adTag: adTagMapping.list,
+                    categ: categ,
+                    results: reformedResult,
                     menu: queryHandler.parseMenu(result.listMenu),
                     campaigns: result.listCampaign || [],
                     showEDM: edm.showEDM(req.cookies.addEDM, result.listCampaign),

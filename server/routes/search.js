@@ -5,9 +5,9 @@ var express = require("express");
 
 module.exports = function(gQuery, categMapping, queryHandler, edm) {
         var categ = 'Search';
-
-     
-
+        var ename = 'add_fash';
+        var adTagMapping = categMapping.nameToAdTag['Hashtag'];
+        var metaKeyword = categMapping.categoryKeywordMapping;
       function renderSearch(req, res, next) {
              function getquery() {
                 var query = require('url').parse(req.url,true).query;
@@ -29,6 +29,9 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
                 res.render('search', {
                     query: getquery(),
                     menu: queryHandler.parseMenu(result.listMenu),
+                    metaKeyword: metaKeyword,
+                    ename: ename,
+                    adTag: adTagMapping.list,
                     campaigns: result.listCampaign || [],
                     showEDM: edm.showEDM(req.cookies.addEDM, result.listCampaign),
                     origin: req.protocol + "://" + req.get('host'),

@@ -11,45 +11,65 @@
     origin: origin,
     fullURL: fullURL
   }) %>
-
+  <%- include('partials/googleAdTag.ejs', {adTag: adTag, ky:""}) %>
+  <%- include('partials/google-analytics.ejs') %>
 </head>
 
-<body ng-app="addv2" ng-controller="HomepageController">
+<body ng-app="addv2" ng-controller="SearchController" categ-ename="<%= ename %>"
+  categ-name="<%= categ %>" search-query="<%= query %>">
+  <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
+  <%- include('partials/topMenu.ejs', {menu: menu}) %>
+  <div class="container nm_home">
+    <div class="row nm_row">
+      <div class="main_content">
+        <div class="nm_section">
+          <headbanner headbanner-id="headbanner1"></headbanner>
+          <div class="row">
+            <div class='searchTitle'>Search Result: "<%= query %>"</div>
+            <div class="nm_mpm col-md-6 col-xs-12">
+                  <% results.forEach(function(a, idx) { %>
+                        <div class="al_two_image col-sm-12 col-md-6 col-xs-12">
+                            <a href="<%= a.link %>">
+                            <div class="pos-relative artsListImg">
+                              <img src="<%= a.ogimage %>"> 
+                            </div>
+                          </a>
+                        </div>
+                        <div class="keyword_content al_two_content col-sm-12 col-md-6 col-xs-12">
+                          <div class="al_two_content_label">[<%= a.displayCategory %>]</div>
+                          <a href="<%= a.link %>">
+                            <div class="other_article al_two_content_title">
+                              <%= a.title %>
+                            </div>
+                          </a>
+                        </div>
+                        <div class="clearfix"></div>
+                    <% }) %>
 
-    <%- include('partials/mobileMenu.ejs', {menu: menu}) %>
-    <%- include('partials/topMenu.ejs', {menu: menu}) %>
-    <div class="container nm_home">
-      <div class="row nm_row">
-        <div class="main_content" style="text-align: center;">
-          <div class="nm_section">
-                <% results.forEach(function(a, idx) { %>
-                    <div class="al_two_col_container ">
-                    <div class="row">
-                      <div class="al_two_image col-sm-5 col-md-6 col-xs-12">  
-                        <a href="<%= a.link %>">
-                          <div class="pos-relative artsListImg">
-                            <img src="<%= a.ogimage %>"> 
-                          </div>
-                        </a>
-                      </div>
-                      <div class="al_two_content col-sm-5 col-md-6 col-xs-12">
-                        <a href="<%= a.link %>">
-                          <div class="other_article al_two_content_title">
-                            <%= a.title %>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
+                  <div lazy-scroll="loadSearchArticles()"
+                  style="min-height: 0px !important"
+                  lazy-no-scroll="noMoreArticles">
+                  <div class="nm_section" ng-repeat="articles in moreArticleGroups track by $index">
+                    <articles-in-search add-articles="articles"></articles-in-search>
                   </div>
-                  <div style="clear:both"></div>
-                <% }) %>    
+                  <div align="center" ng-show="loadingArticles" style="margin-top: 20px">
+                    <img src="/img/loading.gif" />
+                  </div>
+                </div>
+                
+              </div>
+          
+            <div class="lrec_ad_wrapper col-md-3">
+              <lrec lrec-id="lrec1" lrec-num="1"></lrec>
+              <lrec lrec-id="lrec2" lrec-num="2"></lrec>
             </div>
           </div>
         </div>
-        <%- include('partials/footer.ejs') %>
+        <div class="nm_section">
+            <%- include('partials/footer.ejs') %>
+        </div>
       </div>
     </div>
-
+  </div>
 </body>
-
 </html>

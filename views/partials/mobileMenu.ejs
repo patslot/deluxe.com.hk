@@ -4,6 +4,14 @@
         <a href="/"><img src="/img/imgpsh_fullsize.png"></a>
         <div class="close_btn" vmenu="menu_close_trigger"></div>
       </div>
+      <div class="search_in_mobilemenu">
+        <span class="menu_search_icon">
+          <img class="search-icon" src="/img/ico-search.png">
+        </span>
+        <form role="mobilesearch" method="GET" class="mobilesearchform" action="#">
+        <input class="form-control" type="text" name="mobilequery" id="query" placeholder="search">
+        </form>
+      </div>
       <% if (menu.main.length > 0) { %>
       <div class="mn_major_menu">
         <ul>

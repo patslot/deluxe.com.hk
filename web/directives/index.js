@@ -6,6 +6,7 @@ export { default as addCarousel } from './addCarousel';
 export { default as addCarouselRecommend } from './addCarouselRecommend';
 export { default as articlesInCateg } from './articlesInCateg';
 export { default as articlesInKeyword } from './articlesInKeyword';
+export { default as articlesInSearch } from './articlesInSearch';
 export { default as skinner } from './skinner';
 export { default as headbanner } from "./headbanner";
 export { default as midbanner } from "./midbanner";
