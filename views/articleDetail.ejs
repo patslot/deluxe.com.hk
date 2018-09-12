@@ -37,15 +37,11 @@
                     "headline": "<%- title.split("").map(function(c) { return "\\u" + ("000" + c.charCodeAt(0).toString(16)).substr(-4); }).join("") %>",
                     "url": "<%- fullURL.replace(/\//g, "\\/") %>",
                     <% if (introPhotos && introPhotos.length > 0) { %>
-                      "thumbnailUrl": "<%- (introPhotos[0].imagePathZoom || "").replace(/\//g, "\\/") %>",
-                      "image": "<%- (introPhotos[0].imagePathZoom || "").replace(/\//g, "\\/") %>",
+                      "thumbnailUrl": "<%- (introPhotos[0].imagePathZoom || "").replace(/\//g, "\\/") %>"
                     <% } %>
                     "dateCreated": "<%- pubDate %>",
-                    "datePublished": "<%- pubDate %>",
                     "articleSection": "<%- categoryName %>",
-                    "author": ["Deluxe Editor"],
                     "creator": ["Next Mobile Limited"],
-                    "publisher": ["Next Mobile Limited"],
                     "keywords": <%- JSON.stringify(themeTags) %>
                   }
                 </script>
@@ -115,16 +111,16 @@
                     "url": "<%- fullURL.replace(/\//g, "\\/") %>",
                     <% if (videoThumbnail && videoThumbnail !== "") { %>
                         "thumbnailUrl": "<%- videoThumbnail.replace(/\//g, "\\/") %>",
+                        "image": "<%- videoThumbnail.replace(/\//g, "\\/") %>"
                     <% } else if (artBlock && artBlock.length > 0) { %>
                         "thumbnailUrl": "<%- (artBlock[0].imgFile || "").replace(/\//g, "\\/") %>",
-                        "image": "<%- (introPhotos[0].imagePathZoom || "").replace(/\//g, "\\/") %>",
+                        "image": "<%- (artBlock[0].imgFile || "").replace(/\//g, "\\/") %>"
                     <% } %>
                     "dateCreated": "<%- publish %>",
-                    "datePublished": "<%- pubDate %>",
-                    "articleSection": "<%- categoryName %>",
-                    "author": ["Deluxe Editor"],
+                    "datePublished": "<%- publish %>",
+                    "author": ["Deluxe"],
                     "creator": ["Next Mobile Limited"],
-                    "publisher": ["Next Mobile Limited"],
+                    "articleSection": "<%- categoryName %>",
                     "keywords": <%- JSON.stringify([tag]) %>
                   }
                 </script>
