@@ -679,7 +679,7 @@ a {
 
 .btn_readmore{
     position: fixed; 
-    bottom: 1vh; 
+    bottom: 15vh; 
     right: 1vh; 
 }
 .btn_readmore img {

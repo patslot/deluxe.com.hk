@@ -197,6 +197,15 @@ $('.searchform').submit(function( event ) {
     return;
   }
 });
+function hidefadeinoutbanner(){
+  $("#fadeinoutbanner").css('bottom','-360px');
+}
+$(document).scroll(function(){
+  if($(document).scrollTop() > 500){
+    $("#fadeinoutbanner").css('bottom','0');
+    setTimeout(hidefadeinoutbanner, 10000);
+  }
+});
 /* Disable for later use
   $('#upcoming_events_content').endlessScroll({
     callback: function() {
