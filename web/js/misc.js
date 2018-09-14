@@ -197,11 +197,14 @@ $('.searchform').submit(function( event ) {
     return;
   }
 });
+
+var Showfadeinoutbanner = true ; 
 function hidefadeinoutbanner(){
   $("#fadeinoutbanner").css('bottom','-360px');
+  Showfadeinoutbanner = false ; 
 }
 $(document).scroll(function(){
-  if($(document).scrollTop() > 500){
+  if(($(document).scrollTop() > 500) && (Showfadeinoutbanner == true )){
     $("#fadeinoutbanner").css('bottom','0');
     setTimeout(hidefadeinoutbanner, 10000);
   }
