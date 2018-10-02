@@ -133,10 +133,12 @@ $('#searchdropdown').on( "click", function() {
     $('#search-dropdown').removeClass("fadeOutRight");
     $('#search-dropdown').toggleClass("fadeInRight");
     $('#search-dropdown').css('animation-delay','0ms');
+    
     setTimeout(
       function() 
       {
         $('#search-dropdown').css('display','flex');
+        $( "input[name='query']" ).focus();
       }, 1000);
 });
 $('#searchclose').on( "click", function() {
@@ -160,6 +162,8 @@ $('#mobilesearchdropdown').on( "click", function() {
     function() 
     {
       $('#mobile-search-dropdown').css('display','flex');
+      $( "input[name='mobilequery2']" ).focus();
+      
     }, 1000);
 });
 $('#mobilesearchclose').on( "click", function() {
