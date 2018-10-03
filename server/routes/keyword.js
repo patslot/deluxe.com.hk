@@ -48,7 +48,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
         articles: articles.length > 0 ? articles : null,
         ename: ename,
         adTag: adTagMapping.list,
-        hashTag: hashTag.toUpperCase(),
+        hashTag: hashTag,
         displayHashTag: displayHashTag,
         categ: categ,
         campaigns: result['listCampaign'] || [],
