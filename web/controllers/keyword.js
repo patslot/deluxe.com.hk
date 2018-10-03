@@ -3,8 +3,8 @@ export default function($timeout, $scope, $attrs, $window, gqModel, c, queryHand
   var categName = $attrs.categName;
   var hashTag = $attrs.hashTag;
   var isReady = false;
-  var categIdx = 1; // Start article offset of lazy load articles in category
-  var articleCount = 10;
+  var categIdx = 4; // Start article offset of lazy load articles in category
+  var articleCount = 5;
   var articles = [];
   var maxArticles = 200;
     $scope.screenHeight = $window.innerHeight;
@@ -54,7 +54,7 @@ export default function($timeout, $scope, $attrs, $window, gqModel, c, queryHand
       });
     }
   }
-// loadCategArticles(); 
+ loadCategArticles(); 
   $scope.loadCategArticles = function() {
     if (!isReady || $scope.noMoreArticles || !queryHandleFunc) {
       return false;

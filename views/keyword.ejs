@@ -27,10 +27,10 @@
         <div class="nm_section">
           <headbanner headbanner-id="headbanner1"></headbanner>
           <div class="row">
-
+             <fixedbanner fixedbanner-id="fixedbanner1" ></fixedbanner>
             <div class="hashtagTitle col-xs-12"> 
               <div class="underline"> 
-                  <h2><%= hashTag %> </h2>
+                  <h2><%= displayHashTag %> </h2>
               </div>
             </div>
             <div class="nm_mpm col-md-6 col-xs-12">
@@ -64,11 +64,10 @@
                   style="min-height: 0px !important"
                   lazy-no-scroll="noMoreArticles">
                   <div class="nm_section" ng-repeat="articles in moreArticleGroups track by $index">
+                   <fixedbanner ng-if="$index < 4" fixedbanner-id="fixedbanner{{$index + 2}}"  fixedbanner-num="{{$index + 2}}"></fixedbanner>
                     <articles-in-keyword add-articles="articles"></articles-in-keyword>
                   </div>
-                  <div align="center" ng-show="loadingArticles" style="margin-top: 20px">
-                    <img src="/img/loading.gif" />
-                  </div>
+             
                 </div>
                 
               </div>

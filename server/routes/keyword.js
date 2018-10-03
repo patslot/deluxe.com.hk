@@ -12,9 +12,15 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
     if (!hashTag ) {
       return next();
     }
+    var regex1 = RegExp('^_mt_');
+    if(regex1.test(hashTag)){
+      var displayHashTag = hashTag.substring(4) ;
+    }else{
+      var displayHashTag = hashTag;
+    }
     var query, handleFunc;
     var offset = 0;
-    var count = 10;
+    var count = 5;
     var adTagMapping = categMapping.nameToAdTag[categ];
     
     query = gQuery.keywordQuery(hashTag, offset,  count);
@@ -43,6 +49,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
         ename: ename,
         adTag: adTagMapping.list,
         hashTag: hashTag.toUpperCase(),
+        displayHashTag: displayHashTag,
         categ: categ,
         campaigns: result['listCampaign'] || [],
         showEDM: edm.showEDM(req.cookies.addEDM, result['listCampaign']),
