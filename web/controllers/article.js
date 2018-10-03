@@ -177,7 +177,7 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
         nextArticle.isSharedUrl = isSharedUrl;
         nextArticle.latestArticles = parseRecommendArticles(nextArticleID,
             queryHandler.parseArticles);
- 
+        
           
         if( nextArticle.categoryName === "Contributor" )  {
              nextArticle.contributor = res.listContributor.find(function(x){
@@ -208,6 +208,28 @@ export default function($timeout, $scope, $attrs, $window,  gqModel, c, queryHan
           nextArticle.pvLog = articleUtil.articlePageviewLog(
             nextArticle.categoryName, cmsNewsType,
             nextArticle.id, nextArticle.issueId, nextArticle.title, nextArticle.contributorName, nextArticle.masterTag);
+
+          nextArticle.keywords = [] ; 
+          if (nextArticle.keyword){
+            var regex1 = RegExp('^_mt_');
+            nextArticle.keywords = nextArticle.keyword.split(",");
+            nextArticle.keywords = nextArticle.keywords.map(x =>{
+              var resultKeywords = {}; 
+              var temp = x.trim() ;
+              if(regex1.test(temp)){
+                resultKeywords["display"] = temp.substring(4) ;
+                resultKeywords["link"] = temp ;
+                return resultKeywords; 
+              }
+              else{
+                resultKeywords["display"] = temp ;
+                resultKeywords["link"] = temp ;
+                return resultKeywords;  
+              }
+            });
+              // console.log(nextArticle.keyword);
+          } 
+          
         }
         queryHandler.handleArticleDetailCateg(nextArticle);
           
