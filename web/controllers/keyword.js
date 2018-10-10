@@ -3,7 +3,7 @@ export default function($timeout, $scope, $attrs, $window, gqModel, c, queryHand
   var categName = $attrs.categName;
   var hashTag = $attrs.hashTag;
   var isReady = false;
-  var categIdx = 4; // Start article offset of lazy load articles in category
+  var categIdx = 5; // Start article offset of lazy load articles in category
   var articleCount = 5;
   var articles = [];
   var maxArticles = 200;
@@ -43,11 +43,11 @@ export default function($timeout, $scope, $attrs, $window, gqModel, c, queryHand
           moreArticles = queryHandleFunc(hashTag, moreArticles);
           if (moreArticles.length > 0) {
             $scope.moreArticleGroups.push(moreArticles);
+            updateCategIdx();
           }
           if (moreArticles.length < articleCount) {
             $scope.noMoreArticles = true;
           }
-          updateCategIdx();
         });
       }, function(err) {
           $scope.loadingArticles = false;
