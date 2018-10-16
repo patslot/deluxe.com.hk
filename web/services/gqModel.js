@@ -21,7 +21,14 @@ export default function(c) {
       }
     }
   }`;
-   
+  const getGoogleSearchResult = `{
+    title
+    link
+    snippet
+    image
+    ogimage
+  }  
+`; 
   const getKeywordArticles = `{
     id
     title
@@ -352,6 +359,11 @@ const listContributorArticleAll = `listContributorArticleAll(offset: $offset, co
       return client.query(createQueryWithParams('$keyword: String, $offset: Int, $count: Int',
         ['listByKeyword (keyword:$keyword, offset: $offset, count: $count) ' +  getKeywordArticles]),
          {keyword: keyword, offset: offset, count: count});
-    }
+    },
+    searchQuery: function(query,offset, excludeterms) {
+      return client.query(createQueryWithParams('$query: String, $offset: Int, $excludeterms: String',
+        ['getGoogleSearchResult(query:$query, offset: $offset, excludeterms: $excludeterms)' + getGoogleSearchResult]),
+        {query: query, offset: offset, excludeterms: excludeterms});
+    } 
   };
 };

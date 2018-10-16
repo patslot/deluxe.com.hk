@@ -135,7 +135,31 @@
   margin-left: 10px;
   background-size: 20px 20px;
 }
-
+ .menu_search_icon img{
+  height: 17px;
+  width: 17px;
+  margin-top: -5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-size: 20px 20px;
+}
+.mobilemenu_search_icon{
+  width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    margin: 0;
+    font-size: 25px;
+}
+.mobilemenu_search_icon img{
+  height: 17px;
+  width: 17px;
+  margin-top: -5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-size: 20px 20px;
+}
 .nm_header .nav--menu .search {
   display: inline-block;
   position: absolute;
@@ -175,3 +199,92 @@
     background-size: contain;
     display: inline-block;
 }
+
+#menu_search{
+  position: relative; 
+}
+.nm_header .nav--menu .text div.search-dropdown {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  background-color: #fff;
+  z-index: 11;
+  display: none;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  width: 360px;
+  height: 57px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.search-dropdown .form-control{
+  width: 270px;
+  border: 0;
+  box-shadow: none;
+  font-size: 18px;
+}
+
+
+div.mobile-search-dropdown {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  background-color: #fff;
+  z-index: 11;
+  display: none;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  width: 100%;
+  height: 65px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.mobile-search-dropdown form{
+  width: 100%; 
+}
+.mobile-search-dropdown .form-control{
+  width: 80%;
+  border: 0;
+  box-shadow: none;
+  font-size: 18px;
+}
+
+
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  -o-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+  -webkit-animation-duration: .5s;
+  -o-animation-duration: .5s;
+  animation-duration: .5s;
+}  
+.fadeOutRight {
+  -webkit-animation-name: fadeOutRight;
+  -o-animation-name: fadeOutRight;
+  animation-name: fadeOutRight;
+  -webkit-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-duration: 1000ms;
+  
+}
+
+@keyframes fadeOutRight{0%{right:0}50%{right:-370px;opacity:1}50%{right:-370px;opacity:0}100%{right:-370px;opacity:0;display:none}}
+@keyframes fadeInRight{0%{right:-370px;}10%{right:-370px;}100%{right:0}}

@@ -14,6 +14,7 @@ module.exports = function(options) {
   var home = require('./routes/home.js')(gQuery, categMapping, queryHandler, edm, articleUtil);
   var article = require('./routes/article.js')(gQuery, categMapping, queryHandler, edm, articleUtil);
   var keyword = require('./routes/keyword.js')(gQuery, categMapping, queryHandler, edm, articleUtil);
+  var gsearch = require('./routes/gsearch.js')(gQuery, categMapping, queryHandler, edm, articleUtil);
   var contributor = require('./routes/contributor.js')(gQuery, categMapping, queryHandler, edm);
   var events = require('./routes/events.js')(gQuery, categMapping, queryHandler, edm)
   var api = require("./routes/api.js")(options.edmSubscriptionEndpoint);
@@ -108,7 +109,8 @@ module.exports = function(options) {
   app.get('/:categ', article.renderArticles);
 
   app.get('/Keyword/:hashtag', keyword.renderArticles);
-    
+  app.get('/Search/:query', gsearch.renderSearch);
+
 app.get('/google48dda8f13ef3ab4c.html', function (req, res) {
   res.send('/web/google48dda8f13ef3ab4c.html')
 })

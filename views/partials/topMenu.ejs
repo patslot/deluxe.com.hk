@@ -11,6 +11,22 @@
             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
           </label>
           <a href="/" class="logo"><img src="/img/imgpsh_fullsize.png"></a>
+          <a href="#" class="visible-xs" id="mobilesearchdropdown">
+            <span class="mobilemenu_search_icon"><img class="search-icon" src="/img/ico-search.png"></span>
+          </a>
+          <div id="mobile-search-dropdown" class="mobile-search-dropdown">
+                  <span class="menu_search_icon">
+                    <img class="search-icon" src="/img/ico-search.png">
+                  </span>
+                  <form role="search" method="GET" class="mobilesearchform2" action="#">
+                   <input class="form-control" type="text" name="mobilequery2" id="mobilequery2" placeholder="Search">
+                  </form>
+                  <a href="#" class="search-close" id="mobilesearchclose">
+                    <span class="menu_search_icon">
+                      <img src="/img/ico-close.png">
+                    </span>  
+                  </a>
+          </div>
           <% if (menu.main.length > 0 || menu.sub.length > 0) { %>
           <ul class="text">
             <% menu.main.forEach(function(m) { %>
@@ -34,23 +50,49 @@
               </div>
             </li>
             <% } %>
-            <li><a href="https://campaign.nextdigital.com.hk/Deluxe/club/index.html" target="_blank" class="navJoinDeluxeClub">JOIN DELUXE CLUB</a></li>
-      
-            <span class="menu_fb_icon">
-              <a href="https://www.facebook.com/deluxehongkong" target="_blank">
-                <img src="/img/fbIcon.png">
-              </a>
-            </span>
-            <span class="menu_ig_icon">
-              <a href="https://www.instagram.com/deluxehongkong" target="_blank">
-                <img src="/img/igicons.png">
-              </a>
-            </span>
-              <span class="menu_youtube_icon">
-              <a href="https://www.youtube.com/user/memaghk" target="_blank">
-                <img src="/img/youtubeIcon.png">
-              </a>
-            </span>
+            <li><a href="https://event-deluxe.nextdigital.com.hk/subscription.php" target="_blank" class="navJoinDeluxeClub">JOIN DELUXE CLUB</a></li>
+            <li>
+              <span class="menu_fb_icon">
+                <a href="https://www.facebook.com/deluxehongkong" target="_blank">
+                  <img src="/img/fbIcon.png">
+                </a>
+              </span>
+            </li>
+            <li >  
+              <span class="menu_ig_icon">
+                <a href="https://www.instagram.com/deluxehongkong" target="_blank">
+                  <img src="/img/igicons.png">
+                </a>
+              </span>
+            </li>
+            <li >  
+                <span class="menu_youtube_icon">
+                <a href="https://www.youtube.com/user/memaghk" target="_blank">
+                  <img src="/img/youtubeIcon.png">
+                </a>
+              </span>
+            </li>
+            <li id="menu_search">  
+                <span class="menu_search_icon">
+                  <a href="#" id="searchdropdown">
+                    <img src="/img/ico-search.png">
+                  </a>
+                </span>
+                <div id="search-dropdown" class="search-dropdown">
+                  <span class="menu_search_icon">
+                    <img class="search-icon" src="/img/ico-search.png">
+                  </span>
+                  <form role="websearch" method="GET" class="searchform" action="#">
+                   <input class="form-control" type="text" name="query" id="query" placeholder="search">
+                  </form>
+                  <a href="#" class="search-close" id="searchclose">
+                    <span class="menu_search_icon">
+                      <img src="/img/ico-close.png">
+                    </span>  
+                  </a>
+                </div>
+            </li>
+            
           </ul>
           <% } %>
 

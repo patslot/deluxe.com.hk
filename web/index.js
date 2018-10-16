@@ -67,6 +67,7 @@ module.exports = function(options) {
     .directive('latestArticles', [dirs.latestArticles])
     .directive('articlesInCateg', [dirs.articlesInCateg])
     .directive('articlesInKeyword', [dirs.articlesInKeyword])
+    .directive('articlesInSearch', [dirs.articlesInSearch])
     .directive('addCarousel', ['$timeout', dirs.addCarousel])
     .directive('addCarouselRecommend', ['$timeout', dirs.addCarouselRecommend])
     .directive('facebookBlock', [dirs.facebook])
@@ -76,6 +77,7 @@ module.exports = function(options) {
     .directive('headbanner', [dirs.headbanner])
     .directive('midbanner', [dirs.midbanner])
     .directive('fixedbanner', [dirs.fixedbanner])
+    .directive('fadeinoutbanner', [dirs.fadeinoutbanner])
     .directive('flyingcarpetfixedbanner', [dirs.flyingcarpetfixedbanner])
     .directive('lrec', [dirs.lrec])
     .directive('splashScreen', [dirs.splashScreen])
@@ -97,6 +99,8 @@ module.exports = function(options) {
       'const', 'queryHandler', controllers.category]) 
     .controller('KeywordController', ['$timeout', '$scope', '$attrs', '$window', 'gqModel',
       'const', 'queryHandler', controllers.keyword]) 
+    .controller('SearchController', ['$timeout', '$scope', '$attrs', '$window', 'gqModel',
+      'const', 'queryHandler', controllers.search]) 
     .controller('subCategController', ['$timeout', '$scope', '$attrs', '$window', 'gqModel',
       'const', 'queryHandler', controllers.subcategory])
     .controller('ArticleController', ['$timeout', '$scope', '$attrs','$window', 'gqModel',
