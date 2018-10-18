@@ -53,8 +53,8 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
         categ: categ,
         campaigns: result['listCampaign'] || [],
         showEDM: edm.showEDM(req.cookies.addEDM, result['listCampaign']),
-        origin: req.protocol + "://" + req.get('host'),
-        fullURL: req.protocol + "://" + req.get('host') + req.originalUrl
+        origin: "https://" + req.get('host'),
+        fullURL: "https://" + req.get('host') + req.originalUrl
       });
     }, function(err) {
       return next(err);

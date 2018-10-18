@@ -32,8 +32,10 @@ function parseMpms(origMpms) {
     article.id = articleID;
     article.type = articleUtil.getArticleType(articleID);
     article.ogDescription = null;
-    article.origin = req.protocol + "://" + req.get('host');
-    article.fullURL = req.protocol + "://" + req.get('host') + "/article/" + articleID;
+    // article.origin = req.protocol + "://" + req.get('host');
+    // article.fullURL = req.protocol + "://" + req.get('host') + "/article/" + articleID;
+    article.origin = "https://" + req.get('host');
+    article.fullURL = "https://" + req.get('host') + "/article/" + articleID;
     article.isSharedUrl = !req.params.title;
 
     if (articleID && articleUtil.isNewsArticle(article.type)) {
@@ -224,8 +226,9 @@ function parseMpms(origMpms) {
         categ: categ,
         campaigns: result.listCampaign || [],
         showEDM: edm.showEDM(req.cookies.addEDM, result.listCampaign),
-        origin: req.protocol + "://" + req.get('host'),
-        fullURL: req.protocol + "://" + req.get('host') + req.originalUrl
+        origin: "https://" + req.get('host'),
+        fullURL: "https://" + req.get('host') + req.originalUrl
+        // fullURL: req.protocol + "://" + req.get('host') + req.originalUrl
       });
     }, function(err) {
       return next(err);
@@ -271,8 +274,8 @@ function parseMpms(origMpms) {
                     categ: categ,
                     campaigns: result.listCampaign || [],
                     showEDM: edm.showEDM(req.cookies.addEDM, result.listCampaign),
-                    origin: req.protocol + "://" + req.get('host'),
-                    fullURL: req.protocol + "://" + req.get('host') + req.originalUrl
+                    origin: "https://" + req.get('host'),
+                    fullURL: "https://" + req.get('host') + req.originalUrl
                   });
             }, function(err) {
               return next(err);
