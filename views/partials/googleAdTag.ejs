@@ -145,7 +145,7 @@ function showWebAd(adType, divId, a, callback) {
         webAdCallback[divId] = callback;
       }
       if ($("#" + divId).is(":visible")) {
-        // displayAd(divId, slot);
+        displayAd(divId, slot);
         webAdDisplayed[divId] = true;
       } else {
         webAdDisplayed[divId] = false;
@@ -216,7 +216,7 @@ function showMobileAd(adType, divId, a, callback) {
         mobileAdCallback[divId] = callback;
       }
       if ($("#" + divId).is(":visible")) {
-        // displayAd(divId, slot);
+        displayAd(divId, slot);
         mobileAdDisplayed[divId] = true;
       } else {
         mobileAdDisplayed[divId] = false;
@@ -239,7 +239,7 @@ function refreshAdsSlot(){
 }
 
 $(document).ready(function() {
-  refreshAdsSlot() ;
+  // refreshAdsSlot() ;
 
   $(window).on("resize", function() {
     for (var i = 0; i < webAdDivIds.length; i++) {
