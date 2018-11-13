@@ -78,13 +78,13 @@ if (window.googletag && googletag.apiReady) {
         mobileAdCallback[divId](event.isEmpty);
       }
       if (event.isEmpty){
-        console.log('Empty slot Ended -' + event.slot.getSlotElementId());
+        // console.log('Empty slot Ended -' + event.slot.getSlotElementId());
         if ($('#'+event.slot.getSlotElementId()).parent().parent().parent().parent().parent().prop('nodeName') == "FLYINGCARPETFIXEDBANNER"){
         $('#'+event.slot.getSlotElementId()).parent().parent().parent().parent().parent().css('display','none');
         }
       }
       else{
-        console.log('slot display -' + event.slot.getSlotElementId());
+        // console.log('slot display -' + event.slot.getSlotElementId());
         
       }
       
@@ -213,7 +213,7 @@ function showMobileAd(adType, divId, a, callback) {
       }
       mobileAdSlots[divId] = slot;
       mobileAdDivIds.push(divId);
-      console.log(divId + $("#" + divId).is(":visible"));
+      // console.log(divId + $("#" + divId).is(":visible"));
       if (typeof callback !== "undefined") {
         mobileAdCallback[divId] = callback;
       }
