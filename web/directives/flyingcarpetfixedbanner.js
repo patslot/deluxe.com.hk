@@ -4,7 +4,7 @@ const htmlTpl = `<div class="visible-xs" style="min-height: 548px;
           <div style="width: 100%; height: 15px; background-color: #e4e4e4; color: black;  font-size: 10px; line-height: 15px; text-align: center; position: absolute; top: 0px; z-index: 10;">Advertisement</div>
                 <div  style="width: 100%; height: 548px; background-color: #e4e4e4;  text-align: center;  overflow: hidden; position: absolute;  margin: 0px !important;">
                      <div style="width: 100%; height: 548px; background-color: #e4e4e4; overflow: hidden; clip: rect(auto auto auto auto); position: absolute; margin: 0px !important;">
-                           <div id="<%= divId %>" style="width: 100%; background-color: #e4e4e4; transform: translateZ(0px);  position: fixed; padding-bottom: 0px; left:0; top: 0%; ">
+                           <div id="<%= divId %>" style="width: 100%; background-color: #e4e4e4; transform: translateZ(0px);  position: fixed; padding-bottom: 0px; left:0; top: 70px; ">
    
                                     </div>
                        </div>
