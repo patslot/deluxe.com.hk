@@ -180,6 +180,7 @@ const htmlTpl = `
   </div>
 
   <midbanner midbanner-id="midbanner_<%= idx %>"></midbanner>
+  <fixedbanner fixedbanner-id="fixedbanner8_<%= idx %>" fixedbanner-num="1" article-id="<%- idx %>"></fixedbanner>  
 </div>
 
 <div id="article-end-<%= idx %>"></div>
