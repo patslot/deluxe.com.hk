@@ -5,7 +5,7 @@ var adPrefixTag = '<%= AD_PREFIX_TAG %>';
 var pageAdTag = '<%= adTag %>';
 var webTags = [];
 var mobileTags = [];
-
+ 
 if (adPrefixTag !== "") {
   webTags.push(adPrefixTag);
   mobileTags.push(adPrefixTag);
@@ -95,7 +95,7 @@ if (window.googletag && googletag.apiReady) {
 }
 
 function displayAd(divId, slot) {
-  //  console.log(divId + " " + slot.getSlotElementId());
+   console.log(divId + " " + slot.getSlotElementId());
   googletag.display(divId);
   googletag.pubads().refresh([slot]);
 }
