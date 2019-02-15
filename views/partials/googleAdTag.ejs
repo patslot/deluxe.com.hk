@@ -1,11 +1,13 @@
-<script src="https://www.googletagservices.com/tag/js/gpt.js">
+<script async="async"  src="https://www.googletagservices.com/tag/js/gpt.js">
 </script>
 <script>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
 var adPrefixTag = '<%= AD_PREFIX_TAG %>';
 var pageAdTag = '<%= adTag %>';
 var webTags = [];
 var mobileTags = [];
-
+ 
 if (adPrefixTag !== "") {
   webTags.push(adPrefixTag);
   mobileTags.push(adPrefixTag);
@@ -41,14 +43,15 @@ var webSlotSizes = {
 };
 
 var mobilePrefix = "/" + mobileTags.join("/") + "/";
-var mobileSlotSizes = {
+var mobileSlotSizes = {  
+  "1x1": [[1,1]],
   Fixedbanner1: [[320, 80], [320, 360], [300, 250]],
   Fixedbanner2: [[320, 80], [320, 360], [300, 250]],
   Fixedbanner3: [[320, 80], [320, 360], [300, 250]],
   Fixedbanner4: [[320, 80], [320, 360], [300, 250]],
   Fixedbanner5: [[320, 80], [320, 360], [300, 250]],
   Fixedbanner6: [[320, 80], [320, 360], [300, 250]],
-  Fixedbanner7: [[320, 80], [320, 360], [300, 250]],
+  Fixedbanner7: [[320, 80], [320, 360], [300, 250]], 
   Fixedbanner8: [[320, 80], [320, 360], [300, 250]],
   FadeInOutBanner: [[320, 50], [320, 80], [320, 100]]
 };
@@ -63,7 +66,6 @@ var mobileAdSlots = {};
 var mobileAdDivIds = [];
 var mobileAdCallback = [];
 
-if (window.googletag && googletag.apiReady) {
   googletag.cmd.push(function() {
     googletag.pubads().collapseEmptyDivs();
     googletag.pubads().enableSingleRequest();
@@ -87,15 +89,12 @@ if (window.googletag && googletag.apiReady) {
         // console.log('slot display -' + event.slot.getSlotElementId());
         
       }
-      
-
     });
     googletag.enableServices();
   });
-}
 
 function displayAd(divId, slot) {
-  //  console.log(divId + " " + slot.getSlotElementId());
+  // console.log(divId + " " + slot.getSlotElementId());
   googletag.display(divId);
   googletag.pubads().refresh([slot]);
 }
@@ -124,8 +123,6 @@ function showWebAd(adType, divId, a, callback) {
   }
  
   var acticleId = a || ''; 
-  if (window.googletag && googletag.apiReady) {
-
     googletag.cmd.push(function() {
       var slot = googletag
         .defineSlot(
@@ -153,7 +150,6 @@ function showWebAd(adType, divId, a, callback) {
       }
     });
   }
-}
 
 function showMobileAd(adType, divId, a, callback) {
   var ky = '<%= ky %>';
@@ -180,7 +176,6 @@ function showMobileAd(adType, divId, a, callback) {
   }
 
   var acticleId = a || ''; 
-  if (window.googletag && googletag.apiReady) {
     googletag.cmd.push(function() {
       var slot = null;
       if (adType === "SplashAd") {
@@ -224,7 +219,7 @@ function showMobileAd(adType, divId, a, callback) {
         mobileAdDisplayed[divId] = false;
       }
     });
-  }
+
 }
 function refreshAdsSlot(){
 
@@ -244,7 +239,6 @@ function refreshAdsSlot(){
 
 $(document).ready(function() {
   // refreshAdsSlot() ;
-
   $(window).on("resize", function() {
     for (var i = 0; i < webAdDivIds.length; i++) {
       if ($("#" + webAdDivIds[i]).is(":visible") && !webAdDisplayed[webAdDivIds[i]]) {

@@ -77,6 +77,7 @@ module.exports = function(options) {
     .directive('headbanner', [dirs.headbanner])
     .directive('midbanner', [dirs.midbanner])
     .directive('fixedbanner', [dirs.fixedbanner])
+    .directive('ad1x1banner', [dirs.ad1x1banner])
     .directive('fadeinoutbanner', [dirs.fadeinoutbanner])
     .directive('flyingcarpetfixedbanner', [dirs.flyingcarpetfixedbanner])
     .directive('lrec', [dirs.lrec])

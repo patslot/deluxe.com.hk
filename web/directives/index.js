@@ -19,3 +19,4 @@ export { default as homeArticle } from './homeArticle';
 export { default as shareBar } from "./shareBar";
 export { default as contributorBlock } from "./contributorBlock";
 export { default as articleDetails } from "./articleDetails";
+export { default as ad1x1banner } from "./ad1x1banner";
