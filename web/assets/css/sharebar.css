@@ -7,13 +7,13 @@
 }
 
 :local .share_item a {
-  width: 28px;
-  height: 28px;
+  width: 48px;
+  height: 48px;
   display:inline-block;
 }
 
 :local .share_item {
-  background-size: 32px 24px;
+  background-size:  48px 42px;
   border-radius: 20px;
   background-position: center;
   cursor: pointer;
