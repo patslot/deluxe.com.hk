@@ -61,12 +61,8 @@
 
         <div class="row nm_row">
           <fixedbanner fixedbanner-id="fixedbanner1"></fixedbanner>
-          <div class="pull-right upcoming_events_wrap">
-            <div class="up_coming_event">
-              <%- include('partials/upcomingEvents.ejs', {events: upcomingEvents}) %>
-            </div>
-          </div>
-          <div class="pull-right nm_mpm col-xs-12" id="firstPage">
+         
+          <div class="main_content" id="firstPage">
            
             <% events.forEach(function(e) { %>
             <div class="event_item">
