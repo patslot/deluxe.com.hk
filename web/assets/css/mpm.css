@@ -23,7 +23,7 @@
   background-size: auto;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 969px) {
   #home-slideshow-block .carousel-control {
     width: 8%;
     height: 25%;
@@ -35,7 +35,7 @@
   height: auto;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 970px) {
   #home-slideshow-block .carousel-indicators {
     bottom: 0px;
   }

@@ -8,7 +8,7 @@ $(document).ready(function() {
     var GDPRLargeScreen = window.matchMedia('(min-width: 1025px)').matches;
     var skinnerTrigerTop = $('.ls_banner').outerHeight(true) ? 160 + $('.ls_banner').outerHeight(true) : 160;
     skinnerTrigerTop = $('.sub-categories').outerHeight(true) ? skinnerTrigerTop + $('.sub-categories').outerHeight(true) : skinnerTrigerTop;
-  if (window.matchMedia('(min-width: 768px)').matches) {
+  if (window.matchMedia('(min-width: 970px)').matches) {
     if ( $('#div-GDPR-message').css('display') != "none" && $('#div-GDPR-message').length > 0 ) {
       var GDPR_height = $('#div-GDPR-message').outerHeight(true);
       if (scrollTop > 80) {
@@ -78,7 +78,7 @@ setTimeout(function(){
 	updateSticky();
   $(document).scroll(updateSticky);
 
-  var isLargeScreen = window.matchMedia('(min-width: 768px)').matches;
+  var isLargeScreen = window.matchMedia('(min-width: 970px)').matches;
   var toggleMenu = function() {
     var $content = $('[vmenu="content"]').first();
     var $siblingContent = $('[vmenu="sibling"]');
@@ -100,7 +100,7 @@ setTimeout(function(){
   $('[vmenu="menu_close_trigger"]').on('click', toggleMenu);
 
   $(window).resize(function() {
-    if (window.matchMedia('(min-width: 768px)').matches) {
+    if (window.matchMedia('(min-width: 970px)').matches) {
       if (!isLargeScreen) {
         updateSticky();
       }

@@ -230,7 +230,7 @@ function refreshAdsSlot(){
     return [value];
   });
 
-  if (window.matchMedia('(min-width: 768px)').matches) {
+  if (window.matchMedia('(min-width: 970px)').matches) {
     googletag.pubads().refresh(webADArray);
   }else{
     googletag.pubads().refresh(mobileADArray);

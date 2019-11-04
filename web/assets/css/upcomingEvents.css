@@ -19,7 +19,7 @@
   height: auto;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 969px) {
   .up_coming_section .nm_section_scroll {
     height: 145px;
   }

@@ -34,7 +34,7 @@
   height: 300px;
 }
 
-@media all and (max-width: 768px) {
+@media all and (max-width: 969px) {
   .ctb_title,
   .ctb_item_image,
   .ctb_item_container{

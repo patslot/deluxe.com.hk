@@ -3,7 +3,7 @@
 function renderVideo(video, title, elemId) {
   if (video && video.url) {
     var videoAdTags = [];
-    if (window.matchMedia('(min-width: 768px)').matches) {
+    if (window.matchMedia('(min-width: 970px)').matches) {
       videoAdTags.push('<%= AD_WEB_BASE_TAG %>');
     } else {
       videoAdTags.push('<%= AD_MOBILE_BASE_TAG %>');
@@ -53,7 +53,7 @@ function liveStateChanged(stateMessage, anvatoData) {
 
     try {
       var platform = "WEB";
-      if (!window.matchMedia('(min-width: 768px)').matches) {
+      if (!window.matchMedia('(min-width: 970px)').matches) {
         platform = "MOBWEB";
       }
 

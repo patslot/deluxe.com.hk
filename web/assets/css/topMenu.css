@@ -4,7 +4,7 @@
   z-index: 100;
 }
 
-@media (width: 768px) {
+@media (width: 970px) {
   .nm_header {
     width: 970px;
   }
@@ -169,7 +169,7 @@
   background: #fff;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 970px) {
   .nm_header .nav--menu .nav-toggle-icon,
   .nm_header .nav--menu .logo {
     display: none;

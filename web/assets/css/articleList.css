@@ -27,7 +27,7 @@
   padding-top: 15px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 969px) {
   .al_two_content,
   .al_two_image {
     float: left;

@@ -16,7 +16,7 @@ html {
   margin-bottom: 15px;
 }
 
-@media all and (max-width: 767px) {
+@media all and (max-width: 969px) {
   .nm_section_block_title {
     text-align: center;
     padding: 0 16px;
@@ -41,7 +41,7 @@ html {
     }    
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 970px) {
   body>.container {
     width: 970px;
     padding: 0px;
@@ -73,7 +73,7 @@ html {
   
 }
 
-@media (max-width: 767px) {
+@media (max-width: 969px) {
   body>.container {
         margin-left: 0px;
       margin-right: 0px;
@@ -280,7 +280,7 @@ background: #ccc;
 
 /* head banner */
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 970px) {
   .nm_home .head_banner_wrapper .superhead_banner {
     width: 970px;
     position: relative;
@@ -307,7 +307,7 @@ background: #ccc;
   position: relative;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 969px) {
   .nm_home .lrec_ad_wrapper {
     width: 100%;
   }
@@ -393,7 +393,7 @@ background: #ccc;
   height: 150px;
   width: 150px;
 }
-@media (max-width: 767px) {
+@media (max-width: 969px) {
   .artd_instagram_large_image img {
     height: 100%;
     width: 100%;
@@ -429,7 +429,7 @@ background: #ccc;
   background-size: 100% !important;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 969px) {
     .nm_section .nm_section_header_ball{
         height: 10vw; 
     }
@@ -548,7 +548,7 @@ a {
   display: block;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 969px) {
   .nm_header .sticky-placeholder {
     display: none;
   }
@@ -571,7 +571,7 @@ a {
   height: 375px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 970px) {
   .homepage_facebook_block {
     float: right;
   }
@@ -586,7 +586,7 @@ a {
 /*  height: 375px;*/
 }
 
-@media (max-width: 767px) {
+@media (max-width: 969px) {
   .upcoming_events_wrap {
     width: 100%;
     padding-bottom: 15px;
@@ -633,7 +633,7 @@ a {
   background-size: contain;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 970px) {
   .footer-contact-item {
     margin-right: 10px;
   }
@@ -671,7 +671,7 @@ a {
 .btn_scrolltotop img {
         width: 60px;
 }
-@media (max-width: 767px) {
+@media (max-width: 969px) {
     .btn_scrolltotop img {
         width: 10vw;
     }
@@ -685,7 +685,7 @@ a {
 .btn_readmore img {
         width: 60px;
 }
-@media (max-width: 767px) {
+@media (max-width: 969px) {
     .btn_readmore img {
         width: 10vw;
     }
