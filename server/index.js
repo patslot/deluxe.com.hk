@@ -1,5 +1,5 @@
 'use strict';
-
+var fs = require('fs');
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -114,7 +114,15 @@ module.exports = function(options) {
 app.get('/google48dda8f13ef3ab4c.html', function (req, res) {
   res.send('/web/google48dda8f13ef3ab4c.html')
 })
-   
+
+app.get('/ads.txt', function (req, res) {
+  fs.readFile('/web/ads.txt', 'utf8', function(err, data) {
+      if (err) throw err;
+      return res.send(data);
+    })
+})
+  
+
   app.use(function(err, req, res, next) {
     var metaKeyword = categMapping.categoryKeywordMapping['Contributor'] ;
     console.error(JSON.stringify(err));
