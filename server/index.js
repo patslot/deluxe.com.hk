@@ -52,7 +52,13 @@ module.exports = function(options) {
   app.set('view engine', 'ejs');
 
   app.use("/api", api);
-
+  app.get('/ads.txt', function (req, res) {
+    fs.readFile('/web/ads.txt', 'utf8', function(err, data) {
+        if (err) throw err;
+        return res.send(data);
+      })
+  })
+    
 //  app.get('/', home.render);
     app.get('/', function(req, res) {
         gQuery.getLatestArticle()
@@ -115,13 +121,7 @@ app.get('/google48dda8f13ef3ab4c.html', function (req, res) {
   res.send('/web/google48dda8f13ef3ab4c.html')
 })
 
-app.get('/ads.txt', function (req, res) {
-  fs.readFile('/web/ads.txt', 'utf8', function(err, data) {
-      if (err) throw err;
-      return res.send(data);
-    })
-})
-  
+
 
   app.use(function(err, req, res, next) {
     var metaKeyword = categMapping.categoryKeywordMapping['Contributor'] ;
