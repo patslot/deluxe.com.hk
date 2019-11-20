@@ -58,7 +58,10 @@ module.exports = function(options) {
         return res.send(data);
       })
   })
-    
+  app.get('/robots.txt', function (req, res) {
+    res.type('text/plain');
+    res.send("User-agent: *\nDisallow: /ads \nAllow: /ads.txt");
+  });
 //  app.get('/', home.render);
     app.get('/', function(req, res) {
         gQuery.getLatestArticle()
