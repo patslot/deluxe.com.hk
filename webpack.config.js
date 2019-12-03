@@ -1,8 +1,10 @@
 var path = require("path");
 var webpack = require("webpack");
+const MinifyPlugin = require("babel-minify-webpack-plugin");
 
 module.exports = {
   name: "web",
+  mode: 'production',
   entry: {
     bundle: ["babel-polyfill", "./web/index.js"]
   },
@@ -39,6 +41,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new MinifyPlugin(),
     new webpack.ProvidePlugin({
         $: "jquery",
         jQuery: "jquery",
