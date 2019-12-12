@@ -181,17 +181,17 @@ function showMobileAd(adType, divId, a, callback) {
       if (adType === "SplashAd") {
         var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         var slotSize = (h >= 559)? [320, 548] : [320, 460];
-        slot = googletag
-          .defineSlot(
-            mobileSplashPrefix + adType,
-            slotSize,
-            divId)
-          .addService(googletag.pubads())
-          .setTargeting("article", acticleId)
-        .setTargeting("SEG", crmDataResult.data.SEG)
-        .setTargeting("A", crmDataResult.data.A)
-        .setTargeting("GG", crmDataResult.data.GG)
-          .setTargeting("KY", kyEncoded);
+        // slot = googletag
+        //   .defineSlot(
+        //     mobileSplashPrefix + adType,
+        //     slotSize,
+        //     divId)
+        //   .addService(googletag.pubads())
+        //   .setTargeting("article", acticleId)
+        // .setTargeting("SEG", crmDataResult.data.SEG)
+        // .setTargeting("A", crmDataResult.data.A)
+        // .setTargeting("GG", crmDataResult.data.GG)
+        //   .setTargeting("KY", kyEncoded);
       } else {
         slot = googletag
           .defineSlot(
