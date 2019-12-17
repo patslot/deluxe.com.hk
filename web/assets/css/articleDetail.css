@@ -105,3 +105,8 @@
   transition: 1s;
   display: block;
 }
+
+.art_link_button{
+  width: 45%; 
+  margin: 0;
+}
