@@ -12,6 +12,7 @@
     }) %>
     <%- include('partials/googleAdTag.ejs', {adTag: adTag,ky: ''}) %>
     <%- include('partials/google-analytics.ejs') %>
+    <%- include('partials/customdimension.ejs',{cdValue: cdValue}) %>
   </head>
   <body ng-app="addv2" ng-controller="ContributorController">
     <skinner-block></skinner-block>
@@ -54,7 +55,7 @@
             </div>
           </div>
         </div>
-        <%- include('partials/footer.ejs') %>
+        <%- include('partials/footer.ejs',{year: year}) %>
         <%- include('partials/newsletter.ejs') %>
         <%- include('partials/campaign.ejs') %>
       </div>

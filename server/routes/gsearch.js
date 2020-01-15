@@ -2,15 +2,21 @@
 
 var express = require("express");
 
-
+var MobileDetect = require('mobile-detect');
 module.exports = function(gQuery, categMapping, queryHandler, edm) {
         var categ = 'Search';
         var ename = 'add_fash';
         var adTagMapping = categMapping.nameToAdTag['Hashtag'];
         var metaKeyword = categMapping.categoryKeywordMapping['Contributor'] ;
-     
+        
 
       function renderSearch(req, res, next) {
+            var md = new MobileDetect(req.headers['user-agent']);
+            if (md.mobile()) {
+              var platform = 'MOBWEB' ;
+            } else {
+              var platform = 'WEB' ;
+            };  
              function getquery() {
                 var query = require('url').parse(req.url,true).query;
                   return query.q 
@@ -37,7 +43,14 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
                   rResult['displayCategory'] = temp[3];
                   return rResult ;
                  });
-
+                 var cdvalues = {
+                  'c1': '',
+                  'c21': 'INDEX',
+                  'c16': categ,
+                  'c17': query,
+                  'c18': '',
+                  'c29': platform
+                } ;    
                 res.render('search', {
                     query: query,
                     metaKeyword: metaKeyword,
@@ -45,6 +58,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
                     adTag: adTagMapping.list,
                     categ: categ,
                     results: reformedResult,
+                    cdValue: cdvalues,
                     menu: queryHandler.parseMenu(result.listMenu),
                     campaigns: result.listCampaign || [],
                     showEDM: edm.showEDM(req.cookies.addEDM, result.listCampaign),

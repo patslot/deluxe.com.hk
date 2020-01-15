@@ -13,6 +13,8 @@
   }) %>
   <%- include('partials/googleAdTag.ejs', {adTag: adTag, ky: ''}) %>
   <%- include('partials/google-analytics.ejs') %>
+
+  <%- include('partials/customdimension.ejs',{cdValue: cdValue}) %>
 </head>
 
 <body ng-app="addv2" ng-controller="CategController" categ-ename="<%= ename %>"
@@ -86,7 +88,7 @@
         <img src="/img/loading.gif" />
       </div>
     </div>
-    <%- include('partials/footer.ejs') %>
+    <%- include('partials/footer.ejs',{year: year}) %>
     <%- include('partials/newsletter.ejs') %>
     <%- include('partials/campaign.ejs') %>
   </div>

@@ -1,0 +1,50 @@
+<script>
+ var nxtu = (document.cookie || "")
+        .split(";")
+        .map(function(d) { return d.trim().split("="); })
+        .filter(function(d) { return d.length === 2 && d[0] === "nxtu"; })
+        .reduce(function(acc, val) { return val; }, "");
+
+    var geoData = localStorage.getItem("1x1_GEO");
+    if (geoData) {
+        var data = JSON.parse(geoData).DFP;
+     }else{
+        var data = {
+            D: "",
+            CC: "",
+            S: "",
+            C: "",
+            CY: "",
+            ZP: "",
+            DSH: "",
+            DRC: "",
+            DSC: "",
+            AF: "",
+        }      
+    }
+dataLayer.push({
+ 'c1': '<%= cdValue.c1 %>',
+ 'c10': '<%= cdValue.c10 %>',
+ 'c16': '<%= cdValue.c16 %>',
+ 'c17': '<%= cdValue.c17 %>',
+ 'c18': '<%= cdValue.c18 %>',
+ 'c19': '<%= cdValue.c19 %>',
+ 'c21': '<%= cdValue.c21 %>',
+ 'c29': '<%= cdValue.c29 %>',
+ 'c30': '<%= cdValue.c30 %>',
+ 'c31': '<%= cdValue.c31 %>',
+ 'c32': '<%= cdValue.c32 %>',
+ 'c33': '<%= cdValue.c33 %>',
+ 'c34': '<%= cdValue.c34 %>',
+ 'c60': data.D,
+ 'c61': data.CC,
+ 'c62': data.S,
+ 'c63': data.C,
+ 'c64': data.CY,
+ 'c65': data.ZP,
+ 'c66': data.DSH,
+ 'c67': data.DRC,
+ 'c68': data.DSC,
+ 'c69': data.AF
+});
+</script>

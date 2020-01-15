@@ -1,5 +1,7 @@
 'use strict';
 
+var moment = require('moment');
+var MobileDetect = require('mobile-detect');
 module.exports = function(gQuery, categMapping, queryHandler, edm) {
   var articleCount = 4;
   var contributorBlockCount = 6;
@@ -30,12 +32,28 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
         articles.forEach(function(a) {
           queryHandler.parseCmsArticle(categContr, a);
         });
+        var md = new MobileDetect(req.headers['user-agent']);
+        if (md.mobile()) {
+          var platform = 'MOBWEB' ;
+        } else {
+          var platform = 'WEB' ;
+        };
+        var cdvalues = {
+          'c1': 'test',
+          'c21': 'INDEX',
+          'c16': 'Contributor',
+          'c17': queryHandler.parseContributor(contributors[0]).catName,
+          'c18': '',
+          'c29': platform
+        }
         res.render('contributorArticles', {
           pageviewLog: categMapping.categPageviewLog(columnist, 'INDEX', name),
           contributor: queryHandler.parseContributor(contributors[0]),
           metaKeyword: metaKeyword,
           menu: queryHandler.parseMenu(r.listMenu, categContr),
           articles: articles,
+          cdValue: cdvalues,
+          year: moment().year(),
           noMoreArticles: allArticles.length <= articleCount,
           campaigns: r.listCampaign || [],
           showEDM: edm.showEDM(req.cookies.addEDM, r.listCampaign),
@@ -61,6 +79,20 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
         }
       })
       .then(function(r) {
+        var md = new MobileDetect(req.headers['user-agent']);
+        if (md.mobile()) {
+          var platform = 'MOBWEB' ;
+        } else {
+          var platform = 'WEB' ;
+        };
+        var cdvalues = {
+          'c1': '',
+          'c21': 'INDEX',
+          'c16': 'Contributor',
+          'c17': '',
+          'c18': '',
+          'c29': platform
+        }
         res.render('contributorIndex', {
           pageviewLog: categMapping.categPageviewLog(columnist),
           metaKeyword: metaKeyword,
@@ -68,6 +100,8 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
             (r.listContributor || []).slice(0, contributorBlockCount)),
           menu: queryHandler.parseMenu(r.listMenu, categContr),
           adTag: adTagMapping.list,
+          cdValue: cdvalues,
+          year: moment().year(),
           campaigns: r.listCampaign || [],
           showEDM: edm.showEDM(req.cookies.addEDM, r.listCampaign),
           origin: "https://" + req.get('host'),

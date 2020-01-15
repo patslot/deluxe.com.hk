@@ -1,5 +1,7 @@
 'use strict';
 
+var moment = require('moment');
+var MobileDetect = require('mobile-detect');
 module.exports = function(gQuery, categMapping, queryHandler, edm) {
   var eventCount = 7;
   var maxUpcomingEvents = 10;
@@ -17,6 +19,20 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
   function renderEvents(req, res, next) {
     var totalEvents = eventCount + 1;
     var metaKeyword = categMapping.categoryKeywordMapping['Event'] ;
+    var md = new MobileDetect(req.headers['user-agent']);
+        if (md.mobile()) {
+          var platform = 'MOBWEB' ;
+        } else {
+          var platform = 'WEB' ;
+        };
+        var cdvalues = {
+          'c1': '',
+          'c21': 'INDEX',
+          'c16': 'Event',
+          'c17': '',
+          'c18': '',
+          'c29': platform
+        }
     gQuery.eventsQuery(totalEvents, 1)
       .catch(function(err) {
         // use all available data
@@ -37,6 +53,8 @@ module.exports = function(gQuery, categMapping, queryHandler, edm) {
           adTag: categMapping.nameToAdTag[categEvent].list,
           numOfPages: getNumOfPages(r.totalPostEvent),
           numOfEvents: r.totalPostEvent,
+          cdValue: cdvalues,
+          year: moment().year(),
           latestEvent: events.length > 0 ? events[0] : null,
           upcomingEvents: queryHandler.parseUpcomingEvents(upcomingEvents),
           events: events.slice(1, totalEvents),

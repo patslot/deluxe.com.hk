@@ -14,6 +14,7 @@
 
   <%- include('partials/googleAdTag.ejs', {adTag: adTag, ky:hashTag}) %>
   <%- include('partials/google-analytics.ejs') %>
+  <%- include('partials/customdimension.ejs',{cdValue: cdValue}) %>
 </head>
 
 <body ng-app="addv2" ng-controller="KeywordController" categ-ename="<%= ename %>"

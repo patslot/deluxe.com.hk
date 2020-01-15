@@ -12,7 +12,7 @@
     }) %>
     <%- include('partials/googleAdTag.ejs', {adTag: adTag, ky: masterTag}) %>
     <%- include('partials/google-analytics.ejs') %>
-
+    <%- include('partials/customdimension.ejs',{cdValue: cdValue}) %>
 </script>
   </head>
   <body ng-app="addv2" ng-controller="ArticleController"

@@ -2,9 +2,74 @@
 
 var util = require('util');
 var moment = require('moment');
-
+var url = require('url');
+var MobileDetect = require('mobile-detect');
 module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) {
-    
+  function getAllUrlParams(url) {
+
+    // get query string from url (optional) or window
+    var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+  
+    // we'll store the parameters here
+    var obj = {};
+  
+    // if query string exists
+    if (queryString) {
+  
+      // stuff after # is not part of query string, so get rid of it
+      queryString = queryString.split('#')[0];
+  
+      // split our query string into its component parts
+      var arr = queryString.split('&');
+  
+      for (var i = 0; i < arr.length; i++) {
+        // separate the keys and the values
+        var a = arr[i].split('=');
+  
+        // set parameter name and value (use 'true' if empty)
+        var paramName = a[0];
+        var paramValue = typeof (a[1]) === 'undefined' ? true : a[1];
+  
+        // (optional) keep case consistent
+        paramName = paramName.toLowerCase();
+        if (typeof paramValue === 'string') paramValue = paramValue.toLowerCase();
+  
+        // if the paramName ends with square brackets, e.g. colors[] or colors[2]
+        if (paramName.match(/\[(\d+)?\]$/)) {
+  
+          // create key if it doesn't exist
+          var key = paramName.replace(/\[(\d+)?\]/, '');
+          if (!obj[key]) obj[key] = [];
+  
+          // if it's an indexed array e.g. colors[2]
+          if (paramName.match(/\[\d+\]$/)) {
+            // get the index value and add the entry at the appropriate position
+            var index = /\[(\d+)\]/.exec(paramName)[1];
+            obj[key][index] = paramValue;
+          } else {
+            // otherwise add the value to the end of the array
+            obj[key].push(paramValue);
+          }
+        } else {
+          // we're dealing with a string
+          if (!obj[paramName]) {
+            // if it doesn't exist, create property
+            obj[paramName] = paramValue;
+          } else if (obj[paramName] && typeof obj[paramName] === 'string'){
+            // if property does exist and it's a string, convert it to an array
+            obj[paramName] = [obj[paramName]];
+            obj[paramName].push(paramValue);
+          } else {
+            // otherwise add the property
+            obj[paramName].push(paramValue);
+          }
+        }
+      }
+    }
+  
+    return obj;
+  }
+
 function parseMpms(origMpms) {
     var mpms = origMpms || [];
     mpms.forEach(function(m) {
@@ -20,17 +85,33 @@ function parseMpms(origMpms) {
     });
     return mpms;
 }
-    
+function webOrMobile(){
+  var ua = request.headers['user-agent'];
+    if (/mobile/i.test(ua)){
+      return 'MOBWEB';
+    }
+    else{
+      return 'WEB';
+    }
+}
+
   var maxUpcomingEvent = 10;
   var cmsNewsType = 'OTHER';
   var columnist = 'COLUMNIST';
 
   function renderArticle(req, res, next) {
-      
+    var md = new MobileDetect(req.headers['user-agent']);
+    if (md.mobile()) {
+      var platform = 'MOBWEB' ;
+    } else {
+      var platform = 'WEB' ;
+    }; 
+    var urlparams = getAllUrlParams(req.originalUrl);
     var articleID = req.params.articleID;
     var article = {};
     article.id = articleID;
     article.type = articleUtil.getArticleType(articleID);
+    article.year = moment().year();
     article.ogDescription = null;
     // article.origin = req.protocol + "://" + req.get('host');
     // article.fullURL = req.protocol + "://" + req.get('host') + "/article/" + articleID;
@@ -82,7 +163,6 @@ function parseMpms(origMpms) {
           }
         })
         .then(function (result) {
-          
           article = util._extend(article, result.getCMSArticleDetail);
           article.contributorName = article.contributorName ?
           article.contributorName.replace(/\,/,'') : '';
@@ -115,6 +195,29 @@ function parseMpms(origMpms) {
           article.contributor = result.listContributor.find(function(x){
               return x.catName == article.subCategory
           })
+          article.cdValue = {
+            'c1': article.id,
+            'c10': article.title,
+            'c16': article.categoryName,
+            'c17': '',
+            'c18': '',
+            'c19': article.categoryName,
+            'c20': article.categoryName,
+            'c21': 'SCROLL',
+            'c22': '',
+            'c23': 'AD',
+            'c24': article.masterTag,
+            'c25': article.keywords,
+            'c26': article.issueId,
+            'c27': '',
+            'c28': '',
+            'c29': platform ,
+            'c30': urlparams.itm_campaign ,
+            'c31': urlparams.itm_medium ,
+            'c32': urlparams.itm_source ,
+            'c33': urlparams.itm_content ,
+            'c34': urlparams.itm_term 
+          }
           if (article.categoryName==='Contributor'){
               if (article.contributor !=undefined){
                     article.contributor = queryHandler.parseContributor(article.contributor);
@@ -213,6 +316,20 @@ function parseMpms(origMpms) {
       var categs = result.listMenu || [];
       var currentCateg = getCurrentCateg(categs, categ);
       var mpm = result[listCategMPMAPI];
+      var md = new MobileDetect(req.headers['user-agent']);
+      if (md.mobile()) {
+        var platform = 'MOBWEB' ;
+      } else {
+        var platform = 'WEB' ;
+      };
+      var cdvalues = {
+        'c1': '',
+        'c21': 'INDEX',
+        'c16': categ,
+        'c17': '',
+        'c18': '',
+        'c29': platform
+      }
       res.render('categ', {
         pageviewLog: categMapping.categPageviewLog(categ),
         metaKeyword: metaKeyword,
@@ -223,7 +340,9 @@ function parseMpms(origMpms) {
         articles3to4: articles.length > 1 ? articles.slice(2,4) : [],
         ename: ename,
         adTag: adTagMapping.list,
+        cdValue: cdvalues,
         categ: categ,
+        year: moment().year(),
         campaigns: result.listCampaign || [],
         showEDM: edm.showEDM(req.cookies.addEDM, result.listCampaign),
         origin: "https://" + req.get('host'),

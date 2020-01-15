@@ -4,6 +4,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 
+var moment = require('moment');
 var categMapping = require('./middleware/categoryMapping.js');
 var edm = require('./middleware/edm.js');
 
@@ -137,6 +138,7 @@ app.get('/google48dda8f13ef3ab4c.html', function (req, res) {
       campaigns: [],
       showEDM: false,
       metaKeyword: metaKeyword,
+      year: moment().year(),
       origin: req.protocol + '://' + req.get('host'),
       fullURL: req.protocol + '://' + req.get('host') + req.originalUrl
     });
@@ -153,6 +155,7 @@ app.get('/google48dda8f13ef3ab4c.html', function (req, res) {
       campaigns: [],
       showEDM: false,
       metaKeyword: metaKeyword,
+      year: moment().year(),
       origin: req.protocol + '://' + req.get('host'),
       fullURL: req.protocol + '://' + req.get('host') + req.originalUrl
     });

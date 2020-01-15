@@ -13,6 +13,7 @@
   }) %>
   <%- include('partials/googleAdTag.ejs', {adTag: adTag, ky:""}) %>
   <%- include('partials/google-analytics.ejs') %>
+  <%- include('partials/customdimension.ejs',{cdValue: cdValue}) %>
 </head>
 
 <body ng-app="addv2" ng-controller="SearchController" categ-ename="<%= ename %>"

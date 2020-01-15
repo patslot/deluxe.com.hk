@@ -3,9 +3,15 @@
 var util = require('util');
 var moment = require('moment');
 
+var MobileDetect = require('mobile-detect');
 module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) {
-
   function renderArticles(req, res, next) {
+    var md = new MobileDetect(req.headers['user-agent']);
+    if (md.mobile()) {
+      var platform = 'MOBWEB' ;
+    } else {
+      var platform = 'WEB' ;
+    };  
     var hashTag = req.params.hashtag;
     var categ = 'Hashtag'; 
     var ename = 'add_fash';
@@ -40,7 +46,14 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
       articles.ky = hashTag ; 
       var categs = result['listMenu'] || [];
       var metaKeyword = categMapping.categoryKeywordMapping['Contributor'] ;
-      // console.log(articles[0].categoryName);
+      var cdvalues = {
+        'c1': '',
+        'c21': 'INDEX',
+        'c16': categ,
+        'c17': hashTag,
+        'c18': '',
+        'c29': platform
+      } ;  
       res.render('keyword', {
         pageviewLog: categMapping.categPageviewLog(categ),
         menu: queryHandler.parseMenu(categs, categ),
@@ -49,6 +62,7 @@ module.exports = function(gQuery, categMapping, queryHandler, edm, articleUtil) 
         ename: ename,
         adTag: adTagMapping.list,
         hashTag: hashTag,
+        cdValue: cdvalues,
         displayHashTag: displayHashTag,
         categ: categ,
         campaigns: result['listCampaign'] || [],

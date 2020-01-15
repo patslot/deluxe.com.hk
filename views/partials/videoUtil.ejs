@@ -36,12 +36,71 @@ var autoPlay = true;
 function liveStateChanged(stateMessage, anvatoData) {
   var videoId = "<%= videoId %>";
   var videoUrl = "<%= videoUrl %>";
+  var nxtu = (document.cookie || "")
+        .split(";")
+        .map(function(d) { return d.trim().split("="); })
+        .filter(function(d) { return d.length === 2 && d[0] === "nxtu"; })
+        .reduce(function(acc, val) { return val; }, "");
 
+    var geoData = localStorage.getItem("1x1_GEO");
+    if (geoData) {
+        var data = JSON.parse(geoData).DFP;
+     }else{
+        var data = {
+            D: "",
+            CC: "",
+            S: "",
+            C: "",
+            CY: "",
+            ZP: "",
+            DSH: "",
+            DRC: "",
+            DSC: "",
+            AF: "",
+        }      
+    }
+  function getAllUrlParams(url) {
+    var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+    var obj = {};
+    if (queryString) {
+      queryString = queryString.split('#')[0];
+      var arr = queryString.split('&');
+      for (var i = 0; i < arr.length; i++) {
+        var a = arr[i].split('=');
+        var paramName = a[0];
+        var paramValue = typeof (a[1]) === 'undefined' ? true : a[1];
+        paramName = paramName.toLowerCase();
+        if (typeof paramValue === 'string') paramValue = paramValue.toLowerCase();
+        if (paramName.match(/\[(\d+)?\]$/)) {
+          var key = paramName.replace(/\[(\d+)?\]/, '');
+          if (!obj[key]) obj[key] = [];
+          if (paramName.match(/\[\d+\]$/)) {
+            var index = /\[(\d+)\]/.exec(paramName)[1];
+            obj[key][index] = paramValue;
+          } else {
+            obj[key].push(paramValue);
+          }
+        } else {
+          if (!obj[paramName]) {
+            obj[paramName] = paramValue;
+          } else if (obj[paramName] && typeof obj[paramName] === 'string'){
+            obj[paramName] = [obj[paramName]];
+            obj[paramName].push(paramValue);
+          } else {
+            obj[paramName].push(paramValue);
+          }
+        }
+      }
+    }
+    return obj;
+  }
+  var urlparams = getAllUrlParams(window.location.href);
   var logVideoViewThrough = function(stateMessage, logData) {
+    console.log('statechanged');
     if (stateMessage === "VIDEO_STARTED") {
       try {
         var vlog = {
-          "eventCategory": "Video View Through",
+          "eventCategory": "video_view_through",
           "eventAction": "View " + logData.depth + "%",
           "eventLabel": "<%- pageviewLog.title.split("").map(function(c) { return "\\u" + ("000" + c.charCodeAt(0).toString(16)).substr(-4); }).join("") %>"
         };
@@ -92,8 +151,26 @@ function liveStateChanged(stateMessage, anvatoData) {
         nxmTrack.nxmAddSegVideo(nxmProp.toUpperCase() + "=" + nxmVideoObj[nxmProp]);
       }
       nxmTrack.nxmSendVideoDur(logData.currentTime, new Date().getTime());
+     
     } catch(ex) {
     }
+     dataLayer.push({
+        'c1': '<%= pageviewLog.issueid %>',
+        'c4': '<%= videoId %>',
+        'c6': logData.duration,
+        'c7': logData.depth + "%",
+        'c8': autoPlay ? "YES" : "NO",
+        'c9': "360p",
+        'c10': '<%- pageviewLog.title %>',
+        'c11': '<%- pageviewLog.title %>',
+        'c16': '<%= pageviewLog.category %>',
+        'c17': '',
+        'c18': '',
+        'c19': '<%= pageviewLog.category %>',
+        'c21': 'SCROLL',
+        'c29': platform,
+        
+      });
   };
 
   switch(stateMessage) {
@@ -102,9 +179,17 @@ function liveStateChanged(stateMessage, anvatoData) {
       autoPlay = false;
       break;
     case "VIDEO_STARTED":
+      logVideoViewThrough(stateMessage, anvatoData);
+      break;
     case "VIDEO_FIRST_QUARTILE":
+      logVideoViewThrough(stateMessage, anvatoData);
+      break;
     case "VIDEO_MID_POINT":
+      logVideoViewThrough(stateMessage, anvatoData);
+      break;
     case "VIDEO_THIRD_QUARTILE":
+      logVideoViewThrough(stateMessage, anvatoData);
+      break;
     case "VIDEO_COMPLETED":
       logVideoViewThrough(stateMessage, anvatoData);
       break;
