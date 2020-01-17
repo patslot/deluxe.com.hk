@@ -10,7 +10,7 @@ var server = Server({
   adWebBaseTag: process.env.AD_WEB_BASE_TAG || "dev.ADD",
   adMobileBaseTag: process.env.AD_MOBILE_BASE_TAG || "dev.ADD_Mobilesite",
   edmSubscriptionEndpoint: process.env.EDM_SUBSCRIPTION_ENDPOINT,
-  GA_CODE: process.env.GA_CODE || "UA-38219220-39",
+  GA_CODE: process.env.GA_CODE || "UA-45527457-19",
   SITE_NAME: process.env.SITE_NAME || "Deluxe Hong Kong",
   LOGGING_GEO_API: process.env.LOGGING_GEO_API || "https://dev-geoddsapi.nextmedia.com/geo_api",
   LOGGING_CRM_API: process.env.LOGGING_CRM_API || "https://dev-useg.nextdigital.com.hk",

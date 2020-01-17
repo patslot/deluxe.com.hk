@@ -96,7 +96,9 @@ function liveStateChanged(stateMessage, anvatoData) {
   }
   var urlparams = getAllUrlParams(window.location.href);
   var logVideoViewThrough = function(stateMessage, logData) {
-    console.log('statechanged');
+    
+    console.log('statechanged - ' + stateMessage);
+    
     if (stateMessage === "VIDEO_STARTED") {
       try {
         var vlog = {
@@ -115,7 +117,7 @@ function liveStateChanged(stateMessage, anvatoData) {
       if (!window.matchMedia('(min-width: 970px)').matches) {
         platform = "MOBWEB";
       }
-
+       
       // 1x1 video tracking
       var nxmVideoObj = {
         "region": "HK",
@@ -154,23 +156,24 @@ function liveStateChanged(stateMessage, anvatoData) {
      
     } catch(ex) {
     }
-     dataLayer.push({
-        'c1': '<%= pageviewLog.issueid %>',
-        'c4': '<%= videoId %>',
-        'c6': logData.duration,
-        'c7': logData.depth + "%",
-        'c8': autoPlay ? "YES" : "NO",
-        'c9': "360p",
-        'c10': '<%- pageviewLog.title %>',
-        'c11': '<%- pageviewLog.title %>',
-        'c16': '<%= pageviewLog.category %>',
-        'c17': '',
-        'c18': '',
-        'c19': '<%= pageviewLog.category %>',
-        'c21': 'SCROLL',
-        'c29': platform,
-        
-      });
+    var datalog = {
+          'c1': '<%= pageviewLog.issueid %>',
+          'c4': '<%= videoId %>',
+          'c6': logData.duration,
+          'c7': logData.depth + "%",
+          'c8': autoPlay ? "YES" : "NO",
+          'c9': "360p",
+          'c10': '<%- pageviewLog.title %>',
+          'c11': '<%- pageviewLog.title %>',
+          'c16': '<%= pageviewLog.category %>',
+          'c17': '',
+          'c18': '',
+          'c19': '<%= pageviewLog.category %>',
+          'c21': 'SCROLL',
+          'c29': platform,
+      };
+      console.log('datalog - '+JSON.stringify(datalog));
+      dataLayer.push(datalog);
   };
 
   switch(stateMessage) {
