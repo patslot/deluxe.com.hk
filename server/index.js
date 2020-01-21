@@ -53,6 +53,8 @@ module.exports = function(options) {
   app.set('view engine', 'ejs');
 
   app.use("/api", api);
+
+
   app.get('/ads.txt', function (req, res) {
     fs.readFile('/web/ads.txt', 'utf8', function(err, data) {
         if (err) throw err;
