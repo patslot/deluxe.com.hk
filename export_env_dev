@@ -1,0 +1,60 @@
+export ENABLE_GRAPHIQL=1
+export CORS_ORIGIN=http://localhost:3000
+export MAX_NUM_CATEGORY_ARTICLE=200
+export IMG_URL_PREFIX=http://add-s.nxtdig.com.hk
+export APICACHE_REDIS_HOST=localhost
+export APICACHE_REDIS_PORT=6379
+export INSTAGRAM_ENDPOINT=https://api.instagram.com/v1/users/self/media/recent/?access_token=4699536481.6c30ea2.f723c2a597ea46eebd79f644be9a2d8a
+
+export MENU_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/getfeed/44/cat
+
+export MPM_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_352.dat
+
+export MPM_FASHION_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_342.dat
+export MPM_BEAUTY_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_344.dat
+export MPM_LUXE_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_346.dat
+export MPM_LIFESTYLE_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_348.dat
+export MPM_CELEBRITY_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_350.dat
+
+export EDITOR_PICK_LIST_ENDPOINT=http://qa.nextmag.com.tw:8080/mongoapi/articlelist/44/248
+export BANNER_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_306.dat
+export UPCOMING_EVENT_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_314.dat
+export POST_EVENT_ENDPOINT=http://qa.nextmag.com.tw:8080/mongoapi/articlelist/44/250
+
+export CONTRIBUTOR_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_308.dat
+export CONTRIBUTOR_ARTICLE_ENDPOINT=http://qa.nextmag.com.tw:8080/mongoapi/articlelist/44/252/
+
+export ADVERTORIAL_FASHION_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_256.dat
+export ADVERTORIAL_BEAUTY_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_270.dat
+export ADVERTORIAL_LUXE_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_284.dat
+export ADVERTORIAL_WEDDING_ENDPOINT=http://qa.nextmag.com.tw:8080//cmsapi/componefeed/54/HomeGallery_338.dat
+export ADVERTORIAL_CELEBRITY_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_292.dat
+export ADVERTORIAL_LIFESTYLE_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_300.dat
+
+export CAMPAIGN_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_310.dat
+
+export NEWS_ARTICLE_ENDPOINT=http://mlprd.api.appledaily.com.hk/v1/1
+
+export CMS_FASHION_ENDPOINT=http://qa.nextmag.com.tw:8080/mongoapi/articlelist/44/238
+export CMS_BEAUTY_ENDPOINT=http://qa.nextmag.com.tw:8080/mongoapi/articlelist/44/240
+export CMS_LUXE_ENDPOINT=http://qa.nextmag.com.tw:8080/mongoapi/articlelist/44/242
+export CMS_WEDDING_ENDPOINT=http://qa.nextmag.com.tw:8080/mongoapi/articlelist/44/268
+export CMS_CELEBRITY_ENDPOINT=http://qa.nextmag.com.tw:8080/mongoapi/articlelist/44/244
+export CMS_LIFESTYLE_ENDPOINT=http://qa.nextmag.com.tw:8080/mongoapi/articlelist/44/246
+export CMS_GIFTS_ENDPOINT=http://qa.nextmag.com.tw:8080/mongoapi/articlelist/44/298
+export CMS_CLIENT_ENDPOINT=http://qa.nextmag.com.tw:8080/mongoapi/articlelist/44/300
+
+export CMS_ARTICLE_DETAIL_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/getfeed/44/article/
+export CMS_ARTICLE_ALL=http://qa.nextmag.com.tw:8080/mongoapi/articlelist/44/
+
+export HOME_LATEST_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_254.dat
+export HOME_FASHION_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_258.dat
+export HOME_BEAUTY_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_260.dat
+export HOME_LUXE_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_262.dat
+export HOME_WEDDING_ENDPOINT=http://qa.nextmag.com.tw:8080//cmsapi/componefeed/54/HomeGallery_340.dat
+export HOME_CELEBRITY_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_264.dat
+export HOME_LIFESTYLE_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_266.dat
+export HOME_HIGHLIGHT_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/componefeed/54/HomeGallery_304.dat
+export HOME_EDITOR_PICK_ENDPOINT=http://qa.nextmag.com.tw:8080/cmsapi/getfeed/44/recommend/248
+
+export CMS_KEYWORD_ENDPOINT=https://api-dev.nextmedia.com.tw/campaign/articlelistbykeyword/44
